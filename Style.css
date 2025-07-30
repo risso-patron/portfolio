@@ -1,0 +1,119 @@
+/*Estilo general dela pagina */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    display: grid;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-size: min(1rem, 2vw);
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/*estilo de Tabla*/
+caption {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+/*Header row styling*/
+tbody tr {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/*Body row styling*/
+tbody tr {
+    border-bottom: 1px solid #ccc;
+}
+
+/*Cell styling*/
+td,
+th {
+    padding: 10px;
+}
+
+/*Transition*/
+tr,
+td,
+th {
+    transition: all 125ms ease-out;
+}
+/* Column  hover  Effect */
+/*head*/
+table:has(th:nth-of-type(1):hover)
+tbody th:nth-child(1),
+table:has(th:nth-of-type(2):hover)
+tbody th:nth-child(2),
+table:has(th:nth-of-type(3):hover)
+tbody th:nth-child(3),
+table:has(th:nth-of-type(4):hover)
+tbody th:nth-child(4),
+table:has(th:nth-of-type(5):hover)
+tbody th:nth-child(5),
+table:has(th:nth-of-type(6):hover)
+tbody th:nth-child(6),
+table:has(th:nth-of-type(7):hover)
+tbody th:nth-child(7) {
+    background-color: #f2f2f2;
+    transition: none;
+}
+/*Body*/
+table:has(th:nth-of-type(1):hover)
+tbody th:nth-child(1),
+table:has(th:nth-of-type(2):hover)
+tbody th:nth-child(2),
+table:has(th:nth-of-type(3):hover)
+tbody th:nth-child(3),
+table:has(th:nth-of-type(4):hover)
+tbody th:nth-child(4),
+table:has(th:nth-of-type(5):hover)
+tbody th:nth-child(5),
+table:has(th:nth-of-type(6):hover)
+tbody th:nth-child(6),
+table:has(th:nth-of-type(7):hover)
+tbody th:nth-child(7) {
+    background-color: #f2f2f2;
+    transition: none;
+} 
+
+table:has(th:nth-of-type(1):hover)
+tbody th:nth-child(1),
+table:has(th:nth-of-type(2):hover)
+tbody th:nth-child(2),
+table:has(th:nth-of-type(3):hover)
+tbody th:nth-child(3),
+table:has(th:nth-of-type(4):hover)
+tbody th:nth-child(4),
+table:has(th:nth-of-type(5):hover)
+tbody th:nth-child(5),
+table:has(th:nth-of-type(6):hover)
+tbody th:nth-child(6),
+table:has(th:nth-of-type(7):hover)
+tbody th:nth-child(7) {
+    background-color: #006bef;
+    transition: none;
+}
+
+/*Row hover effect*/
+thead th:hover {
+    background-color: #f2f2f2;
+    transition: none;
+}
+/*Item hover effect*/
+thead th:hover {
+    background-color: #005bdf;
+    transition: none;
+}
+tbody th:hover,
+tbody th:hover {
+    background-color: #d2d2d2;
+!important
+    transition: none;
+}
