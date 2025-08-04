@@ -1,0 +1,422 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* ==================== Estilos Globales ==================== */
+body {
+    background-color: #1a1a1c; /* Fondo oscuro sólido para el body */
+    color: #d5f0f6; /* Color de texto claro para contraste */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: hidden; /* Previene el scroll horizontal no deseado */
+    position: relative; /* Importante para que los elementos hijos posicionados absolutamente se comporten correctamente */
+}
+
+/* Contenedor principal del portafolio */
+.main-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #88919c; /* Fondo del contenedor principal */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(225, 225, 228, 0.5); /* Sombra */
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+    position: relative;
+    z-index: 1; /* Asegura que el main-container esté por encima de cualquier cosa global */
+}
+
+/* Fuente monoespaciada específica (si la usas en algún elemento) */
+.text-supply-mono {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* ==================== Cursor Personalizado ==================== */
+#ball {
+    width: 25px;
+    height: 25px;
+    background-color: rgba(148, 225, 242, 0.7); /* Color del cursor */
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%); /* Centra el cursor */
+    pointer-events: none; /* Crucial para que no bloquee clics */
+    z-index: 9999; /* Asegura que esté siempre encima */
+    transition: opacity 0.2s ease-in-out; /* Transición suave para aparecer/desaparecer */
+    opacity: 0; /* Oculto por defecto */
+    box-shadow: 0 0 10px rgba(148, 225, 242, 0.5), 0 0 20px rgba(148, 225, 242, 0.3); /* Efecto de brillo */
+}
+
+
+/* ==================== Header ==================== */
+.header-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #3b5979b6; /* Fondo semitransparente del header */
+    color: #fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #a4ccde; /* Un tono más claro al pasar el ratón */
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #d5f0f6; /* Borde alrededor de la imagen */
+    box-shadow: 0 0 15px rgba(213, 240, 246, 0.5);
+}
+
+.header-content h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.header-container p.development {
+    font-size: 1rem;
+    margin: 5px 0 0;
+    color: #a4ccde;
+    font-style: italic;
+}
+
+.header-bottom {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.download-cv-btn, .send-email-btn {
+    background-color: #5a7791; /* Un color de botón sutil */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.download-cv-btn:hover, .send-email-btn:hover {
+    background-color: #4a647a;
+    transform: translateY(-2px);
+}
+
+/* ==================== Secciones del Contenido ==================== */
+.section-container {
+    padding: 30px;
+    margin-bottom: 20px;
+    background-color: #3b5979b6; /* Fondo semi-transparente de las secciones */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    color: #d5f0f6;
+    text-align: center;
+    position: relative; /* **CRUCIAL**: Necesario para posicionar los símbolos absolutamente dentro */
+    overflow: hidden; /* **CRUCIAL**: Para que los símbolos no se salgan de la sección */
+    z-index: 1; /* Asegura que la sección y su contenido estén sobre los símbolos */
+}
+
+.section-container h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    border-bottom: 2px solid #fafafa;
+    display: inline-block;
+    padding-bottom: 5px;
+    position: relative; /* Para que el texto esté encima de los símbolos */
+    z-index: 2;
+}
+
+.section-container p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    position: relative; /* Para que el texto esté encima de los símbolos */
+    z-index: 2;
+}
+
+/* ==================== Estilos para los Símbolos Dentro de las Secciones ==================== */
+.symbol-container-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite que los clics pasen a los elementos subyacentes */
+    z-index: 0; /* Detrás del contenido de la sección */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los símbolos se ajusten en múltiples líneas */
+    justify-content: space-around; /* Distribuye los símbolos de manera uniforme */
+    align-items: center; /* Centra los símbolos verticalmente */
+    opacity: 0.1; /* Opacidad general baja para el contenedor de símbolos */
+}
+
+.symbol-section-item {
+    color: #d5f0f6; /* Color de los símbolos, puedes hacerlo aún más sutil con rgba */
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: clamp(1rem, 3vw, 2.5rem); /* Tamaño responsivo para los símbolos */
+    user-select: none;
+    animation: undulate-section 10s ease-in-out infinite alternate;
+    /* Retrasos aleatorios para la animación */
+}
+
+/* Animación de ondulación para los símbolos dentro de la sección */
+@keyframes undulate-section {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(0.9);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(5px, -5px) rotate(5deg) scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg) scale(0.9);
+        opacity: 0.6;
+    }
+}
+
+/* Puedes añadir estilos específicos si quieres que algunos símbolos sean diferentes */
+.symbol-section-item:nth-child(even) { animation-delay: 1s; }
+.symbol-section-item:nth-child(3n) { animation-delay: 2s; }
+.symbol-section-item:nth-child(5n) { animation-delay: 0.5s; }
+/* Etc. Puedes jugar con :nth-child o con clases específicas como antes */
+
+
+/* ==================== Estilos de Carrusel ==================== */
+/* Sección Carrusel */
+.carousel-section {
+    margin-top: 40px;
+    text-align: center;
+    /* Ajustes para la sección contenedora del carrusel */
+    padding: 20px; /* Un poco de padding para que no se pegue a los bordes */
+    background-color: #3b5979b6; /* Asegura un fondo consistente con otras secciones */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    margin-bottom: 20px; /* Espacio debajo de la sección */
+}
+
+.carousel-section h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    border-bottom: 2px solid #d5f0f6;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    /* Reducimos el ancho máximo para que no ocupe toda la pantalla */
+    max-width: 700px; /* Un ancho máximo más razonable, ajustable según el gusto */
+    width: 100%; /* Asegura que siga siendo responsivo en anchos menores */
+    margin: 20px auto; /* Centra el carrusel */
+    border-radius: 10px;
+    background-color: #3b5979b6; /* Fondo del carrusel */
+    padding: 10px 0; /* Padding vertical, 0 horizontal para que los items gestionen el suyo */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.carousel .flex {
+    display: flex;
+    /* ELIMINA: transition: transform 0.5s ease-in-out; */
+    will-change: transform;
+    animation: scroll-left 25s linear infinite; /* Ajusta '25s' si quieres cambiar la velocidad */
+}
+
+/* Pausar animación al pasar el ratón */
+.carousel:hover .flex {
+    animation-play-state: paused;
+}
+
+.carousel-item {
+    min-width: 120px; /* Reducir el tamaño mínimo para más items en vista */
+    width: 120px; /* Ancho fijo para consistencia, ajustable */
+    height: 120px; /* Altura fija para los logos */
+    object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortar */
+    border-radius: 5px;
+    background-color: white;
+    padding: 10px;
+    margin: 0 10px; /* Margen horizontal entre items */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    flex-shrink: 0; /* Evita que los items se encojan */
+    display: flex; /* Para centrar la imagen dentro del item */
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-item img {
+    max-width: 80%; /* Hace la imagen un poco más pequeña dentro del item */
+    max-height: 80%; /* Hace la imagen un poco más pequeña dentro del item */
+    display: block;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        
+        transform: translateX(-980px); /* ¡Este valor DEBE ser exacto! */
+    }
+}
+
+/* Media query para móviles (recalcular también) */
+@media (max-width: 600px) {
+    .carousel-item {
+        min-width: 100px; /* Ancho para móvil */
+        width: 100px;
+        height: 100px;
+        margin: 0 8px; /* Margen para móvil: 8px a cada lado, total 16px */
+    }
+
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            /* Cálculo para móvil:
+               7 ítems * (100px (width) + 16px (margen total)) = 7 * 116px = 812px.
+            */
+            transform: translateX(-812px); /* ¡Valor preciso para móvil! */
+        }
+    }
+}
+
+/* ==================== Menú Desplegable de Experiencia ==================== */
+.menu-container {
+    margin-top: 20px;
+}
+
+.menuToggle {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 8px;
+    background-color: #5a7791;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block; /* Para que el padding y border-radius funcionen bien */
+    transition: background-color 0.3s ease;
+}
+
+.menuToggle:hover {
+    background-color: #4a647a;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none; /* Oculto por defecto */
+    background-color: rgba(42, 60, 80, 0.8); /* Fondo del menú */
+    border-radius: 5px;
+    overflow: hidden; /* Asegura que el borde redondeado se vea bien */
+}
+
+.menu.active {
+    display: block; /* Visible cuando tiene la clase 'active' */
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #d5f0f6;
+    padding: 10px 15px;
+    display: block; /* Para que cada enlace ocupe todo el ancho */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu li a:hover {
+    background-color: rgba(60, 80, 100, 0.9);
+    color: #fff;
+}
+
+
+/* ==================== Footer ==================== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3b5979b6;
+    color: #d5f0f6;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== Responsividad ==================== */
+@media (min-width: 600px) {
+    .header-content {
+        flex-direction: row; 
+        justify-content: center; 
+        text-align: left; /
+        gap: 30px; 
+    }
+    .header-content > div { 
+        text-align: left;
+    }
+    .profile-image {
+        order: 1; /* Si quieres que la imagen vaya después del texto en desktop */
+    }
+    .header-content h1, .header-container p.development {
+        font-size: 3rem; /* Ejemplo de ajuste */
+    }
+    .navbar a {
+        margin: 0 15px; /* Más espacio entre los elementos de la navbar */
+    }
+    .section-container {
+        padding: 40px; /* Más padding en secciones */
+    }
+}
+
+/* Media query para pantallas más grandes que 900px */
+@media (min-width: 900px) {
+    .main-container {
+        padding: 30px;
+    }
+    .header-content h1 {
+        font-size: 3.5rem;
+    }
+    .header-container p.development {
+        font-size: 1.2rem;
+    }
+}
