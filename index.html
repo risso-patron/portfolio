@@ -860,6 +860,25 @@
                 padding: 25px 20px;
             }
         }
+                /* Puedes agregarlo al final de tu <style> */
+        .tech-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0.5;
+            pointer-events: none;
+            transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+        }
+        .tech-category.active .tech-content {
+            max-height: 1000px; /* Ajusta según el contenido */
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .category-toggle .toggle-icon {
+            transition: transform 0.3s;
+        }
+        .tech-category.active .category-toggle .toggle-icon {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
@@ -1428,7 +1447,6 @@
                 </div>
             </div>
         </section>
-                
         <section id="educacion" class="section-container fade-in">
             <h2>Educación & Formación</h2>
             
@@ -1492,7 +1510,7 @@
         </section>
 
         <section id="proyectos" class="section-container fade-in">
-            <h2>Proyectos Destacados</h2>
+            <h2>Proyectos</h2>
             
             <div class="projects-grid">
                 <div class="project-card">
@@ -1778,6 +1796,20 @@ if (sendEmailBtn) {
                     }
                 });
             }, 100);
+
+            // ==================== Menú desplegable para Herramientas & Tecnologías ====================
+            document.querySelectorAll('.category-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const category = this.parentElement;
+                    const allCategories = document.querySelectorAll('.tech-category');
+                    // Contraer todas
+                    allCategories.forEach(cat => {
+                        if (cat !== category) cat.classList.remove('active');
+                    });
+                    // Alternar la actual
+                    category.classList.toggle('active');
+                });
+            });
         });
 
         // ==================== Preloader Simple ====================
