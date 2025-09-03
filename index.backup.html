@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Presentación - Jorge Luis Risso Patrón</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Importación de fuentes */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* ==================== Variables CSS ==================== */
+        :root {
+            --primary-bg: #1a1a1c;
+            --container-bg: #88919c;
+            --section-bg: #3b5979b6;
+            --accent-color: #d5f0f6;
+            --text-white: #fff;
+            --cursor-color: #94e1f2;
+            --hover-color: #a4ccde;
+        }
+
+        /* ==================== Estilos Globales ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-bg) 0%, #252529 100%);
+            color: var(--accent-color);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            cursor: none; /* Oculta el cursor por defecto */
+        }
+
+        /* ==================== Background Animado ==================== */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--cursor-color);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+            opacity: 0.1;
+        }
+
+        .shape:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 60px; height: 60px; left: 50%; animation-delay: 5s; }
+        .shape:nth-child(3) { width: 100px; height: 100px; left: 80%; animation-delay: 10s; }
+        .shape:nth-child(4) { width: 40px; height: 40px; left: 30%; animation-delay: 15s; }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* ==================== Cursor Personalizado Mejorado ==================== */
+        #ball {
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--cursor-color) 0%, rgba(148, 225, 242, 0.3) 70%);
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.15s ease-out;
+            opacity: 0;
+            box-shadow: 
+                0 0 10px var(--cursor-color),
+                0 0 20px rgba(148, 225, 242, 0.4),
+                0 0 30px rgba(148, 225, 242, 0.2);
+        }
+
+        #ball.hover {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(148, 225, 242, 0.8) 0%, rgba(148, 225, 242, 0.1) 70%);
+            box-shadow: 
+                0 0 20px var(--cursor-color),
+                0 0 40px rgba(148, 225, 242, 0.6),
+                0 0 60px rgba(148, 225, 242, 0.3);
+        }
+
+        #ball.click {
+            width: 15px;
+            height: 15px;
+            background: var(--cursor-color);
+        }
+
+        /* ==================== Contenedor Principal ==================== */
+        .main-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(136, 145, 156, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==================== Animaciones de Entrada ==================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+
+        /* ==================== Header Mejorado ==================== */
+        .header-container {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(59, 89, 121, 0.8) 0%, rgba(59, 89, 121, 0.6) 100%);
+            color: var(--text-white);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .navbar a {
+            color: var(--text-white);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .navbar a:hover::before {
+            left: 100%;
+        }
+
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            box-shadow: 
+                0 0 20px rgba(213, 240, 246, 0.5),
+                0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(213, 240, 246, 0.5), 0 8px 25px rgba(0, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(213, 240, 246, 0.8), 0 8px 25px rgba(0, 0, 0, 0.3); }
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 
+                0 0 40px rgba(213, 240, 246, 0.8),
+                0 12px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-content h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin: 0;
+            line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, var(--text-white), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .development {
+            font-size: 1.1rem;
+            color: var(--hover-color);
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* ==================== Secciones Mejoradas ==================== */
+        .section-container {
+            padding: 40px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, rgba(59, 89, 121, 0.8) 0%, rgba(59, 89, 121, 0.6) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            color: var(--accent-color);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .section-container h2 {
+            color: var(--text-white);
+            margin-bottom: 25px;
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            border-radius: 2px;
+        }
+
+        /* ==================== Carrusel Mejorado ==================== */
+        .carousel-section {
+            padding: 40px 20px;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            max-width: 700px;
+            margin: 20px auto;
+            border-radius: 15px;
+            background: rgba(59, 89, 121, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel .flex {
+            display: flex;
+            animation: scroll-smooth 25s linear infinite;
+            gap: 15px;
+        }
+
+        .carousel:hover .flex {
+            animation-play-state: paused;
+        }
+
+        .carousel-item {
+            min-width: 100px;
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(148, 225, 242, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .carousel-item:hover::before {
+            left: 100%;
+        }
+
+        .carousel-item:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(148, 225, 242, 0.4);
+        }
+
+        .carousel-item .tech-icon {
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .html-icon { color: #e34c26; }
+        .css-icon { color: #1572b6; }
+        .js-icon { color: #f7df1e; }
+        .git-icon { color: #f34f29; }
+        .gpt-icon { color: #00a67e; }
+        .canva-icon { color: #9333ea; }
+        .instagram-icon { color: #e4405f; }
+        .photoshop-icon { color: #001e36; }
+        .aftereffects-icon { color: #9999ff; }
+        .office-icon { color: #d83b01; }
+        .freecodecamp-icon { color: #006400; }
+        .youtube-icon { color: #ff0000; }
+        .facebook-icon { color: #1877f2; }
+        .seo-icon { color: #4285f4; }
+        .analytics-icon { color: #ff9800; }
+        .copywriting-icon { color: #673ab7; }
+        .video-icon { color: #ff5722; }
+        .amazon-icon { color: #ff9900; }
+        .hotmart-icon { color: #ff6b35; }
+        .temu-icon { color: #ff4081; }
+        .ecommerce-icon { color: #2196f3; }
+        .wordpress-icon { color: #21759b; }
+        .server-icon { color: #607d8b; }
+        .vs-code-icon { color: #007acc; }
+
+        /* ==================== Nueva Sección de Categorías ==================== */
+        .tech-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .tech-category {
+            background: rgba(213, 240, 246, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(213, 240, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tech-category:hover {
+            background: rgba(213, 240, 246, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-white);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(213, 240, 246, 0.3);
+        }
+
+        .category-icon {
+            color: var(--cursor-color);
+            font-size: 1.6rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(213, 240, 246, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(213, 240, 246, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tech-item:hover::before {
+            left: 100%;
+        }
+
+        .tech-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--cursor-color);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(148, 225, 242, 0.2);
+        }
+
+        .tech-icon-container {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover .tech-icon-container {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .tech-info {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tech-name {
+            display: block;
+            color: var(--text-white);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .tech-stars {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .tech-stars i {
+            font-size: 0.9rem;
+            color: #ffd700;
+            transition: all 0.2s ease;
+        }
+
+        .tech-stars .far {
+            color: rgba(255, 215, 0, 0.3);
+        }
+
+        .tech-item:hover .tech-stars i {
+            transform: scale(1.1);
+        }
+
+        .tech-level {
+            margin-left: 10px;
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(213, 240, 246, 0.1);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* ==================== Animaciones para Tech Categories ==================== */
+        .tech-category {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .tech-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tech-category:nth-child(1) { transition-delay: 0.1s; }
+        .tech-category:nth-child(2) { transition-delay: 0.2s; }
+        .tech-category:nth-child(3) { transition-delay: 0.3s; }
+        .tech-category:nth-child(4) { transition-delay: 0.4s; }
+        .tech-category:nth-child(5) { transition-delay: 0.5s; }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ==================== Responsive para Tech Categories ==================== */
+        @media (max-width: 768px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-item {
+                padding: 15px;
+            }
+            
+            .tech-icon-container {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .category-title {
+                font-size: 1.2rem;
+            }
+            
+            .tech-categories {
+                gap: 25px;
+            }
+            
+            .tech-category {
+                padding: 20px;
+            }
+
+        }.git-icon { color: #f34f29; }
+        .gpt-icon { color: #00a67e; }
+        .canva-icon { color: #9333ea; }
+        .instagram-icon { color: #e4405f; }
+        .photoshop-icon { color: #001e36; }
+        .aftereffects-icon { color: #9999ff; }
+        .office-icon { color: #d83b01; }
+        .freecodecamp-icon { color: #006400; }
+
+        @keyframes scroll-smooth {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-115px * 11)); }
+        }
+
+        /* ==================== Botones Mejorados ==================== */
+        .btn {
+            background: linear-gradient(135deg, #5a7791 0%, #4a647a 100%);
+            color: var(--text-white);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* ==================== Menú Desplegable Mejorado ==================== */
+        .menuToggle {
+            background: linear-gradient(135deg, #5a7791 0%, #4a647a 100%);
+            color: var(--text-white);
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menuToggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .menuToggle:hover::before {
+            left: 100%;
+        }
+
+        .menuToggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu {
+            list-style: none;
+            margin: 15px 0 0;
+            background: rgba(42, 60, 80, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            max-height: 0;
+            transition: all 0.4s ease;
+        }
+
+        .menu.active {
+            opacity: 1;
+            max-height: 400px;
+        }
+
+        .menu li a {
+            color: var(--accent-color);
+            padding: 15px 20px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu li a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, rgba(148, 225, 242, 0.2), rgba(148, 225, 242, 0.1));
+            transition: width 0.3s ease;
+        }
+
+        .menu li a:hover::before {
+            width: 100%;
+        }
+
+        .menu li a:hover {
+            color: var(--text-white);
+            background: rgba(148, 225, 242, 0.1);
+            transform: translateX(10px);
+        }
+
+        /* ==================== Estilos específicos de secciones ==================== */
+        .skill-highlights {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 15px; 
+            margin: 25px 0;
+        }
+
+        .skill-highlight {
+            background: rgba(213, 240, 246, 0.1); 
+            padding: 15px; 
+            border-radius: 10px; 
+            border-left: 3px solid var(--cursor-color);
+        }
+
+        .projects-grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; 
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(59, 89, 121, 0.1), rgba(59, 89, 121, 0.05)); 
+            padding: 25px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(213, 240, 246, 0.3); 
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .education-timeline {
+            margin: 30px 0;
+        }
+
+        .education-item {
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 25px; 
+            padding: 20px; 
+            background: rgba(213, 240, 246, 0.1); 
+            border-radius: 12px; 
+            border-left: 4px solid var(--cursor-color); 
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+        }
+
+        /* ==================== Footer Mejorado ==================== */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(59, 89, 121, 0.8) 0%, rgba(59, 89, 121, 0.6) 100%);
+            backdrop-filter: blur(10px);
+            color: var(--accent-color);
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==================== Responsividad ==================== */
+        @media (min-width: 600px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: center;
+                text-align: left;
+                gap: 40px;
+            }
+            
+            .header-content > div {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .carousel-item {
+                min-width: 80px;
+                width: 80px;
+                height: 80px;
+            }
+            
+            @keyframes scroll-smooth {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(calc(-95px * 11)); }
+            }
+            
+            .main-container {
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            .section-container {
+                padding: 25px 20px;
+            }
+        }
+                /* Puedes agregarlo al final de tu <style> */
+        .tech-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0.5;
+            pointer-events: none;
+            transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+        }
+        .tech-category.active .tech-content {
+            max-height: 1000px; /* Ajusta según el contenido */
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .category-toggle .toggle-icon {
+            transition: transform 0.3s;
+        }
+        .tech-category.active .category-toggle .toggle-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background animado -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
+
+    <!-- Cursor personalizado -->
+    <div id="ball"></div>
+
+    <div class="main-container">
+        <header class="header-container fade-in">
+            <nav class="navbar fade-in stagger-1">
+                <a href="#sobre-mi">SOBRE MI</a>
+                <a href="#herramientas">HERRAMIENTAS</a>
+                <a href="#educacion">EDUCACIÓN</a>
+                <a href="#proyectos">PROYECTOS</a>
+                <a href="#contacto">CONTACTO</a>
+            </nav>
+            <div class="header-content fade-in stagger-2">
+                <div>
+                    <h1>Jorge Luis Risso Patrón</h1>
+                    <p class="development">Desarrollador Web & Marketing Digital</p>
+                    <p style="font-size: 0.9rem; color: var(--hover-color); margin-top: 5px; font-style: italic;">Fusionando Experiencia Gastronómica con Tecnología</p>
+                </div>
+                <img src="image/profile-image.jpg" alt="Imagen de perfil de Jorge Luis Risso Patrón"  class="profile-image"
+                onerror="this.src='https://ui-avatars.com/api/?name=Jorge+Luis+Risso&background=d5f0f6&color=1a1a1c&size=120&font-size=0.4&bold=true'">
+            </div>
+        </header>
+
+        <section id="sobre-mi" class="section-container fade-in stagger-3">
+            <h2>Sobre Mí</h2>
+            <p>
+                <strong>Desarrollador Web & Marketing Digital</strong> con más de 8 años de experiencia en gestión operativa y atención al cliente en el sector gastronómico, actualmente especializándome en tecnología. Mi perfil único combina <strong>liderazgo operativo, optimización de procesos y desarrollo web</strong>, creando soluciones digitales que mejoran la experiencia del cliente.
+            </p>
+            <p style="margin-top: 15px;">
+                En <strong>Space Panamá</strong> desarrollo sitios web, gestiono estrategias de marketing digital y creo contenido multimedia. Mi transición de la gastronomía a la tecnología me aporta una perspectiva valiosa sobre <strong>experiencia de usuario, gestión de equipos y orientación a resultados</strong>.
+            </p>
+            <div class="skill-highlights">
+                <div class="skill-highlight">
+                    <strong>💻 Desarrollo Web</strong><br>
+                    <small>HTML, CSS, JavaScript, SEO</small>
+                </div>
+                <div class="skill-highlight">
+                    <strong>📈 Marketing Digital</strong><br>
+                    <small>Afiliados, Contenido, Redes Sociales</small>
+                </div>
+                <div class="skill-highlight">
+                    <strong>👥 Gestión Operativa</strong><br>
+                    <small>Liderazgo, Procesos, Atención al Cliente</small>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="btn btn-primary" id="sendEmailBtn">
+                    <i class="fas fa-envelope"></i> Enviar Correo
+                </button>
+                <a href="https://spaceventos.com/" target="_blank" class="btn" style="margin-left: 10px; background: linear-gradient(135deg, #4a647a 0%, #5a7791 100%);">
+                    <i class="fas fa-briefcase"></i> Ver Trabajo Actual
+                </a>
+            </div>
+        </section>
+
+        <section id="herramientas" class="section-container fade-in stagger-4">
+            <h2>Herramientas & Tecnologías</h2>
+            
+            <div class="tech-categories" style="margin-top: 30px;">
+                <!-- Desarrollo Web -->
+                <div class="tech-category">
+                    <div class="category-header" data-category="desarrollo">
+                        <h3 class="category-title">
+                            <i class="fas fa-code category-icon"></i>
+                            Desarrollo Web
+                            <span class="category-count">(6)</span>
+                        </h3>
+                        <div class="category-toggle">
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                    </div>
+                    <div class="tech-content" id="desarrollo-content">
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fab fa-html5 html-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">HTML5</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">En Progreso</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fab fa-css3-alt css-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">CSS3</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">En Progreso</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fab fa-js-square js-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">JavaScript</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">En Progreso</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fab fa-git-alt git-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Git</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fab fa-free-code-camp freecodecamp-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">FreeCodeCamp</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">En Progreso</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-code vs-code-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">VS Code</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketing Digital -->
+                <div class="tech-category">
+                    <div class="category-header" data-category="marketing">
+                        <h3 class="category-title">
+                            <i class="fas fa-bullhorn category-icon"></i>
+                            Marketing Digital
+                            <span class="category-count">(6)</span>
+                        </h3>
+                        <div class="category-toggle">
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                    </div>
+                    <div class="tech-content" id="marketing-content">
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fab fa-instagram instagram-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Instagram</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="tech-level">INtermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fab fa-youtube youtube-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">YouTube</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermdio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fab fa-facebook facebook-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Facebook Ads</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-search seo-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">SEO</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-chart-line analytics-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Analytics</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-pen copywriting-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Copywriting</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermdio</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diseño & Multimedia -->
+                <div class="tech-category">
+                    <div class="category-header" data-category="diseno">
+                        <h3 class="category-title">
+                            <i class="fas fa-paint-brush category-icon"></i>
+                            Diseño & Multimedia
+                            <span class="category-count">(4)</span>
+                        </h3>
+                        <div class="category-toggle">
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                    </div>
+                    <div class="tech-content" id="diseno-content">
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-layer-group photoshop-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Photoshop</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Avanzado</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-film aftereffects-icon"></i>
+                                </div>
+                                
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-palette canva-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Canva</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-video video-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Edición Video</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Afiliados & E-commerce -->
+                <div class="tech-category">
+                    <div class="category-header" data-category="afiliados">
+                        <h3 class="category-title">
+                            <i class="fas fa-handshake category-icon"></i>
+                            Afiliados & E-commerce
+                            <span class="category-count">(3)</span>
+                        </h3>
+                        <div class="category-toggle">
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                    </div>
+                    <div class="tech-content" id="afiliados-content">
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fab fa-amazon amazon-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Amazon Afiliados</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-graduation-cap hotmart-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Hotmart</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-shopping-cart ecommerce-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">E-commerce</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Herramientas Generales & IA -->
+                <div class="tech-category">
+                    <div class="category-header" data-category="herramientas">
+                        <h3 class="category-title">
+                            <i class="fas fa-tools category-icon"></i>
+                            Herramientas & IA
+                            <span class="category-count">(4)</span>
+                        </h3>
+                        <div class="category-toggle">
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                    </div>
+                    <div class="tech-content" id="herramientas-content">
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-robot gpt-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">ChatGPT/Claude</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="tech-level">Experto</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-file-word office-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Office Suite</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fab fa-wordpress wordpress-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">WordPress</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="tech-level">Basico</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-item">
+                                <div class="tech-icon-container">
+                                    <i class="fas fa-server server-icon"></i>
+                                </div>
+                                <div class="tech-info">
+                                    <span class="tech-name">Soporte Técnico</span>
+                                    <div class="tech-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="tech-level">Intermedio</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="educacion" class="section-container fade-in">
+            <h2>Educación & Formación</h2>
+            
+            <div class="education-timeline">
+                <div class="education-item">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #006400, #32cd32); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 20px; color: white; font-size: 1.3rem; flex-shrink: 0;">
+                        💻
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: var(--text-white); margin-bottom: 5px; font-size: 1.2rem;">Development Web - En Curso</h3>
+                        <p style="color: var(--accent-color); margin-bottom: 5px; font-weight: 600;">FreeCodeCamp</p>
+                        <small style="color: var(--hover-color);">Marzo 2025 - Presente | Panamá</small>
+                    </div>
+                    <div style="background: rgba(0, 200, 0, 0.2); color: #00ff00; padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">
+                        En Progreso
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #ff6b35, #f39c12); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 20px; color: white; font-size: 1.3rem; flex-shrink: 0;">
+                        🎓
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: var(--text-white); margin-bottom: 5px; font-size: 1.2rem;">Ingeniería en Sistemas de Información</h3>
+                        <p style="color: var(--accent-color); margin-bottom: 5px; font-weight: 600;">Universidad (Panamá)</p>
+                        <small style="color: var(--hover-color);">Abril 2019 | Base Técnica Sólida</small>
+                    </div>
+                    <div style="background: rgba(255, 165, 0, 0.2); color: #ffa500; padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">
+                        Base Técnica
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #3498db, #2980b9); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 20px; color: white; font-size: 1.3rem; flex-shrink: 0;">
+                        🗣️
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: var(--text-white); margin-bottom: 5px; font-size: 1.2rem;">Inglés Certificado</h3>
+                        <p style="color: var(--accent-color); margin-bottom: 5px; font-weight: 600;">NLC "Natural Learning Corporation"</p>
+                        <small style="color: var(--hover-color);">2006-2007 | Nivel Intermedio Escrito y Oral</small>
+                    </div>
+                    <div style="background: rgba(52, 152, 219, 0.2); color: #3498db; padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">
+                        Certificado
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #8b4513, #cd853f); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 20px; color: white; font-size: 1.3rem; flex-shrink: 0;">
+                        👨‍🍳
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: var(--text-white); margin-bottom: 5px; font-size: 1.2rem;">Chef Internacional</h3>
+                        <p style="color: var(--accent-color); margin-bottom: 5px; font-weight: 600;">Instituto Educativo Argentino</p>
+                        <small style="color: var(--hover-color);">2002-2003 | Argentina | Base de Experiencia Gastronómica</small>
+                    </div>
+                    <div style="background: rgba(139, 69, 19, 0.2); color: #8b4513; padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">
+                        Graduado
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos" class="section-container fade-in">
+            <h2>Proyectos</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div style="width: 50px; height: 50px; background: var(--cursor-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; font-size: 1.5rem;">
+                        🏠
+                    </div>
+                    <h3 style="color: var(--text-white); margin-bottom: 10px; font-size: 1.3rem;">4niture</h3>
+                    <p style="color: var(--accent-color); margin-bottom: 15px; line-height: 1.6;">Sitio web de comercio electrónico especializado en productos para el hogar, con integración de afiliados de Amazon, Hotmart y Temu.</p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">HTML</span>
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">CSS</span>
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">JavaScript</span>
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">SEO</span>
+                    </div>
+                    <a href="https://www.instagram.com/4niturepro" target="_blank" class="btn" style="margin-top: 10px;">
+                        <i class="fab fa-instagram"></i> Ver en Instagram
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <div style="width: 50px; height: 50px; background: var(--cursor-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; font-size: 1.5rem;">
+                        📱
+                    </div>
+                    <h3 style="color: var(--text-white); margin-bottom: 10px; font-size: 1.3rem;">Marketing Digital</h3>
+                    <p style="color: var(--accent-color); margin-bottom: 15px; line-height: 1.6;">Creación de contenido para Instagram y YouTube, estrategias de marketing digital y gestión de campañas publicitarias.</p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">Instagram</span>
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">YouTube</span>
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">Photoshop</span>
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">After Effects</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div style="width: 50px; height: 50px; background: var(--cursor-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; font-size: 1.5rem;">
+                        🤝
+                    </div>
+                    <h3 style="color: var(--text-white); margin-bottom: 10px; font-size: 1.3rem;">Sistemas de Afiliados</h3>
+                    <p style="color: var(--accent-color); margin-bottom: 15px; line-height: 1.6;">Desarrollo de tiendas online con programas de afiliados, optimización de conversiones y estrategias de monetización digital.</p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">Amazon</span>
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">Hotmart</span>
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">Temu</span>
+                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">Conversión</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experiencia" class="section-container fade-in">
+            <h2>Experiencia Profesional</h2>
+            <div class="menu-container">
+                <div class="menuToggle">Explorar Experiencia 🔵</div>
+                <ul class="menu">
+                    <li><a href="./Experiencia/spacepanama.html">Space Panamá - Programador Web</a></li>
+                    <li><a href="./Experiencia/experiencias_gastronomicas.html">Experiencia Gastronomica</a></li>
+                    <li><a href="./Experiencia/secretaria.html">Secretaría Legal y Técnica Argentina</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contacto" class="section-container fade-in">
+            <h2>Contacto</h2>
+            <p>Teléfono: <a href="tel:+50764560263" style="color: var(--cursor-color);">(+507) 6456-0263</a></p>
+            <p>Email: <a href="mailto:luisrissopa@gmail.com" style="color: var(--cursor-color);">luisrissopa@gmail.com</a></p>
+            <p><a href="https://www.linkedin.com/in/jorge-luis-risso-/" target="_blank" rel="noopener" style="color: var(--cursor-color);">LinkedIn</a></p>
+            <p style="margin-top: 15px;">
+                <strong>Ubicación:</strong> El Cangrejo, Ciudad de Panamá, Panamá<br>
+                <strong>Disponibilidad:</strong> Tiempo completo | Remoto o presencial<br>
+                <strong>Idiomas:</strong> Español (nativo), Inglés (intermedio), Portugués (básico)
+            </p>
+        </section>
+
+        <footer class="fade-in">
+            <p>&copy; 2024 Jorge Luis Risso Patrón. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ==================== Cursor Personalizado Mejorado ====================
+            const ball = document.getElementById('ball');
+            const interactiveElements = document.querySelectorAll('a, button, .carousel-item, .menuToggle');
+
+            // Mostrar cursor al mover el mouse
+            document.addEventListener('mousemove', (e) => {
+                ball.style.left = e.clientX + 'px';
+                ball.style.top = e.clientY + 'px';
+                ball.style.opacity = '1';
+            });
+
+            // Ocultar cursor al salir de la ventana
+            document.addEventListener('mouseleave', () => {
+                ball.style.opacity = '0';
+            });
+
+            // Efectos hover para elementos interactivos
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    ball.classList.add('hover');
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    ball.classList.remove('hover');
+                });
+                
+                element.addEventListener('mousedown', () => {
+                    ball.classList.add('click');
+                });
+                
+                element.addEventListener('mouseup', () => {
+                    ball.classList.remove('click');
+                });
+            });
+
+            // ==================== Animaciones de Entrada ====================
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observar todos los elementos con clase fade-in y tech-category
+            document.querySelectorAll('.fade-in, .tech-category').forEach(el => {
+                observer.observe(el);
+            });
+
+            // ==================== Menú Desplegable Mejorado ====================
+            const menuToggle = document.querySelector(".menuToggle");
+            const menu = document.querySelector(".menu");
+
+            if (menuToggle && menu) {
+                menuToggle.addEventListener("click", function () {
+                    menu.classList.toggle("active");
+                    
+                    // Cambiar texto del botón
+                    if (menu.classList.contains("active")) {
+                        menuToggle.textContent = "Cerrar Menú 🔴";
+                    } else {
+                        menuToggle.textContent = "Explorar Experiencia 🔵";
+                    }
+                });
+            }
+// ==================== Botón de enviar correo ====================
+const sendEmailBtn = document.getElementById('sendEmailBtn');
+
+if (sendEmailBtn) {
+    sendEmailBtn.addEventListener('click', (event) => {
+        event.preventDefault(); // Previene comportamiento por defecto si está en un formulario
+        const emailAddress = "luisrissopa@gmail.com";
+        window.location.href = `mailto:${emailAddress}`;
+        
+        // Animación de feedback
+        const originalContent = sendEmailBtn.innerHTML;
+        sendEmailBtn.innerHTML = '<i class="fas fa-check"></i> ¡Correo Abierto!';
+        sendEmailBtn.style.background = 'linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)';
+        
+        setTimeout(() => {
+            sendEmailBtn.innerHTML = originalContent;
+            sendEmailBtn.style.background = 'linear-gradient(135deg, #5a7791 0%, #4a647a 100%)';
+        }, 2500);
+    });
+}
+            // ==================== Navegación Suave ====================
+            document.querySelectorAll('.navbar a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Efecto de highlight temporal
+                        targetSection.style.transform = 'scale(1.02)';
+                        targetSection.style.transition = 'transform 0.3s ease';
+                        
+                        setTimeout(() => {
+                            targetSection.style.transform = 'scale(1)';
+                        }, 300);
+                    }
+                });
+            });
+
+            // ==================== Efectos de Parallax Sutil ====================
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.floating-shapes .shape');
+                
+                parallaxElements.forEach((element, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+                });
+            });
+
+            // ==================== Animación de Typing para el Título ====================
+            const title = document.querySelector('.header-content h1');
+            if (title) {
+                const text = title.textContent;
+                title.textContent = '';
+                title.style.borderRight = '2px solid var(--accent-color)';
+                
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < text.length) {
+                        title.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 100);
+                    } else {
+                        setTimeout(() => {
+                            title.style.borderRight = 'none';
+                        }, 500);
+                    }
+                };
+                
+                // Iniciar después de que se cargue la página
+                setTimeout(typeWriter, 1000);
+            }
+
+            // ==================== Efectos de Hover para Enlaces ====================
+            document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"], a[href*="linkedin"]').forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.textShadow = '0 0 10px var(--cursor-color)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.textShadow = 'none';
+                });
+            });
+
+            // ==================== Efectos para Tech Categories ====================
+            document.querySelectorAll('.tech-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    // Efecto especial para las estrellas
+                    const stars = this.querySelectorAll('.tech-stars .fas');
+                    stars.forEach((star, index) => {
+                        setTimeout(() => {
+                            star.style.transform = 'scale(1.2) rotate(360deg)';
+                            star.style.color = '#ffed4e';
+                        }, index * 100);
+                    });
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    // Resetear estrellas
+                    const stars = this.querySelectorAll('.tech-stars .fas');
+                    stars.forEach(star => {
+                        star.style.transform = 'scale(1) rotate(0deg)';
+                        star.style.color = '#ffd700';
+                    });
+                });
+            });
+
+            // ==================== Animación de contador para niveles ====================
+            const techLevels = document.querySelectorAll('.tech-level');
+            const techObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const level = entry.target;
+                        level.style.animation = 'fadeInScale 0.6s ease-out forwards';
+                        level.style.animationDelay = Math.random() * 0.5 + 's';
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            techLevels.forEach(level => {
+                techObserver.observe(level);
+            });
+            // Agregar clase visible a elementos que ya están en viewport al cargar
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        el.classList.add('visible');
+                    }
+                });
+            }, 100);
+
+            // ==================== Menú desplegable para Herramientas & Tecnologías ====================
+            document.querySelectorAll('.category-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const category = this.parentElement;
+                    const allCategories = document.querySelectorAll('.tech-category');
+                    // Contraer todas
+                    allCategories.forEach(cat => {
+                        if (cat !== category) cat.classList.remove('active');
+                    });
+                    // Alternar la actual
+                    category.classList.toggle('active');
+                });
+            });
+        });
+
+        // ==================== Preloader Simple ====================
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 200);
+        });
+    </script>
+</body>
+</html>
