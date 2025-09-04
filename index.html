@@ -112,14 +112,7 @@
             width: 100%;
             margin: 20px auto;
             padding: 20px;
-            background: rgba(136, 145, 156, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.1);
-            position: relative;
-            animation: slideUp 0.8s ease-out;
+            box-sizing: border-box;
         }
 
         @keyframes slideUp {
@@ -773,10 +766,13 @@
         }
 
         .projects-grid {
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 25px; 
-            margin-top: 30px;
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-sizing: border-box;
         }
 
         .project-card {
@@ -852,8 +848,11 @@
             }
             
             .main-container {
-                margin: 10px;
-                padding: 15px;
+                max-width: 900px;
+                width: 100%;
+                margin: 20px auto;
+                padding: 20px;
+                box-sizing: border-box;
             }
             
             .section-container {
@@ -925,15 +924,15 @@
             </p>
             <div class="skill-highlights">
                 <div class="skill-highlight">
-                    <strong>💻 Desarrollo Web</strong><br>
+                    <strong>Desarrollo Web</strong><br>
                     <small>HTML, CSS, JavaScript, SEO</small>
                 </div>
                 <div class="skill-highlight">
-                    <strong>📈 Marketing Digital</strong><br>
+                    <strong>Marketing Digital</strong><br>
                     <small>Afiliados, Contenido, Redes Sociales</small>
                 </div>
                 <div class="skill-highlight">
-                    <strong>👥 Gestión Operativa</strong><br>
+                    <strong>Gestión Operativa</strong><br>
                     <small>Liderazgo, Procesos, Atención al Cliente</small>
                 </div>
             </div>
@@ -951,9 +950,23 @@
             <h2>Herramientas & Tecnologías</h2>
             
             <div class="tech-categories" style="margin-top: 30px;">
+
                 <!-- Desarrollo Web -->
                 <div class="tech-category">
+                    
                     <div class="category-header" data-category="desarrollo">
+                            <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('image/01-development-Web.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+        z-index: 0;
+    "></div>
                         <h3 class="category-title">
                             <i class="fas fa-code category-icon"></i>
                             Desarrollo Web
@@ -1028,7 +1041,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="far fa-star"></i>
                                         <i class="far fa-star"></i>
-                                        <span class="tech-level">Intermedio</span>
+                                        <span class="tech-level">Principiante</span>
                                     </div>
                                 </div>
                             </div>
@@ -1096,7 +1109,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
-                                        <span class="tech-level">INtermedio</span>
+                                        <span class="tech-level">Intermedio</span>
                                     </div>
                                 </div>
                             </div>
@@ -1113,7 +1126,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="far fa-star"></i>
-                                        <span class="tech-level">Intermdio</span>
+                                        <span class="tech-level">Intermedio</span>
                                     </div>
                                 </div>
                             </div>
@@ -1215,7 +1228,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="far fa-star"></i>
-                                        <span class="tech-level">Avanzado</span>
+                                        <span class="tech-level">Principiante</span>
                                     </div>
                                 </div>
                             </div>
@@ -1290,7 +1303,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
-                                        <span class="tech-level">Intermedio</span>
+                                        <span class="tech-level">Principiante</span>
                                     </div>
                                 </div>
                             </div>
@@ -1307,7 +1320,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="far fa-star"></i>
-                                        <span class="tech-level">Intermedio</span>
+                                        <span class="tech-level">Principiante</span>
                                     </div>
                                 </div>
                             </div>
@@ -1325,7 +1338,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="far fa-star"></i>
-                                        <span class="tech-level">Intermedio</span>
+                                        <span class="tech-level">Principiante</span>
                                     </div>
                                 </div>
                             </div>
@@ -1359,7 +1372,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
-                                        <span class="tech-level">Experto</span>
+                                        <span class="tech-level">Internedio</span>
                                     </div>
                                 </div>
                             </div>
@@ -1485,22 +1498,44 @@
             <h2>Proyectos</h2>
             
                 <!-- Desarrollo Web - Barber Manager -->
-                <div class="project-card">
-                    <div style="width: 50px; height: 50px; background: var(--cursor-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; font-size: 1.5rem;">
-                        💈
-                    </div>
-                    <h3 style="color: var(--text-white); margin-bottom: 10px; font-size: 1.3rem;">Barber Manager</h3>
-                    <p style="color: var(--accent-color); margin-bottom: 15px; line-height: 1.6;">Sistema de gestión para barberías, con reservas online, gestión de clientes y control de inventario.</p>
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
-                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">HTML</span>
-                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">CSS</span>
-                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">JavaScript</span>
-                        <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">SEO</span>
-                    </div>
-                    <a href="#" target="_blank" class="btn" style="margin-top: 10px;">
-                        <i class="fas fa-external-link-alt"></i> Próximamente
-                    </a>
-                </div>
+                <div class="project-card" style="position: relative; overflow: hidden; min-height: 300px;">
+    <!-- Imagen de fondo -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('image/barber-manager-icon.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.35;
+        z-index: 0;
+        transform: scale(1.1);
+    "></div>
+
+    <!-- Contenido -->
+    <div style="
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        border-radius: 15px;
+        opacity: 0.75;
+        ">
+        <h3 style="color: var(--text-white); margin-bottom: 10px; font-size: 1.3rem;">Barber Manager</h3>
+        <p style="color: var(--accent-color); margin-bottom: 15px; line-height: 1.6;">Sistema de gestión para barberías, con reservas online, gestión de clientes y control de inventario.</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px;">
+            <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">HTML</span>
+            <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">CSS</span>
+            <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">JavaScript</span>
+            <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">SEO</span>
+        </div>
+        <a href="#" target="_blank" class="btn" style="margin-top: 10px;">
+            <i class="fas fa-external-link-alt"></i> Próximamente
+        </a>
+    </div>
+</div>
             
                 <!-- Marketing Digital -->
                 <div class="project-card">
@@ -1512,14 +1547,14 @@
                     
                     <div style="margin: 20px 0;">
                         <div style="background: rgba(213, 240, 246, 0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                            <h4 style="color: var(--text-white); margin-bottom: 8px;">✨ Experiencias que Fidelizan</h4>
+                            <h4 style="color: var(--text-white); margin-bottom: 8px;"> Experiencias que Fidelizan</h4>
                             <a href="https://www.instagram.com/experienciasquefidelizan" target="_blank" class="btn" style="font-size: 0.9rem; margin-right: 10px;">
                                 <i class="fab fa-instagram"></i> Seguir
                             </a>
                         </div>
             
                         <div style="background: rgba(213, 240, 246, 0.1); padding: 15px; border-radius: 10px;">
-                            <h4 style="color: var(--text-white); margin-bottom: 8px;">🚀 Space Panamá</h4>
+                            <h4 style="color: var(--text-white); margin-bottom: 8px;"> Space Panamá</h4>
                             <a href="https://www.instagram.com/agenciaspacepanama" target="_blank" class="btn" style="font-size: 0.9rem;">
                                 <i class="fab fa-instagram"></i> Seguir
                             </a>
@@ -1581,34 +1616,58 @@
             </div>
         </section>
 
-        <section id="experiencia" class="section-container fade-in">
-            <h2>Experiencia Profesional</h2>
-            <div class="menu-container">
-                <div class="menuToggle">Explorar Experiencia 🔵</div>
-                <ul class="menu">
-                    <li><a href="./Experiencia/spacepanama.html">Space Panamá - Programador Web</a></li>
-                    <li><a href="./Experiencia/experiencias_gastronomicas.html">Experiencia Gastronomica</a></li>
-                    <li><a href="./Experiencia/secretaria.html">Secretaría Legal y Técnica Argentina</a></li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="contacto" class="section-container fade-in">
-            <h2>Contacto</h2>
-            <p>Teléfono: <a href="tel:+50764560263" style="color: var(--cursor-color);">(+507) 6456-0263</a></p>
-            <p>Email: <a href="mailto:luisrissopa@gmail.com" style="color: var(--cursor-color);">luisrissopa@gmail.com</a></p>
-            <p><a href="https://www.linkedin.com/in/jorge-luis-risso-/" target="_blank" rel="noopener" style="color: var(--cursor-color);">LinkedIn</a></p>
-            <p style="margin-top: 15px;">
-                <strong>Ubicación:</strong> El Cangrejo, Ciudad de Panamá, Panamá<br>
-                <strong>Disponibilidad:</strong> Tiempo completo | Remoto o presencial<br>
-                <strong>Idiomas:</strong> Español (nativo), Inglés (intermedio), Portugués (básico)
-            </p>
-        </section>
-
-        <footer class="fade-in">
-            <p>&copy; 2024 Jorge Luis Risso Patrón. Todos los derechos reservados.</p>
-        </footer>
+<!-- Experiencia Profesional -->
+<!-- Experiencia Profesional -->
+<section id="experiencia" class="section-container fade-in">
+    <h2>Experiencia Profesional</h2>
+    <div class="projects-grid">
+        <div class="menuToggle">
+            Explorar Experiencia 🔵
+        </div>
+        <ul class="menu">
+            <li><a href="./Experiencia/spacepanama.html">Space Panamá - Programador Web</a></li>
+            <li><a href="./Experiencia/experiencias_gastronomicas.html">Experiencia Gastronomica</a></li>
+            <li><a href="./Experiencia/secretaria.html">Secretaría Legal y Técnica Argentina</a></li>
+        </ul>
     </div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto" class="section-container fade-in">
+    <h2>Contacto</h2>
+    <div class="projects-grid">
+        <div class="contact-links">
+            <a href="tel:+50764560263" class="contact-link">
+                <i class="fas fa-phone"></i> (+507) 6456-0263
+            </a>
+            <a href="mailto:luisrissopa@gmail.com" class="contact-link">
+                <i class="fas fa-envelope"></i> luisrissopa@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/jorge-luis-risso-/" class="contact-link">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+        <div class="contact-info">
+            <p style="margin-bottom: 15px;">
+                <strong><i class="fas fa-map-marker-alt"></i> Ubicación:</strong><br>
+                El Cangrejo, Ciudad de Panamá, Panamá
+            </p>
+            <p style="margin-bottom: 15px;">
+                <strong><i class="fas fa-clock"></i> Disponibilidad:</strong><br>
+                Tiempo completo | Remoto o presencial
+            </p>
+            <p style="margin: 0;">
+                <strong><i class="fas fa-language"></i> Idiomas:</strong><br>
+                Español (nativo), Inglés (intermedio), Portugués (básico)
+            </p>
+        </div>
+    </div>
+</section>
+    
+    <!-- Footer -->
+    <footer class="fade-in" style="max-width: 700px; margin: 30px auto; text-align: center; background: linear-gradient(135deg, rgba(59, 89, 121, 0.8) 0%, rgba(59, 89, 121, 0.6) 100%); padding: 25px; border-radius: 15px; backdrop-filter: blur(10px);">
+        <p style="color: var(--accent-color); font-size: 0.9rem;">&copy; 2024 Jorge Luis Risso Patrón. Todos los derechos reservados.</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1679,9 +1738,10 @@
                         menuToggle.textContent = "Cerrar Menú 🔴";
                     } else {
                         menuToggle.textContent = "Explorar Experiencia 🔵";
-                    }
+ }
                 });
             }
+            
 // ==================== Botón de enviar correo ====================
 const sendEmailBtn = document.getElementById('sendEmailBtn');
 
