@@ -819,7 +819,74 @@
         .education-item:hover {
             transform: translateX(10px);
         }
+/* ==================== Estilos de Contacto ==================== */
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
 
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+            background: rgba(213, 240, 246, 0.1);
+            border: 1px solid rgba(213, 240, 246, 0.2);
+            border-radius: 10px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(213, 240, 246, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-link:hover::before {
+            left: 100%;
+        }
+
+        .contact-link:hover {
+            background: rgba(213, 240, 246, 0.2);
+            border-color: var(--cursor-color);
+            color: var(--text-white);
+            transform: translateX(10px);
+        }
+
+        .contact-link i {
+            color: var(--cursor-color);
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .contact-info {
+            background: rgba(213, 240, 246, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(213, 240, 246, 0.1);
+        }
+
+        .contact-info strong {
+            color: var(--text-white);
+        }
+
+        .contact-info i {
+            color: var(--cursor-color);
+            margin-right: 8px;
+        }
         /* ==================== Footer Mejorado ==================== */
         footer {
             text-align: center;
@@ -1703,11 +1770,7 @@
                         <span style="background: rgba(213, 240, 246, 0.2); padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--text-white);">Marketing Digital</span>
                     </div>
                 </div>
-            </div>
-        </section>
-
-<!-- Experiencia Profesional -->
-<!-- Experiencia Profesional -->
+            <!-- Experiencia Profesional -->
 <section id="experiencia" class="section-container fade-in">
     <h2>Experiencia Profesional</h2>
     <div class="projects-grid">
@@ -1752,8 +1815,8 @@
             </p>
         </div>
     </div>
-</section>
-    
+</section></div>
+        </section>
     <!-- Footer -->
     <footer class="fade-in" style="max-width: 700px; margin: 30px auto; text-align: center; background: linear-gradient(135deg, rgba(59, 89, 121, 0.8) 0%, rgba(59, 89, 121, 0.6) 100%); padding: 25px; border-radius: 15px; backdrop-filter: blur(10px);">
         <p style="color: var(--accent-color); font-size: 0.9rem;">&copy; 2024 Jorge Luis Risso Patrón. Todos los derechos reservados.</p>
