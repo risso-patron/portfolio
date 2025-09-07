@@ -8,17 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --space-primary: #4A5B8C;
-            --space-secondary: #6B7BA8;
-            --space-accent: #5A6FA0;
-            --space-dark: #3A4D73;
-            --space-light: #8A9BC7;
+            --space-primary: #1e3a8a;
+            --space-secondary: #3b82f6;
+            --space-accent: #6366f1;
+            --space-purple: #7c3aed;
+            --space-pink: #ec4899;
+            --space-dark: #1e293b;
+            --space-light: #f1f5f9;
             --space-white: #FFFFFF;
-            --space-gray: #6B7280;
-            --space-border: #E5E7EB;
-            --gradient-primary: linear-gradient(135deg, #4A5B8C 0%, #6B7BA8 100%);
-            --gradient-accent: linear-gradient(135deg, #5A6FA0 0%, #8A9BC7 100%);
-            --gradient-dark: linear-gradient(135deg, #3A4D73 0%, #4A5B8C 100%);
+            --space-gray: #64748b;
+            --space-border: #e2e8f0;
+            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #6366f1 100%);
+            --gradient-secondary: linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #f59e0b 100%);
+            --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%);
+            --gradient-dark: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            --gradient-visual: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            --shadow-primary: 0 20px 50px rgba(30, 58, 138, 0.3);
+            --shadow-accent: 0 25px 60px rgba(124, 58, 237, 0.25);
         }
 
         * {
@@ -36,7 +42,7 @@
             overflow-x: hidden;
         }
 
-        /* Dynamic Background */
+        /* Dynamic Background - Space Panama Style */
         .dynamic-bg {
             position: fixed;
             top: 0;
@@ -45,10 +51,12 @@
             height: 100%;
             z-index: -1;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(99,102,241,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(236,72,153,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(139,92,246,0.1) 0%, transparent 50%);
-            animation: bgFlow 20s ease-in-out infinite alternate;
+                radial-gradient(circle at 15% 25%, rgba(30, 58, 138, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(124, 58, 237, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 45% 85%, rgba(236, 72, 153, 0.10) 0%, transparent 50%),
+                radial-gradient(circle at 75% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(30, 58, 138, 0.02), rgba(124, 58, 237, 0.03));
+            animation: bgFlow 25s ease-in-out infinite alternate;
         }
 
         @keyframes bgFlow {
@@ -74,33 +82,47 @@
         }
 
         .floating-shape:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            width: 60px;
-            height: 60px;
+            top: 15%;
+            left: 8%;
+            width: 80px;
+            height: 80px;
             background: var(--gradient-primary);
             border-radius: 50%;
             animation-delay: 0s;
+            box-shadow: var(--shadow-primary);
         }
 
         .floating-shape:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-accent);
-            border-radius: 20px;
+            top: 55%;
+            right: 12%;
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-secondary);
+            border-radius: 25px;
             animation-delay: 5s;
+            box-shadow: var(--shadow-accent);
         }
 
         .floating-shape:nth-child(3) {
-            bottom: 30%;
-            left: 20%;
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-success);
+            bottom: 25%;
+            left: 15%;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-accent);
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
             animation-delay: 10s;
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.3);
+        }
+
+        .floating-shape:nth-child(4) {
+            top: 70%;
+            right: 25%;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-visual);
+            border-radius: 15px;
+            animation-delay: 7s;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
         @keyframes float {
@@ -171,13 +193,13 @@
 
         .space-logo::before {
             content: '';
-            width: 80px;
-            height: 80px;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100"><ellipse cx="100" cy="50" rx="90" ry="40" fill="none" stroke="%23ffffff" stroke-width="8"/><path d="M20 20 Q100 80 180 20" fill="none" stroke="%23ffffff" stroke-width="6"/><text x="100" y="85" text-anchor="middle" fill="%23ffffff" font-family="Arial" font-size="14" font-weight="bold">SPACE</text></svg>');
+            width: 90px;
+            height: 90px;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120"><defs><linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:1" /><stop offset="100%" style="stop-color:%23e0e7ff;stop-opacity:0.8" /></linearGradient></defs><ellipse cx="120" cy="60" rx="100" ry="45" fill="none" stroke="url(%23logoGrad)" stroke-width="6"/><path d="M30 25 Q120 90 210 25" fill="none" stroke="url(%23logoGrad)" stroke-width="5"/><path d="M40 95 Q120 30 200 95" fill="none" stroke="url(%23logoGrad)" stroke-width="4" opacity="0.7"/><text x="120" y="100" text-anchor="middle" fill="url(%23logoGrad)" font-family="Arial" font-size="16" font-weight="bold" letter-spacing="2px">SPACE</text></svg>');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
+            filter: drop-shadow(0 0 25px rgba(255,255,255,0.6)) drop-shadow(0 0 50px rgba(59, 130, 246, 0.4));
         }
 
         .space-logo::after {
@@ -358,23 +380,25 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
-        /* Marketing & Events Grid */
+        /* Marketing & Events Grid - Space Panama Style */
         .marketing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
         }
 
         .marketing-card {
             background: white;
-            padding: 35px;
-            border-radius: 20px;
+            padding: 40px;
+            border-radius: 24px;
             border: 1px solid var(--space-border);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: 
+                0 8px 30px rgba(0,0,0,0.08),
+                0 1px 0 rgba(255,255,255,0.5) inset;
         }
 
         .marketing-card::before {
@@ -383,48 +407,62 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
+            height: 5px;
             background: var(--gradient-primary);
         }
 
         .marketing-card::after {
-            content: '';
+            content: '✨';
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-accent);
+            top: 25px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-secondary);
             opacity: 0.1;
             border-radius: 50%;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.4s ease;
         }
 
         .marketing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(99,102,241,0.15);
-            border-color: var(--space-primary);
+            transform: translateY(-12px);
+            box-shadow: 
+                0 30px 70px rgba(30, 58, 138, 0.2),
+                0 5px 20px rgba(99, 102, 241, 0.1);
+            border-color: var(--space-accent);
         }
 
         .marketing-card:hover::after {
-            opacity: 0.2;
-            transform: scale(1.2);
+            opacity: 0.3;
+            transform: scale(1.3) rotate(10deg);
         }
 
         .marketing-icon {
-            width: 55px;
-            height: 55px;
+            width: 65px;
+            height: 65px;
             background: var(--gradient-primary);
-            border-radius: 14px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            box-shadow: 0 8px 25px rgba(99,102,241,0.25);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-primary);
             position: relative;
             z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .marketing-card:hover .marketing-icon {
+            transform: scale(1.1);
+            box-shadow: 
+                var(--shadow-primary),
+                0 0 30px rgba(59, 130, 246, 0.5);
         }
 
         .marketing-title {
@@ -542,11 +580,11 @@
             transform: translateX(3px);
         }
 
-        /* Stats Section */
+        /* Stats Section - Enhanced Space Style */
         .stats-section {
             background: var(--gradient-primary);
             color: white;
-            padding: 60px 50px;
+            padding: 80px 50px;
             position: relative;
             overflow: hidden;
         }
@@ -559,8 +597,15 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 30%, rgba(236,72,153,0.1) 0%, transparent 50%);
+                radial-gradient(circle at 25% 75%, rgba(255,255,255,0.12) 0%, transparent 50%),
+                radial-gradient(circle at 75% 25%, rgba(236,72,153,0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+            animation: statsFlow 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes statsFlow {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(5deg) scale(1.05); }
         }
 
         .stats-content {
@@ -570,21 +615,24 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
         }
 
         .stat-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 40px 30px;
-            border-radius: 20px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 45px 35px;
+            border-radius: 24px;
             text-align: center;
-            transition: all 0.4s ease;
+            transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 
+                0 15px 40px rgba(0,0,0,0.15),
+                0 0 0 1px rgba(255,255,255,0.1) inset;
         }
 
         .stat-card::before {
@@ -594,9 +642,10 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
             transform: scale(0);
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
+            z-index: 1;
         }
 
         .stat-card:hover::before {
@@ -604,23 +653,35 @@
         }
 
         .stat-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 
+                0 25px 60px rgba(0,0,0,0.25),
+                0 0 50px rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.4);
         }
 
         .stat-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 20px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2rem;
+            margin: 0 auto 30px;
+            font-size: 2.2rem;
             color: white;
             position: relative;
             z-index: 2;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.2),
+                0 0 0 1px rgba(255,255,255,0.3) inset;
+            transition: all 0.4s ease;
+        }
+
+        .stat-card:hover .stat-icon {
+            transform: scale(1.15);
+            background: rgba(255,255,255,0.35);
         }
 
         .stat-label {
@@ -801,6 +862,7 @@
         <div class="floating-shape"></div>
         <div class="floating-shape"></div>
         <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
     </div>
     
     <div class="container">
@@ -840,7 +902,7 @@
                 </div>
                 
                 <p class="description-text">
-                    En <strong>Space Panamá</strong>, empresa especializada en branding, marketing digital y organización de eventos, me desempeño como <strong>Programador Web & Marketing Digital</strong> desde agosto 2021. Mi enfoque está en el desarrollo web, comercio electrónico y estrategias de marketing digital, creando y gestionando proyectos como 4niture y trabajando con plataformas de afiliados como Amazon, Hotmart y Temu.
+                    En <strong>Space Panamá</strong> (<em>spaceventos.com</em>), agencia líder en branding, marketing digital y organización de eventos, desarrollo mi carrera como <strong>Programador Web & Especialista en Marketing Digital</strong> desde agosto 2021. Mi expertise abarca desarrollo web full-stack, e-commerce, creación de contenido viral y estrategias de monetización digital, contribuyendo al crecimiento y posicionamiento de la marca en el mercado panameño.
                 </p>
 
                 <!-- Funciones Específicas según CV -->
@@ -849,9 +911,9 @@
                         <div class="marketing-icon">
                             <i class="fas fa-code"></i>
                         </div>
-                        <div class="marketing-title">Desarrollo Web</div>
+                        <div class="marketing-title">Desarrollo Web Frontend</div>
                         <div class="marketing-description">
-                            Programación en HTML, CSS y JavaScript para desarrollo de sitios web y aplicaciones de comercio electrónico.
+                            Programación especializada en HTML5, CSS3 y JavaScript moderno. Desarrollo de interfaces responsivas y experiencias de usuario optimizadas para conversión.
                         </div>
                     </div>
 
@@ -859,9 +921,9 @@
                         <div class="marketing-icon">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
-                        <div class="marketing-title">Comercio Electrónico</div>
+                        <div class="marketing-title">E-commerce & Afiliación</div>
                         <div class="marketing-description">
-                            Desarrollo y gestión del sitio web 4niture con enfoque en productos para el hogar y monetización con afiliados.
+                            Desarrollo y gestión de <strong>4niture.com</strong> - tienda online especializada en productos para el hogar con integración de sistemas de afiliados.
                         </div>
                     </div>
 
@@ -869,39 +931,39 @@
                         <div class="marketing-icon">
                             <i class="fab fa-amazon"></i>
                         </div>
-                        <div class="marketing-title">Afiliados & Monetización</div>
+                        <div class="marketing-title">Monetización Digital</div>
                         <div class="marketing-description">
-                            Creación de tiendas con Amazon Afiliados, Hotmart y Temu para estrategias de monetización digital.
+                            Implementación de estrategias de monetización con <strong>Amazon Afiliados</strong>, <strong>Hotmart</strong> y <strong>Temu</strong>, optimizando conversiones y ROI.
                         </div>
                     </div>
 
                     <div class="marketing-card">
                         <div class="marketing-icon">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-chart-line"></i>
                         </div>
-                        <div class="marketing-title">SEO & Optimización</div>
+                        <div class="marketing-title">SEO & Analytics</div>
                         <div class="marketing-description">
-                            Optimización de páginas web para mejorar la conversión y el posicionamiento en buscadores.
+                            Optimización técnica SEO, análisis de métricas de conversión y mejora continua del rendimiento web para maximizar la visibilidad orgánica.
                         </div>
                     </div>
 
                     <div class="marketing-card">
                         <div class="marketing-icon">
-                            <i class="fab fa-youtube"></i>
+                            <i class="fab fa-instagram"></i>
                         </div>
-                        <div class="marketing-title">Contenido Multimedia</div>
+                        <div class="marketing-title">Contenido Visual</div>
                         <div class="marketing-description">
-                            Creación de contenido en Instagram y YouTube, edición de videos e imágenes para estrategias de marketing digital.
+                            Creación de contenido para <strong>Instagram</strong> y <strong>YouTube</strong>, diseño gráfico, edición de videos y desarrollo de estrategias visuales de marca.
                         </div>
                     </div>
 
                     <div class="marketing-card">
                         <div class="marketing-icon">
-                            <i class="fas fa-blog"></i>
+                            <i class="fas fa-brain"></i>
                         </div>
-                        <div class="marketing-title">Contenido Editorial</div>
+                        <div class="marketing-title">Content Marketing</div>
                         <div class="marketing-description">
-                            Redacción de artículos especializados sobre branding, psicología del consumidor y neuromarketing para el blog corporativo.
+                            Redacción especializada en <strong>branding</strong>, <strong>psicología del consumidor</strong> y <strong>neuromarketing</strong> para el blog corporativo de Space Panamá.
                         </div>
                     </div>
                 </div>
@@ -972,26 +1034,34 @@
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-icon">
-                                <i class="fas fa-home"></i>
+                                <i class="fas fa-globe"></i>
                             </div>
                             <div class="stat-label">Proyecto 4niture</div>
-                            <div class="stat-description">Desarrollo y gestión completa del sitio web enfocado en productos para el hogar con monetización por afiliados</div>
+                            <div class="stat-description">Tienda online completa con sistema de afiliados de Amazon, Hotmart y Temu. Desarrollo full-stack con enfoque en UX/UI y conversión.</div>
                         </div>
 
                         <div class="stat-card">
                             <div class="stat-icon">
-                                <i class="fas fa-chart-line"></i>
+                                <i class="fas fa-rocket"></i>
                             </div>
-                            <div class="stat-label">SEO & Conversión</div>
-                            <div class="stat-description">Optimización de páginas web para mejorar el posicionamiento en buscadores y tasas de conversión</div>
+                            <div class="stat-label">Crecimiento Digital</div>
+                            <div class="stat-description">Optimización SEO, analytics y estrategias de contenido que han mejorado la visibilidad y conversiones de los proyectos web.</div>
                         </div>
 
                         <div class="stat-card">
                             <div class="stat-icon">
-                                <i class="fas fa-clock"></i>
+                                <i class="fas fa-trophy"></i>
                             </div>
-                            <div class="stat-label">3+ Años de Experiencia</div>
-                            <div class="stat-description">Crecimiento profesional en desarrollo web, comercio electrónico y marketing digital</div>
+                            <div class="stat-label">3+ Años de Impacto</div>
+                            <div class="stat-description">Evolución continua en desarrollo web, marketing digital y creación de contenido especializado para Space Panamá.</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-label">Audiencia Activa</div>
+                            <div class="stat-description">Gestión de redes sociales y creación de contenido viral para Instagram con miles de seguidores comprometidos.</div>
                         </div>
                     </div>
                 </div>
@@ -1009,41 +1079,51 @@
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-dot">
-                            <i class="fas fa-code"></i>
+                            <i class="fas fa-play"></i>
                         </div>
                         <div class="timeline-content">
-                            <h3>Inicio como Programador Junior</h3>
-                            <p>Incorporación a Space Panamá en agosto 2021 con enfoque en desarrollo web y programación básica en HTML, CSS y JavaScript.</p>
+                            <h3>Integración a Space Panamá</h3>
+                            <p>Agosto 2021: Inicio como Programador Web Junior, enfocándome en el desarrollo de sitios responsivos con HTML5, CSS3 y JavaScript para proyectos de branding y marketing digital.</p>
                         </div>
                     </div>
 
                     <div class="timeline-item">
                         <div class="timeline-dot">
-                            <i class="fas fa-shopping-cart"></i>
+                            <i class="fas fa-store"></i>
                         </div>
                         <div class="timeline-content">
-                            <h3>Desarrollo de Comercio Electrónico</h3>
-                            <p>Creación y gestión del proyecto 4niture, desarrollando experiencia en comercio electrónico y monetización con afiliados.</p>
+                            <h3>Lanzamiento de 4niture</h3>
+                            <p>Desarrollo completo de la tienda online 4niture.com, especializándome en e-commerce, UX/UI design y integración de sistemas de pago y afiliación.</p>
                         </div>
                     </div>
 
                     <div class="timeline-item">
                         <div class="timeline-dot">
-                            <i class="fab fa-amazon"></i>
+                            <i class="fas fa-handshake"></i>
                         </div>
                         <div class="timeline-content">
-                            <h3>Especialización en Afiliados</h3>
-                            <p>Implementación de estrategias de monetización con Amazon Afiliados, Hotmart y Temu, optimizando conversiones y SEO.</p>
+                            <h3>Expansión en Afiliación</h3>
+                            <p>Implementación exitosa de programas de afiliados con Amazon, Hotmart y Temu, desarrollando estrategias de monetización que aumentaron significativamente los ingresos pasivos.</p>
                         </div>
                     </div>
 
                     <div class="timeline-item">
                         <div class="timeline-dot">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-video"></i>
                         </div>
                         <div class="timeline-content">
-                            <h3>Marketing Digital Integral</h3>
-                            <p>Consolidación como programador web con expertise en marketing digital, creando contenido para YouTube/Instagram y artículos especializados.</p>
+                            <h3>Content Creator Especializado</h3>
+                            <p>Evolución hacia la creación de contenido multimedia para redes sociales, producción de videos para YouTube y desarrollo de estrategias de contenido viral para Instagram.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Líder en Marketing Digital</h3>
+                            <p>2024-Presente: Posicionamiento como referente en neuromarketing y psicología del consumidor, publicando artículos especializados y liderando estrategias digitales innovadoras.</p>
                         </div>
                     </div>
                 </div>
@@ -1128,13 +1208,13 @@
                     gradientPhase = (gradientPhase + 1) % 3;
                     switch(gradientPhase) {
                         case 0:
-                            strip.style.background = 'linear-gradient(90deg, #4A5B8C, #6B7BA8)';
+                            strip.style.background = 'linear-gradient(90deg, #1e3a8a, #3b82f6)';
                             break;
                         case 1:
-                            strip.style.background = 'linear-gradient(90deg, #6B7BA8, #5A6FA0)';
+                            strip.style.background = 'linear-gradient(90deg, #3b82f6, #6366f1)';
                             break;
                         case 2:
-                            strip.style.background = 'linear-gradient(90deg, #5A6FA0, #4A5B8C)';
+                            strip.style.background = 'linear-gradient(90deg, #6366f1, #1e3a8a)';
                             break;
                     }
                 }, 3000);
@@ -1186,23 +1266,26 @@
                 switch(colorScheme) {
                     case 0:
                         dynamicBg.style.background = `
-                            radial-gradient(circle at 20% 30%, rgba(99,102,241,0.1) 0%, transparent 50%),
-                            radial-gradient(circle at 80% 70%, rgba(236,72,153,0.1) 0%, transparent 50%),
-                            radial-gradient(circle at 40% 80%, rgba(139,92,246,0.1) 0%, transparent 50%)
+                            radial-gradient(circle at 15% 25%, rgba(30, 58, 138, 0.12) 0%, transparent 50%),
+                            radial-gradient(circle at 85% 75%, rgba(124, 58, 237, 0.12) 0%, transparent 50%),
+                            radial-gradient(circle at 45% 85%, rgba(236, 72, 153, 0.10) 0%, transparent 50%),
+                            radial-gradient(circle at 75% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 50%)
                         `;
                         break;
                     case 1:
                         dynamicBg.style.background = `
-                            radial-gradient(circle at 30% 20%, rgba(16,185,129,0.1) 0%, transparent 50%),
-                            radial-gradient(circle at 70% 80%, rgba(245,158,11,0.1) 0%, transparent 50%),
-                            radial-gradient(circle at 50% 50%, rgba(99,102,241,0.1) 0%, transparent 50%)
+                            radial-gradient(circle at 25% 15%, rgba(16,185,129,0.12) 0%, transparent 50%),
+                            radial-gradient(circle at 75% 85%, rgba(245,158,11,0.12) 0%, transparent 50%),
+                            radial-gradient(circle at 55% 45%, rgba(99,102,241,0.10) 0%, transparent 50%),
+                            radial-gradient(circle at 25% 75%, rgba(236,72,153,0.08) 0%, transparent 50%)
                         `;
                         break;
                     case 2:
                         dynamicBg.style.background = `
-                            radial-gradient(circle at 80% 30%, rgba(236,72,153,0.1) 0%, transparent 50%),
-                            radial-gradient(circle at 20% 70%, rgba(139,92,246,0.1) 0%, transparent 50%),
-                            radial-gradient(circle at 60% 20%, rgba(16,185,129,0.1) 0%, transparent 50%)
+                            radial-gradient(circle at 80% 30%, rgba(236,72,153,0.12) 0%, transparent 50%),
+                            radial-gradient(circle at 20% 70%, rgba(139,92,246,0.12) 0%, transparent 50%),
+                            radial-gradient(circle at 60% 20%, rgba(16,185,129,0.10) 0%, transparent 50%),
+                            radial-gradient(circle at 40% 80%, rgba(245,158,11,0.08) 0%, transparent 50%)
                         `;
                         break;
                 }
