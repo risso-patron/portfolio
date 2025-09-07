@@ -4,35 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jorge Luis Risso - Experiencias Gastronómicas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Maito Colors */
-            --maito-gold: #C8A882;
-            --maito-navy: #2C3E50;
-            --maito-earth: #8B4513;
-            
-            /* Esquina Colors */
-            --esquina-orange: #FF6B35;
-            --esquina-steel: #2C3E50;
-            --industrial-yellow: #F1C40F;
-            
-            /* Los Pueblos Colors */
-            --coffee-brown: #6F4E37;
-            --coffee-accent: #FF8A65;
-            --caramel: #FFAB91;
-            
-            /* Luxor Colors */
-            --luxor-gold: #C9A961;
-            --luxor-black: #1A1A1A;
-            --luxor-bronze: #CD7F32;
-            
-            /* General */
-            --text-dark: #2C3E50;
-            --text-light: #6B7280;
-            --bg-light: #F9FAFB;
-            --bg-white: #FFFFFF;
+            --warm-beige: #F5E6D3;
+            --soft-terracotta: #E8B4A0;
+            --deep-terracotta: #D49C7C;
+            --warm-brown: #8B5A3C;
+            --dark-brown: #5C3A29;
+            --cream: #FAF7F2;
+            --soft-gray: #6B6B6B;
+            --light-gray: #F8F8F8;
         }
 
         * {
@@ -43,462 +25,304 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: linear-gradient(135deg, var(--bg-light) 0%, #F5F7FA 100%);
-            min-height: 100vh;
+            line-height: 1.7;
+            color: var(--dark-brown);
+            background: var(--cream);
             overflow-x: hidden;
         }
 
-        /* Animated Background */
-        .gastro-pattern {
+        /* Minimalist Lines Pattern */
+        .lines-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            opacity: 0.03;
+            height: 100vh;
+            opacity: 0.05;
             z-index: -1;
             background-image: 
-                radial-gradient(circle at 25% 25%, var(--maito-gold) 2px, transparent 2px),
-                radial-gradient(circle at 75% 25%, var(--esquina-orange) 1px, transparent 1px),
-                radial-gradient(circle at 25% 75%, var(--coffee-brown) 1.5px, transparent 1.5px),
-                radial-gradient(circle at 75% 75%, var(--luxor-gold) 2px, transparent 2px);
-            background-size: 80px 80px, 60px 60px, 100px 100px, 70px 70px;
-            animation: patternFlow 25s linear infinite;
-        }
-
-        @keyframes patternFlow {
-            0% { transform: translateX(0) translateY(0); }
-            100% { transform: translateX(-80px) translateY(-80px); }
+                linear-gradient(90deg, var(--soft-terracotta) 1px, transparent 1px),
+                linear-gradient(0deg, var(--soft-terracotta) 1px, transparent 1px);
+            background-size: 60px 60px;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            padding: 0 20px;
         }
 
-        /* Hero Header */
-        .hero-header {
-            background: linear-gradient(135deg, 
-                var(--maito-navy) 0%, 
-                var(--esquina-steel) 25%, 
-                var(--coffee-brown) 50%, 
-                var(--luxor-black) 100%);
-            color: white;
-            padding: 80px 20px;
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
 
-        .hero-header::before {
+        .hero::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(200,168,130,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255,107,53,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 60%, rgba(255,138,101,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 60% 40%, rgba(201,169,97,0.1) 0%, transparent 50%);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--soft-terracotta), transparent);
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .gastro-logo {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 30px;
-            background: linear-gradient(135deg, var(--maito-gold), var(--luxor-bronze));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            box-shadow: 
-                0 0 0 4px rgba(255,255,255,0.2),
-                0 0 0 8px var(--esquina-orange),
-                0 20px 40px rgba(0,0,0,0.3);
-            animation: gastroFloat 4s ease-in-out infinite;
-            position: relative;
-        }
-
-        .gastro-logo::before {
-            content: '🍽️';
-            font-size: 4.5rem;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
-        }
-
-        @keyframes gastroFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
-        }
-
-        .hero-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+        .hero-title {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            color: var(--warm-brown);
             margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.4);
-            background: linear-gradient(45deg, white, #E0E7FF, var(--maito-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-
-        .period-badge {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(15px);
-            color: white;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-block;
-            margin-top: 20px;
-            border: 2px solid rgba(255,255,255,0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        /* Main Content */
-        .main-content {
-            background: white;
-            margin: -50px 20px 40px;
-            border-radius: 25px;
-            box-shadow: 
-                0 30px 80px rgba(0,0,0,0.12),
-                0 0 0 1px rgba(0,0,0,0.05);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .multi-strip {
-            height: 8px;
-            background: linear-gradient(90deg, 
-                var(--maito-gold) 0%, 
-                var(--esquina-orange) 25%, 
-                var(--coffee-accent) 50%, 
-                var(--luxor-bronze) 75%, 
-                var(--maito-gold) 100%);
-            animation: stripFlow 6s linear infinite;
-        }
-
-        @keyframes stripFlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
-
-        /* Overview Section */
-        .overview-section {
-            padding: 60px 50px;
-            text-align: center;
-        }
-
-        .section-header {
-            margin-bottom: 40px;
-        }
-
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--text-dark);
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .section-subtitle {
             font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.7;
+            color: var(--soft-gray);
+            font-weight: 300;
+            margin-bottom: 30px;
         }
 
-        .overview-stats {
+        .period-tag {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--warm-beige);
+            color: var(--warm-brown);
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid var(--soft-terracotta);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background: white;
+            margin: 60px 0;
+            border-top: 1px solid var(--warm-beige);
+            border-bottom: 1px solid var(--warm-beige);
+        }
+
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            text-align: center;
         }
 
         .stat-item {
-            text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(135deg, #F8FAFC, #F1F5F9);
-            border-radius: 20px;
-            border: 1px solid #E2E8F0;
-            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 1px;
+            background: var(--soft-terracotta);
         }
 
         .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--maito-gold);
+            font-family: 'Crimson Text', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--deep-terracotta);
+            display: block;
             margin-bottom: 10px;
         }
 
         .stat-label {
-            font-size: 1rem;
-            color: var(--text-light);
-            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--soft-gray);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* Companies Grid */
+        /* Companies Section */
         .companies-section {
-            padding: 60px 50px;
-            background: #FAFBFC;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--warm-brown);
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: var(--soft-terracotta);
         }
 
         .companies-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
+            grid-template-columns: 1fr;
+            gap: 60px;
         }
 
-        /* Maito Card */
         .company-card {
             background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
+            padding: 50px;
+            border-radius: 0;
+            border-left: 4px solid var(--soft-terracotta);
+            box-shadow: 0 5px 30px rgba(139, 90, 60, 0.08);
+            transition: all 0.3s ease;
             position: relative;
         }
 
         .company-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            transform: translateX(10px);
+            border-left-color: var(--deep-terracotta);
+            box-shadow: 0 10px 40px rgba(139, 90, 60, 0.12);
         }
 
         .maito-card {
-            border-top: 5px solid var(--maito-gold);
-        }
-
-        .maito-card .company-header {
-            background: linear-gradient(135deg, var(--maito-navy), var(--maito-earth));
-            color: white;
+            border-left-color: var(--deep-terracotta);
         }
 
         .esquina-card {
-            border-top: 5px solid var(--esquina-orange);
-        }
-
-        .esquina-card .company-header {
-            background: linear-gradient(135deg, var(--esquina-steel), #34495E);
-            color: white;
+            border-left-color: var(--soft-terracotta);
         }
 
         .pueblos-card {
-            border-top: 5px solid var(--coffee-accent);
-        }
-
-        .pueblos-card .company-header {
-            background: linear-gradient(135deg, var(--coffee-brown), #8D6E63);
-            color: white;
-        }
-
-        .luxor-card {
-            border-top: 5px solid var(--luxor-gold);
-        }
-
-        .luxor-card .company-header {
-            background: linear-gradient(135deg, var(--luxor-black), var(--luxor-bronze));
-            color: white;
+            border-left-color: var(--warm-brown);
         }
 
         .company-header {
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--warm-beige);
         }
 
-        .company-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: rgba(255,255,255,0.1);
+        .company-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--warm-beige);
             border-radius: 50%;
-            transform: translate(30px, -30px);
-        }
-
-        .company-logo-small {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            color: var(--warm-brown);
         }
 
-        .company-name {
-            font-family: 'Playfair Display', serif;
+        .company-info h3 {
+            font-family: 'Crimson Text', serif;
             font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            position: relative;
-            z-index: 2;
+            font-weight: 600;
+            color: var(--warm-brown);
+            margin-bottom: 5px;
         }
 
         .company-type {
-            opacity: 0.9;
-            font-size: 1rem;
-            position: relative;
-            z-index: 2;
+            color: var(--soft-gray);
+            font-size: 0.95rem;
+            font-weight: 400;
         }
 
-        .company-content {
-            padding: 30px;
+        .responsibilities {
+            margin-bottom: 30px;
         }
 
-        .responsibilities-list {
+        .responsibilities ul {
             list-style: none;
-            margin-bottom: 25px;
         }
 
-        .responsibilities-list li {
+        .responsibilities li {
             margin-bottom: 12px;
             padding-left: 25px;
             position: relative;
-            color: var(--text-light);
-            line-height: 1.6;
+            color: var(--soft-gray);
+            font-size: 0.95rem;
         }
 
-        .responsibilities-list li::before {
-            content: '▸';
+        .responsibilities li::before {
+            content: '—';
             position: absolute;
             left: 0;
-            color: var(--maito-gold);
-            font-weight: bold;
-        }
-
-        .esquina-card .responsibilities-list li::before {
-            color: var(--esquina-orange);
-        }
-
-        .pueblos-card .responsibilities-list li::before {
-            color: var(--coffee-accent);
-        }
-
-        .luxor-card .responsibilities-list li::before {
-            color: var(--luxor-gold);
-        }
-
-        .achievements-section-card {
-            background: linear-gradient(135deg, #F8FAFC, #F1F5F9);
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 20px;
-        }
-
-        .achievements-title {
-            font-family: 'Merriweather', serif;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 15px;
+            color: var(--soft-terracotta);
             font-weight: 600;
         }
 
-        .achievement-item {
+        .achievements {
+            background: var(--light-gray);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 3px solid var(--soft-terracotta);
+        }
+
+        .achievements h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            color: var(--warm-brown);
+            margin-bottom: 15px;
+        }
+
+        .achievement {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            color: var(--text-light);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--soft-gray);
         }
 
-        .achievement-item i {
-            margin-right: 10px;
-            color: var(--maito-gold);
-        }
-
-        .esquina-card .achievement-item i {
-            color: var(--esquina-orange);
-        }
-
-        .pueblos-card .achievement-item i {
-            color: var(--coffee-accent);
-        }
-
-        .luxor-card .achievement-item i {
-            color: var(--luxor-gold);
+        .achievement::before {
+            content: '•';
+            color: var(--soft-terracotta);
+            margin-right: 12px;
+            font-weight: bold;
         }
 
         /* Skills Section */
         .skills-section {
-            padding: 60px 50px;
-            background: linear-gradient(135deg, var(--text-dark) 0%, #374151 100%);
-            color: white;
+            padding: 80px 0;
+            background: var(--warm-beige);
         }
 
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            gap: 40px;
+            margin-top: 50px;
         }
 
         .skill-category {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(15px);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
+            background: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            border-top: 3px solid var(--soft-terracotta);
             transition: all 0.3s ease;
         }
 
         .skill-category:hover {
-            transform: scale(1.02);
-            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 90, 60, 0.1);
         }
 
         .skill-category h3 {
-            font-family: 'Merriweather', serif;
+            font-family: 'Crimson Text', serif;
             font-size: 1.3rem;
+            color: var(--warm-brown);
             margin-bottom: 20px;
-            color: var(--maito-gold);
-        }
-
-        .skill-category:nth-child(2) h3 {
-            color: var(--esquina-orange);
-        }
-
-        .skill-category:nth-child(3) h3 {
-            color: var(--coffee-accent);
-        }
-
-        .skill-category:nth-child(4) h3 {
-            color: var(--luxor-gold);
         }
 
         .skill-list {
@@ -506,9 +330,19 @@
         }
 
         .skill-list li {
-            margin-bottom: 8px;
-            opacity: 0.9;
-            line-height: 1.5;
+            margin-bottom: 10px;
+            color: var(--soft-gray);
+            font-size: 0.9rem;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skill-list li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            color: var(--soft-terracotta);
+            font-size: 1.2rem;
         }
 
         /* Back Button */
@@ -516,50 +350,40 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: linear-gradient(135deg, var(--maito-gold), var(--luxor-bronze));
+            background: var(--deep-terracotta);
             color: white;
-            padding: 18px 30px;
-            border-radius: 50px;
+            padding: 15px 25px;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 10px 30px rgba(200,168,130,0.4);
-            transition: all 0.4s ease;
+            font-weight: 500;
+            box-shadow: 0 5px 20px rgba(212, 156, 124, 0.3);
+            transition: all 0.3s ease;
             z-index: 100;
-            font-family: 'Playfair Display', serif;
         }
 
         .back-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 45px rgba(200,168,130,0.6);
-        }
-
-        .back-button i {
-            margin-right: 10px;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 156, 124, 0.4);
+            background: var(--warm-brown);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-header {
-                padding: 60px 20px;
+            .hero {
+                padding: 60px 0 40px;
             }
 
-            .gastro-logo {
-                width: 120px;
-                height: 120px;
-                font-size: 3rem;
+            .stats-section, .companies-section, .skills-section {
+                padding: 60px 0;
             }
 
-            .overview-section, .companies-section, .skills-section {
-                padding: 40px 20px;
+            .company-card {
+                padding: 30px;
             }
 
-            .companies-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .overview-stats {
+            .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                gap: 40px;
             }
 
             .skills-grid {
@@ -569,261 +393,194 @@
             .back-button {
                 bottom: 20px;
                 right: 20px;
-                padding: 15px 25px;
+                padding: 12px 20px;
             }
+        }
+
+        /* Smooth animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <div class="gastro-pattern"></div>
+    <div class="lines-bg"></div>
     
     <div class="container">
-        <!-- Hero Header -->
-        <header class="hero-header">
-            <div class="hero-content">
-                <div class="gastro-logo"></div>
-                <h1>Experiencias Gastronómicas</h1>
-                <p class="hero-subtitle">Supervisor y Encargado de Restaurante</p>
-                <div class="period-badge">Panamá | Argentina • 2021 - 2025</div>
+        <!-- Hero Section -->
+        <section class="hero fade-in">
+            <h1 class="hero-title">Experiencias Gastronómicas</h1>
+            <p class="hero-subtitle">Supervisor y Encargado de Restaurante</p>
+            <div class="period-tag">Panamá | Argentina • 2021 - 2025</div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section fade-in">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">4+</span>
+                    <span class="stat-label">Años de Experiencia</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Establecimientos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Personas Supervisadas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Compromiso</span>
+                </div>
             </div>
-        </header>
+        </section>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <div class="multi-strip"></div>
+        <!-- Companies Section -->
+        <section class="companies-section fade-in">
+            <h2 class="section-title">Trayectoria Profesional</h2>
             
-            <!-- Overview Section -->
-            <section class="overview-section">
-                <div class="section-header">
-                    <h2>Trayectoria en el Sector Gastronómico</h2>
-                    <p class="section-subtitle">
-                        Más de 4 años de experiencia liderando equipos y operaciones en establecimientos gastronómicos de prestigio, 
-                        desde restaurantes de alta cocina internacional hasta cafeterías premium y torres residenciales de lujo.
-                    </p>
-                </div>
-
-                <div class="overview-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">4+</div>
-                        <div class="stat-label">Años de Experiencia</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">4</div>
-                        <div class="stat-label">Establecimientos</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Personas Supervisadas</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Compromiso con Excelencia</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Companies Section -->
-            <section class="companies-section">
-                <div class="section-header">
-                    <h2>Establecimientos Gastronómicos</h2>
-                    <p class="section-subtitle">
-                        Experiencia diversa en diferentes segmentos del sector gastronómico, cada uno con sus propios desafíos y estándares de excelencia.
-                    </p>
-                </div>
-
-                <div class="companies-grid">
-                    <!-- Grupo Maito -->
-                    <div class="company-card maito-card">
-                        <div class="company-header">
-                            <div class="company-logo-small">🏆</div>
-                            <div class="company-name">Grupo Maito</div>
+            <div class="companies-grid">
+                <!-- Grupo Maito -->
+                <div class="company-card maito-card fade-in">
+                    <div class="company-header">
+                        <div class="company-icon">🏆</div>
+                        <div class="company-info">
+                            <h3>Grupo Maito</h3>
                             <div class="company-type">Restaurante de Alta Cocina Internacional • #14 Latin America's 50 Best</div>
                         </div>
-                        <div class="company-content">
-                            <ul class="responsibilities-list">
-                                <li>Supervisión operativa del restaurante de alta cocina</li>
-                                <li>Gestión administrativa y coordinación logística</li>
-                                <li>Manejo de personal y atención personalizada al cliente</li>
-                                <li>Optimización de procesos para experiencia gastronómica excepcional</li>
-                            </ul>
-                            <div class="achievements-section-card">
-                                <div class="achievements-title">Logros Destacados</div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-chart-line"></i>
-                                    <span>Incremento del 20% en eficiencia del servicio</span>
-                                </div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-clock"></i>
-                                    <span>Reducción significativa de tiempos de espera</span>
-                                </div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-users"></i>
-                                    <span>Fortalecimiento del trabajo en equipo</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+                    <div class="responsibilities">
+                        <ul>
+                            <li>Supervisión operativa del restaurante de alta cocina</li>
+                            <li>Gestión administrativa y coordinación logística</li>
+                            <li>Manejo de personal y atención personalizada al cliente</li>
+                            <li>Optimización de procesos para experiencia gastronómica excepcional</li>
+                        </ul>
+                    </div>
+                    <div class="achievements">
+                        <h4>Logros Destacados</h4>
+                        <div class="achievement">Incremento del 20% en eficiencia del servicio</div>
+                        <div class="achievement">Reducción significativa de tiempos de espera</div>
+                        <div class="achievement">Fortalecimiento del trabajo en equipo</div>
+                    </div>
+                </div>
 
-                    <!-- Esquina 70 -->
-                    <div class="company-card esquina-card">
-                        <div class="company-header">
-                            <div class="company-logo-small">🍹</div>
-                            <div class="company-name">Esquina 70</div>
+                <!-- Esquina 70 -->
+                <div class="company-card esquina-card fade-in">
+                    <div class="company-header">
+                        <div class="company-icon">🍹</div>
+                        <div class="company-info">
+                            <h3>Esquina 70</h3>
                             <div class="company-type">Bar & Kitchen • Donde Federico</div>
                         </div>
-                        <div class="company-content">
-                            <ul class="responsibilities-list">
-                                <li>Supervisión de cocina y coordinación del flujo operativo</li>
-                                <li>Atención directa al cliente y resolución de incidencias</li>
-                                <li>Optimización del flujo de trabajo en el área de bar</li>
-                                <li>Coordinación y ejecución de eventos especiales</li>
-                            </ul>
-                            <div class="achievements-section-card">
-                                <div class="achievements-title">Resultados Obtenidos</div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-percentage"></i>
-                                    <span>Aumento del 10% en estrategias de ventas</span>
-                                </div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-sync-alt"></i>
-                                    <span>Mejor integración entre cocina y servicio</span>
-                                </div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-smile"></i>
-                                    <span>Incremento en satisfacción del cliente</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+                    <div class="responsibilities">
+                        <ul>
+                            <li>Supervisión de cocina y coordinación del flujo operativo</li>
+                            <li>Atención directa al cliente y resolución de incidencias</li>
+                            <li>Optimización del flujo de trabajo en el área de bar</li>
+                            <li>Coordinación y ejecución de eventos especiales</li>
+                        </ul>
+                    </div>
+                    <div class="achievements">
+                        <h4>Resultados Obtenidos</h4>
+                        <div class="achievement">Aumento del 10% en estrategias de ventas</div>
+                        <div class="achievement">Mejor integración entre cocina y servicio</div>
+                        <div class="achievement">Incremento en satisfacción del cliente</div>
+                    </div>
+                </div>
 
-                    <!-- Grupo Los Pueblos -->
-                    <div class="company-card pueblos-card">
-                        <div class="company-header">
-                            <div class="company-logo-small">☕</div>
-                            <div class="company-name">Grupo Los Pueblos BLU</div>
+                <!-- Grupo Los Pueblos -->
+                <div class="company-card pueblos-card fade-in">
+                    <div class="company-header">
+                        <div class="company-icon">☕</div>
+                        <div class="company-info">
+                            <h3>Grupo Los Pueblos BLU</h3>
                             <div class="company-type">Coffee & Kitchen Premium</div>
                         </div>
-                        <div class="company-content">
-                            <ul class="responsibilities-list">
-                                <li>Gestión integral del personal y asignación de turnos</li>
-                                <li>Supervisión de calidad y estándares de atención al cliente</li>
-                                <li>Optimización de la operativa diaria y procesos de calidad</li>
-                                <li>Implementación de protocolos de servicio premium</li>
-                            </ul>
-                            <div class="achievements-section-card">
-                                <div class="achievements-title">Impacto Generado</div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-heart"></i>
-                                    <span>15% de incremento en fidelización de clientes</span>
-                                </div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                    <span>20% de reducción en tiempo de servicio</span>
-                                </div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-award"></i>
-                                    <span>Implementación exitosa de procesos de calidad</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-                    <!-- Ph Luxor Tower -->
-                    <div class="company-card luxor-card">
-                        <div class="company-header">
-                            <div class="company-logo-small">🏢</div>
-                            <div class="company-name">Ph Luxor Tower</div>
-                            <div class="company-type">Torre Residencial de Lujo</div>
-                        </div>
-                        <div class="company-content">
-                            <ul class="responsibilities-list">
-                                <li>Supervisión operativa de áreas comunes y servicios premium</li>
-                                <li>Gestión administrativa y coordinación de mantenimiento</li>
-                                <li>Manejo de personal especializado y atención a residentes VIP</li>
-                                <li>Optimización de procesos para calidad de vida residencial</li>
-                            </ul>
-                            <div class="achievements-section-card">
-                                <div class="achievements-title">Excelencia Operativa</div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-cogs"></i>
-                                    <span>20% de incremento en eficiencia de servicios</span>
-                                </div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-handshake"></i>
-                                    <span>Mejor coordinación con proveedores y administración</span>
-                                </div>
-                                <div class="achievement-item">
-                                    <i class="fas fa-star"></i>
-                                    <span>Atención personalizada de alto nivel</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="responsibilities">
+                        <ul>
+                            <li>Gestión integral del personal y asignación de turnos</li>
+                            <li>Supervisión de calidad y estándares de atención al cliente</li>
+                            <li>Optimización de la operativa diaria y procesos de calidad</li>
+                            <li>Implementación de protocolos de servicio premium</li>
+                        </ul>
+                    </div>
+                    <div class="achievements">
+                        <h4>Impacto Generado</h4>
+                        <div class="achievement">15% de incremento en fidelización de clientes</div>
+                        <div class="achievement">20% de reducción en tiempo de servicio</div>
+                        <div class="achievement">Implementación exitosa de procesos de calidad</div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Skills Section -->
-            <section class="skills-section">
-                <div class="section-header">
-                    <h2>Competencias Desarrolladas</h2>
-                    <p class="section-subtitle">
-                        Habilidades adquiridas y perfeccionadas a través de la experiencia en diversos establecimientos del sector gastronómico.
-                    </p>
+        <!-- Skills Section -->
+        <section class="skills-section fade-in">
+            <h2 class="section-title">Competencias Desarrolladas</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3>Liderazgo & Gestión</h3>
+                    <ul class="skill-list">
+                        <li>Supervisión de equipos de hasta 15 personas</li>
+                        <li>Capacitación de personal en estándares de servicio</li>
+                        <li>Coordinación operativa multidisciplinaria</li>
+                        <li>Gestión de turnos y recursos humanos</li>
+                    </ul>
                 </div>
-
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-users-cog"></i> Liderazgo & Gestión</h3>
-                        <ul class="skill-list">
-                            <li>Supervisión de equipos de hasta 10 personas</li>
-                            <li>Capacitación de personal en estándares de servicio</li>
-                            <li>Coordinación operativa multidisciplinaria</li>
-                            <li>Gestión de turnos y recursos humanos</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3><i class="fas fa-chart-line"></i> Operaciones & Control</h3>
-                        <ul class="skill-list">
-                            <li>Control de inventario y arqueo de caja</li>
-                            <li>Optimización de procesos operativos</li>
-                            <li>Análisis de métricas de rendimiento</li>
-                            <li>Gestión de costos y presupuestos</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3><i class="fas fa-heart"></i> Atención & Experiencia</h3>
-                        <ul class="skill-list">
-                            <li>Atención personalizada al cliente</li>
-                            <li>Resolución de incidencias en tiempo real</li>
-                            <li>Creación de experiencias memorables</li>
-                            <li>Manejo de clientes VIP y corporativos</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3><i class="fas fa-calendar-alt"></i> Eventos & Coordinación</h3>
-                        <ul class="skill-list">
-                            <li>Coordinación de eventos especiales</li>
-                            <li>Planificación y ejecución de promociones</li>
-                            <li>Gestión de proveedores y servicios externos</li>
-                            <li>Coordinación logística integral</li>
-                        </ul>
-                    </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Operaciones & Control</h3>
+                    <ul class="skill-list">
+                        <li>Control de inventario y arqueo de caja</li>
+                        <li>Optimización de procesos operativos</li>
+                        <li>Análisis de métricas de rendimiento</li>
+                        <li>Gestión de costos y presupuestos</li>
+                    </ul>
                 </div>
-            </section>
-        </main>
+                
+                <div class="skill-category fade-in">
+                    <h3>Atención & Experiencia</h3>
+                    <ul class="skill-list">
+                        <li>Atención personalizada al cliente</li>
+                        <li>Resolución de incidencias en tiempo real</li>
+                        <li>Creación de experiencias memorables</li>
+                        <li>Manejo de clientes VIP y corporativos</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Eventos & Coordinación</h3>
+                    <ul class="skill-list">
+                        <li>Coordinación de eventos especiales</li>
+                        <li>Planificación y ejecución de promociones</li>
+                        <li>Gestión de proveedores y servicios externos</li>
+                        <li>Coordinación logística integral</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Back Button -->
     <a href="../index.html" class="back-button">
-        <i class="fas fa-arrow-left"></i> Volver al Portafolio
+        ← Volver al Portafolio
     </a>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Gastronomy experience animations
+            // Intersection Observer for fade-in animations
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -832,68 +589,18 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0) translateX(0)';
+                        entry.target.classList.add('visible');
                     }
                 });
             }, observerOptions);
 
-            // Initialize elements for animations
-            document.querySelectorAll('.stat-item, .company-card, .skill-category').forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(30px)';
-                element.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            // Initialize all fade-in elements
+            document.querySelectorAll('.fade-in').forEach((element, index) => {
+                element.style.transitionDelay = `${index * 0.1}s`;
                 observer.observe(element);
             });
 
-            // Staggered animations
-            document.querySelectorAll('.stat-item').forEach((item, index) => {
-                item.style.transitionDelay = `${index * 0.1}s`;
-            });
-
-            document.querySelectorAll('.company-card').forEach((card, index) => {
-                card.style.transitionDelay = `${index * 0.15}s`;
-            });
-
-            document.querySelectorAll('.skill-category').forEach((category, index) => {
-                category.style.transitionDelay = `${index * 0.1}s`;
-            });
-
-            // Gastro logo interaction
-            const logo = document.querySelector('.gastro-logo');
-            if (logo) {
-                logo.addEventListener('mouseenter', function() {
-                    this.style.animationPlayState = 'paused';
-                    this.style.transform = 'scale(1.1) rotate(10deg)';
-                });
-                
-                logo.addEventListener('mouseleave', function() {
-                    this.style.animationPlayState = 'running';
-                    this.style.transform = 'scale(1) rotate(0deg)';
-                });
-            }
-
-            // Enhanced hover effects for company cards
-            document.querySelectorAll('.company-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    const header = this.querySelector('.company-header');
-                    if (this.classList.contains('maito-card')) {
-                        this.style.boxShadow = '0 20px 50px rgba(200,168,130,0.2), 0 0 30px rgba(139,133,84,0.1)';
-                    } else if (this.classList.contains('esquina-card')) {
-                        this.style.boxShadow = '0 20px 50px rgba(255,107,53,0.2), 0 0 30px rgba(241,196,15,0.1)';
-                    } else if (this.classList.contains('pueblos-card')) {
-                        this.style.boxShadow = '0 20px 50px rgba(111,78,55,0.2), 0 0 30px rgba(255,138,101,0.1)';
-                    } else if (this.classList.contains('luxor-card')) {
-                        this.style.boxShadow = '0 20px 50px rgba(201,169,97,0.2), 0 0 30px rgba(205,127,50,0.1)';
-                    }
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.boxShadow = '0 8px 30px rgba(0,0,0,0.08)';
-                });
-            });
-
-            // Interactive stats counter
+            // Animated counter for stats
             document.querySelectorAll('.stat-number').forEach(stat => {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
@@ -927,58 +634,41 @@
                 observer.observe(stat);
             });
 
-            // Multi-strip animation enhancement
-            const strip = document.querySelector('.multi-strip');
-            if (strip) {
-                let colorPhase = 0;
-                setInterval(() => {
-                    colorPhase = (colorPhase + 1) % 3;
-                    switch(colorPhase) {
-                        case 0:
-                            strip.style.background = 'linear-gradient(90deg, var(--maito-gold) 0%, var(--esquina-orange) 25%, var(--coffee-accent) 50%, var(--luxor-bronze) 75%, var(--maito-gold) 100%)';
-                            break;
-                        case 1:
-                            strip.style.background = 'linear-gradient(90deg, var(--esquina-orange) 0%, var(--coffee-accent) 25%, var(--luxor-bronze) 50%, var(--maito-gold) 75%, var(--esquina-orange) 100%)';
-                            break;
-                        case 2:
-                            strip.style.background = 'linear-gradient(90deg, var(--coffee-accent) 0%, var(--luxor-bronze) 25%, var(--maito-gold) 50%, var(--esquina-orange) 75%, var(--coffee-accent) 100%)';
-                            break;
-                    }
-                }, 3000);
+            // Smooth line animation on scroll
+            let ticking = false;
+            
+            function updateLines() {
+                const scrolled = window.pageYOffset;
+                const lines = document.querySelector('.lines-bg');
+                
+                if (lines) {
+                    lines.style.transform = `translateY(${scrolled * 0.2}px)`;
+                }
+                
+                ticking = false;
             }
 
-            // Parallax effect for background pattern
             window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const pattern = document.querySelector('.gastro-pattern');
-                if (pattern) {
-                    pattern.style.transform = `translateX(${-80 + scrolled * 0.1}px) translateY(${-80 + scrolled * 0.1}px)`;
+                if (!ticking) {
+                    requestAnimationFrame(updateLines);
+                    ticking = true;
                 }
             });
 
-            // Company logo animations
-            document.querySelectorAll('.company-logo-small').forEach(logo => {
-                logo.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.2) rotate(15deg)';
-                    this.style.background = 'rgba(255,255,255,0.3)';
+            // Enhanced hover effects
+            document.querySelectorAll('.company-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.company-icon');
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    icon.style.background = 'var(--soft-terracotta)';
+                    icon.style.color = 'white';
                 });
                 
-                logo.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1) rotate(0deg)';
-                    this.style.background = 'rgba(255,255,255,0.2)';
-                });
-            });
-
-            // Skill category hover effects
-            document.querySelectorAll('.skill-category').forEach(category => {
-                category.addEventListener('mouseenter', function() {
-                    this.style.background = 'rgba(255,255,255,0.15)';
-                    this.style.transform = 'scale(1.02) translateY(-5px)';
-                });
-                
-                category.addEventListener('mouseleave', function() {
-                    this.style.background = 'rgba(255,255,255,0.1)';
-                    this.style.transform = 'scale(1) translateY(0)';
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.company-icon');
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                    icon.style.background = 'var(--warm-beige)';
+                    icon.style.color = 'var(--warm-brown)';
                 });
             });
         });
