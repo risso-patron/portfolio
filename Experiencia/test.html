@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Cuestionario para Gabriel García</title>
+  <title>Cuestionario para Ingeniero</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -71,66 +71,50 @@
 <body>
   <h1>Cuestionario para tu página web</h1>
   <form action="https://formsubmit.co/Luisrissopa@gmail.com" method="POST">
-    
-    <!-- Opcional: evitar captcha -->
     <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://jorge-luis-risso-patron-dev.netlify.app">
 
-    <!-- Opcional: redirección después de enviar -->
-    <input type="hidden" name="_next" value="https://jorge-luis-risso-patron-dev.netlify.app"
+    <label>1. ¿Cuál es tu especialidad como ingeniero?</label>
+    <input type="text" name="especialidad" placeholder="Ej. civil, eléctrico, mecánico...">
 
-    <label>1. ¿Cuál es el objetivo principal de tu sitio web?</label>
+    <label>2. ¿Cuál es el objetivo principal de tu sitio web?</label>
     <div class="opciones">
-      <label><input type="checkbox" name="objetivo[]" value="Servicios legales"> Mostrar tus servicios legales</label>
-      <label><input type="checkbox" name="objetivo[]" value="Promocionar propiedades"> Promocionar propiedades</label>
-      <label><input type="checkbox" name="objetivo[]" value="Posicionamiento profesional"> Posicionarte como profesional</label>
-      <label><input type="checkbox" name="objetivo[]" value="Facilitar contacto"> Facilitar contacto</label>
+      <label><input type="checkbox" name="objetivo[]" value="Mostrar portafolio"> Mostrar tu portafolio de proyectos</label>
+      <label><input type="checkbox" name="objetivo[]" value="Ofrecer consultoría"> Ofrecer servicios de consultoría</label>
+      <label><input type="checkbox" name="objetivo[]" value="Captar clientes"> Captar nuevos clientes</label>
+      <label><input type="checkbox" name="objetivo[]" value="Posicionamiento profesional"> Posicionarte como experto</label>
       <input type="text" name="objetivo_otro" placeholder="Otro...">
     </div>
 
-    <label>2. ¿Qué acción te gustaría que realicen los visitantes?</label>
+    <label>3. ¿Qué tipo de clientes quieres atraer?</label>
     <div class="opciones">
-      <label><input type="checkbox" name="accion[]" value="WhatsApp"> Escribirte por WhatsApp</label>
-      <label><input type="checkbox" name="accion[]" value="Agendar cita"> Agendar una cita</label>
-      <label><input type="checkbox" name="accion[]" value="Ver propiedades"> Ver propiedades</label>
-      <label><input type="checkbox" name="accion[]" value="Conocer servicios legales"> Conocer tus servicios legales</label>
-      <input type="text" name="accion_otro" placeholder="Otro...">
+      <label><input type="checkbox" name="clientes[]" value="Empresas"> Empresas</label>
+      <label><input type="checkbox" name="clientes[]" value="Individuales"> Clientes individuales</label>
+      <label><input type="checkbox" name="clientes[]" value="Instituciones públicas"> Instituciones públicas</label>
+      <label><input type="checkbox" name="clientes[]" value="Internacionales"> Internacionales</label>
+      <input type="text" name="clientes_otro" placeholder="Otro...">
     </div>
 
-    <label>3. ¿Cómo quieres presentar tu perfil profesional?</label>
-    <div class="opciones">
-      <label><input type="radio" name="perfil" value="Integrado"> Integrado</label>
-      <label><input type="radio" name="perfil" value="Separado"> Separado</label>
-      <label><input type="radio" name="perfil" value="No seguro"> No estoy seguro</label>
-    </div>
+    <label>4. ¿Qué servicios específicos quieres destacar?</label>
+    <textarea name="servicios" rows="4" placeholder="Describe tus servicios principales..."></textarea>
 
-    <label>4. ¿Qué estilo visual prefieres?</label>
+    <label>5. ¿Qué estilo visual prefieres?</label>
     <div class="opciones">
-      <label><input type="checkbox" name="estilo[]" value="Elegante"> Elegante y sobrio</label>
-      <label><input type="checkbox" name="estilo[]" value="Moderno"> Moderno y minimalista</label>
-      <label><input type="checkbox" name="estilo[]" value="Cálido"> Cálido y cercano</label>
-      <label><input type="checkbox" name="estilo[]" value="Corporativo"> Corporativo y profesional</label>
+      <label><input type="checkbox" name="estilo[]" value="Técnico"> Técnico y moderno</label>
+      <label><input type="checkbox" name="estilo[]" value="Minimalista"> Minimalista y limpio</label>
+      <label><input type="checkbox" name="estilo[]" value="Corporativo"> Corporativo y serio</label>
+      <label><input type="checkbox" name="estilo[]" value="Innovador"> Creativo e innovador</label>
       <input type="text" name="estilo_otro" placeholder="Otro...">
-    </div>
-
-    <label>5. ¿Qué colores te representan mejor?</label>
-    <div class="opciones">
-      <label><input type="checkbox" name="colores[]" value="Azul oscuro"> Azul oscuro</label>
-      <label><input type="checkbox" name="colores[]" value="Blanco"> Blanco</label>
-      <label><input type="checkbox" name="colores[]" value="Gris"> Gris</label>
-      <label><input type="checkbox" name="colores[]" value="Verde"> Verde</label>
-      <label><input type="checkbox" name="colores[]" value="Dorado"> Dorado</label>
-      <input type="text" name="colores_otro" placeholder="Otro...">
     </div>
 
     <label>6. ¿Qué secciones te gustaría incluir?</label>
     <div class="opciones">
       <label><input type="checkbox" name="secciones[]" value="Inicio"> Inicio / Presentación</label>
-      <label><input type="checkbox" name="secciones[]" value="Servicios legales"> Servicios legales</label>
-      <label><input type="checkbox" name="secciones[]" value="Propiedades"> Propiedades destacadas</label>
-      <label><input type="checkbox" name="secciones[]" value="Biografía"> Sobre mí / Biografía</label>
-      <label><input type="checkbox" name="secciones[]" value="Testimonios"> Testimonios</label>
+      <label><input type="checkbox" name="secciones[]" value="Servicios"> Servicios</label>
+      <label><input type="checkbox" name="secciones[]" value="Proyectos"> Proyectos realizados</label>
+      <label><input type="checkbox" name="secciones[]" value="Perfil"> Sobre mí / Perfil profesional</label>
+      <label><input type="checkbox" name="secciones[]" value="Blog"> Blog técnico / artículos</label>
       <label><input type="checkbox" name="secciones[]" value="Contacto"> Contacto</label>
-      <label><input type="checkbox" name="secciones[]" value="Blog"> Blog o artículos</label>
       <input type="text" name="secciones_otro" placeholder="Otro...">
     </div>
 
@@ -138,20 +122,20 @@
     <div class="opciones">
       <label><input type="checkbox" name="funcionalidades[]" value="Formulario"> Formulario de contacto</label>
       <label><input type="checkbox" name="funcionalidades[]" value="WhatsApp"> Botón de WhatsApp</label>
-      <label><input type="checkbox" name="funcionalidades[]" value="Mapa"> Mapa de ubicación</label>
-      <label><input type="checkbox" name="funcionalidades[]" value="Filtros"> Filtros para buscar propiedades</label>
+      <label><input type="checkbox" name="funcionalidades[]" value="Descarga"> Descarga de CV o portafolio</label>
+      <label><input type="checkbox" name="funcionalidades[]" value="Galería"> Galería de imágenes o videos</label>
       <label><input type="checkbox" name="funcionalidades[]" value="Redes"> Integración con redes sociales</label>
       <input type="text" name="funcionalidades_otro" placeholder="Otro...">
     </div>
 
-    <label>8. ¿Qué problemas esperas resolver con esta página?</label>
-    <textarea name="problemas" rows="4" placeholder="Escribe tu respuesta aquí..."></textarea>
+    <label>8. ¿Tienes referencias de otras páginas que te gusten?</label>
+    <textarea name="referencias" rows="3" placeholder="Comparte enlaces o describe qué te gusta de ellas..."></textarea>
 
-    <label>9. ¿Qué te gustaría mejorar respecto a tus redes sociales?</label>
-    <textarea name="mejoras" rows="4" placeholder="Escribe tu respuesta aquí..."></textarea>
+    <label>9. ¿Qué problemas esperas resolver con esta página?</label>
+    <textarea name="problemas" rows="4" placeholder="Ej. falta de visibilidad, dificultad para explicar tus servicios..."></textarea>
 
-    <label>10. ¿Hay alguna página web que te guste como referencia?</label>
-    <textarea name="referencia" rows="3" placeholder="Comparte el enlace o describe qué te gusta de ella..."></textarea>
+    <label>10. ¿Hay algo que no quieres que aparezca en tu sitio?</label>
+    <textarea name="restricciones" rows="3" placeholder="Ej. información personal, colores específicos..."></textarea>
 
     <button type="submit">Enviar respuestas</button>
   </form>
