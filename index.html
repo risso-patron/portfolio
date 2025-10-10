@@ -3,32 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jorge Luis Risso Patrón - Desarrollador Web & Automatizaciones</title>
+    <title>Jorge Luis Risso Patrón - Desarrollador Web Frontend</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
     <link rel="icon" type="image/png" href="image/favicon.ico">
     
     <!-- Meta tags para SEO -->
-    <meta name="description" content="Desarrollador web especializado en soluciones digitales, automatizaciones y sistemas de gestión para pequeñas empresas en Panamá">
-    <meta property="og:title" content="Jorge Luis Risso Patrón - Desarrollador Web & Automatizaciones">
-    <meta property="og:description" content="Creo soluciones digitales que simplifican procesos y mejoran resultados para pequeñas empresas">
+    <meta name="description" content="Desarrollador web frontend junior especializado en HTML5, CSS3 y JavaScript. Construyo interfaces web funcionales y responsivas.">
+    <meta property="og:title" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend">
+    <meta property="og:description" content="Developer junior autodidacta construyendo proyectos prácticos con JavaScript vanilla">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jorge-luis-risso-patron-dev.netlify.app/">
-    <meta property="og:image" content="image/profile-image.jpg">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LR6R265NHC"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-LR6R265NHC');
-    </script> 
 
     <style>
-        /* ==================== Importación de fuentes ==================== */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
         /* ==================== Variables CSS ==================== */
         :root {
             --primary: #2563eb;
@@ -38,10 +24,9 @@
             --text-light: #64748b;
             --bg: #ffffff;
             --bg-light: #f8fafc;
-            --bg-section: #f1f5f9;
             --border: #e2e8f0;
-            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
         }
 
         /* ==================== Reset y estilos globales ==================== */
@@ -65,54 +50,15 @@
             padding: 0 24px;
         }
 
-        /* ==================== Header ==================== */
-        .header {
+        /* ==================== HERO SECTION ==================== */
+        .hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 80px 0;
+            padding: 120px 0;
             text-align: center;
-        }
-
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 16px 0;
-        }
-
-        .nav-content {
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 24px;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
         }
 
         .hero-content h1 {
@@ -123,13 +69,14 @@
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 8px;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
             opacity: 0.9;
+            font-weight: 600;
         }
 
         .hero-description {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             max-width: 600px;
             margin: 0 auto 40px;
             opacity: 0.85;
@@ -141,17 +88,18 @@
             gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 40px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             font-size: 16px;
@@ -179,939 +127,460 @@
             border-color: rgba(255, 255, 255, 0.6);
         }
 
-        /* ==================== Secciones ==================== */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 16px;
-            color: var(--secondary);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto 64px;
-        }
-
-        /* ==================== Sobre mí ==================== */
+        /* ==================== SOBRE MÍ ==================== */
         .about {
+            padding: 80px 0;
             background: var(--bg-light);
-            text-align: center;
         }
 
         .about-content {
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--secondary);
         }
 
         .about-text {
             font-size: 1.2rem;
-            color: var(--text);
-            margin-bottom: 32px;
             line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 40px;
         }
 
-        .profile-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary);
-            margin: 0 auto 24px;
-            display: block;
+        /* ==================== PROYECTOS ==================== */
+        .projects {
+            padding: 80px 0;
         }
 
-        /* ==================== Proyectos ==================== */
-        .proyectos-grid {
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 32px;
-            margin-top: 48px;
+            margin-top: 64px;
         }
 
-        .proyecto-card {
+        .project-card {
             background: white;
             border-radius: 12px;
-            overflow: hidden;
+            padding: 32px;
             box-shadow: var(--shadow);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             border: 1px solid var(--border);
         }
 
-        .proyecto-card:hover {
-            transform: translateY(-4px);
+        .project-card:hover {
+            transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
 
-        .proyecto-image {
-            width: 100%;
-            height: 200px;
+        .project-icon {
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
             color: white;
-            position: relative;
-            overflow: hidden;
+            font-size: 24px;
+            margin-bottom: 24px;
         }
 
-        .proyecto-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .proyecto-content {
-            padding: 24px;
-        }
-
-        .proyecto-title {
+        .project-title {
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--secondary);
             margin-bottom: 12px;
+            color: var(--secondary);
         }
 
-        .proyecto-description {
+        .project-description {
             color: var(--text-light);
             margin-bottom: 16px;
             line-height: 1.6;
         }
 
-        .tecnologias {
+        .project-stack {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
         }
 
         .tech-tag {
             background: var(--bg-light);
             color: var(--text);
             padding: 4px 12px;
-            border-radius: 16px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .resultados {
-            background: var(--bg-light);
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .resultado-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text);
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .resultado-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .btn-proyecto {
-            background: var(--primary);
-            color: white;
-            width: 100%;
-            text-align: center;
-        }
-
-        .btn-proyecto:hover {
-            background: #1d4ed8;
-        }
-
-        /* ==================== Servicios ==================== */
-        .servicios {
-            background: var(--bg-light);
-        }
-
-        .servicios-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
-        }
-
-        .servicio-card {
-            background: white;
-            padding: 32px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            transition: all 0.2s ease;
-        }
-
-        .servicio-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .servicio-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: white;
-            margin: 0 auto 20px;
-        }
-
-        .servicio-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: 12px;
-        }
-
-        .servicio-description {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* ==================== Tecnologías ==================== */
-        .tech-section {
-            text-align: center;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
-        }
-
-        .tech-grupo {
-            background: white;
-            padding: 32px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-        }
-
-        .tech-grupo h3 {
-            color: var(--secondary);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .tech-tag-main {
-            background: var(--primary);
-            color: white;
-            padding: 8px 16px;
             border-radius: 20px;
-            font-weight: 500;
             font-size: 14px;
+            font-weight: 500;
         }
 
-        /* ==================== Contacto ==================== */
-        .contacto {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .contacto .section-title {
-            color: white;
-        }
-
-        .contacto-description {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
-        }
-
-        .contact-options {
+        .project-links {
             display: flex;
             gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 32px;
         }
 
-        .contact-btn {
-            background: var(--accent);
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
             color: white;
-            padding: 16px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            display: inline-flex;
+        }
+
+        /* ==================== HABILIDADES ==================== */
+        .skills {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 64px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 8px 0;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .learning {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        /* ==================== CONTACTO ==================== */
+        .contact {
+            padding: 80px 0;
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .contact-link {
+            display: flex;
             align-items: center;
             gap: 8px;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .contact-btn:hover {
-            background: #0891b2;
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .disponibilidad {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-        }
-
-        /* ==================== Footer ==================== */
-        .footer {
-            background: var(--secondary);
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            padding: 40px 0;
         }
 
         /* ==================== Responsive ==================== */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .container {
+                padding: 0 16px;
             }
             
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .hero {
+                padding: 80px 0;
             }
             
-            .section {
-                padding: 60px 0;
-            }
-            
-            .proyectos-grid {
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
             
-            .servicios-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .tech-grid {
-                grid-template-columns: 1fr;
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
             }
             
             .cta-container {
                 flex-direction: column;
                 align-items: center;
             }
-            
-            .contact-options {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        /* ==================== Animaciones suaves ==================== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in:nth-child(1) { animation-delay: 0.1s; }
-        .fade-in:nth-child(2) { animation-delay: 0.2s; }
-        .fade-in:nth-child(3) { animation-delay: 0.3s; }
-        .fade-in:nth-child(4) { animation-delay: 0.4s; }
-
-        /* ==================== Estado de loading ==================== */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background: #128C7E;
         }
     </style>
 </head>
-
 <body>
-    <!-- Navegación fija -->
-    <nav class="nav">
-        <div class="container nav-content">
-            <a href="#" class="logo">JLR</a>
-            <ul class="nav-links">
-                <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Header Hero -->
-    <header class="header">
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <h1>Jorge Luis Risso Patrón</h1>
-                <p class="hero-subtitle">Desarrollador Web & Automatizaciones</p>
+                <div class="hero-subtitle">Desarrollador Web Frontend</div>
                 <p class="hero-description">
-                    Creo soluciones digitales que simplifican procesos y mejoran resultados para pequeñas empresas.
+                    Construyo interfaces web funcionales con HTML, CSS y JavaScript. 
+                    Developer junior en transición desde operaciones, autodidacta construyendo proyectos prácticos con JS vanilla.
                 </p>
                 <div class="cta-container">
-                    <a href="#proyectos" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i> Ver Mis Soluciones
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i>
+                        Ver Proyectos
                     </a>
-                    <a href="#contacto" class="btn btn-secondary">
-                        <i class="fas fa-comments"></i> Hablemos de tu Proyecto
+                    <a href="https://github.com/Luisitorisso" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Contacto
                     </a>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Sobre Mí -->
-<section id="sobre-mi">
-    <div class="container">
-        <h2>Sobre mí</h2>
-        <p>
-            Hola, soy Jorge Luis, un desarrollador web junior de Panamá. Actualmente 
-            estoy aprendiendo desarrollo web frontend con HTML, CSS y JavaScript, 
-            mientras construyo proyectos prácticos para aplicar mis conocimientos.
-        </p>
-        <p>
-            Busco mi primera oportunidad laboral en tecnología donde pueda seguir 
-            aprendiendo y creciendo como programador. Me caracterizo por ser 
-            autodidacta, comprometido y siempre dispuesto a aprender nuevas tecnologías.
-        </p>
-    </div>
-</section>
-
-    <!-- Proyectos -->
-    <section id="proyectos" class="section">
+    <!-- ==================== SOBRE MÍ ==================== -->
+    <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">Proyectos Destacados</h2>
-            <p class="section-subtitle">Soluciones digitales que generan resultados reales</p>
+            <div class="about-content">
+                <h2 class="section-title">Sobre Mí</h2>
+                <p class="about-text">
+                    Developer junior en transición desde operaciones. Autodidacta, construyendo proyectos prácticos con JS vanilla. 
+                    Buscando mi primera oportunidad en tecnología para aplicar mis habilidades en desarrollo frontend.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROYECTOS ==================== -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Proyectos</h2>
+            <p style="text-align: center; color: var(--text-light); font-size: 1.1rem; margin-bottom: 32px;">
+                Proyectos funcionales que demuestran mis habilidades en desarrollo frontend
+            </p>
             
-            <div class="proyectos-grid">
-                <!-- Proyecto 1: Barber Manager -->
-                <div class="proyecto-card fade-in">
-                    <div class="proyecto-image">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <div class="proyecto-content">
-                        <h3 class="proyecto-title">Barber Manager Pro</h3>
-                        <p class="proyecto-description">
-                            Sistema completo de gestión para barberías con reservas online, control de clientes e inventario. 
-                            Aumentó la eficiencia operativa en 40%.
-                        </p>
-                        
-                        <div class="tecnologias">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Local Storage</span>
-                        </div>
-                        
-                        <div class="resultados">
-                            <div class="resultado-item">
-                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                                40% menos tiempo en gestión
-                            </div>
-                            <div class="resultado-item">
-                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                                100+ reservas automatizadas
-                            </div>
-                            <div class="resultado-item">
-                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                                Control de inventario en tiempo real
-                            </div>
-                        </div>
-                        
-                        <a href="#" class="btn btn-proyecto">
-                            <i class="fas fa-external-link-alt"></i> Próximamente
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Proyecto 2: Marketing Digital -->
-                <div class="proyecto-card fade-in">
-                    <div class="proyecto-image">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="proyecto-content">
-                        <h3 class="proyecto-title">Estrategias de Marketing Digital</h3>
-                        <p class="proyecto-description">
-                            Desarrollo de contenido para Instagram y YouTube, estrategias de marketing digital y gestión 
-                            de campañas publicitarias que generan engagement real.
-                        </p>
-                        
-                        <div class="tecnologias">
-                            <span class="tech-tag">Instagram Marketing</span>
-                            <span class="tech-tag">YouTube</span>
-                            <span class="tech-tag">Photoshop</span>
-                            <span class="tech-tag">Analytics</span>
-                        </div>
-                        
-                        <div class="resultados">
-                            <div class="resultado-item">
-                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                                +200% engagement en Instagram
-                            </div>
-                            <div class="resultado-item">
-                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                                Gestión de múltiples cuentas
-                            </div>
-                            <div class="resultado-item">
-                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                                Estrategias de contenido efectivas
-                            </div>
-                        </div>
-                        
-                        <a href="https://www.instagram.com/experienciasquefidelizan" target="_blank" class="btn btn-proyecto">
-                            <i class="fab fa-instagram"></i> Ver Proyecto
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Proyecto 3: Sistema de Afiliados -->
-                <div class="proyecto-card fade-in">
-                    <div class="proyecto-image">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <div class="proyecto-content">
-                        <h3 class="proyecto-title">Plataforma de Afiliados</h3>
-                        <p class="proyecto-description">
-                            Sistema de afiliados y estrategias de monetización digital a través de productos formativos 
-                            y e-commerce, optimizado para conversiones.
-                        </p>
-                        
-                        <div class="tecnologias">
-                            <span class="tech-tag">Hotmart</span>
-                            <span class="tech-tag">Amazon</span>
-                            <span class="tech-tag">Landing Pages</span>
-                            <span class="tech-tag">Copywriting</span>
-                        </div>
-                        
-                        <div class="resultados">
-                            <div class="resultado-item">
-                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                                Múltiples productos activos
-                            </div>
-                            <div class="resultado-item">
-                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                                Estrategias de conversión optimizadas
-                            </div>
-                            <div class="resultado-item">
-                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
-                                ROI positivo en campañas
-                            </div>
-                        </div>
-                        
-                        <a href="https://go.hotmart.com/I100635730C" target="_blank" class="btn btn-proyecto">
-                            <i class="fas fa-book"></i> Ver Proyecto
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Proyecto 4: Calculadora de Presupuesto -->
-                <div class="proyecto-card fade-in">
-                    <div class="proyecto-image">
+            <div class="projects-grid">
+                <!-- Proyecto 1: Calculadora de Presupuesto -->
+                <div class="project-card">
+                    <div class="project-icon">
                         <i class="fas fa-calculator"></i>
                     </div>
-                    <div class="proyecto-content">
-                        <h3 class="proyecto-title">Calculadora de Presupuesto</h3>
-                        <p class="proyecto-description">
-                            Aplicación web para gestionar gastos personales mensuales. Permite agregar, 
-                            editar y eliminar gastos, además de ver totales por categoría.
-                        </p>
-                        
-                        <div class="tecnologias">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">LocalStorage</span>
-                        </div>
-                        
-                        <div class="aprendizaje">
-                            <h4>Lo que aprendí:</h4>
-                            <ul>
-                                <li>Manipulación del DOM</li>
-                                <li>Manejo de eventos</li>
-                                <li>Persistencia de datos local</li>
-                                <li>Validación de formularios</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="enlaces">
-                            <a href="[demo-link]">Ver Demo</a>
-                            <a href="[github-link]">Ver Código</a>
-                        </div>
+                    <h3 class="project-title">Calculadora de Presupuesto</h3>
+                    <p class="project-description">
+                        App de finanzas personales para gestionar ingresos y gastos. 
+                        Incluye categorización, gráficos y persistencia de datos local.
+                    </p>
+                    <div class="project-stack">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">LocalStorage</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="Experiencia/Calculadora-de-presupuesto.html" target="_blank" class="btn btn-outline">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Demo
+                        </a>
+                        <a href="https://github.com/Luisitorisso/calculadora-presupuesto-personal" target="_blank" class="btn btn-outline">
+                            <i class="fab fa-github"></i>
+                            Ver Código
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Placeholder para próximos proyectos -->
+                <div class="project-card" style="opacity: 0.6;">
+                    <div class="project-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3 class="project-title">Weather App</h3>
+                    <p class="project-description">
+                        Aplicación del clima con consumo de API, búsqueda de ciudades y 
+                        funcionalidad de favoritos con localStorage.
+                    </p>
+                    <div class="project-stack">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">API REST</span>
+                    </div>
+                    <div class="project-links">
+                        <span style="color: var(--text-light); font-style: italic;">
+                            <i class="fas fa-tools"></i>
+                            En construcción
+                        </span>
+                    </div>
+                </div>
+
+                <div class="project-card" style="opacity: 0.6;">
+                    <div class="project-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="project-title">Pomodoro Timer</h3>
+                    <p class="project-description">
+                        Timer de productividad con configuraciones personalizables, 
+                        notificaciones del navegador y estadísticas de sesiones.
+                    </p>
+                    <div class="project-stack">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Notifications API</span>
+                    </div>
+                    <div class="project-links">
+                        <span style="color: var(--text-light); font-style: italic;">
+                            <i class="fas fa-tools"></i>
+                            Próximamente
+                        </span>
+                    </div>
+                </div>
+
+                <div class="project-card" style="opacity: 0.6;">
+                    <div class="project-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 class="project-title">GitHub User Finder</h3>
+                    <p class="project-description">
+                        Buscador de perfiles de GitHub con información detallada, 
+                        repositorios y estadísticas usando la API de GitHub.
+                    </p>
+                    <div class="project-stack">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">GitHub API</span>
+                    </div>
+                    <div class="project-links">
+                        <span style="color: var(--text-light); font-style: italic;">
+                            <i class="fas fa-tools"></i>
+                            Planificado
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Servicios -->
-    <section id="servicios" class="section servicios">
+    <!-- ==================== HABILIDADES ==================== -->
+    <section class="skills" id="skills">
         <div class="container">
-            <h2 class="section-title">Servicios</h2>
-            <p class="section-subtitle">¿Cómo puedo ayudarte a hacer crecer tu negocio?</p>
+            <h2 class="section-title">Habilidades Técnicas</h2>
             
-            <div class="servicios-grid">
-                <div class="servicio-card fade-in">
-                    <div class="servicio-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3 class="servicio-title">Desarrollo de Aplicaciones Web</h3>
-                    <p class="servicio-description">
-                        Landing pages, dashboards y sistemas personalizados que convierten visitantes en clientes.
-                    </p>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>
+                        <i class="fas fa-code"></i>
+                        Frontend
+                    </h3>
+                    <ul class="skill-list">
+                        <li>HTML5 - Semántico y accesible</li>
+                        <li>CSS3 - Flexbox, Grid, Animaciones</li>
+                        <li>JavaScript - ES6+, DOM, Eventos</li>
+                        <li>Responsive Design - Mobile-first</li>
+                        <li>LocalStorage y SessionStorage</li>
+                    </ul>
                 </div>
 
-                <div class="servicio-card fade-in">
-                    <div class="servicio-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="servicio-title">Automatización de Procesos</h3>
-                    <p class="servicio-description">
-                        Integración de herramientas y flujos automáticos que ahorran tiempo y reducen errores.
-                    </p>
+                <div class="skill-category">
+                    <h3>
+                        <i class="fas fa-tools"></i>
+                        Herramientas
+                    </h3>
+                    <ul class="skill-list">
+                        <li>Git & GitHub - Control de versiones</li>
+                        <li>VS Code - Editor principal</li>
+                        <li>Chrome DevTools - Debugging</li>
+                        <li>Figma - Diseño básico</li>
+                        <li>Netlify/GitHub Pages - Deployment</li>
+                    </ul>
                 </div>
 
-                <div class="servicio-card fade-in">
-                    <div class="servicio-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3 class="servicio-title">Sistemas de Gestión</h3>
-                    <p class="servicio-description">
-                        CRM, control de inventarios y sistemas de reservas online adaptados a tu negocio.
-                    </p>
-                </div>
-
-                <div class="servicio-card fade-in">
-                    <div class="servicio-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 class="servicio-title">Consultoría Digital</h3>
-                    <p class="servicio-description">
-                        Estrategia web, optimización de procesos y transformación digital para tu empresa.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tecnologías -->
-    <section class="section tech-section">
-        <div class="container">
-            <h2 class="section-title">Stack Tecnológico</h2>
-            <p class="section-subtitle">Herramientas con las que trabajo</p>
-            
-            <div class="tech-grid">
-                <div class="tech-grupo fade-in">
-                    <h3>Frontend</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag-main">HTML5</span>
-                        <span class="tech-tag-main">CSS3</span>
-                        <span class="tech-tag-main">JavaScript</span>
-                        <span class="tech-tag-main">Responsive Design</span>
-                    </div>
-                </div>
-
-                <div class="tech-grupo fade-in">
-                    <h3>Herramientas</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag-main">Git</span>
-                        <span class="tech-tag-main">VS Code</span>
-                        <span class="tech-tag-main">Figma</span>
-                        <span class="tech-tag-main">Photoshop</span>
-                    </div>
-                </div>
-
-                <div class="tech-grupo fade-in">
-                    <h3>Marketing & IA</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag-main">SEO</span>
-                        <span class="tech-tag-main">Analytics</span>
-                        <span class="tech-tag-main">ChatGPT</span>
-                        <span class="tech-tag-main">Claude</span>
-                    </div>
+                <div class="skill-category">
+                    <h3>
+                        <i class="fas fa-cloud"></i>
+                        APIs & Datos
+                    </h3>
+                    <ul class="skill-list">
+                        <li>Fetch API - Consumo de APIs</li>
+                        <li>REST APIs - Integración</li>
+                        <li>JSON - Manipulación de datos</li>
+                        <li>Async/Await - Programación asíncrona</li>
+                        <li class="learning">React - Aprendiendo</li>
+                        <li class="learning">TypeScript - Aprendiendo</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contacto -->
-    <section id="contacto" class="section contacto">
+    <!-- ==================== CONTACTO ==================== -->
+    <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">¿Listo para tu próxima solución digital?</h2>
-            <p class="contacto-description">
-                Charlemos sobre cómo puedo ayudarte a automatizar y optimizar tu negocio.
+            <h2 class="section-title" style="color: white;">Contacto</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 20px;">
+                ¿Interesado en colaborar o tienes una oportunidad? ¡Hablemos!
             </p>
             
-            <div class="contact-options">
-                <a href="mailto:luisrissopa@gmail.com" class="contact-btn">
-                    <i class="fas fa-envelope"></i> Enviar Email
+            <div class="contact-links">
+                <a href="mailto:luisrissopa@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    luisrissopa@gmail.com
                 </a>
-                <a href="tel:+50764560263" class="contact-btn">
-                    <i class="fas fa-phone"></i> Llamar Ahora
+                <a href="https://github.com/Luisitorisso" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
                 </a>
+                <a href="https://wa.me/50760816847" target="_blank" class="contact-link">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+                <span class="contact-link">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Panamá 🇵🇦
+                </span>
             </div>
-            
-            <p class="disponibilidad">
-                📍 Panamá • 🕐 Disponible para proyectos remotos • 💬 Respuesta en 24h
-            </p>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Jorge Luis Risso Patrón. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/50764560263" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <script>
-        // ==================== Inicializar Particles.js para Header ====================
-        particlesJS('particles-js-header', {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: ['#ffffff', '#06b6d4', '#ffffff']
-                },
-                shape: {
-                    type: 'circle',
-                    stroke: {
-                        width: 0,
-                        color: '#000000'
-                    }
-                },
-                opacity: {
-                    value: 0.4,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 2,
-                        size_min: 0.5,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#ffffff',
-                    opacity: 0.3,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1.5,
-                    direction: 'none',
-                    random: true,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: 'grab'
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: 'push'
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 140,
-                        line_linked: {
-                            opacity: 0.6
-                        }
-                    },
-                    push: {
-                        particles_nb: 4
-                    }
-                }
-            },
-            retina_detect: true
-        });
-
-        // ==================== Inicializar Particles.js para Contacto ====================
-        particlesJS('particles-js-contacto', {
-            particles: {
-                number: {
-                    value: 60,
-                    density: {
-                        enable: true,
-                        value_area: 600
-                    }
-                },
-                color: {
-                    value: ['#ffffff', '#06b6d4', '#ffffff']
-                },
-                shape: {
-                    type: 'circle',
-                    stroke: {
-                        width: 0,
-                        color: '#000000'
-                    }
-                },
-                opacity: {
-                    value: 0.3,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 4,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 2,
-                        size_min: 0.5,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 120,
-                    color: '#ffffff',
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1,
-                    direction: 'none',
-                    random: true,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: 'grab'
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: 'repulse'
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 100,
-                        line_linked: {
-                            opacity: 0.5
-                        }
-                    },
-                    repulse: {
-                        distance: 80,
-                        duration: 0.4
-                    }
-                }
-            },
-            retina_detect: true
-        });
-
-        // ==================== WhatsApp Analytics Tracking ====================
-        document.querySelector('.whatsapp-float').addEventListener('click', function() {
-            // Tracking del clic en WhatsApp
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'whatsapp_click', {
-                    'event_category': 'contact',
-                    'event_label': 'floating_button',
-                    'transport_type': 'beacon'
-                });
-            }
-            
-            // Feedback visual
-            this.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1.1)';
-            }, 150);
-        });
-
-        // ==================== Navegación suave ====================
+        // Smooth scroll para enlaces internos
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1125,19 +594,7 @@
             });
         });
 
-        // ==================== Navbar transparencia en scroll ====================
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(255, 255, 255, 0.98)';
-                nav.style.boxShadow = var('--shadow');
-            } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
-                nav.style.boxShadow = 'none';
-            }
-        });
-
-        // ==================== Animaciones de entrada ====================
+        // Animación simple para las cards al hacer scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1152,138 +609,12 @@
             });
         }, observerOptions);
 
-        // Observar elementos con animación
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // ==================== Botones de contacto con feedback ====================
-        document.querySelectorAll('.contact-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Añadir clase de loading temporal
-                this.classList.add('loading');
-                
-                // Remover la clase después de un momento
-                setTimeout(() => {
-                    this.classList.remove('loading');
-                }, 1000);
-            });
-        });
-
-        // ==================== Mejora de accesibilidad ====================
-        document.addEventListener('keydown', (e) => {
-            // Navegación con teclado para elementos focusables
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-navigation');
-            }
-        });
-
-        document.addEventListener('mousedown', () => {
-            document.body.classList.remove('keyboard-navigation');
-        });
-
-        // ==================== Lazy loading para imágenes ====================
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src || img.src;
-                        img.classList.remove('loading');
-                        observer.unobserve(img);
-                    }
-                });
-            });
-
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-
-        // ==================== Optimización de performance ====================
-        // Debounce para eventos de scroll
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Aplicar debounce al scroll
-        const handleScroll = debounce(() => {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
-        }, 10);
-
-        window.addEventListener('scroll', handleScroll);
-
-        // ==================== Analytics de interacciones ====================
-        function trackInteraction(action, element) {
-            // Enviar evento a Google Analytics si está disponible
-            if (typeof gtag !== 'undefined') {
-                gtag('event', action, {
-                    'event_category': 'engagement',
-                    'event_label': element,
-                    'transport_type': 'beacon'
-                });
-            }
-        }
-
-        // Trackear clics en CTAs
-        document.querySelectorAll('.btn-primary, .btn-secondary, .contact-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                trackInteraction('click', btn.textContent.trim());
-            });
-        });
-
-        // ==================== Feedback visual mejorado ====================
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('mousedown', function() {
-                this.style.transform = 'scale(0.98)';
-            });
-            
-            btn.addEventListener('mouseup', function() {
-                this.style.transform = '';
-            });
-        });
-
-        // ==================== Carga inicial optimizada ====================
-        document.addEventListener('DOMContentLoaded', () => {
-            // Precargar elementos críticos
-            const criticalElements = document.querySelectorAll('.hero-content, .nav');
-            criticalElements.forEach(el => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            });
-
-            // Inicializar animaciones después de que el DOM esté listo
-            setTimeout(() => {
-                document.querySelectorAll('.fade-in').forEach((el, index) => {
-                    setTimeout(() => {
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                    }, index * 100);
-                });
-            }, 200);
-        });
-
-        // ==================== Manejo de errores de imágenes ====================
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('error', function() {
-                // Fallback para imagen de perfil
-                if (this.classList.contains('profile-image')) {
-                    this.src = 'https://ui-avatars.com/api/?name=Jorge+Luis&background=2563eb&color=ffffff&size=120&font-size=0.4&bold=true';
-                }
-            });
+        // Aplicar animación a las cards de proyectos
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
         });
     </script>
 </body>
