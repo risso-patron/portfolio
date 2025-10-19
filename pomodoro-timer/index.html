@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer | Jorge Luis Risso Patrón</title>
+    <meta name="description" content="Aplicación Pomodoro Timer para aumentar productividad con técnica Pomodoro. Incluye notificaciones, sonidos y estadísticas.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍅</text></svg>">
+    
+    <style>
+        /* ==================== Variables CSS ==================== */
+        :root {
+            --primary: #e74c3c;
+            --primary-dark: #c0392b;
+            --secondary: #27ae60;
+            --secondary-dark: #219a52;
+            --warning: #f39c12;
+            --warning-dark: #e67e22;
+            --bg: #2c3e50;
+            --bg-light: #34495e;
+            --text: #ecf0f1;
+            --text-muted: #bdc3c7;
+            --border: #34495e;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            --gradient-warning: linear-gradient(135deg, var(--warning) 0%, var(--warning-dark) 100%);
+        }
+
+        /* ==================== Reset y Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* ==================== Header ==================== */
+        .header {
+            background: var(--bg-light);
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== Container Principal ==================== */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ==================== Timer Display ==================== */
+        .timer-container {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px var(--shadow);
+            text-align: center;
+            min-width: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timer-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .session-type {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .session-type.work {
+            color: var(--primary);
+        }
+
+        .session-type.break {
+            color: var(--secondary);
+        }
+
+        .session-type.long-break {
+            color: var(--warning);
+        }
+
+        .timer-display {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--text);
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            text-shadow: 2px 2px 4px var(--shadow);
+        }
+
+        .timer-progress {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-primary);
+            width: 0%;
+            transition: width 1s ease;
+            border-radius: 4px;
+        }
+
+        .progress-bar.break {
+            background: var(--gradient-secondary);
+        }
+
+        .progress-bar.long-break {
+            background: var(--gradient-warning);
+        }
+
+        /* ==================== Controles ==================== */
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--gradient-secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            background: var(--border);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== Configuración ==================== */
+        .settings {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .settings h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .setting-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .setting-group:last-child {
+            border-bottom: none;
+        }
+
+        .setting-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .setting-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.8rem;
+            min-width: 30px;
+        }
+
+        .setting-value {
+            color: var(--text);
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* ==================== Estadísticas ==================== */
+        .stats {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .stats h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* ==================== Notificación ==================== */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px var(--shadow);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: var(--gradient-secondary);
+        }
+
+        .notification.warning {
+            background: var(--gradient-warning);
+        }
+
+        /* ==================== Responsive ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .timer-container {
+                padding: 2rem;
+                margin: 1rem 0;
+            }
+
+            .timer-display {
+                font-size: 3rem;
+            }
+
+            .controls {
+                gap: 0.5rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .settings, .stats {
+                padding: 1.5rem;
+                margin: 1rem 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timer-display {
+                font-size: 2.5rem;
+            }
+
+            .setting-group {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ==================== Animaciones ==================== */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .timer-container.active {
+            animation: pulse 2s infinite;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🍅 Pomodoro Timer</h1>
+        <p>Técnica de productividad desarrollada por Francesco Cirillo</p>
+    </header>
+
+    <div class="container">
+        <!-- Timer Principal -->
+        <div class="timer-container" id="timerContainer">
+            <div class="session-type" id="sessionType">Sesión de Trabajo</div>
+            <div class="timer-display" id="timerDisplay">25:00</div>
+            <div class="timer-progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="controls">
+            <button class="btn btn-primary" id="startBtn">Iniciar</button>
+            <button class="btn btn-secondary" id="pauseBtn" disabled>Pausar</button>
+            <button class="btn btn-outline" id="resetBtn">Reiniciar</button>
+            <button class="btn btn-outline" id="skipBtn">Saltar</button>
+        </div>
+
+        <!-- Configuración -->
+        <div class="settings fade-in">
+            <h3>⚙️ Configuración</h3>
+            
+            <div class="setting-group">
+                <span class="setting-label">Trabajo</span>
+                <div class="setting-controls">
+                    <button class="btn btn-outline btn-small" onclick="adjustTime('work', -1)">-</button>
+                    <span class="setting-value" id="workTime">25</span>
+                    <button class="btn btn-outline btn-small" onclick="adjustTime('work', 1)">+</button>
+                    <span style="color: var(--text-muted); margin-left: 0.5rem;">min</span>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <span class="setting-label">Descanso Corto</span>
+                <div class="setting-controls">
+                    <button class="btn btn-outline btn-small" onclick="adjustTime('shortBreak', -1)">-</button>
+                    <span class="setting-value" id="shortBreakTime">5</span>
+                    <button class="btn btn-outline btn-small" onclick="adjustTime('shortBreak', 1)">+</button>
+                    <span style="color: var(--text-muted); margin-left: 0.5rem;">min</span>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <span class="setting-label">Descanso Largo</span>
+                <div class="setting-controls">
+                    <button class="btn btn-outline btn-small" onclick="adjustTime('longBreak', -1)">-</button>
+                    <span class="setting-value" id="longBreakTime">15</span>
+                    <button class="btn btn-outline btn-small" onclick="adjustTime('longBreak', 1)">+</button>
+                    <span style="color: var(--text-muted); margin-left: 0.5rem;">min</span>
+                </div>
+            </div>
+
+            <div class="setting-group">
+                <span class="setting-label">Sonidos</span>
+                <div class="setting-controls">
+                    <button class="btn btn-outline btn-small" id="soundToggle" onclick="toggleSound()">ON</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="stats fade-in">
+            <h3>📊 Estadísticas de Hoy</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value" id="completedSessions">0</span>
+                    <div class="stat-label">Sesiones Completadas</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="totalTime">0</span>
+                    <div class="stat-label">Tiempo Total (min)</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="currentStreak">0</span>
+                    <div class="stat-label">Racha Actual</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="todayGoal">8</span>
+                    <div class="stat-label">Objetivo Diario</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // ==================== Variables Globales ====================
+        class PomodoroTimer {
+            constructor() {
+                // Configuración por defecto
+                this.settings = {
+                    workTime: 25,
+                    shortBreakTime: 5,
+                    longBreakTime: 15,
+                    soundEnabled: true
+                };
+
+                // Estado del timer
+                this.currentTime = this.settings.workTime * 60; // en segundos
+                this.totalTime = this.settings.workTime * 60;
+                this.isRunning = false;
+                this.currentSession = 'work'; // 'work', 'shortBreak', 'longBreak'
+                this.sessionCount = 0;
+                this.interval = null;
+
+                // Estadísticas
+                this.stats = this.loadStats();
+
+                // Elementos DOM
+                this.initializeElements();
+                this.setupEventListeners();
+                this.updateDisplay();
+                this.updateStats();
+                this.loadSettings();
+
+                // Solicitar permisos de notificación
+                this.requestNotificationPermission();
+            }
+
+            initializeElements() {
+                this.timerDisplay = document.getElementById('timerDisplay');
+                this.sessionType = document.getElementById('sessionType');
+                this.progressBar = document.getElementById('progressBar');
+                this.timerContainer = document.getElementById('timerContainer');
+                this.startBtn = document.getElementById('startBtn');
+                this.pauseBtn = document.getElementById('pauseBtn');
+                this.resetBtn = document.getElementById('resetBtn');
+                this.skipBtn = document.getElementById('skipBtn');
+                this.notification = document.getElementById('notification');
+            }
+
+            setupEventListeners() {
+                this.startBtn.addEventListener('click', () => this.start());
+                this.pauseBtn.addEventListener('click', () => this.pause());
+                this.resetBtn.addEventListener('click', () => this.reset());
+                this.skipBtn.addEventListener('click', () => this.skip());
+
+                // Atajos de teclado
+                document.addEventListener('keydown', (e) => {
+                    if (e.code === 'Space' && e.target.tagName !== 'BUTTON') {
+                        e.preventDefault();
+                        this.isRunning ? this.pause() : this.start();
+                    }
+                    if (e.code === 'KeyR' && e.ctrlKey) {
+                        e.preventDefault();
+                        this.reset();
+                    }
+                });
+            }
+
+            start() {
+                if (!this.isRunning) {
+                    this.isRunning = true;
+                    this.startBtn.disabled = true;
+                    this.pauseBtn.disabled = false;
+                    this.timerContainer.classList.add('active');
+
+                    this.interval = setInterval(() => {
+                        this.tick();
+                    }, 1000);
+
+                    this.showNotification('Timer iniciado', 'success');
+                }
+            }
+
+            pause() {
+                if (this.isRunning) {
+                    this.isRunning = false;
+                    this.startBtn.disabled = false;
+                    this.pauseBtn.disabled = true;
+                    this.timerContainer.classList.remove('active');
+                    clearInterval(this.interval);
+
+                    this.showNotification('Timer pausado', 'warning');
+                }
+            }
+
+            reset() {
+                this.isRunning = false;
+                clearInterval(this.interval);
+                this.currentTime = this.getCurrentSessionTime();
+                this.totalTime = this.currentTime;
+                this.startBtn.disabled = false;
+                this.pauseBtn.disabled = true;
+                this.timerContainer.classList.remove('active');
+                this.updateDisplay();
+                this.showNotification('Timer reiniciado', 'success');
+            }
+
+            skip() {
+                if (this.isRunning) {
+                    this.pause();
+                }
+                this.completeSession();
+                this.showNotification('Sesión saltada', 'warning');
+            }
+
+            tick() {
+                this.currentTime--;
+                this.updateDisplay();
+
+                if (this.currentTime <= 0) {
+                    this.completeSession();
+                }
+            }
+
+            completeSession() {
+                this.isRunning = false;
+                clearInterval(this.interval);
+                this.timerContainer.classList.remove('active');
+
+                // Reproducir sonido y mostrar notificación
+                this.playSound();
+                this.showBrowserNotification();
+
+                // Actualizar estadísticas
+                if (this.currentSession === 'work') {
+                    this.sessionCount++;
+                    this.stats.completedSessions++;
+                    this.stats.totalTime += this.settings.workTime;
+                    this.stats.currentStreak++;
+                }
+
+                // Determinar siguiente sesión
+                this.switchSession();
+                this.updateStats();
+                this.saveStats();
+                this.reset();
+            }
+
+            switchSession() {
+                if (this.currentSession === 'work') {
+                    // Después del trabajo, descanso corto o largo
+                    if (this.sessionCount % 4 === 0) {
+                        this.currentSession = 'longBreak';
+                    } else {
+                        this.currentSession = 'shortBreak';
+                    }
+                } else {
+                    // Después del descanso, trabajo
+                    this.currentSession = 'work';
+                }
+
+                this.updateSessionType();
+            }
+
+            updateSessionType() {
+                const sessionNames = {
+                    work: 'Sesión de Trabajo',
+                    shortBreak: 'Descanso Corto',
+                    longBreak: 'Descanso Largo'
+                };
+
+                this.sessionType.textContent = sessionNames[this.currentSession];
+                this.sessionType.className = `session-type ${this.currentSession}`;
+                this.progressBar.className = `progress-bar ${this.currentSession}`;
+
+                // Actualizar color de la barra según el tipo
+                if (this.currentSession === 'work') {
+                    this.progressBar.className = 'progress-bar';
+                } else if (this.currentSession === 'shortBreak') {
+                    this.progressBar.className = 'progress-bar break';
+                } else {
+                    this.progressBar.className = 'progress-bar long-break';
+                }
+            }
+
+            getCurrentSessionTime() {
+                const times = {
+                    work: this.settings.workTime,
+                    shortBreak: this.settings.shortBreakTime,
+                    longBreak: this.settings.longBreakTime
+                };
+                return times[this.currentSession] * 60;
+            }
+
+            updateDisplay() {
+                const minutes = Math.floor(this.currentTime / 60);
+                const seconds = this.currentTime % 60;
+                this.timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                // Actualizar barra de progreso
+                const progress = ((this.totalTime - this.currentTime) / this.totalTime) * 100;
+                this.progressBar.style.width = `${progress}%`;
+
+                // Actualizar título de la página
+                document.title = `${this.timerDisplay.textContent} - Pomodoro Timer`;
+            }
+
+            showNotification(message, type = 'primary') {
+                this.notification.textContent = message;
+                this.notification.className = `notification ${type} show`;
+
+                setTimeout(() => {
+                    this.notification.classList.remove('show');
+                }, 3000);
+            }
+
+            async requestNotificationPermission() {
+                if ('Notification' in window && Notification.permission === 'default') {
+                    await Notification.requestPermission();
+                }
+            }
+
+            showBrowserNotification() {
+                if ('Notification' in window && Notification.permission === 'granted') {
+                    const messages = {
+                        work: '¡Tiempo de trabajar! 💼',
+                        shortBreak: '¡Descanso corto! ☕',
+                        longBreak: '¡Descanso largo! 🌟'
+                    };
+
+                    const nextSession = this.getNextSessionType();
+                    new Notification('Pomodoro Timer', {
+                        body: messages[nextSession],
+                        icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍅</text></svg>'
+                    });
+                }
+            }
+
+            getNextSessionType() {
+                if (this.currentSession === 'work') {
+                    return this.sessionCount % 4 === 0 ? 'longBreak' : 'shortBreak';
+                } else {
+                    return 'work';
+                }
+            }
+
+            playSound() {
+                if (this.settings.soundEnabled) {
+                    // Crear sonido usando Web Audio API
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+
+                    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                    oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+                    oscillator.frequency.setValueAtTime(800, audioContext.currentTime + 0.2);
+
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.5);
+                }
+            }
+
+            updateStats() {
+                document.getElementById('completedSessions').textContent = this.stats.completedSessions;
+                document.getElementById('totalTime').textContent = this.stats.totalTime;
+                document.getElementById('currentStreak').textContent = this.stats.currentStreak;
+            }
+
+            loadStats() {
+                const today = new Date().toDateString();
+                const saved = localStorage.getItem(`pomodoroStats_${today}`);
+                
+                if (saved) {
+                    return JSON.parse(saved);
+                } else {
+                    return {
+                        completedSessions: 0,
+                        totalTime: 0,
+                        currentStreak: 0,
+                        date: today
+                    };
+                }
+            }
+
+            saveStats() {
+                const today = new Date().toDateString();
+                localStorage.setItem(`pomodoroStats_${today}`, JSON.stringify(this.stats));
+            }
+
+            loadSettings() {
+                const saved = localStorage.getItem('pomodoroSettings');
+                if (saved) {
+                    this.settings = { ...this.settings, ...JSON.parse(saved) };
+                    this.updateSettingsDisplay();
+                }
+            }
+
+            saveSettings() {
+                localStorage.setItem('pomodoroSettings', JSON.stringify(this.settings));
+            }
+
+            updateSettingsDisplay() {
+                document.getElementById('workTime').textContent = this.settings.workTime;
+                document.getElementById('shortBreakTime').textContent = this.settings.shortBreakTime;
+                document.getElementById('longBreakTime').textContent = this.settings.longBreakTime;
+                document.getElementById('soundToggle').textContent = this.settings.soundEnabled ? 'ON' : 'OFF';
+            }
+        }
+
+        // ==================== Funciones Globales ====================
+        let pomodoroTimer;
+
+        // Inicializar cuando la página cargue
+        document.addEventListener('DOMContentLoaded', () => {
+            pomodoroTimer = new PomodoroTimer();
+        });
+
+        // Función para ajustar tiempos
+        function adjustTime(type, change) {
+            if (pomodoroTimer.isRunning) {
+                pomodoroTimer.showNotification('No puedes cambiar la configuración durante una sesión activa', 'warning');
+                return;
+            }
+
+            const settings = pomodoroTimer.settings;
+            const mapping = {
+                work: 'workTime',
+                shortBreak: 'shortBreakTime',
+                longBreak: 'longBreakTime'
+            };
+
+            const key = mapping[type];
+            if (key) {
+                settings[key] = Math.max(1, Math.min(60, settings[key] + change));
+                pomodoroTimer.updateSettingsDisplay();
+                pomodoroTimer.saveSettings();
+
+                // Si estamos ajustando la sesión actual, actualizar el timer
+                if ((type === 'work' && pomodoroTimer.currentSession === 'work') ||
+                    (type === 'shortBreak' && pomodoroTimer.currentSession === 'shortBreak') ||
+                    (type === 'longBreak' && pomodoroTimer.currentSession === 'longBreak')) {
+                    pomodoroTimer.reset();
+                }
+            }
+        }
+
+        // Función para toggle de sonido
+        function toggleSound() {
+            pomodoroTimer.settings.soundEnabled = !pomodoroTimer.settings.soundEnabled;
+            pomodoroTimer.updateSettingsDisplay();
+            pomodoroTimer.saveSettings();
+            
+            const status = pomodoroTimer.settings.soundEnabled ? 'activados' : 'desactivados';
+            pomodoroTimer.showNotification(`Sonidos ${status}`, 'success');
+        }
+
+        // Registrar Service Worker para notificaciones en segundo plano
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:text/javascript,console.log("SW registered")')
+                .catch(() => {}); // Silently fail if not supported
+        }
+    </script>
+</body>
+</html>
