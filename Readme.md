@@ -1,4 +1,4 @@
-# 👋 ¡Hola! Soy Jorge Luis Risso Patrón
+# ¡Hola! Soy Jorge Luis Risso Patrón
 
 <div align="center">
 
@@ -13,7 +13,7 @@
 
 ---
 
-## 🎯 Sobre Mí
+## Sobre Mí
 
 Developer junior autodidacta de **Panamá 🇵🇦** en transición hacia tecnología. Me apasiona crear interfaces web funcionales y estoy construyendo proyectos prácticos con vanilla JavaScript. **Buscando mi primera oportunidad en desarrollo frontend.**
 
@@ -30,29 +30,29 @@ const jorge = {
 
 ---
 
-## 🚀 Proyectos Destacados
+## Proyectos Destacados
 
-### 🌤️ Weather App
+### Weather App
 **App del clima con geolocalización y API**
 - Stack: HTML5, CSS3, JavaScript, OpenWeather API
 - Features: Geolocalización, búsqueda de ciudades, datos en tiempo real
-- 🔗 [Ver Demo](https://luisitorisso.github.io/Luisitorisso/weather-app/) | [Ver Código](https://github.com/Luisitorisso/Luisitorisso/tree/main/weather-app)
+- [Ver Demo](https://luisitorisso.github.io/Luisitorisso/weather-app/) | [Ver Código](https://github.com/Luisitorisso/Luisitorisso/tree/main/weather-app)
 
-### ⏰ Pomodoro Timer
+### Pomodoro Timer
 **Técnica Pomodoro con notificaciones y estadísticas**
 - Stack: HTML5, CSS3, JavaScript, LocalStorage
 - Features: Timer personalizable, estadísticas, notificaciones
-- 🔗 [Ver Demo](https://luisitorisso.github.io/Luisitorisso/pomodoro-timer/) | [Ver Código](https://github.com/Luisitorisso/Luisitorisso/tree/main/pomodoro-timer)
+- [Ver Demo](https://luisitorisso.github.io/Luisitorisso/pomodoro-timer/) | [Ver Código](https://github.com/Luisitorisso/Luisitorisso/tree/main/pomodoro-timer)
 
-### 💰 Calculadora de Presupuesto
+### Calculadora de Presupuesto
 **App de finanzas personales con CRUD completo**
 - Stack: HTML5, CSS3, JavaScript, LocalStorage
 - Features: Gestión de ingresos/gastos, gráficos, persistencia
-- 🔗 [Ver Demo](https://luisitorisso.github.io/Luisitorisso/Experiencia/Calculadora-de-presupuesto.html) | [Ver Código](https://github.com/Luisitorisso/Calculadora-de-Presupuesto)
+- [Ver Demo](https://luisitorisso.github.io/Luisitorisso/Experiencia/Calculadora-de-presupuesto.html) | [Ver Código](https://github.com/Luisitorisso/Calculadora-de-Presupuesto)
 
 ---
 
-## 🛠️ Stack Técnico
+## Stack Técnico
 
 ### Frontend
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
@@ -78,7 +78,7 @@ const jorge = {
 
 ---
 
-## 📊 Estadísticas GitHub
+## Estadísticas GitHub
 
 <div align="center">
 
@@ -90,7 +90,7 @@ const jorge = {
 
 ---
 
-## 💼 Experiencia Relevante
+## Experiencia Relevante
 
 **Space Panamá** *(2021 - Presente)*  
 *Desarrollador Web*
