@@ -6,25 +6,9 @@
     <title>Jorge Luis Risso Patrón - Desarrollador Web Frontend</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="image/favicon.ico">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary': '#6366F1',
-                        'primary-hover': '#A78BFA',
-                        'dark': '#1F2937',
-                        'light-bg': '#F0F4F8'
-                    }
-                }
-            }
-        }
-    </script>
+    
+    <!-- Google Fonts: Poppins y Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Meta tags para SEO -->
     <meta name="description" content="Desarrollador Web Frontend junior especializado en HTML, CSS y JavaScript. Construyendo proyectos funcionales con tecnologías modernas.">
@@ -34,32 +18,33 @@
     <meta property="og:url" content="https://jorge-luis-risso-patron-dev.netlify.app/">
     <meta property="og:image" content="image/profile-image.jpg">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LR6R265NHC"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-LR6R265NHC');
-    </script> 
-
     <style>
-        /* ==================== Importación de fuentes ==================== */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
         /* ==================== Variables CSS ==================== */
         :root {
-            --primary: #2563eb;
-            --secondary: #1e293b;
-            --accent: #06b6d4;
-            --text: #334155;
-            --text-light: #64748b;
-            --bg: #ffffff;
-            --bg-light: #f8fafc;
-            --bg-section: #f1f5f9;
-            --border: #e2e8f0;
-            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            /* Paleta de colores moderna */
+            --primary: #0072ff;           /* Azul eléctrico */
+            --primary-light: #00c6ff;     /* Azul claro */
+            --accent: #ff6b6b;            /* Coral suave */
+            --accent-gold: #ffd93d;       /* Dorado suave */
+            --dark: #1a1a2e;             /* Azul oscuro */
+            --darker: #16213e;            /* Azul más oscuro */
+            --text: #2c3e50;             /* Gris oscuro */
+            --text-light: #6c757d;        /* Gris medio */
+            --bg: #ffffff;               /* Blanco */
+            --bg-light: #f8f9fa;         /* Blanco humo */
+            --bg-section: #f0f4f8;       /* Gris muy claro */
+            --border: #e9ecef;           /* Borde sutil */
+            
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-hero: linear-gradient(135deg, rgba(0, 114, 255, 0.9) 0%, rgba(0, 198, 255, 0.8) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-gold) 100%);
+            
+            /* Sombras */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.2);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         /* ==================== Reset y estilos globales ==================== */
@@ -70,11 +55,12 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             color: var(--text);
             background: var(--bg);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         .container {
@@ -83,14 +69,7 @@
             padding: 0 24px;
         }
 
-        /* ==================== Header ==================== */
-        .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-
+        /* ==================== Navegación ==================== */
         .nav {
             position: fixed;
             top: 0;
@@ -101,6 +80,12 @@
             border-bottom: 1px solid var(--border);
             z-index: 1000;
             padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-md);
         }
 
         .nav-content {
@@ -110,10 +95,19 @@
         }
 
         .logo {
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             font-size: 24px;
-            color: var(--primary);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -126,88 +120,217 @@
             text-decoration: none;
             color: var(--text);
             font-weight: 500;
-            transition: color 0.2s ease;
+            position: relative;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
             color: var(--primary);
         }
 
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ==================== Hero Section ==================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-hero);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            text-align: left;
+        }
+
+        .hero-image {
+            flex-shrink: 0;
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+        }
+
         .hero-content h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 16px;
-            line-height: 1.1;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 8px;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-location {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
             opacity: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .hero-description {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.6;
             max-width: 600px;
-            margin: 0 auto 40px;
-            opacity: 0.85;
-            line-height: 1.7;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .cta-container {
+        .hero-buttons {
             display: flex;
-            gap: 16px;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 8px;
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.2s ease;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
             border: none;
             cursor: pointer;
-            font-size: 16px;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-primary:hover {
-            background: #0891b2;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
 
         .btn-secondary {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            border-color: white;
         }
 
-        /* ==================== Secciones ==================== */
-        .section {
-            padding: 80px 0;
+        /* ==================== Sobre Mí ==================== */
+        .about {
+            background: var(--bg-light);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient-primary);
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 16px;
-            color: var(--secondary);
+            margin-bottom: 1rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
         }
 
         .section-subtitle {
@@ -215,173 +338,242 @@
             font-size: 1.2rem;
             color: var(--text-light);
             max-width: 600px;
-            margin: 0 auto 64px;
-        }
-
-        /* ==================== Sobre mí ==================== */
-        .about {
-            background: var(--bg-light);
-            text-align: center;
+            margin: 2rem auto 4rem;
+            line-height: 1.8;
         }
 
         .about-content {
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .about-text {
             font-size: 1.2rem;
             color: var(--text);
-            margin-bottom: 32px;
+            margin-bottom: 2rem;
             line-height: 1.8;
-        }
-
-        .profile-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary);
-            margin: 0 auto 24px;
-            display: block;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out 0.3s forwards;
         }
 
         /* ==================== Proyectos ==================== */
-        .proyectos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
+        .projects {
+            padding: 100px 0;
+            background: white;
         }
 
-        .proyecto-card {
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.2s ease;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            position: relative;
             border: 1px solid var(--border);
         }
 
-        .proyecto-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
         }
 
-        .proyecto-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        .project-mockup {
+            position: relative;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+        }
+
+        .mockup-laptop {
+            width: 280px;
+            height: auto;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .mockup-screen {
+            background: #000;
+            border-radius: 8px 8px 0 0;
+            padding: 8px;
+            position: relative;
+        }
+
+        .mockup-content {
+            background: white;
+            border-radius: 4px;
+            height: 160px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .mockup-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 4rem;
-        }
-
-        .proyecto-content {
-            padding: 24px;
-        }
-
-        .proyecto-title {
             font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--secondary);
+            margin-bottom: 1.5rem;
         }
 
-        .proyecto-description {
+        .project-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
             color: var(--text-light);
-            margin-bottom: 16px;
+            font-size: 1rem;
             line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
-        .tecnologias {
+        .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
         }
 
         .tech-tag {
-            background: var(--bg-light);
+            background: var(--bg-section);
             color: var(--text);
-            padding: 4px 12px;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
-            font-size: 14px;
+            font-size: 0.85rem;
             font-weight: 500;
             border: 1px solid var(--border);
         }
 
-        .proyecto-links {
+        .project-links {
             display: flex;
-            gap: 12px;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .btn-demo {
-            background: var(--primary);
+            background: var(--gradient-primary);
             color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            transition: all 0.2s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-demo:hover {
-            background: var(--secondary);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
-        .btn-codigo {
+        .btn-code {
             background: transparent;
             color: var(--text);
-            padding: 8px 16px;
-            border-radius: 6px;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 25px;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            border: 1px solid var(--border);
-            transition: all 0.2s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .btn-codigo:hover {
-            background: var(--bg-light);
+        .btn-code:hover {
             border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
         }
 
         /* ==================== Habilidades ==================== */
         .skills {
-            background: white;
+            background: var(--bg-section);
+            padding: 100px 0;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
         }
 
         .skill-category {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
             text-align: center;
-            padding: 32px 24px;
-            border-radius: 12px;
-            background: var(--bg-light);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
             border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .skill-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 16px;
+            font-size: 3.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
         }
 
         .skill-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
         }
 
         .skill-list {
@@ -390,54 +582,118 @@
         }
 
         .skill-list li {
-            margin-bottom: 8px;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .skill-list li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
         }
 
         /* ==================== Contacto ==================== */
         .contact {
-            background: var(--bg-light);
+            background: var(--dark);
+            color: white;
+            padding: 100px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 198, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 24px;
+            gap: 2rem;
             flex-wrap: wrap;
-            margin-top: 32px;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            padding: 16px 24px;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            box-shadow: var(--shadow);
-            transition: all 0.2s ease;
-            border: 1px solid var(--border);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .contact-link:hover {
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
-            color: var(--primary);
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
         }
 
         /* ==================== Footer ==================== */
         .footer {
-            background: var(--secondary);
-            color: white;
+            background: var(--darker);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 2rem 0;
             text-align: center;
-            padding: 40px 0;
+        }
+
+        /* ==================== Animaciones ==================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ==================== Responsive ==================== */
@@ -445,43 +701,89 @@
             .nav-links {
                 display: none;
             }
-            
-            .proyectos-grid {
-                grid-template-columns: 1fr;
+
+            .hero {
+                height: 100vh;
+                padding: 0 1rem;
             }
-            
+
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+                max-width: 600px;
+            }
+
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .skills-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .contact-links {
                 flex-direction: column;
                 align-items: center;
             }
-            
-            .proyecto-links {
+
+            .project-links {
                 flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
             }
         }
 
-        /* ==================== Animaciones ==================== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
+        @media (max-width: 480px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .profile-pic {
+                width: 100px;
+                height: 100px;
+            }
+
+            .section-title {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
-<body class="bg-light-bg text-dark font-inter">
+<body>
     <!-- Navegación -->
-    <nav class="nav">
+    <nav class="nav" id="navbar">
         <div class="container">
             <div class="nav-content">
                 <a href="#" class="logo">Jorge Luis</a>
@@ -495,31 +797,48 @@
         </div>
     </nav>
 
-    <!-- Header Hero -->
-    <header class="text-center py-20 bg-gradient-to-br from-primary to-purple-700 text-white">
-        <div class="max-w-4xl mx-auto px-6">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Jorge Luis Risso Patrón</h1>
-            <p class="text-lg md:text-xl mt-4 text-white/90 mb-6">
-                Autodidacta y desarrollador Junior de aplicaciones web, enfocado en construir soluciones funcionales.
-            </p>
-            <div class="flex gap-4 justify-center flex-wrap">
-                <a href="#proyectos" class="px-6 py-3 bg-white text-primary rounded-lg hover:bg-gray-100 transition-colors duration-200 flex items-center gap-2 font-semibold">
-                    <i class="fas fa-code"></i>
-                    Ver Proyectos
-                </a>
-                <a href="https://github.com/Luisitorisso" target="_blank" rel="noopener" class="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-primary transition-colors duration-200 flex items-center gap-2 font-semibold">
-                    <i class="fab fa-github"></i>
-                    GitHub
-                </a>
+    <!-- Hero Section con imagen de fondo de Panamá -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <!-- Foto personal profesional a la izquierda -->
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Jorge Luis Risso Patrón" class="profile-pic">
+            </div>
+            
+            <!-- Contenido de texto a la derecha -->
+            <div class="hero-text">
+                <h1>Jorge Luis Risso Patrón</h1>
+                <p class="hero-subtitle">Desarrollador Web Frontend</p>
+                <p class="hero-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Panamá, Panamá
+                </p>
+                <p class="hero-description">
+                    Construyo interfaces web funcionales con HTML, CSS y JavaScript. 
+                    Apasionado por aprender, crear y crecer en tecnología.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#proyectos" class="btn-primary">
+                        <i class="fas fa-code"></i>
+                        Ver Proyectos
+                    </a>
+                    <a href="https://github.com/Luisitorisso" target="_blank" rel="noopener" class="btn-secondary">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- Sobre Mí -->
-    <section id="sobre-mi" class="section about">
+    <section id="sobre-mi" class="about">
         <div class="container">
             <div class="about-content">
                 <h2 class="section-title">Sobre Mí</h2>
+                <p class="section-subtitle">
+                    Developer junior enfocado en crear experiencias web funcionales y atractivas
+                </p>
                 <p class="about-text">
                     Hola, soy Jorge Luis, un desarrollador web frontend junior de Panamá. 
                     Autodidacta construyendo proyectos funcionales con HTML, CSS y JavaScript 
@@ -534,107 +853,130 @@
         </div>
     </section>
 
-    <!-- Proyectos -->
-    <section id="proyectos" class="bg-light-bg py-16">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6 text-center">Proyectos</h2>
-            <p class="text-center text-base md:text-lg text-dark mb-12 max-w-3xl mx-auto">
-                Aquí presento algunas de las aplicaciones que he desarrollado para demostrar diversidad de habilidades técnicas y la resolución de problemas.
+    <!-- Proyectos con mockups visuales -->
+    <section id="proyectos" class="projects">
+        <div class="container">
+            <h2 class="section-title">Proyectos</h2>
+            <p class="section-subtitle">
+                Aplicaciones funcionales que demuestran mis habilidades técnicas y capacidad de resolución de problemas
             </p>
 
-            <!-- Tarjetas de proyectos -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="projects-grid">
                 <!-- Weather App -->
-                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4 mx-auto">
-                        <i class="fas fa-cloud-sun text-2xl text-blue-600"></i>
+                <div class="project-card fade-in">
+                    <div class="project-mockup">
+                        <div class="mockup-laptop">
+                            <div class="mockup-screen">
+                                <div class="mockup-content">
+                                    <!-- Placeholder para screenshot del proyecto -->
+                                    <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=300&h=160&fit=crop" alt="Weather App Screenshot">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-dark mb-3 text-center">Weather App</h3>
-                    <p class="text-base text-dark mb-4 text-center">
-                        Una aplicación que permite a los usuarios verificar el clima de cualquier ciudad proporcionando información en tiempo real con API de OpenWeatherMap.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-2 justify-center mb-6">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">HTML5</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">CSS3</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">JavaScript</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">API REST</span>
-                    </div>
-                    
-                    <div class="flex gap-3 justify-center">
-                        <a href="https://luisitorisso.github.io/weather-app/" target="_blank" rel="noopener" 
-                           class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover transition-colors duration-200 flex items-center gap-2">
-                            <i class="fas fa-external-link-alt text-sm"></i>
-                            Ver Demo
-                        </a>
-                        <a href="https://github.com/Luisitorisso/weather-app" target="_blank" rel="noopener"
-                           class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors duration-200 flex items-center gap-2">
-                            <i class="fab fa-github text-sm"></i>
-                            Código
-                        </a>
+                    <div class="project-info">
+                        <div class="project-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <h3 class="project-title">Weather App</h3>
+                        <p class="project-description">
+                            Aplicación que permite verificar el clima de cualquier ciudad en tiempo real 
+                            utilizando la API de OpenWeatherMap con interfaz intuitiva y responsive.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">API REST</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://luisitorisso.github.io/weather-app/" target="_blank" rel="noopener" class="btn-demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                Ver Demo
+                            </a>
+                            <a href="https://github.com/Luisitorisso/weather-app" target="_blank" rel="noopener" class="btn-code">
+                                <i class="fab fa-github"></i>
+                                Código
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Pomodoro Timer -->
-                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4 mx-auto">
-                        <i class="fas fa-stopwatch text-2xl text-red-600"></i>
+                <div class="project-card fade-in">
+                    <div class="project-mockup">
+                        <div class="mockup-laptop">
+                            <div class="mockup-screen">
+                                <div class="mockup-content">
+                                    <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=300&h=160&fit=crop" alt="Pomodoro Timer Screenshot">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-dark mb-3 text-center">Pomodoro Timer</h3>
-                    <p class="text-base text-dark mb-4 text-center">
-                        Una aplicación que ayuda a los usuarios a mejorar su enfoque y productividad mediante la técnica Pomodoro, dividiendo el trabajo en intervalos con descansos breves.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-2 justify-center mb-6">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">HTML5</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">CSS3</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">JavaScript ES6+</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Notifications API</span>
-                    </div>
-                    
-                    <div class="flex gap-3 justify-center">
-                        <a href="https://luisitorisso.github.io/pomodoro-timer/" target="_blank" rel="noopener"
-                           class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover transition-colors duration-200 flex items-center gap-2">
-                            <i class="fas fa-external-link-alt text-sm"></i>
-                            Ver Demo
-                        </a>
-                        <a href="https://github.com/Luisitorisso/pomodoro-timer" target="_blank" rel="noopener"
-                           class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors duration-200 flex items-center gap-2">
-                            <i class="fab fa-github text-sm"></i>
-                            Código
-                        </a>
+                    <div class="project-info">
+                        <div class="project-icon">
+                            <i class="fas fa-stopwatch"></i>
+                        </div>
+                        <h3 class="project-title">Pomodoro Timer</h3>
+                        <p class="project-description">
+                            Aplicación de productividad que implementa la técnica Pomodoro con 
+                            notificaciones, sonidos personalizables y seguimiento de sesiones.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript ES6+</span>
+                            <span class="tech-tag">Notifications API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://luisitorisso.github.io/pomodoro-timer/" target="_blank" rel="noopener" class="btn-demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                Ver Demo
+                            </a>
+                            <a href="https://github.com/Luisitorisso/pomodoro-timer" target="_blank" rel="noopener" class="btn-code">
+                                <i class="fab fa-github"></i>
+                                Código
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Calculadora de Presupuesto -->
-                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-                    <div class="flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4 mx-auto">
-                        <i class="fas fa-calculator text-2xl text-green-600"></i>
+                <div class="project-card fade-in">
+                    <div class="project-mockup">
+                        <div class="mockup-laptop">
+                            <div class="mockup-screen">
+                                <div class="mockup-content">
+                                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=160&fit=crop" alt="Budget Calculator Screenshot">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-dark mb-3 text-center">Calculadora de Presupuesto</h3>
-                    <p class="text-base text-dark mb-4 text-center">
-                        Aplicación de finanzas personales con CRUD completo, análisis por categorías y visualización de datos. Manejo profesional del estado y persistencia.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-2 justify-center mb-6">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">HTML5</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">CSS3</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">JavaScript</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">POO</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">LocalStorage</span>
-                    </div>
-                    
-                    <div class="flex gap-3 justify-center">
-                        <a href="https://luisitorisso.github.io/Calculadora-de-Presupuesto/" target="_blank" rel="noopener"
-                           class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover transition-colors duration-200 flex items-center gap-2">
-                            <i class="fas fa-external-link-alt text-sm"></i>
-                            Ver Demo
-                        </a>
-                        <a href="https://github.com/Luisitorisso/Calculadora-de-Presupuesto" target="_blank" rel="noopener"
-                           class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors duration-200 flex items-center gap-2">
-                            <i class="fab fa-github text-sm"></i>
-                            Código
-                        </a>
+                    <div class="project-info">
+                        <div class="project-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="project-title">Calculadora de Presupuesto</h3>
+                        <p class="project-description">
+                            Herramienta de finanzas personales para gestionar ingresos y gastos 
+                            con categorización, filtros y almacenamiento local persistente.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">LocalStorage</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://luisitorisso.github.io/Calculadora-de-Presupuesto/" target="_blank" rel="noopener" class="btn-demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                Ver Demo
+                            </a>
+                            <a href="https://github.com/Luisitorisso/Calculadora-de-Presupuesto" target="_blank" rel="noopener" class="btn-code">
+                                <i class="fab fa-github"></i>
+                                Código
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -642,27 +984,29 @@
     </section>
 
     <!-- Habilidades -->
-    <section id="habilidades" class="section skills">
+    <section id="habilidades" class="skills">
         <div class="container">
             <h2 class="section-title">Habilidades Técnicas</h2>
-            <p class="section-subtitle">Tecnologías que domino y estoy aprendiendo</p>
-            
+            <p class="section-subtitle">
+                Tecnologías y herramientas que domino para crear aplicaciones web funcionales
+            </p>
+
             <div class="skills-grid">
-                <div class="skill-category">
+                <div class="skill-category fade-in">
                     <div class="skill-icon">
-                        <i class="fab fa-html5"></i>
+                        <i class="fas fa-code"></i>
                     </div>
                     <h3 class="skill-title">Frontend</h3>
                     <ul class="skill-list">
-                        <li>HTML5 Semántico</li>
+                        <li>HTML5 & Semántica</li>
                         <li>CSS3 & Flexbox/Grid</li>
                         <li>JavaScript ES6+</li>
                         <li>Responsive Design</li>
                         <li>DOM Manipulation</li>
                     </ul>
                 </div>
-                
-                <div class="skill-category">
+
+                <div class="skill-category fade-in">
                     <div class="skill-icon">
                         <i class="fas fa-tools"></i>
                     </div>
@@ -670,15 +1014,15 @@
                     <ul class="skill-list">
                         <li>Git & GitHub</li>
                         <li>VS Code</li>
-                        <li>GitHub Pages</li>
                         <li>Chrome DevTools</li>
-                        <li>Figma (básico)</li>
+                        <li>Figma (Básico)</li>
+                        <li>Netlify/GitHub Pages</li>
                     </ul>
                 </div>
-                
-                <div class="skill-category">
+
+                <div class="skill-category fade-in">
                     <div class="skill-icon">
-                        <i class="fas fa-code"></i>
+                        <i class="fas fa-database"></i>
                     </div>
                     <h3 class="skill-title">APIs & Datos</h3>
                     <ul class="skill-list">
@@ -689,8 +1033,8 @@
                         <li>Async/Await</li>
                     </ul>
                 </div>
-                
-                <div class="skill-category">
+
+                <div class="skill-category fade-in">
                     <div class="skill-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
@@ -698,8 +1042,8 @@
                     <ul class="skill-list">
                         <li>React.js</li>
                         <li>TypeScript</li>
-                        <li>Node.js (básico)</li>
-                        <li>Sass/SCSS</li>
+                        <li>Node.js</li>
+                        <li>Tailwind CSS</li>
                         <li>Testing (Jest)</li>
                     </ul>
                 </div>
@@ -708,27 +1052,29 @@
     </section>
 
     <!-- Contacto -->
-    <section id="contacto" class="section contact">
+    <section id="contacto" class="contact">
         <div class="container">
             <h2 class="section-title">Contacto</h2>
-            <p class="section-subtitle">¿Tienes una oportunidad laboral? ¡Hablemos!</p>
-            
+            <p class="section-subtitle">
+                ¿Tienes un proyecto en mente? Me encantaría colaborar contigo
+            </p>
+
             <div class="contact-links">
                 <a href="mailto:luisrissopa@gmail.com" class="contact-link">
-                    <i class="fas fa-envelope contact-icon"></i>
+                    <i class="fas fa-envelope"></i>
                     Email
                 </a>
-                <a href="https://github.com/Luisitorisso" target="_blank" class="contact-link">
-                    <i class="fab fa-github contact-icon"></i>
+                <a href="https://github.com/Luisitorisso" target="_blank" rel="noopener" class="contact-link">
+                    <i class="fab fa-github"></i>
                     GitHub
                 </a>
-                <a href="https://wa.me/50768435309" target="_blank" class="contact-link">
-                    <i class="fab fa-whatsapp contact-icon"></i>
-                    WhatsApp
-                </a>
-                <a href="https://www.linkedin.com/in/jorge-luis-risso-patron" target="_blank" class="contact-link">
-                    <i class="fab fa-linkedin contact-icon"></i>
+                <a href="https://linkedin.com/in/tu-perfil" target="_blank" rel="noopener" class="contact-link">
+                    <i class="fab fa-linkedin"></i>
                     LinkedIn
+                </a>
+                <a href="https://wa.me/50760000000" target="_blank" rel="noopener" class="contact-link">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
                 </a>
             </div>
         </div>
@@ -737,34 +1083,117 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Jorge Luis Risso Patrón. Desarrollado con ❤️ y ☕ desde Panamá.</p>
+            <p>&copy; 2024 Jorge Luis Risso Patrón. Desarrollador Web Frontend de Panamá.</p>
         </div>
     </footer>
 
     <script>
-        // Animación de entrada para elementos
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = '0.1s';
-                    entry.target.classList.add('fade-in');
+        // ==================== Navegación con scroll ==================== 
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ==================== Scroll suave para enlaces ==================== 
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
-        document.querySelectorAll('.proyecto-card').forEach((el) => {
+        // ==================== Animaciones de entrada ==================== 
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos con animación
+        document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
 
-        // Smooth scroll para navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // ==================== Typing effect para el título (opcional) ==================== 
+        /*
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Aplicar efecto typing al título principal
+        window.addEventListener('load', () => {
+            const title = document.querySelector('.hero-content h1');
+            if (title) {
+                typeWriter(title, 'Jorge Luis Risso Patrón', 80);
+            }
         });
+        */
+
+        // ==================== Paralax suave para el hero ==================== 
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.getElementById('hero');
+            if (hero) {
+                const rate = scrolled * -0.5;
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // ==================== Preloader (opcional) ==================== 
+        /*
+        window.addEventListener('load', () => {
+            const preloader = document.createElement('div');
+            preloader.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #0072ff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                transition: opacity 0.5s ease;
+            `;
+            preloader.innerHTML = '<div style="color: white; font-size: 2rem; font-weight: bold;">JL</div>';
+            
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.remove();
+                }, 500);
+            }, 1000);
+            
+            document.body.appendChild(preloader);
+        });
+        */
     </script>
 </body>
 </html>
