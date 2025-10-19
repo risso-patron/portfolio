@@ -75,16 +75,16 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             z-index: 1000;
             padding: 16px 0;
             transition: all 0.3s ease;
         }
 
         .nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.25);
             box-shadow: var(--shadow-md);
         }
 
@@ -148,8 +148,8 @@
         .hero {
             position: relative;
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
-                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+                        url('image/background-hero.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
