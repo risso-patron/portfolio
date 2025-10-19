@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Weather App</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+        .test { background: white; padding: 20px; margin: 10px 0; border-radius: 8px; }
+        .success { border-left: 4px solid green; }
+        .error { border-left: 4px solid red; }
+        button { padding: 10px 20px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Weather App - Test de Diagnóstico</h1>
+    
+    <div class="test">
+        <h3>1. Test de API Key</h3>
+        <p>API Key configurada: <span id="apiKeyTest">Verificando...</span></p>
+    </div>
+
+    <div class="test">
+        <h3>2. Test de Conexión a API</h3>
+        <button onclick="testAPI()">🧪 Probar Conexión con API</button>
+        <p id="apiResult">Presiona el botón para probar</p>
+    </div>
+
+    <div class="test">
+        <h3>3. Test de Ciudad Específica</h3>
+        <button onclick="testPanama()">🇵🇦 Probar Ciudad de Panamá</button>
+        <p id="panamaResult">Presiona el botón para probar</p>
+    </div>
+
+    <div class="test">
+        <h3>4. Información de Debug</h3>
+        <p>Navegador: <span id="browser"></span></p>
+        <p>Fecha: <span id="date"></span></p>
+        <p>URL: <span id="url"></span></p>
+    </div>
+
+    <script>
+        const API_KEY = '8d3599da8294f99fb8f1bc2ac0c7825b';
+        const API_BASE_URL = 'https://api.openweathermap.org/data/2.5';
+
+        // Test 1: API Key
+        document.getElementById('apiKeyTest').textContent = 
+            API_KEY ? '✅ Configurada' : '❌ No encontrada';
+
+        // Test 2: API Connection
+        async function testAPI() {
+            const result = document.getElementById('apiResult');
+            result.textContent = '⏳ Probando conexión...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/weather?q=London&appid=${API_KEY}`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    result.innerHTML = `✅ <strong>Conexión exitosa!</strong><br>
+                        Ciudad: ${data.name}<br>
+                        Temp: ${Math.round(data.main.temp - 273.15)}°C<br>
+                        Estado: ${data.weather[0].description}`;
+                    result.className = 'success';
+                } else {
+                    result.innerHTML = `❌ <strong>Error de API:</strong><br>
+                        Código: ${response.status}<br>
+                        Mensaje: ${data.message || 'Error desconocido'}`;
+                    result.className = 'error';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ <strong>Error de red:</strong><br>${error.message}`;
+                result.className = 'error';
+            }
+        }
+
+        // Test 3: Panama Test
+        async function testPanama() {
+            const result = document.getElementById('panamaResult');
+            result.textContent = '⏳ Probando Panamá...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/weather?q=Panama City&appid=${API_KEY}&units=metric&lang=es`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    result.innerHTML = `✅ <strong>¡Panamá funciona!</strong><br>
+                        Ciudad: ${data.name}<br>
+                        Temperatura: ${Math.round(data.main.temp)}°C<br>
+                        Clima: ${data.weather[0].description}<br>
+                        Humedad: ${data.main.humidity}%`;
+                    result.className = 'success';
+                } else {
+                    result.innerHTML = `❌ <strong>Error con Panamá:</strong><br>
+                        Código: ${response.status}<br>
+                        Mensaje: ${data.message || 'Error desconocido'}`;
+                    result.className = 'error';
+                }
+            } catch (error) {
+                result.innerHTML = `❌ <strong>Error de red:</strong><br>${error.message}`;
+                result.className = 'error';
+            }
+        }
+
+        // Debug info
+        document.getElementById('browser').textContent = navigator.userAgent.split(' ')[0];
+        document.getElementById('date').textContent = new Date().toLocaleString();
+        document.getElementById('url').textContent = window.location.href;
+
+        console.log('🧪 Weather App Test iniciado');
+        console.log('API Key:', API_KEY ? 'Configurada ✅' : 'No encontrada ❌');
+    </script>
+</body>
+</html>
