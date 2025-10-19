@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Servir Portfolio Local",
+			"type": "shell",
+			"command": "python -m http.server 8000",
+			"isBackground": true,
+			"group": "serve"
+		}
+	]
+}

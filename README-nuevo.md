@@ -67,20 +67,6 @@ portfolio/
 - **Performance**: Sin dependencias pesadas, carga rápida
 - **SEO**: Meta tags optimizados
 
-## 📊 Proceso de Refactorización
-
-### Antes (index.html original):
-- ❌ Título confuso: "Desarrollador Web & Automatizaciones"
-- ❌ Experiencias no relevantes (gastronomía, marketing)
-- ❌ Proyectos sin demos funcionales
-- ❌ Partículas y animaciones distractoras
-
-### Después (index-nuevo.html):
-- ✅ Enfoque claro: "Desarrollador Web Frontend"
-- ✅ Solo experiencias técnicamente relevantes
-- ✅ Proyectos con enlaces a demos y repos
-- ✅ Diseño limpio y profesional
-
 ## 🚀 Deployment
 
 El portfolio está desplegado automáticamente en Netlify:
@@ -115,7 +101,7 @@ git push origin main
 **Jorge Luis Risso Patrón**
 - 📧 Email: [luisrissopa@gmail.com](mailto:luisrissopa@gmail.com)
 - 🐙 GitHub: [@Luisitorisso](https://github.com/Luisitorisso)
-- 💬 WhatsApp: [+507 6081-6847](https://wa.me/50760816847)
+- 💬 WhatsApp: [+507 6456-0263](https://wa.me/50764560263)
 - 📍 Ubicación: Panamá 🇵🇦
 
 ## 📄 Licencia
