@@ -147,7 +147,8 @@
         /* ==================== Hero Section ==================== */
         .hero {
             position: relative;
-            height: 100vh;
+            min-height: 80vh;
+            height: auto;
             background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
                         url('image/background-hero.png') center/cover no-repeat;
             display: flex;
@@ -156,6 +157,7 @@
             color: white;
             text-align: center;
             overflow: hidden;
+            padding: 100px 0 60px;
         }
 
         .hero::before {
@@ -172,13 +174,14 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 1000px;
-            padding: 2rem;
+            max-width: 1200px;
+            padding: 1rem 2rem;
             animation: fadeInUp 1s ease-out;
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 4rem;
             text-align: left;
+            width: 100%;
         }
 
         .hero-image {
@@ -236,12 +239,10 @@
         .hero-description {
             font-size: 1.2rem;
             font-weight: 400;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             opacity: 0.95;
-            line-height: 1.6;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.5;
+            max-width: 500px;
         }
 
         .hero-buttons {
