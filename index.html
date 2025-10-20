@@ -596,9 +596,9 @@
         }
 
         .skill-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -607,7 +607,16 @@
         .skill-icon img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Ajustes específicos para iconos de la fila superior */
+        .frontend .skill-icon img,
+        .herramientas .skill-icon img,
+        .apis-datos .skill-icon img {
+            width: 70%;
+            height: 70%;
         }
 
         .skill-title {
@@ -621,6 +630,7 @@
         .skill-list {
             list-style: none;
             color: var(--text-light);
+            margin-top: 0.5rem;
         }
 
         .skill-list li {
@@ -1085,7 +1095,6 @@
                     <div class="skill-icon">
                         <img src="image/frontend.png" alt="Frontend Development">
                     </div>
-                    <h3 class="skill-title">Frontend</h3>
                     <ul class="skill-list">
                         <li>HTML5 & Semántica</li>
                         <li>CSS3 & Flexbox/Grid</li>
@@ -1099,7 +1108,6 @@
                     <div class="skill-icon">
                         <img src="image/herramientas.png" alt="Herramientas de Desarrollo">
                     </div>
-                    <h3 class="skill-title">Herramientas</h3>
                     <ul class="skill-list">
                         <li>Git & GitHub</li>
                         <li>VS Code</li>
@@ -1113,7 +1121,6 @@
                     <div class="skill-icon">
                         <img src="image/APIdatos.png" alt="APIs y Bases de Datos">
                     </div>
-                    <h3 class="skill-title">APIs & Datos</h3>
                     <ul class="skill-list">
                         <li>Fetch API</li>
                         <li>REST APIs</li>
@@ -1127,7 +1134,6 @@
                     <div class="skill-icon">
                         <img src="image/aprendiendo.png" alt="Tecnologías en Aprendizaje">
                     </div>
-                    <h3 class="skill-title">Aprendiendo</h3>
                     <ul class="skill-list">
                         <li>React.js</li>
                         <li>TypeScript</li>
@@ -1141,7 +1147,6 @@
                     <div class="skill-icon">
                         <img src="image/UX-UIdesing.png" alt="Diseño UX/UI">
                     </div>
-                    <h3 class="skill-title">UX/UI</h3>
                     <ul class="skill-list">
                         <li>Wireframing</li>
                         <li>Prototyping</li>
@@ -1155,7 +1160,6 @@
                     <div class="skill-icon">
                         <img src="image/soft-skiil.png" alt="Habilidades Blandas">
                     </div>
-                    <h3 class="skill-title">Soft Skills</h3>
                     <ul class="skill-list">
                         <li>Autodidacta</li>
                         <li>Resolución de Problemas</li>
