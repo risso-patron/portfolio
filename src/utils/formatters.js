@@ -19,20 +19,23 @@ export const formatCurrency = (amount) => {
 /**
  * Formatea una fecha a formato legible
  * @param {Date|string} date - Fecha a formatear
+ * @param {Object} options - Opciones de formato (opcional)
  * @returns {string} - Fecha formateada (ej: "3 de Nov, 2025")
  */
-export const formatDate = (date) => {
+export const formatDate = (date, options = {}) => {
   const dateObj = date instanceof Date ? date : new Date(date);
   
   if (isNaN(dateObj.getTime())) {
     return 'Fecha inválida';
   }
 
-  return new Intl.DateTimeFormat('es-ES', {
+  const defaultOptions = {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
-  }).format(dateObj);
+  };
+
+  return new Intl.DateTimeFormat('es-ES', { ...defaultOptions, ...options }).format(dateObj);
 };
 
 /**

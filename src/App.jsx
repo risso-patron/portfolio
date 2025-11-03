@@ -4,6 +4,11 @@ import { TransactionList } from './components/Transactions/TransactionList';
 import { BalanceCard } from './components/Dashboard/BalanceCard';
 import { CategoryChart } from './components/Dashboard/CategoryChart';
 import { Alert } from './components/Shared/Alert';
+// Nuevos gráficos avanzados
+import { BalanceDonutChart } from './components/Charts/BalanceDonutChart';
+import { TrendLineChart } from './components/Charts/TrendLineChart';
+import { CategoryBarChart } from './components/Charts/CategoryBarChart';
+import { ComparativeChart } from './components/Charts/ComparativeChart';
 
 /**
  * Componente principal de la aplicación
@@ -55,14 +60,6 @@ function App() {
             onAddExpense={addExpense}
           />
 
-          {/* Listas de transacciones */}
-          <TransactionList
-            incomes={incomes}
-            expenses={expenses}
-            onRemoveIncome={removeIncome}
-            onRemoveExpense={removeExpense}
-          />
-
           {/* Card de balance */}
           <BalanceCard
             totalIncome={totalIncome}
@@ -70,8 +67,47 @@ function App() {
             balance={balance}
           />
 
-          {/* Gráfico de categorías */}
-          <CategoryChart categoryAnalysis={categoryAnalysis} />
+          {/* Sección de Gráficos Avanzados */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Gráfico de Dona - Balance General */}
+            <BalanceDonutChart
+              totalIncome={totalIncome}
+              totalExpenses={totalExpenses}
+            />
+
+            {/* Gráfico de Categorías Original (mejorado) */}
+            <CategoryChart categoryAnalysis={categoryAnalysis} />
+          </div>
+
+          {/* Gráfico de Tendencias - Ancho completo */}
+          <TrendLineChart
+            incomes={incomes}
+            expenses={expenses}
+            days={30}
+          />
+
+          {/* Gráficos de Barras y Comparativa */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Top 5 Categorías de Gasto */}
+            <CategoryBarChart
+              categoryAnalysis={categoryAnalysis}
+              topN={5}
+            />
+
+            {/* Comparativa Mensual */}
+            <ComparativeChart
+              incomes={incomes}
+              expenses={expenses}
+            />
+          </div>
+
+          {/* Listas de transacciones */}
+          <TransactionList
+            incomes={incomes}
+            expenses={expenses}
+            onRemoveIncome={removeIncome}
+            onRemoveExpense={removeExpense}
+          />
         </div>
 
         {/* Footer */}

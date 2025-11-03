@@ -40,6 +40,7 @@ export const useTransactions = () => {
       description: description.trim(),
       amount: parseFloat(amount),
       type: TRANSACTION_TYPES.INCOME,
+      date: new Date().toISOString().split('T')[0], // Formato: YYYY-MM-DD
       createdAt: new Date().toISOString(),
     };
 
@@ -65,6 +66,7 @@ export const useTransactions = () => {
       category,
       amount: parseFloat(amount),
       type: TRANSACTION_TYPES.EXPENSE,
+      date: new Date().toISOString().split('T')[0], // Formato: YYYY-MM-DD
       createdAt: new Date().toISOString(),
     };
 
