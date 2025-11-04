@@ -238,21 +238,31 @@ gasto,Amazon,75.99,2025-11-30,Compras`;
       {/* Selector de archivo */}
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Seleccionar archivo CSV:
+          1. Seleccionar archivo CSV:
         </label>
-        <input
-          type="file"
-          accept=".csv,.txt"
-          onChange={handleFileSelect}
-          className="block w-full text-sm text-gray-500 dark:text-gray-400
-            file:mr-4 file:py-2 file:px-4
-            file:rounded-lg file:border-0
-            file:text-sm file:font-semibold
-            file:bg-purple-50 file:text-purple-700
-            dark:file:bg-purple-900/30 dark:file:text-purple-300
-            hover:file:bg-purple-100 dark:hover:file:bg-purple-900/50
-            file:cursor-pointer cursor-pointer"
-        />
+        <div className="flex gap-3 items-center">
+          <input
+            type="file"
+            accept=".csv,.txt"
+            onChange={handleFileSelect}
+            className="flex-1 text-sm text-gray-500 dark:text-gray-400
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-lg file:border-0
+              file:text-sm file:font-semibold
+              file:bg-purple-50 file:text-purple-700
+              dark:file:bg-purple-900/30 dark:file:text-purple-300
+              hover:file:bg-purple-100 dark:hover:file:bg-purple-900/50
+              file:cursor-pointer cursor-pointer"
+          />
+          {previewData && previewData.length > 0 && (
+            <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span className="font-medium">{previewData.length} transacciones detectadas</span>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Error */}
@@ -264,26 +274,35 @@ gasto,Amazon,75.99,2025-11-30,Compras`;
 
       {/* Vista previa */}
       {previewData && previewData.length > 0 && (
-        <div className="mb-6">
-          <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
-            Vista previa ({previewData.length} transacciones):
-          </h4>
-          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+        <div className="mb-6 border-2 border-purple-200 dark:border-purple-800 rounded-xl p-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
+          <div className="flex items-center justify-between mb-4">
+            <h4 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+              2. Vista previa
+            </h4>
+            <span className="text-sm font-semibold text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-900/50 px-3 py-1 rounded-full">
+              {previewData.length} transacciones
+            </span>
+          </div>
+
+          <div className="overflow-x-auto rounded-lg border border-purple-200 dark:border-purple-700 bg-white dark:bg-gray-800">
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-900">
+              <thead className="bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/50 dark:to-pink-900/50">
                 <tr>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Tipo</th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Descripción</th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Monto</th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Fecha</th>
-                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Categoría</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-purple-900 dark:text-purple-300 uppercase tracking-wider">Tipo</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-purple-900 dark:text-purple-300 uppercase tracking-wider">Descripción</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-purple-900 dark:text-purple-300 uppercase tracking-wider">Monto</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-purple-900 dark:text-purple-300 uppercase tracking-wider">Fecha</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-purple-900 dark:text-purple-300 uppercase tracking-wider">Categoría</th>
                 </tr>
               </thead>
               <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                 {previewData.slice(0, 10).map((row, idx) => (
-                  <tr key={idx}>
-                    <td className="px-4 py-2 text-sm">
-                      <span className={`px-2 py-1 rounded ${
+                  <tr key={idx} className="hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">
+                    <td className="px-4 py-3 text-sm">
+                      <span className={`px-3 py-1 rounded-full font-semibold ${
                         row.tipo.toLowerCase() === 'ingreso'
                           ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
                           : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300'
@@ -291,46 +310,131 @@ gasto,Amazon,75.99,2025-11-30,Compras`;
                         {row.tipo}
                       </span>
                     </td>
-                    <td className="px-4 py-2 text-sm text-gray-900 dark:text-gray-300">{row.descripcion}</td>
-                    <td className="px-4 py-2 text-sm font-semibold text-gray-900 dark:text-white">${parseFloat(row.monto).toFixed(2)}</td>
-                    <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-400">{row.fecha}</td>
-                    <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-400">{row.categoria || '-'}</td>
+                    <td className="px-4 py-3 text-sm text-gray-900 dark:text-gray-300 font-medium">{row.descripcion}</td>
+                    <td className="px-4 py-3 text-sm font-bold text-gray-900 dark:text-white">${parseFloat(row.monto).toFixed(2)}</td>
+                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">{row.fecha}</td>
+                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">
+                      {row.categoria ? (
+                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">{row.categoria}</span>
+                      ) : (
+                        <span className="text-gray-400">-</span>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           {previewData.length > 10 && (
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-              ... y {previewData.length - 10} más
+            <p className="text-sm text-purple-600 dark:text-purple-400 mt-3 text-center font-medium">
+              ... y {previewData.length - 10} transacciones más (mostrando primeras 10)
             </p>
           )}
 
-          <button
-            onClick={handleImport}
-            disabled={importing}
-            className="mt-4 w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {importing ? 'Importando...' : `Importar ${previewData.length} transacciones`}
-          </button>
+          {/* Botón de importación destacado */}
+          <div className="mt-6 space-y-3">
+            <button
+              onClick={handleImport}
+              disabled={importing}
+              className="w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold text-lg 
+                hover:from-purple-700 hover:to-pink-700 
+                transform hover:scale-[1.02] active:scale-[0.98]
+                transition-all duration-200
+                disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+                shadow-lg hover:shadow-xl
+                flex items-center justify-center gap-3"
+            >
+              {importing ? (
+                <>
+                  <svg className="animate-spin h-6 w-6" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span>Importando {previewData.length} transacciones...</span>
+                </>
+              ) : (
+                <>
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
+                  <span>3. Importar {previewData.length} transacciones al Dashboard</span>
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </>
+              )}
+            </button>
+            
+            {/* Información adicional */}
+            <div className="flex items-center justify-center gap-6 text-sm text-gray-600 dark:text-gray-400">
+              <div className="flex items-center gap-1">
+                <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>Logros se desbloquearán automáticamente</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+                </svg>
+                <span>Estadísticas se actualizarán en tiempo real</span>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
       {/* Resultado de importación */}
       {importStats && (
-        <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-          <h4 className="font-semibold text-green-900 dark:text-green-300 mb-2">
-            Importación completada!
-          </h4>
-          <ul className="text-sm text-green-800 dark:text-green-400 space-y-1">
-            <li>• Total: {importStats.total} transacciones</li>
-            <li>• Importadas: {importStats.imported}</li>
+        <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border-2 border-green-300 dark:border-green-700 shadow-lg">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-3 bg-green-500 dark:bg-green-600 rounded-full">
+              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold text-green-900 dark:text-green-300">
+                ¡Importación Completada con Éxito!
+              </h4>
+              <p className="text-sm text-green-700 dark:text-green-400">
+                Tus transacciones ya están en el dashboard
+              </p>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-3 gap-4 mb-4">
+            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-green-200 dark:border-green-800">
+              <div className="text-3xl font-bold text-green-600 dark:text-green-400">{importStats.total}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Total procesadas</div>
+            </div>
+            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-green-200 dark:border-green-800">
+              <div className="text-3xl font-bold text-green-600 dark:text-green-400">{importStats.imported}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Importadas ✓</div>
+            </div>
             {importStats.errors > 0 && (
-              <li className="text-yellow-700 dark:text-yellow-400">
-                • Errores: {importStats.errors}
-              </li>
+              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                <div className="text-3xl font-bold text-yellow-600 dark:text-yellow-400">{importStats.errors}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Omitidas</div>
+              </div>
             )}
-          </ul>
+          </div>
+
+          <div className="flex items-start gap-2 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <svg className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+            </svg>
+            <div className="text-sm text-blue-800 dark:text-blue-300">
+              <p className="font-semibold mb-1">Próximos pasos:</p>
+              <ul className="space-y-1">
+                <li>✓ Desplázate hacia arriba para ver tus transacciones</li>
+                <li>✓ Revisa el Balance General actualizado</li>
+                <li>✓ Verifica los gráficos con tus nuevos datos</li>
+                <li>✓ Chequea qué logros desbloqueaste en la sección de Gamificación</li>
+              </ul>
+            </div>
+          </div>
         </div>
       )}
     </div>
