@@ -37,30 +37,54 @@ export default function ImportManager({ onImport }) {
 
   // Parsear CSV manualmente (sin dependencias externas)
   const parseCSV = (text) => {
-    const lines = text.split('\n').filter(line => line.trim());
+    // Limpiar BOM (Byte Order Mark) y normalizar el texto
+    let cleanText = text;
+    
+    // Eliminar BOM UTF-8 si existe
+    if (cleanText.charCodeAt(0) === 0xFEFF) {
+      cleanText = cleanText.slice(1);
+    }
+    
+    // Reemplazar diferentes tipos de saltos de línea
+    cleanText = cleanText.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    
+    const lines = cleanText.split('\n').filter(line => line.trim());
     if (lines.length < 2) {
       throw new Error('El archivo debe tener al menos una fila de datos');
     }
 
     // Primera línea = headers
-    const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+    // Limpiar caracteres especiales, tildes, espacios extras y convertir a minúsculas
+    const rawHeaders = lines[0].split(',').map(h => h.trim());
+    const headers = rawHeaders.map(h => 
+      h.toLowerCase()
+       .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Eliminar tildes
+       .replace(/[^\w\s]/g, '') // Eliminar caracteres especiales excepto espacios
+       .trim()
+    );
     
-    // Validar headers requeridos
+    console.log('Headers detectados:', headers);
+    console.log('Headers originales:', rawHeaders);
+    
+    // Validar headers requeridos (sin tildes para comparación)
     const requiredHeaders = ['tipo', 'descripcion', 'monto', 'fecha'];
     const missingHeaders = requiredHeaders.filter(h => !headers.includes(h));
     if (missingHeaders.length > 0) {
-      throw new Error(`Faltan columnas requeridas: ${missingHeaders.join(', ')}`);
+      // Mostrar headers detectados para debugging
+      throw new Error(`Faltan columnas requeridas: ${missingHeaders.join(', ')}. Detectadas: ${headers.join(', ')}`);
     }
 
     // Parsear filas
     const data = [];
     for (let i = 1; i < lines.length; i++) {
       const values = lines[i].split(',').map(v => v.trim());
-      if (values.length !== headers.length) continue;
-
+      
+      // Permitir filas con menos columnas (categoría opcional)
+      if (values.length < 4) continue; // Al menos tipo, descripcion, monto, fecha
+      
       const row = {};
       headers.forEach((header, idx) => {
-        row[header] = values[idx];
+        row[header] = values[idx] || '';
       });
 
       // Validar fila
@@ -68,7 +92,7 @@ export default function ImportManager({ onImport }) {
       if (validation.valid) {
         data.push({ ...row, rowNumber: i + 1 });
       } else {
-        console.warn(`Fila ${i + 1} omitida: ${validation.error}`);
+        console.warn(`Fila ${i + 1} omitida: ${validation.error}`, row);
       }
     }
 
@@ -163,12 +187,18 @@ export default function ImportManager({ onImport }) {
   // Descargar plantilla CSV
   const downloadTemplate = () => {
     const template = `tipo,descripcion,monto,fecha,categoria
-ingreso,Salario,2500,2025-11-01,
+ingreso,Salario,2500.00,2025-11-01,
 gasto,Supermercado,45.50,2025-11-05,Comida
 gasto,Netflix,12.99,2025-11-10,Entretenimiento
-ingreso,Freelance,350,2025-11-15,`;
+ingreso,Freelance,350.00,2025-11-15,
+gasto,Gasolina,60.00,2025-11-18,Transporte
+gasto,Restaurante,85.25,2025-11-20,Comida
+ingreso,Venta producto,120.00,2025-11-22,
+gasto,Farmacia,22.50,2025-11-25,Salud
+gasto,Gym,40.00,2025-11-28,Ejercicio
+gasto,Amazon,75.99,2025-11-30,Compras`;
 
-    const blob = new Blob([template], { type: 'text/csv' });
+    const blob = new Blob([template], { type: 'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
@@ -197,11 +227,11 @@ ingreso,Freelance,350,2025-11-15,`;
           Formato del archivo CSV:
         </h4>
         <ul className="text-sm text-blue-800 dark:text-blue-400 space-y-1">
-          <li>• Columnas requeridas: <code>tipo, descripcion, monto, fecha</code></li>
-          <li>• Columna opcional: <code>categoria</code> (solo para gastos)</li>
-          <li>• Tipo: "ingreso" o "gasto"</li>
+          <li>• Primera línea: <code className="bg-blue-100 dark:bg-blue-900/40 px-2 py-0.5 rounded">tipo,descripcion,monto,fecha,categoria</code></li>
+          <li>• Tipo: "ingreso" o "gasto" (minúsculas)</li>
           <li>• Fecha: YYYY-MM-DD o DD/MM/YYYY</li>
           <li>• Monto: número positivo (usar punto para decimales)</li>
+          <li>• <strong>IMPORTANTE</strong>: Guarda desde Excel como "CSV UTF-8 (delimitado por comas)"</li>
         </ul>
       </div>
 
