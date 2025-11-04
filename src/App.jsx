@@ -24,6 +24,7 @@ import { ComparativeChart } from './components/Charts/ComparativeChart';
 // FEATURES PREMIUM
 import { GoalManager } from './features/goals/GoalManager';
 import { ExportManager } from './features/export/ExportManager';
+import ImportManager from './features/import/ImportManager';
 // GAMIFICACIÓN
 import { GamificationDashboard, AchievementNotifications } from './features/gamification';
 import { useAchievements } from './hooks/gamification/useAchievements';
@@ -108,6 +109,15 @@ function AppContent() {
       achievements.recordTransaction('expense');
     }
     return result;
+  };
+
+  // Handler para importación CSV
+  const handleImportTransaction = async (type, data) => {
+    if (type === 'income') {
+      return handleAddIncome(data.description, data.amount, data.date);
+    } else {
+      return handleAddExpense(data.description, data.category, data.amount, data.date);
+    }
   };
 
   // HOOK DE IA - Combinar todas las transacciones
@@ -273,6 +283,14 @@ function AppContent() {
             onAddExpense={handleAddExpense}
           />
 
+          {/* LISTAS DE TRANSACCIONES - Justo después de agregar para ver resultados */}
+          <TransactionList
+            incomes={incomes}
+            expenses={expenses}
+            onRemoveIncome={removeIncome}
+            onRemoveExpense={removeExpense}
+          />
+
           {/* GESTOR DE TARJETAS DE CRÉDITO */}
           <CreditCardManager
             creditCards={creditCards}
@@ -288,28 +306,6 @@ function AppContent() {
             onUpdateProgress={handleUpdateGoalProgress}
             onDeleteGoal={handleDeleteGoal}
             currentBalance={balance}
-          />
-
-          {/* 📥 EXPORTADOR DE DATOS */}
-          <ExportManager
-            incomes={incomes}
-            expenses={expenses}
-            categoryAnalysis={categoryAnalysis}
-            totalIncome={totalIncome}
-            totalExpenses={totalExpenses}
-            balance={balance}
-          />
-
-          {/* DASHBOARD DE GAMIFICACIÓN */}
-          <GamificationDashboard
-            currentLevel={achievements.currentLevel}
-            totalPoints={achievements.totalPoints}
-            pointsForNext={achievements.pointsForNext}
-            levelProgress={achievements.levelProgress}
-            currentStreak={achievements.stats.currentStreak}
-            longestStreak={achievements.stats.longestStreak}
-            unlockedAchievements={achievements.unlockedAchievements}
-            isAchievementUnlocked={achievements.isAchievementUnlocked}
           />
 
           {/* Sección de Gráficos Avanzados */}
@@ -359,13 +355,30 @@ function AppContent() {
             />
           </div>
 
-          {/* Listas de transacciones */}
-          <TransactionList
+          {/* DASHBOARD DE GAMIFICACIÓN - Al final como recompensa */}
+          <GamificationDashboard
+            currentLevel={achievements.currentLevel}
+            totalPoints={achievements.totalPoints}
+            pointsForNext={achievements.pointsForNext}
+            levelProgress={achievements.levelProgress}
+            currentStreak={achievements.stats.currentStreak}
+            longestStreak={achievements.stats.longestStreak}
+            unlockedAchievements={achievements.unlockedAchievements}
+            isAchievementUnlocked={achievements.isAchievementUnlocked}
+          />
+
+          {/* 📥 EXPORTADOR E IMPORTADOR DE DATOS */}
+          <ExportManager
             incomes={incomes}
             expenses={expenses}
-            onRemoveIncome={removeIncome}
-            onRemoveExpense={removeExpense}
+            categoryAnalysis={categoryAnalysis}
+            totalIncome={totalIncome}
+            totalExpenses={totalExpenses}
+            balance={balance}
           />
+
+          {/* 📤 IMPORTADOR CSV - Carga masiva de transacciones */}
+          <ImportManager onImport={handleImportTransaction} />
         </div>
 
         {/* Footer */}
