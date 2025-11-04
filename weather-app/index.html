@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+Ôªø<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App | Jorge Luis Risso PatrÛn</title>
+    <title>Weather App | Jorge Luis Risso PatrÔøΩn</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>?</text></svg>">
     <style>
         /* Variables CSS - Paleta Azul Unificada */
@@ -237,7 +237,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Adaptaci+¶n para fondos oscuros */
+        /* Adaptaci+ÔøΩn para fondos oscuros */
         body.thunderstorm .header,
         body.night .header,
         body.rain .header {
@@ -245,7 +245,7 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Adaptaci+¶n para fondos claros */
+        /* Adaptaci+ÔøΩn para fondos claros */
         body.clear .header,
         body.snow .header,
         body.clouds .header {
@@ -304,7 +304,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Adaptaci+¶n para fondos oscuros */
+        /* Adaptaci+ÔøΩn para fondos oscuros */
         body.thunderstorm .search-section,
         body.night .search-section,
         body.rain .search-section {
@@ -312,7 +312,7 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Adaptaci+¶n para fondos claros */
+        /* Adaptaci+ÔøΩn para fondos claros */
         body.clear .search-section,
         body.snow .search-section,
         body.clouds .search-section {
@@ -464,7 +464,7 @@
             transition: all 0.5s ease;
         }
 
-        /* Adaptaci+¶n para fondos oscuros */
+        /* Adaptaci+ÔøΩn para fondos oscuros */
         body.thunderstorm .weather-display,
         body.night .weather-display,
         body.rain .weather-display {
@@ -479,7 +479,7 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Adaptaci+¶n para fondos claros */
+        /* Adaptaci+ÔøΩn para fondos claros */
         body.clear .weather-display,
         body.snow .weather-display,
         body.clouds .weather-display {
@@ -494,7 +494,7 @@
             border-color: rgba(0, 0, 0, 0.05);
         }
 
-        /* Temas din+Ìmicos seg+¶n el clima */
+        /* Temas din+ÔøΩmicos seg+ÔøΩn el clima */
         .current-weather.sunny {
             background: linear-gradient(135deg, 
                 rgba(255, 140, 0, 0.9), 
@@ -565,7 +565,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Iconos espec+°ficos con tama+¶os y efectos personalizados */
+        /* Iconos espec+ÔøΩficos con tama+ÔøΩos y efectos personalizados */
         .weather-icon.sun {
             font-size: 8rem;
             animation: rotateSun 10s linear infinite, bounceWeather 3s ease-in-out infinite;
@@ -599,7 +599,7 @@
             text-shadow: 0 0 15px rgba(135, 206, 235, 0.6);
         }
 
-        /* Animaciones espec+°ficas para cada tipo de clima */
+        /* Animaciones espec+ÔøΩficas para cada tipo de clima */
         @keyframes rotateSun {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -639,7 +639,7 @@
             75% { transform: translateX(15px) rotate(5deg); }
         }
 
-        /* Part+°culas de viento y nieve */
+        /* Part+ÔøΩculas de viento y nieve */
         .wind-particles {
             position: absolute;
             top: 0;
@@ -967,9 +967,9 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>≠ÉÓÒ¥©≈ Weather App</h1>
+            <h1>ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ Weather App</h1>
             <p>Consulta el clima en cualquier ciudad del mundo</p>
-            <div class="sky-status" id="skyStatus">≠ÉÓÒ¥©≈ Cielo Esperando</div>
+            <div class="sky-status" id="skyStatus">ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ Cielo Esperando</div>
         </header>
 
         <!-- Search Section -->
@@ -978,16 +978,16 @@
                 <input 
                     type="text" 
                     class="search-input" 
-                    placeholder="Buscar ciudad (ej: Ciudad de Panam+Ì)"
+                    placeholder="Buscar ciudad (ej: Ciudad de Panam+ÔøΩ)"
                     id="cityInput"
                 >
                 <button class="btn btn-primary" onclick="searchWeather()">
-                    ≠ÉˆÏ Buscar
+                    ÔøΩÔøΩÔøΩÔøΩ Buscar
                 </button>
             </div>
             
             <button class="btn btn-secondary geolocation-btn" onclick="getCurrentLocation()">
-                ≠ÉÙÏ Usar Mi Ubicaci+¶n
+                ÔøΩÔøΩÔøΩÔøΩ Usar Mi Ubicaci+ÔøΩn
             </button>
 
             <div class="error" id="errorMessage"></div>
@@ -996,29 +996,29 @@
         <!-- Loading -->
         <div class="loading" id="loadingIndicator">
             <div class="spinner"></div>
-            <p>Obteniendo informaci+¶n del clima...</p>
+            <p>Obteniendo informaci+ÔøΩn del clima...</p>
         </div>
 
         <!-- Weather Display -->
         <main class="weather-display" id="weatherDisplay">
             <!-- Current Weather -->
             <section class="current-weather">
-                <div class="weather-icon" id="weatherIcon">≠ÉÓÒ¥©≈</div>
-                <div class="temperature" id="temperature">---¶</div>
+                <div class="weather-icon" id="weatherIcon">ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ</div>
+                <div class="temperature" id="temperature">---ÔøΩ</div>
                 <div class="weather-description" id="weatherDescription">--</div>
                 <div class="city-name" id="cityName">--</div>
                 
                 <!-- Units Toggle -->
                 <div class="units-toggle">
-                    <button class="unit-btn active" onclick="toggleUnits('celsius')">-¶C</button>
-                    <button class="unit-btn" onclick="toggleUnits('fahrenheit')">-¶F</button>
+                    <button class="unit-btn active" onclick="toggleUnits('celsius')">-ÔøΩC</button>
+                    <button class="unit-btn" onclick="toggleUnits('fahrenheit')">-ÔøΩF</button>
                 </div>
 
                 <!-- Weather Details -->
                 <div class="weather-details">
                     <div class="detail-item">
-                        <div class="detail-label">Sensaci+¶n T+Ærmica</div>
-                        <div class="detail-value" id="feelsLike">---¶</div>
+                        <div class="detail-label">Sensaci+ÔøΩn T+ÔøΩrmica</div>
+                        <div class="detail-value" id="feelsLike">---ÔøΩ</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">Humedad</div>
@@ -1029,7 +1029,7 @@
                         <div class="detail-value" id="windSpeed">-- km/h</div>
                     </div>
                     <div class="detail-item">
-                        <div class="detail-label">Presi+¶n</div>
+                        <div class="detail-label">Presi+ÔøΩn</div>
                         <div class="detail-value" id="pressure">-- hPa</div>
                     </div>
                 </div>
@@ -1037,7 +1037,7 @@
 
             <!-- Forecast Section -->
             <section class="forecast-section">
-                <h2 class="forecast-title">Pron+¶stico de 5 D+°as</h2>
+                <h2 class="forecast-title">Pron+ÔøΩstico de 5 D+ÔøΩas</h2>
                 <div class="forecast-container" id="forecastContainer">
                     <!-- Forecast items will be populated by JavaScript -->
                 </div>
@@ -1046,13 +1046,13 @@
     </div>
 
     <script>
-        // ==================== CONFIGURACI+ÙN OpenWeatherMap ====================
-        // ≠ÉˆÊ Usando tu API Key de OpenWeatherMap (ya creada)
-        // ≠ÉˆÊ Plan gratuito: 60 calls/minuto, 1,000,000 calls/mes
-        // ≠ÉˆÊ Deber+°a funcionar despu+Æs de 10 minutos de creada
+        // ==================== CONFIGURACI+ÔøΩN OpenWeatherMap ====================
+        // ÔøΩÔøΩÔøΩÔøΩ Usando tu API Key de OpenWeatherMap (ya creada)
+        // ÔøΩÔøΩÔøΩÔøΩ Plan gratuito: 60 calls/minuto, 1,000,000 calls/mes
+        // ÔøΩÔøΩÔøΩÔøΩ Deber+ÔøΩa funcionar despu+ÔøΩs de 10 minutos de creada
         
-        const DEMO_MODE = false; // MODO DEMO ACTIVADO - Cambia a false cuando API funcione
-        const API_KEY = '8d3599da8294f99fb8f1bc2ac0c7829b'; // ‘£‡ Tu API Key de OpenWeather
+        const DEMO_MODE = true; // MODO DEMO ACTIVADO - Cambia a false cuando API funcione
+        const API_KEY = '8d3599da8294f99fb8f1bc2ac0c7829b'; // ‘£ÔøΩ Tu API Key de OpenWeather
         const API_BASE_URL = 'https://api.openweathermap.org/data/2.5';
         
         // Global variables
@@ -1062,7 +1062,7 @@
         // Datos de demo para portfolio
         const demoWeatherData = {
             'panama': {
-                name: 'Ciudad de Panam+Ì',
+                name: 'Ciudad de Panam+ÔøΩ',
                 main: { temp: 28, feels_like: 32, humidity: 78, pressure: 1012 },
                 weather: [{ main: 'Partly Cloudy', description: 'parcialmente nublado', icon: '02d' }],
                 wind: { speed: 12 },
@@ -1090,7 +1090,7 @@
                 coord: { lat: 40.7128, lon: -74.0060 }
             },
             'paris': {
-                name: 'Par+°s',
+                name: 'Par+ÔøΩs',
                 main: { temp: 16, feels_like: 14, humidity: 68, pressure: 1013 },
                 weather: [{ main: 'Overcast', description: 'muy nublado', icon: '04d' }],
                 wind: { speed: 10 },
@@ -1100,15 +1100,15 @@
 
         // Weather icons mapping - Iconos mejorados para mejor contraste
         const weatherIcons = {
-            '01d': '‘ˇ«¥©≈', '01n': '¥+¢',
-            '02d': '‘¯‡', '02n': '‘ˇ¸¥©≈',
-            '03d': '‘ˇ¸¥©≈', '03n': '‘ˇ¸¥©≈',
-            '04d': '‘ˇ¸¥©≈', '04n': '‘ˇ¸¥©≈',
-            '09d': '≠ÉÓ∫¥©≈', '09n': '≠ÉÓ∫¥©≈',
-            '10d': '‘¯Í¥©≈', '10n': '≠ÉÓ∫¥©≈',
-            '11d': '‘¯Í¥©≈', '11n': '‘¯Í¥©≈',
-            '13d': '‘ÿ‰¥©≈', '13n': '‘ÿ‰¥©≈',
-            '50d': '¥+¢¥©≈', '50n': '≠ÉÓΩ¥©≈'
+            '01d': 'ÔøΩÔøΩ«¥ÔøΩÔøΩ', '01n': 'ÔøΩ+ÔøΩ',
+            '02d': 'ÔøΩÔøΩÔøΩ', '02n': 'ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ',
+            '03d': 'ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ', '03n': 'ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ',
+            '04d': 'ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ', '04n': 'ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ',
+            '09d': 'ÔøΩÔøΩÓ∫¥ÔøΩÔøΩ', '09n': 'ÔøΩÔøΩÓ∫¥ÔøΩÔøΩ',
+            '10d': 'ÔøΩÔøΩÍ¥©ÔøΩ', '10n': 'ÔøΩÔøΩÓ∫¥ÔøΩÔøΩ',
+            '11d': 'ÔøΩÔøΩÍ¥©ÔøΩ', '11n': 'ÔøΩÔøΩÍ¥©ÔøΩ',
+            '13d': 'ÔøΩÔøΩ‰¥©ÔøΩ', '13n': 'ÔøΩÔøΩ‰¥©ÔøΩ',
+            '50d': 'ÔøΩ+ÔøΩÔøΩÔøΩÔøΩ', '50n': 'ÔøΩÔøΩÓΩ¥ÔøΩÔøΩ'
         };
 
         // DOM Elements
@@ -1127,7 +1127,7 @@
         // Check for API key configuration
         window.addEventListener('load', () => {
             if (API_KEY === 'TU_NUEVA_API_KEY_AQUI' || API_KEY === 'TU_API_KEY_AQUI') {
-                showError('CONFIGURACI”N REQUERIDA: Necesitas configurar tu API Key de OpenWeatherMap.');
+                showError('CONFIGURACIÔøΩN REQUERIDA: Necesitas configurar tu API Key de OpenWeatherMap.');
             } else {
                 // API key configurada, mostrar mensaje informativo
                 console.log('API Key configurada. Si no funciona, espera 10 minutos para que se active.');
@@ -1158,7 +1158,7 @@
                     
                     // Mostrar mensaje de demo
                     setTimeout(() => {
-                        showError('MODO DEMO: Mostrando datos simulados para portfolio. En producciÛn usarÌa OpenWeatherMap API.', 'info');
+                        showError('MODO DEMO: Mostrando datos simulados para portfolio. En producciÔøΩn usarÔøΩa OpenWeatherMap API.', 'info');
                     }, 1000);
                 }, 800);
                 return;
@@ -1174,7 +1174,7 @@
 
         async function getCurrentLocation() {
             if (DEMO_MODE) {
-                // Modo demo - simular ubicaci+¶n de Panam+Ì
+                // Modo demo - simular ubicaci+ÔøΩn de Panam+ÔøΩ
                 showLoading();
                 setTimeout(() => {
                     const weatherData = demoWeatherData['panama'];
@@ -1183,14 +1183,14 @@
                     hideLoading();
                     
                     setTimeout(() => {
-                        showError('MODO DEMO: Simulando ubicaciÛn de Panam· para portfolio.', 'info');
+                        showError('MODO DEMO: Simulando ubicaciÔøΩn de PanamÔøΩ para portfolio.', 'info');
                     }, 1000);
                 }, 800);
                 return;
             }
 
             if (!navigator.geolocation) {
-                showError('La geolocalizaciÛn no est· disponible en tu navegador');
+                showError('La geolocalizaciÔøΩn no estÔøΩ disponible en tu navegador');
                 return;
             }
 
@@ -1210,16 +1210,16 @@
                     hideLoading();
                     switch(error.code) {
                         case error.PERMISSION_DENIED:
-                            showError('Permiso de ubicaciÛn denegado');
+                            showError('Permiso de ubicaciÔøΩn denegado');
                             break;
                         case error.POSITION_UNAVAILABLE:
-                            showError('InformaciÛn de ubicaciÛn no disponible');
+                            showError('InformaciÔøΩn de ubicaciÔøΩn no disponible');
                             break;
                         case error.TIMEOUT:
                             showError('Tiempo de espera agotado');
                             break;
                         default:
-                            showError('Error desconocido al obtener ubicaciÛn');
+                            showError('Error desconocido al obtener ubicaciÔøΩn');
                             break;
                     }
                 }
@@ -1228,17 +1228,24 @@
 
         async function getWeatherByCity(city) {
             showLoading();
+            console.log('üîç Buscando ciudad:', city);
+            console.log('üîë API Key:', API_KEY.substring(0, 8) + '...');
             
             try {
-                const response = await fetch(
-                    `${API_BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=${currentUnit}&lang=es`
-                );
+                const url = `${API_BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=${currentUnit}&lang=es`;
+                console.log('üì° URL:', url.replace(API_KEY, 'API_KEY_HIDDEN'));
+                
+                const response = await fetch(url);
+                console.log('üì• Response status:', response.status, response.statusText);
                 
                 if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('‚ùå Error response:', errorText);
                     throw new Error(`Error ${response.status}: ${response.statusText}`);
                 }
                 
                 const data = await response.json();
+                console.log('‚úÖ Datos recibidos:', data);
                 await displayWeather(data);
                 await getForecast(data.coord.lat, data.coord.lon);
                 
@@ -1249,11 +1256,11 @@
                 if (error.message.includes('404')) {
                     showError('Ciudad no encontrada. Verifica el nombre e intenta nuevamente.');
                 } else if (error.message.includes('401')) {
-                    showError('API Key de OpenWeather a˙n no activa. Espera 10-15 minutos y vuelve a intentar.');
+                    showError('API Key de OpenWeather aÔøΩn no activa. Espera 10-15 minutos y vuelve a intentar.');
                 } else if (error.message.includes('403')) {
                     showError('API Key sin permisos. Verifica tu plan gratuito en OpenWeatherMap.');
                 } else if (error.message.includes('429')) {
-                    showError('LÌmite de requests alcanzado. Intenta en unos minutos.');
+                    showError('LÔøΩmite de requests alcanzado. Intenta en unos minutos.');
                 } else {
                     showError(`Error al obtener datos del clima: ${error.message}`);
                 }
@@ -1276,7 +1283,7 @@
                 
             } catch (error) {
                 hideLoading();
-                showError('Error al obtener datos del clima para tu ubicaciÛn');
+                showError('Error al obtener datos del clima para tu ubicaciÔøΩn');
                 console.error('Error:', error);
             }
         }
@@ -1296,7 +1303,7 @@
                 
             } catch (error) {
                 console.error('Error getting forecast:', error);
-                // No mostrar error si falla el pron+¶stico, solo el clima actual
+                // No mostrar error si falla el pron+ÔøΩstico, solo el clima actual
             }
         }
 
@@ -1342,7 +1349,7 @@
                 createWindParticles(weatherDisplay);
             }
 
-            // ≠ÉÓÒ¥©≈ SKY-INSPIRED BACKGROUND - Anna Grand's Concept Implementation
+            // ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ SKY-INSPIRED BACKGROUND - Anna Grand's Concept Implementation
             updateSkyBackground(weatherCode, data);
         }
 
@@ -1370,7 +1377,7 @@
                 skyText = 'Amanecer Dorado';
             } else if (isSunset && weatherCode.startsWith('01')) {
                 skyClass = 'sunset';
-                skyText = 'Atardecer C·lido';
+                skyText = 'Atardecer CÔøΩlido';
             } else if (weatherCode.startsWith('01')) { // Clear sky
                 skyClass = 'clear';
                 skyText = 'Cielo Despejado';
@@ -1382,13 +1389,13 @@
                 skyText = 'Cielo Lluvioso';
             } else if (weatherCode.startsWith('11')) { // Thunderstorm
                 skyClass = 'thunderstorm';
-                skyText = 'Tormenta Dram·tica';
+                skyText = 'Tormenta DramÔøΩtica';
             } else if (weatherCode.startsWith('13')) { // Snow
                 skyClass = 'snow';
                 skyText = 'Cielo Nevado';
             } else if (weatherCode.startsWith('50')) { // Mist/Fog - Anna's "magic" feeling
                 skyClass = 'mist';
-                skyText = 'Niebla M·gica';
+                skyText = 'Niebla MÔøΩgica';
             } else {
                 // Default to cloudy for unknown conditions
                 skyClass = 'clouds';
@@ -1405,10 +1412,10 @@
                 body.style.transition = 'all 1.5s ease-in-out';
             }, 100);
             
-            document.getElementById('temperature').textContent = `${Math.round(data.main.temp)}-¶`;
+            document.getElementById('temperature').textContent = `${Math.round(data.main.temp)}-ÔøΩ`;
             document.getElementById('weatherDescription').textContent = data.weather[0].description;
             document.getElementById('cityName').textContent = `${data.name}, ${data.sys.country}`;
-            document.getElementById('feelsLike').textContent = `${Math.round(data.main.feels_like)}-¶`;
+            document.getElementById('feelsLike').textContent = `${Math.round(data.main.feels_like)}-ÔøΩ`;
             document.getElementById('humidity').textContent = `${data.main.humidity}%`;
             document.getElementById('windSpeed').textContent = `${Math.round(data.wind.speed * 3.6)} km/h`;
             document.getElementById('pressure').textContent = `${data.main.pressure} hPa`;
@@ -1444,7 +1451,7 @@
             const particlesContainer = document.createElement('div');
             particlesContainer.className = 'wind-particles';
             
-            const windSymbols = ['~', 'ò', '~', '?', '?'];
+            const windSymbols = ['~', 'ÔøΩ', '~', '?', '?'];
             
             for (let i = 0; i < 12; i++) {
                 const particle = document.createElement('div');
@@ -1478,8 +1485,8 @@
                     <div class="forecast-day">${dayName}</div>
                     <div class="forecast-icon">${weatherIcons[forecast.weather[0].icon] || '?'}</div>
                     <div class="forecast-temps">
-                        <span class="forecast-high">${Math.round(forecast.main.temp_max)}∞</span> / 
-                        <span class="forecast-low">${Math.round(forecast.main.temp_min)}∞</span>
+                        <span class="forecast-high">${Math.round(forecast.main.temp_max)}ÔøΩ</span> / 
+                        <span class="forecast-low">${Math.round(forecast.main.temp_min)}ÔøΩ</span>
                     </div>
                 `;
                 
@@ -1522,7 +1529,7 @@
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
             
-            // Cambiar estilo seg+¶n el tipo
+            // Cambiar estilo seg+ÔøΩn el tipo
             if (type === 'info') {
                 errorMessage.style.backgroundColor = '#3498db';
                 errorMessage.style.color = 'white';
@@ -1546,10 +1553,10 @@
         // Initialize app
         function initApp() {
             console.log('Weather App initialized');
-            console.log('Por Jorge Luis Risso PatrÛn - Desarrollador Frontend Junior');
+            console.log('Por Jorge Luis Risso PatrÔøΩn - Desarrollador Frontend Junior');
             
             // Add some example cities to the input placeholder
-            const cities = ['Ciudad de Panam·', 'Madrid', 'Londres', 'Nueva York', 'Tokio'];
+            const cities = ['Ciudad de PanamÔøΩ', 'Madrid', 'Londres', 'Nueva York', 'Tokio'];
             let currentCityIndex = 0;
             
             setInterval(() => {
