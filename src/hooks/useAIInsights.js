@@ -246,6 +246,7 @@ export const useAIInsights = (transactions = []) => {
     setReportError(null)
   }, [])
 
+  
   /**
    * Obtiene estadísticas de uso de la IA
    */

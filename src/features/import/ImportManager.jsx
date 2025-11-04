@@ -94,12 +94,28 @@ export default function ImportManager({ onImport }) {
       if (values.length < 4) continue; // Al menos tipo, descripcion, monto, fecha
       
       // 🔥 MAPEAR VALORES POR NOMBRE DE COLUMNA (no por índice)
+      // Normalizar valores: minúsculas y trim
+      let fecha = (values[columnIndexMap['fecha']] || '').trim();
+      
+      // Normalizar formato de fecha: 3/11/2025 → 03/11/2025
+      if (fecha.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
+        const parts = fecha.split('/');
+        fecha = `${parts[0].padStart(2, '0')}/${parts[1].padStart(2, '0')}/${parts[2]}`;
+      }
+      
+      // Convertir monto a valor absoluto (siempre positivo)
+      let monto = (values[columnIndexMap['monto']] || '').trim();
+      const montoNum = parseFloat(monto);
+      if (!isNaN(montoNum)) {
+        monto = Math.abs(montoNum).toString();
+      }
+      
       const row = {
-        tipo: values[columnIndexMap['tipo']] || '',
-        descripcion: values[columnIndexMap['descripcion']] || '',
-        monto: values[columnIndexMap['monto']] || '',
-        fecha: values[columnIndexMap['fecha']] || '',
-        categoria: columnIndexMap['categoria'] !== undefined ? values[columnIndexMap['categoria']] || '' : '',
+        tipo: (values[columnIndexMap['tipo']] || '').toLowerCase().trim(),
+        descripcion: (values[columnIndexMap['descripcion']] || '').trim(),
+        monto: monto,
+        fecha: fecha,
+        categoria: columnIndexMap['categoria'] !== undefined ? (values[columnIndexMap['categoria']] || '').trim() : '',
       };
 
       // Validar fila
@@ -116,8 +132,8 @@ export default function ImportManager({ onImport }) {
 
   // Validar una fila individual
   const validateRow = (row) => {
-    // Tipo debe ser "ingreso" o "gasto"
-    if (!['ingreso', 'gasto'].includes(row.tipo?.toLowerCase())) {
+    // Tipo debe ser "ingreso" o "gasto" (ya viene normalizado a minúsculas)
+    if (!['ingreso', 'gasto'].includes(row.tipo)) {
       return { valid: false, error: 'Tipo debe ser "ingreso" o "gasto"' };
     }
 
@@ -126,10 +142,10 @@ export default function ImportManager({ onImport }) {
       return { valid: false, error: 'Descripción vacía' };
     }
 
-    // Monto debe ser número positivo
+    // Monto debe ser número positivo (ya fue convertido a absoluto en el parseo)
     const amount = parseFloat(row.monto);
     if (isNaN(amount) || amount <= 0) {
-      return { valid: false, error: 'Monto inválido' };
+      return { valid: false, error: 'Monto inválido (debe ser un número positivo)' };
     }
 
     // Fecha debe ser válida (YYYY-MM-DD o DD/MM/YYYY)
