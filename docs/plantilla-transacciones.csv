@@ -1,0 +1,11 @@
+tipo,descripcion,monto,fecha,categoria
+ingreso,Salario,2500,2025-11-01,
+gasto,Supermercado,45.50,2025-11-05,Comida
+gasto,Netflix,12.99,2025-11-10,Entretenimiento
+ingreso,Freelance,350,2025-11-15,
+gasto,Gasolina,60.00,2025-11-18,Transporte
+gasto,Restaurante,85.25,2025-11-20,Comida
+ingreso,Venta de producto,120,2025-11-22,
+gasto,Farmacia,22.50,2025-11-25,Salud
+gasto,Gym,40.00,2025-11-28,Ejercicio
+gasto,Amazon,75.99,2025-11-30,Compras
