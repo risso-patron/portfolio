@@ -130,7 +130,7 @@ const roadmap = {
 [![Email](https://img.shields.io/badge/Email-luisrissopa%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:luisrissopa@gmail.com)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-+507%206456--0263-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/50764560263?text=Hola%20Jorge%21%20Vi%20tu%20portfolio%20en%20GitHub)
 [![Portfolio](https://img.shields.io/badge/Portfolio-Ver%20Proyectos-0072ff?style=for-the-badge&logo=firefox&logoColor=white)](https://luisitorisso.github.io/Luisitorisso/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/jorge-luis-risso-patron)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jorge-luis-risso-/)
 
 **📍 Ciudad de Panamá, PA | 🇵🇦**
 
