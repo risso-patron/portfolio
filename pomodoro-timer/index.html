@@ -641,11 +641,13 @@
             }
 
             completeSession() {
+                console.log('⏰ SESIÓN COMPLETADA - Intentando reproducir sonido...');
                 this.isRunning = false;
                 clearInterval(this.interval);
                 this.timerContainer.classList.remove('active');
 
                 // Reproducir sonido y mostrar notificación
+                console.log('🔊 Settings soundEnabled:', this.settings.soundEnabled);
                 this.playSound();
                 this.showBrowserNotification();
 
@@ -762,44 +764,64 @@
                 }
             }
 
-            playSound() {
-                if (this.settings.soundEnabled) {
-                    try {
-                        // Crear sonido usando Web Audio API con repetición
-                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                        
-                        // Función para crear un beep
-                        const createBeep = (startTime) => {
-                            const oscillator = audioContext.createOscillator();
-                            const gainNode = audioContext.createGain();
-
-                            oscillator.connect(gainNode);
-                            gainNode.connect(audioContext.destination);
-
-                            // Frecuencias para hacer el sonido más llamativo
-                            oscillator.frequency.setValueAtTime(880, startTime);
-                            oscillator.frequency.setValueAtTime(440, startTime + 0.1);
-                            oscillator.frequency.setValueAtTime(880, startTime + 0.2);
-
-                            // Volumen más alto y audible
-                            gainNode.gain.setValueAtTime(0.5, startTime);
-                            gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.4);
-
-                            oscillator.start(startTime);
-                            oscillator.stop(startTime + 0.4);
-                        };
-
-                        // Crear 3 beeps con pausas
-                        createBeep(audioContext.currentTime);
-                        createBeep(audioContext.currentTime + 0.6);
-                        createBeep(audioContext.currentTime + 1.2);
-                        
-                        console.log('🔔 Sonido de notificación reproducido');
-                    } catch (error) {
-                        console.error('Error al reproducir sonido:', error);
-                        // Fallback: mostrar alerta visual
-                        this.showNotification('⏰ ¡Tiempo terminado!', 'warning');
+            async playSound() {
+                console.log('🔊 playSound() llamado');
+                console.log('🔊 soundEnabled:', this.settings.soundEnabled);
+                
+                if (!this.settings.soundEnabled) {
+                    console.log('❌ Sonido desactivado en settings');
+                    return;
+                }
+                
+                try {
+                    // Crear AudioContext
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    console.log('✅ AudioContext creado:', audioContext.state);
+                    
+                    // Resume AudioContext si está suspendido (necesario en algunos navegadores)
+                    if (audioContext.state === 'suspended') {
+                        await audioContext.resume();
+                        console.log('✅ AudioContext resumed');
                     }
+                    
+                    // Función para crear un beep MÁS FUERTE y LARGO
+                    const createBeep = (startTime) => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+
+                        // Frecuencias más altas y notorias
+                        oscillator.type = 'sine'; // Sonido más suave pero audible
+                        oscillator.frequency.setValueAtTime(1000, startTime); // 1000Hz = tono alto
+                        oscillator.frequency.setValueAtTime(800, startTime + 0.15);
+                        oscillator.frequency.setValueAtTime(1000, startTime + 0.3);
+
+                        // Volumen MÁS ALTO
+                        gainNode.gain.setValueAtTime(0.8, startTime); // 0.8 = 80% volumen
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.5);
+
+                        oscillator.start(startTime);
+                        oscillator.stop(startTime + 0.5);
+                    };
+
+                    // Crear 3 beeps con pausas más largas para que se escuchen bien
+                    const now = audioContext.currentTime;
+                    createBeep(now);
+                    createBeep(now + 0.7);
+                    createBeep(now + 1.4);
+                    
+                    console.log('✅ 3 beeps programados y reproduciendo');
+                    
+                    // Fallback visual SIEMPRE
+                    this.showNotification('⏰ ¡Tiempo terminado! 🔔', 'warning');
+                    
+                } catch (error) {
+                    console.error('❌ Error al reproducir sonido:', error);
+                    console.error('❌ Error stack:', error.stack);
+                    // Fallback: mostrar alerta visual
+                    this.showNotification('⏰ ¡TIEMPO TERMINADO! (sonido no disponible)', 'warning');
                 }
             }
 
