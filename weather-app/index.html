@@ -967,9 +967,9 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>������� Weather App</h1>
+            <h1>&#9729;&#65039; Weather App</h1>
             <p>Consulta el clima en cualquier ciudad del mundo</p>
-            <div class="sky-status" id="skyStatus">������� Cielo Esperando</div>
+            <div class="sky-status" id="skyStatus">&#9729;&#65039; Cielo Esperando</div>
         </header>
 
         <!-- Search Section -->
@@ -978,16 +978,16 @@
                 <input 
                     type="text" 
                     class="search-input" 
-                    placeholder="Buscar ciudad (ej: Ciudad de Panam+�)"
+                    placeholder="Buscar ciudad (ej: Londres, Panama, Tokyo)"
                     id="cityInput"
                 >
                 <button class="btn btn-primary" onclick="searchWeather()">
-                    ���� Buscar
+                    &#128269; Buscar
                 </button>
             </div>
             
             <button class="btn btn-secondary geolocation-btn" onclick="getCurrentLocation()">
-                ���� Usar Mi Ubicaci+�n
+                &#128205; Usar Mi Ubicacion
             </button>
 
             <div class="error" id="errorMessage"></div>
@@ -1062,7 +1062,8 @@
         // Datos de demo para portfolio
         const demoWeatherData = {
             'panama': {
-                name: 'Ciudad de Panam+�',
+                name: 'Ciudad de Panama',
+                sys: { country: 'PA' },
                 main: { temp: 28, feels_like: 32, humidity: 78, pressure: 1012 },
                 weather: [{ main: 'Partly Cloudy', description: 'parcialmente nublado', icon: '02d' }],
                 wind: { speed: 12 },
@@ -1070,6 +1071,7 @@
             },
             'madrid': {
                 name: 'Madrid',
+                sys: { country: 'ES' },
                 main: { temp: 18, feels_like: 16, humidity: 65, pressure: 1015 },
                 weather: [{ main: 'Clear', description: 'cielo claro', icon: '01d' }],
                 wind: { speed: 8 },
@@ -1077,6 +1079,7 @@
             },
             'tokyo': {
                 name: 'Tokio',
+                sys: { country: 'JP' },
                 main: { temp: 22, feels_like: 24, humidity: 72, pressure: 1018 },
                 weather: [{ main: 'Cloudy', description: 'nublado', icon: '04d' }],
                 wind: { speed: 6 },
@@ -1084,13 +1087,23 @@
             },
             'new york': {
                 name: 'Nueva York',
+                sys: { country: 'US' },
                 main: { temp: 15, feels_like: 12, humidity: 60, pressure: 1020 },
                 weather: [{ main: 'Rain', description: 'lluvia ligera', icon: '10d' }],
                 wind: { speed: 15 },
                 coord: { lat: 40.7128, lon: -74.0060 }
             },
+            'london': {
+                name: 'Londres',
+                sys: { country: 'GB' },
+                main: { temp: 12, feels_like: 10, humidity: 75, pressure: 1010 },
+                weather: [{ main: 'Rain', description: 'lluvia moderada', icon: '10d' }],
+                wind: { speed: 18 },
+                coord: { lat: 51.5074, lon: -0.1278 }
+            },
             'paris': {
-                name: 'Par+�s',
+                name: 'Paris',
+                sys: { country: 'FR' },
                 main: { temp: 16, feels_like: 14, humidity: 68, pressure: 1013 },
                 weather: [{ main: 'Overcast', description: 'muy nublado', icon: '04d' }],
                 wind: { speed: 10 },
