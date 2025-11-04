@@ -2,28 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Variables de tema */
+:root {
+  --transition-theme: 300ms ease-in-out;
+}
+
 /* Estilos globales personalizados */
 @layer base {
-  body {
-    @apply bg-gradient-primary min-h-screen font-sans;
+  /* Transición suave para dark mode */
+  html {
+    transition: background-color var(--transition-theme), color var(--transition-theme);
+  }
+
+  /* Light mode (default) */
+  html.light {
+    color-scheme: light;
+  }
+
+  html.light body {
+    @apply bg-gradient-primary min-h-screen font-sans text-gray-900;
+  }
+
+  /* Dark mode */
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html.dark body {
+    @apply bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen font-sans text-gray-100;
+  }
+
+  /* Smooth transitions para todos los elementos */
+  * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: var(--transition-theme);
+    transition-timing-function: ease-in-out;
   }
 }
 
 @layer components {
-  /* Scrollbar personalizada */
+  /* Scrollbar personalizada - Light mode */
   .custom-scrollbar::-webkit-scrollbar {
     width: 8px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    @apply bg-gray-100 rounded;
+    @apply bg-gray-100 dark:bg-gray-800 rounded;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-primary-400 rounded;
+    @apply bg-primary-400 dark:bg-primary-600 rounded;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary-500;
+    @apply bg-primary-500 dark:bg-primary-500;
+  }
+
+  /* Skeleton loading animation */
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
+
+  .dark .skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+
+  @keyframes skeleton-loading-dark {
+    0% {
+      background-color: hsl(200, 20%, 20%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 30%);
+    }
+  }
+
+  .dark .skeleton {
+    animation: skeleton-loading-dark 1s linear infinite alternate;
   }
 }
+

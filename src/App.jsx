@@ -1,11 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { useTransactions } from './hooks/useTransactions';
 import { TransactionForm } from './components/Transactions/TransactionForm';
 import { TransactionList } from './components/Transactions/TransactionList';
 import { BalanceCard } from './components/Dashboard/BalanceCard';
 import { CategoryChart } from './components/Dashboard/CategoryChart';
 import { Alert } from './components/Shared/Alert';
+import { ThemeToggle } from './components/Shared/ThemeToggle';
 import { ProfileMenu } from './components/Auth/ProfileMenu';
 import MigrationDialog from './components/MigrationDialog';
 import AuthPage from './pages/AuthPage';
@@ -19,6 +21,9 @@ import { ComparativeChart } from './components/Charts/ComparativeChart';
 // COMPONENTES DE IA
 import { AIInsightsPanel, AIAlerts, PredictiveChart } from './components/AI';
 import { useAIInsights } from './hooks/useAIInsights';
+// FEATURES PREMIUM
+import { GoalManager } from './features/goals/GoalManager';
+import { ExportManager } from './features/export/ExportManager';
 
 /**
  * Componente principal de la aplicación con autenticación
@@ -27,6 +32,7 @@ function AppContent() {
   const { user, loading: authLoading } = useAuth();
   const [showMigration, setShowMigration] = useState(false);
   const [creditCards, setCreditCards] = useState([]);
+  const [goals, setGoals] = useState([]);
 
   const {
     incomes,
@@ -59,6 +65,26 @@ function AppContent() {
   const handleRemoveCard = (cardId) => {
     setCreditCards(creditCards.filter(card => card.id !== cardId));
     showAlert('Tarjeta eliminada', 'success');
+  };
+
+  // Funciones para metas financieras
+  const handleAddGoal = (goal) => {
+    setGoals([...goals, goal]);
+    showAlert(`Meta "${goal.name}" creada exitosamente`, 'success');
+    return true;
+  };
+
+  const handleUpdateGoalProgress = (goalId, newAmount) => {
+    setGoals(goals.map(goal =>
+      goal.id === goalId ? { ...goal, currentAmount: newAmount } : goal
+    ));
+  };
+
+  const handleDeleteGoal = (goalId) => {
+    if (window.confirm('¿Estás seguro de eliminar esta meta?')) {
+      setGoals(goals.filter(goal => goal.id !== goalId));
+      showAlert('Meta eliminada', 'success');
+    }
   };
 
   // HOOK DE IA - Combinar todas las transacciones
@@ -143,7 +169,7 @@ function AppContent() {
       {/* Container principal */}
       <div className="max-w-7xl mx-auto">
         {/* Header con Profile Menu */}
-        <header className="bg-gradient-dark text-white rounded-2xl p-8 mb-8 shadow-xl">
+        <header className="bg-gradient-dark dark:bg-gray-800 text-white rounded-2xl p-8 mb-8 shadow-xl">
           <div className="flex justify-between items-center">
             <div className="flex-1 text-center">
               <h1 className="text-4xl md:text-5xl font-light mb-3">
@@ -154,6 +180,9 @@ function AppContent() {
               </p>
             </div>
             <div className="ml-4 flex items-center gap-4">
+              {/* Toggle Dark Mode */}
+              <ThemeToggle />
+              
               {/* ✅ ALERTAS DE IA */}
               <AIAlerts
                 alerts={aiInsights.alerts}
@@ -194,6 +223,25 @@ function AppContent() {
             onAddCard={handleAddCard}
             onUpdateDebt={handleUpdateDebt}
             onRemoveCard={handleRemoveCard}
+          />
+
+          {/* 🎯 GESTOR DE METAS FINANCIERAS */}
+          <GoalManager
+            goals={goals}
+            onAddGoal={handleAddGoal}
+            onUpdateProgress={handleUpdateGoalProgress}
+            onDeleteGoal={handleDeleteGoal}
+            currentBalance={balance}
+          />
+
+          {/* 📥 EXPORTADOR DE DATOS */}
+          <ExportManager
+            incomes={incomes}
+            expenses={expenses}
+            categoryAnalysis={categoryAnalysis}
+            totalIncome={totalIncome}
+            totalExpenses={totalExpenses}
+            balance={balance}
           />
 
           {/* Sección de Gráficos Avanzados */}
@@ -260,13 +308,15 @@ function AppContent() {
 }
 
 /**
- * App wrapper con AuthProvider
+ * App wrapper con AuthProvider y ThemeProvider
  */
 function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
