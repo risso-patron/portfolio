@@ -1,20 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App | Jorge Luis Risso Patrón</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌤️</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁</text></svg>">
     <style>
-        /* Variables CSS */
+        /* Variables CSS - Paleta Azul Unificada */
         :root {
-            --primary: #0072ff;
-            --secondary: #ff6b6b;
-            --accent: #4ecdc4;
-            --dark: #2c3e50;
-            --light: #ecf0f1;
+            --primary: #3b82f6;           /* Azul principal */
+            --secondary: #60a5fa;         /* Azul claro */
+            --accent: #93c5fd;            /* Azul suave */
+            --dark: #1e40af;             /* Azul oscuro */
+            --light: #dbeafe;            /* Azul muy claro */
             --white: #ffffff;
-            --shadow: rgba(0, 0, 0, 0.1);
+            --shadow: rgba(59, 130, 246, 0.15);
             --gradient: linear-gradient(135deg, var(--primary), var(--accent));
             --border-radius: 12px;
             --transition: all 0.3s ease;
@@ -29,66 +29,193 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: 
-                /* Overlay para legibilidad */
-                linear-gradient(135deg, rgba(0, 114, 255, 0.7) 0%, rgba(78, 205, 196, 0.8) 50%, rgba(255, 107, 107, 0.7) 100%),
-                /* Patrón de clima con CSS */
-                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.3) 20px, transparent 21px),
-                radial-gradient(circle at 80% 30%, rgba(135, 206, 235, 0.4) 15px, transparent 16px),
-                radial-gradient(circle at 60% 70%, rgba(255, 223, 0, 0.3) 25px, transparent 26px),
-                radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.2) 18px, transparent 19px),
-                /* Gradiente base simulando cielo */
+            /* Sky-inspired dynamic background - Default: Clear Day */
+            background: var(--sky-gradient, 
                 linear-gradient(180deg, 
-                    #87CEEB 0%,     /* Cielo claro */
-                    #98D8E8 20%,    /* Cielo medio */
-                    #F0E68C 40%,    /* Atardecer */
-                    #FFB347 60%,    /* Naranja */
-                    #4682B4 80%,    /* Azul oscuro */
-                    #2F4F4F 100%    /* Noche */
-                );
+                    #87CEEB 0%,        /* Sky blue */
+                    #B0E0E6 30%,       /* Powder blue */
+                    #E0F6FF 60%,       /* Alice blue */
+                    #F0F8FF 100%       /* Alice blue light */
+                )
+            );
             background-attachment: fixed;
-            background-size: 100px 100px, 150px 150px, 200px 200px, 120px 120px, 100% 100%;
+            background-size: 100% 100%;
             min-height: 100vh;
             padding: 20px;
-            color: var(--dark);
+            color: var(--text-color, #2c3e50);
             position: relative;
-            animation: weatherAnimation 20s ease-in-out infinite;
+            transition: all 1.5s ease-in-out;
         }
 
-        /* Animación del clima de fondo */
-        @keyframes weatherAnimation {
-            0% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
-            25% { background-position: 50% 25%, 25% 50%, 75% 25%, 25% 75%, 0% 0%; }
-            50% { background-position: 100% 50%, 50% 100%, 0% 50%, 50% 0%, 0% 0%; }
-            75% { background-position: 75% 75%, 75% 25%, 25% 75%, 75% 25%, 0% 0%; }
-            100% { background-position: 0% 100%, 100% 0%, 50% 100%, 0% 50%, 0% 0%; }
+        /* Sky gradients inspired by Anna Grand's concept */
+        /* Clear/Sunny Day */
+        body.clear {
+            --sky-gradient: linear-gradient(180deg, 
+                #87CEEB 0%,        /* Sky blue */
+                #B0E0E6 30%,       /* Powder blue */  
+                #E0F6FF 70%,       /* Light cyan */
+                #F0F8FF 100%       /* Alice blue */
+            );
+            --text-color: #2c3e50;
+            color: var(--text-color);
         }
 
-        /* Elementos flotantes de clima */
+        /* Cloudy Day */
+        body.clouds {
+            --sky-gradient: linear-gradient(180deg, 
+                #708090 0%,        /* Slate gray */
+                #B0C4DE 25%,       /* Light steel blue */
+                #D3D3D3 60%,       /* Light gray */
+                #F5F5F5 100%       /* White smoke */
+            );
+            --text-color: #2c3e50;
+            color: var(--text-color);
+        }
+
+        /* Rainy Day */
+        body.rain {
+            --sky-gradient: linear-gradient(180deg, 
+                #2F4F4F 0%,        /* Dark slate gray */
+                #696969 30%,       /* Dim gray */
+                #808080 60%,       /* Gray */
+                #A9A9A9 100%       /* Dark gray */
+            );
+            --text-color: #ffffff;
+            color: var(--text-color);
+        }
+
+        /* Stormy/Thunderstorm */
+        body.thunderstorm {
+            --sky-gradient: linear-gradient(180deg, 
+                #191970 0%,        /* Midnight blue */
+                #2F2F2F 25%,       /* Dark gray */
+                #1C1C1C 60%,       /* Almost black */
+                #000000 100%       /* Black */
+            );
+            --text-color: #ffffff;
+            color: var(--text-color);
+            animation: lightning 8s ease-in-out infinite;
+        }
+
+        /* Snow */
+        body.snow {
+            --sky-gradient: linear-gradient(180deg, 
+                #F8F8FF 0%,        /* Ghost white */
+                #E6E6FA 30%,       /* Lavender */
+                #D3D3D3 70%,       /* Light gray */
+                #C0C0C0 100%       /* Silver */
+            );
+            --text-color: #2c3e50;
+            color: var(--text-color);
+        }
+
+        /* Fog/Mist - Inspired by Anna's "magic" description */
+        body.mist {
+            --sky-gradient: linear-gradient(180deg, 
+                #E6E6FA 0%,        /* Lavender */
+                #DDA0DD 20%,       /* Plum */
+                #D8BFD8 50%,       /* Thistle */
+                #F0E68C 80%,       /* Khaki */
+                #FFB6C1 100%       /* Light pink */
+            );
+            --text-color: #2c3e50;
+            color: var(--text-color);
+            animation: mysticalFog 12s ease-in-out infinite;
+        }
+
+        /* Dawn/Sunrise */
+        body.dawn {
+            --sky-gradient: linear-gradient(180deg, 
+                #FF69B4 0%,        /* Hot pink */
+                #FFB6C1 20%,       /* Light pink */
+                #FFA07A 40%,       /* Light salmon */
+                #FFEFD5 70%,       /* Papaya whip */
+                #F0F8FF 100%       /* Alice blue */
+            );
+            --text-color: #2c3e50;
+            color: var(--text-color);
+        }
+
+        /* Sunset */
+        body.sunset {
+            --sky-gradient: linear-gradient(180deg, 
+                #FF4500 0%,        /* Orange red */
+                #FF6347 25%,       /* Tomato */
+                #FF8C00 50%,       /* Dark orange */
+                #FFD700 75%,       /* Gold */
+                #FFFFE0 100%       /* Light yellow */
+            );
+            --text-color: #2c3e50;
+            color: var(--text-color);
+        }
+
+        /* Night */
+        body.night {
+            --sky-gradient: linear-gradient(180deg, 
+                #000000 0%,        /* Black */
+                #191970 30%,       /* Midnight blue */
+                #483D8B 60%,       /* Dark slate blue */
+                #2F4F4F 100%       /* Dark slate gray */
+            );
+            --text-color: #ffffff;
+            color: var(--text-color);
+        }
+
+        /* Sky-inspired animations from Anna Grand's concept */
+        @keyframes lightning {
+            0%, 90%, 100% { 
+                filter: brightness(1) contrast(1);
+            }
+            5% { 
+                filter: brightness(2) contrast(1.5);
+                box-shadow: 0 0 100px rgba(255, 255, 255, 0.8);
+            }
+            10% { 
+                filter: brightness(0.5) contrast(1.2);
+            }
+        }
+
+        @keyframes mysticalFog {
+            0%, 100% { 
+                filter: brightness(1) blur(0px);
+            }
+            33% { 
+                filter: brightness(1.2) blur(1px);
+            }
+            66% { 
+                filter: brightness(0.9) blur(0.5px);
+            }
+        }
+
+        /* Dynamic cloud movement */
         body::before {
-            content: '☀️ ⛅ 🌧️ ⛈️ 🌨️ 🌪️ 🌈 ❄️';
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            font-size: 2rem;
-            letter-spacing: 3rem;
-            opacity: 0.1;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 40% 70%, rgba(255, 255, 255, 0.12) 0%, transparent 45%);
             pointer-events: none;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-around;
-            animation: floatIcons 15s ease-in-out infinite;
+            animation: driftClouds 20s ease-in-out infinite;
             z-index: 1;
         }
 
-        @keyframes floatIcons {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(5deg); }
-            66% { transform: translateY(-10px) rotate(-3deg); }
+        @keyframes driftClouds {
+            0%, 100% { 
+                transform: translateX(0px);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateX(30px);
+                opacity: 0.5;
+            }
         }
+
+        /* Removed floating icons - replaced with sky-inspired dynamic clouds */
 
         .container {
             max-width: 900px;
@@ -97,46 +224,100 @@
             z-index: 10;
         }
 
-        /* Header mejorado */
+        /* Header adaptativo inspirado en Anna Grand */
         .header {
             text-align: center;
             margin-bottom: 2rem;
-            color: var(--white);
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem;
             border-radius: var(--border-radius);
-            border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Adaptaci├│n para fondos oscuros */
+        body.thunderstorm .header,
+        body.night .header,
+        body.rain .header {
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Adaptaci├│n para fondos claros */
+        body.clear .header,
+        body.snow .header,
+        body.clouds .header {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
             font-size: 3rem;
             margin-bottom: 0.5rem;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(45deg, #fff, #87CEEB);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             font-weight: 800;
+            transition: all 0.3s ease;
         }
 
         .header p {
             opacity: 0.95;
             font-size: 1.2rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             font-weight: 500;
+            margin-bottom: 1rem;
         }
 
-        /* Search Section mejorada */
+        /* Sky status indicator - Anna Grand's concept */
+        .sky-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Sky status colors for different weather */
+        body.clear .sky-status { background: rgba(135, 206, 235, 0.2); }
+        body.clouds .sky-status { background: rgba(169, 169, 169, 0.2); }
+        body.rain .sky-status { background: rgba(47, 79, 79, 0.3); }
+        body.thunderstorm .sky-status { background: rgba(25, 25, 112, 0.3); }
+        body.snow .sky-status { background: rgba(240, 248, 255, 0.2); }
+        body.mist .sky-status { background: rgba(221, 160, 221, 0.2); }
+
+        /* Search Section adaptativa */
         .search-section {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem;
             border-radius: var(--border-radius);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Adaptaci├│n para fondos oscuros */
+        body.thunderstorm .search-section,
+        body.night .search-section,
+        body.rain .search-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Adaptaci├│n para fondos claros */
+        body.clear .search-section,
+        body.snow .search-section,
+        body.clouds .search-section {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(0, 0, 0, 0.1);
         }
 
         .search-container {
@@ -148,12 +329,14 @@
         .search-input {
             flex: 1;
             padding: 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.4);
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: var(--transition);
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95), 
+                rgba(245, 245, 245, 0.9)
+            );
             color: var(--dark);
             font-weight: 500;
         }
@@ -171,36 +354,82 @@
             font-style: italic;
         }
 
+        /* ==================== Botones Weather App - Paleta Azul Unificada ==================== */
         .btn {
             padding: 1rem 1.5rem;
             border: none;
             border-radius: var(--border-radius);
             font-size: 1rem;
             cursor: pointer;
-            transition: var(--transition);
             font-weight: 600;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+            background: linear-gradient(135deg, #BFDBFE, #93C5FD);
+            color: #1e40af;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(191, 219, 254, 0.4);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            transition: left 0.5s ease;
+            z-index: -1;
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, #0056cc, #3db8af);
+            color: white;
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 114, 255, 0.4);
-        }        .btn-secondary {
-            background: var(--secondary);
-            color: var(--white);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #1d4ed8;
+            border: 2px solid #60a5fa;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            transition: all 0.6s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
         }
 
         .btn-secondary:hover {
-            background: #ff5252;
-            transform: translateY(-2px);
+            color: #1e40af;
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(96, 165, 250, 0.4);
+        }
+
+        .btn-secondary:hover::before {
+            width: 300%;
+            height: 300%;
         }
 
         .geolocation-btn {
@@ -212,27 +441,99 @@
             margin-top: 1rem;
         }
 
-        /* Weather Display */
+        /* Weather Display adaptativo */
         .weather-display {
             display: none;
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: var(--border-radius);
-            box-shadow: 0 8px 32px var(--shadow);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         .current-weather {
             padding: 2.5rem;
             text-align: center;
-            background: 
-                linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)),
-                linear-gradient(45deg, rgba(0, 114, 255, 0.8), rgba(78, 205, 196, 0.7));
-            backdrop-filter: blur(20px);
-            color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        /* Adaptaci├│n para fondos oscuros */
+        body.thunderstorm .weather-display,
+        body.night .weather-display,
+        body.rain .weather-display {
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        body.thunderstorm .current-weather,
+        body.night .current-weather,
+        body.rain .current-weather {
+            background: rgba(0, 0, 0, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Adaptaci├│n para fondos claros */
+        body.clear .weather-display,
+        body.snow .weather-display,
+        body.clouds .weather-display {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body.clear .current-weather,
+        body.snow .current-weather,
+        body.clouds .current-weather {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Temas din├ímicos seg├║n el clima */
+        .current-weather.sunny {
+            background: linear-gradient(135deg, 
+                rgba(255, 140, 0, 0.9), 
+                rgba(255, 165, 0, 0.85),
+                rgba(255, 215, 0, 0.8)
+            );
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 50px rgba(255, 140, 0, 0.3);
+        }
+
+        .current-weather.snowy {
+            background: linear-gradient(135deg, 
+                rgba(173, 216, 230, 0.9), 
+                rgba(135, 206, 235, 0.85),
+                rgba(176, 224, 230, 0.8)
+            );
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 50px rgba(173, 216, 230, 0.4);
+            color: #1a1a2e;
+        }
+
+        .current-weather.rainy {
+            background: linear-gradient(135deg, 
+                rgba(70, 130, 180, 0.9), 
+                rgba(100, 149, 237, 0.85),
+                rgba(65, 105, 225, 0.8)
+            );
+            border-color: rgba(135, 206, 250, 0.6);
+            box-shadow: 0 15px 50px rgba(70, 130, 180, 0.3);
+        }
+
+        .current-weather.stormy {
+            background: linear-gradient(135deg, 
+                rgba(75, 0, 130, 0.9), 
+                rgba(25, 25, 112, 0.85),
+                rgba(72, 61, 139, 0.8)
+            );
+            border-color: rgba(255, 255, 0, 0.6);
+            box-shadow: 0 15px 50px rgba(138, 43, 226, 0.3);
         }
 
         .current-weather::before {
@@ -254,13 +555,148 @@
         }
 
         .weather-icon {
-            font-size: 5rem;
+            font-size: 6rem;
             margin-bottom: 1rem;
             display: inline-block;
             animation: bounceWeather 3s ease-in-out infinite;
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        /* Iconos espec├¡ficos con tama├▒os y efectos personalizados */
+        .weather-icon.sun {
+            font-size: 8rem;
+            animation: rotateSun 10s linear infinite, bounceWeather 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 140, 0, 0.4);
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+        }
+
+        .weather-icon.snow {
+            font-size: 7rem;
+            animation: snowfall 4s ease-in-out infinite, sway 6s ease-in-out infinite;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(173, 216, 230, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            filter: drop-shadow(0 0 10px rgba(173, 216, 230, 0.9));
+        }
+
+        .weather-icon.rain {
+            font-size: 6.5rem;
+            animation: rainDrop 2s ease-in-out infinite, bounceWeather 3s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(0, 100, 200, 0.6);
+        }
+
+        .weather-icon.storm {
+            font-size: 7rem;
+            animation: lightning 1.5s ease-in-out infinite, shake 4s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 0, 0.8), 0 0 40px rgba(128, 0, 128, 0.6);
+        }
+
+        .weather-icon.wind {
+            font-size: 6.5rem;
+            animation: windSway 3s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(135, 206, 235, 0.6);
+        }
+
+        /* Animaciones espec├¡ficas para cada tipo de clima */
+        @keyframes rotateSun {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes snowfall {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateX(0px); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @keyframes rainDrop {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.1); }
+        }
+
+        @keyframes lightning {
+            0%, 90%, 100% { opacity: 1; }
+            5%, 85% { opacity: 0.3; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+            20%, 40%, 60%, 80% { transform: translateX(3px); }
+        }
+
+        @keyframes windSway {
+            0%, 100% { transform: translateX(0px) rotate(0deg); }
+            25% { transform: translateX(-15px) rotate(-5deg); }
+            50% { transform: translateX(0px) rotate(0deg); }
+            75% { transform: translateX(15px) rotate(5deg); }
+        }
+
+        /* Part├¡culas de viento y nieve */
+        .wind-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .wind-particle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            animation: windFlow 8s linear infinite;
+        }
+
+        .snow-particle {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            animation: snowFall 6s linear infinite;
+        }
+
+        @keyframes windFlow {
+            0% {
+                transform: translateX(-100px) translateY(50px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) translateY(-50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes snowFall {
+            0% {
+                transform: translateY(-100px) translateX(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         @keyframes bounceWeather {
@@ -302,19 +738,24 @@
         .detail-item {
             text-align: center;
             padding: 1.2rem;
-            background: 
-                linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            background: linear-gradient(135deg, 
+                rgba(20, 30, 40, 0.9), 
+                rgba(30, 40, 50, 0.85)
+            );
             border-radius: var(--border-radius);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
 
         .detail-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, 
+                rgba(25, 35, 45, 0.95), 
+                rgba(35, 45, 55, 0.9)
+            );
+            border-color: rgba(255, 215, 0, 0.5);
         }
 
         .detail-label {
@@ -429,18 +870,39 @@
 
         .unit-btn {
             padding: 0.5rem 1rem;
-            border: 2px solid var(--white);
+            border: 2px solid #93c5fd;
             background: transparent;
-            color: var(--white);
+            color: #93c5fd;
             border-radius: 25px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
         }
 
+        .unit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #bfdbfe, #93c5fd);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .unit-btn:hover::before,
+        .unit-btn.active::before {
+            left: 0;
+        }
+
+        .unit-btn:hover,
         .unit-btn.active {
-            background: var(--white);
-            color: var(--primary);
+            color: #1e40af;
+            border-color: #60a5fa;
+            transform: translateY(-2px);
         }
 
         /* Responsive */
@@ -505,8 +967,9 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>🌤️ Weather App</h1>
+            <h1>­ƒîñ´©Å Weather App</h1>
             <p>Consulta el clima en cualquier ciudad del mundo</p>
+            <div class="sky-status" id="skyStatus">­ƒîñ´©Å Cielo Esperando</div>
         </header>
 
         <!-- Search Section -->
@@ -515,16 +978,16 @@
                 <input 
                     type="text" 
                     class="search-input" 
-                    placeholder="Buscar ciudad (ej: Ciudad de Panamá)"
+                    placeholder="Buscar ciudad (ej: Ciudad de Panam├í)"
                     id="cityInput"
                 >
                 <button class="btn btn-primary" onclick="searchWeather()">
-                    🔍 Buscar
+                    ­ƒöì Buscar
                 </button>
             </div>
             
             <button class="btn btn-secondary geolocation-btn" onclick="getCurrentLocation()">
-                📍 Usar Mi Ubicación
+                ­ƒôì Usar Mi Ubicaci├│n
             </button>
 
             <div class="error" id="errorMessage"></div>
@@ -533,29 +996,29 @@
         <!-- Loading -->
         <div class="loading" id="loadingIndicator">
             <div class="spinner"></div>
-            <p>Obteniendo información del clima...</p>
+            <p>Obteniendo informaci├│n del clima...</p>
         </div>
 
         <!-- Weather Display -->
         <main class="weather-display" id="weatherDisplay">
             <!-- Current Weather -->
             <section class="current-weather">
-                <div class="weather-icon" id="weatherIcon">🌤️</div>
-                <div class="temperature" id="temperature">--°</div>
+                <div class="weather-icon" id="weatherIcon">­ƒîñ´©Å</div>
+                <div class="temperature" id="temperature">--┬░</div>
                 <div class="weather-description" id="weatherDescription">--</div>
                 <div class="city-name" id="cityName">--</div>
                 
                 <!-- Units Toggle -->
                 <div class="units-toggle">
-                    <button class="unit-btn active" onclick="toggleUnits('celsius')">°C</button>
-                    <button class="unit-btn" onclick="toggleUnits('fahrenheit')">°F</button>
+                    <button class="unit-btn active" onclick="toggleUnits('celsius')">┬░C</button>
+                    <button class="unit-btn" onclick="toggleUnits('fahrenheit')">┬░F</button>
                 </div>
 
                 <!-- Weather Details -->
                 <div class="weather-details">
                     <div class="detail-item">
-                        <div class="detail-label">Sensación Térmica</div>
-                        <div class="detail-value" id="feelsLike">--°</div>
+                        <div class="detail-label">Sensaci├│n T├®rmica</div>
+                        <div class="detail-value" id="feelsLike">--┬░</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">Humedad</div>
@@ -566,7 +1029,7 @@
                         <div class="detail-value" id="windSpeed">-- km/h</div>
                     </div>
                     <div class="detail-item">
-                        <div class="detail-label">Presión</div>
+                        <div class="detail-label">Presi├│n</div>
                         <div class="detail-value" id="pressure">-- hPa</div>
                     </div>
                 </div>
@@ -574,7 +1037,7 @@
 
             <!-- Forecast Section -->
             <section class="forecast-section">
-                <h2 class="forecast-title">Pronóstico de 5 Días</h2>
+                <h2 class="forecast-title">Pron├│stico de 5 D├¡as</h2>
                 <div class="forecast-container" id="forecastContainer">
                     <!-- Forecast items will be populated by JavaScript -->
                 </div>
@@ -583,13 +1046,13 @@
     </div>
 
     <script>
-        // ==================== CONFIGURACIÓN OpenWeatherMap ====================
-        // 🔑 Usando tu API Key de OpenWeatherMap (ya creada)
-        // 🔑 Plan gratuito: 60 calls/minuto, 1,000,000 calls/mes
-        // 🔑 Debería funcionar después de 10 minutos de creada
+        // ==================== CONFIGURACI├ôN OpenWeatherMap ====================
+        // ­ƒöæ Usando tu API Key de OpenWeatherMap (ya creada)
+        // ­ƒöæ Plan gratuito: 60 calls/minuto, 1,000,000 calls/mes
+        // ­ƒöæ Deber├¡a funcionar despu├®s de 10 minutos de creada
         
         const DEMO_MODE = true; // MODO DEMO ACTIVADO - Cambia a false cuando API funcione
-        const API_KEY = '8d3599da8294f99fb8f1bc2ac0c7829b'; // ✅ Tu API Key de OpenWeather
+        const API_KEY = '8d3599da8294f99fb8f1bc2ac0c7829b'; // Ô£à Tu API Key de OpenWeather
         const API_BASE_URL = 'https://api.openweathermap.org/data/2.5';
         
         // Global variables
@@ -599,7 +1062,7 @@
         // Datos de demo para portfolio
         const demoWeatherData = {
             'panama': {
-                name: 'Ciudad de Panamá',
+                name: 'Ciudad de Panam├í',
                 main: { temp: 28, feels_like: 32, humidity: 78, pressure: 1012 },
                 weather: [{ main: 'Partly Cloudy', description: 'parcialmente nublado', icon: '02d' }],
                 wind: { speed: 12 },
@@ -627,7 +1090,7 @@
                 coord: { lat: 40.7128, lon: -74.0060 }
             },
             'paris': {
-                name: 'París',
+                name: 'Par├¡s',
                 main: { temp: 16, feels_like: 14, humidity: 68, pressure: 1013 },
                 weather: [{ main: 'Overcast', description: 'muy nublado', icon: '04d' }],
                 wind: { speed: 10 },
@@ -635,17 +1098,17 @@
             }
         };
 
-        // Weather icons mapping
+        // Weather icons mapping - Iconos mejorados para mejor contraste
         const weatherIcons = {
-            '01d': '☀️', '01n': '🌙',
-            '02d': '⛅', '02n': '☁️',
-            '03d': '☁️', '03n': '☁️',
-            '04d': '☁️', '04n': '☁️',
-            '09d': '🌧️', '09n': '🌧️',
-            '10d': '🌦️', '10n': '🌧️',
-            '11d': '⛈️', '11n': '⛈️',
-            '13d': '❄️', '13n': '❄️',
-            '50d': '🌫️', '50n': '🌫️'
+            '01d': 'ÔÿÇ´©Å', '01n': '´┐¢',
+            '02d': 'Ôøà', '02n': 'Ôÿü´©Å',
+            '03d': 'Ôÿü´©Å', '03n': 'Ôÿü´©Å',
+            '04d': 'Ôÿü´©Å', '04n': 'Ôÿü´©Å',
+            '09d': '­ƒîº´©Å', '09n': '­ƒîº´©Å',
+            '10d': 'Ôøê´©Å', '10n': '­ƒîº´©Å',
+            '11d': 'Ôøê´©Å', '11n': 'Ôøê´©Å',
+            '13d': 'ÔØä´©Å', '13n': 'ÔØä´©Å',
+            '50d': '´┐¢´©Å', '50n': '­ƒî½´©Å'
         };
 
         // DOM Elements
@@ -664,10 +1127,10 @@
         // Check for API key configuration
         window.addEventListener('load', () => {
             if (API_KEY === 'TU_NUEVA_API_KEY_AQUI' || API_KEY === 'TU_API_KEY_AQUI') {
-                showError('🔑 CONFIGURACIÓN REQUERIDA: Necesitas configurar tu API Key de OpenWeatherMap.');
+                showError('CONFIGURACIÓN REQUERIDA: Necesitas configurar tu API Key de OpenWeatherMap.');
             } else {
                 // API key configurada, mostrar mensaje informativo
-                console.log('✅ API Key configurada. Si no funciona, espera 10 minutos para que se active.');
+                console.log('API Key configurada. Si no funciona, espera 10 minutos para que se active.');
             }
         });
 
@@ -695,14 +1158,14 @@
                     
                     // Mostrar mensaje de demo
                     setTimeout(() => {
-                        showError('🎬 MODO DEMO: Mostrando datos simulados para portfolio. En producción usaría OpenWeatherMap API.', 'info');
+                        showError('MODO DEMO: Mostrando datos simulados para portfolio. En producción usaría OpenWeatherMap API.', 'info');
                     }, 1000);
                 }, 800);
                 return;
             }
 
             if (API_KEY === 'TU_API_KEY_AQUI') {
-                showError('⚠️ API Key no configurada. Ve las instrucciones en el README.');
+                showError('API Key no configurada. Ve las instrucciones en el README.');
                 return;
             }
 
@@ -711,7 +1174,7 @@
 
         async function getCurrentLocation() {
             if (DEMO_MODE) {
-                // Modo demo - simular ubicación de Panamá
+                // Modo demo - simular ubicaci├│n de Panam├í
                 showLoading();
                 setTimeout(() => {
                     const weatherData = demoWeatherData['panama'];
@@ -720,7 +1183,7 @@
                     hideLoading();
                     
                     setTimeout(() => {
-                        showError('🎬 MODO DEMO: Simulando ubicación de Panamá para portfolio.', 'info');
+                        showError('MODO DEMO: Simulando ubicación de Panamá para portfolio.', 'info');
                     }, 1000);
                 }, 800);
                 return;
@@ -732,7 +1195,7 @@
             }
 
             if (API_KEY === 'TU_API_KEY_AQUI') {
-                showError('⚠️ API Key no configurada. Ve las instrucciones en el README.');
+                showError('API Key no configurada. Ve las instrucciones en el README.');
                 return;
             }
 
@@ -784,15 +1247,15 @@
                 console.error('Error completo:', error);
                 
                 if (error.message.includes('404')) {
-                    showError('🏙️ Ciudad no encontrada. Verifica el nombre e intenta nuevamente.');
+                    showError('Ciudad no encontrada. Verifica el nombre e intenta nuevamente.');
                 } else if (error.message.includes('401')) {
-                    showError('🔑 API Key de OpenWeather aún no activa. Espera 10-15 minutos y vuelve a intentar.');
+                    showError('API Key de OpenWeather aún no activa. Espera 10-15 minutos y vuelve a intentar.');
                 } else if (error.message.includes('403')) {
-                    showError('⛔ API Key sin permisos. Verifica tu plan gratuito en OpenWeatherMap.');
+                    showError('API Key sin permisos. Verifica tu plan gratuito en OpenWeatherMap.');
                 } else if (error.message.includes('429')) {
-                    showError('⏱️ Límite de requests alcanzado. Intenta en unos minutos.');
+                    showError('Límite de requests alcanzado. Intenta en unos minutos.');
                 } else {
-                    showError(`❌ Error al obtener datos del clima: ${error.message}`);
+                    showError(`Error al obtener datos del clima: ${error.message}`);
                 }
             }
         }
@@ -833,19 +1296,119 @@
                 
             } catch (error) {
                 console.error('Error getting forecast:', error);
-                // No mostrar error si falla el pronóstico, solo el clima actual
+                // No mostrar error si falla el pron├│stico, solo el clima actual
             }
         }
 
         function displayWeather(data) {
             currentWeatherData = data;
             
+            // Get weather icon element
+            const weatherIconElement = document.getElementById('weatherIcon');
+            const weatherDisplay = document.getElementById('weatherDisplay');
+            const currentWeatherElement = weatherDisplay.querySelector('.current-weather');
+            const weatherCode = data.weather[0].icon;
+            
             // Update current weather
-            document.getElementById('weatherIcon').textContent = weatherIcons[data.weather[0].icon] || '🌤️';
-            document.getElementById('temperature').textContent = `${Math.round(data.main.temp)}°`;
+            weatherIconElement.textContent = weatherIcons[weatherCode] || '☁';
+            
+            // Remove existing weather classes and particles
+            weatherIconElement.className = 'weather-icon';
+            currentWeatherElement.className = 'current-weather';
+            const existingParticles = weatherDisplay.querySelector('.wind-particles');
+            if (existingParticles) {
+                existingParticles.remove();
+            }
+            
+            // Add specific weather class and particles based on weather condition
+            if (weatherCode.startsWith('01')) { // Clear sky - sun
+                weatherIconElement.classList.add('sun');
+                currentWeatherElement.classList.add('sunny');
+            } else if (weatherCode.startsWith('13')) { // Snow
+                weatherIconElement.classList.add('snow');
+                currentWeatherElement.classList.add('snowy');
+                createSnowParticles(weatherDisplay);
+            } else if (weatherCode.startsWith('09') || weatherCode.startsWith('10')) { // Rain
+                weatherIconElement.classList.add('rain');
+                currentWeatherElement.classList.add('rainy');
+            } else if (weatherCode.startsWith('11')) { // Thunderstorm
+                weatherIconElement.classList.add('storm');
+                currentWeatherElement.classList.add('stormy');
+            } else if (weatherCode.startsWith('50')) { // Mist/fog
+                weatherIconElement.classList.add('wind');
+                createWindParticles(weatherDisplay);
+            } else if (data.wind && data.wind.speed > 5) { // Windy conditions
+                weatherIconElement.classList.add('wind');
+                createWindParticles(weatherDisplay);
+            }
+
+            // ­ƒîñ´©Å SKY-INSPIRED BACKGROUND - Anna Grand's Concept Implementation
+            updateSkyBackground(weatherCode, data);
+        }
+
+        // Sky-inspired background changer based on Anna Grand's concept
+        function updateSkyBackground(weatherCode, weatherData) {
+            const body = document.body;
+            const skyStatus = document.getElementById('skyStatus');
+            const currentHour = new Date().getHours();
+            const isDawn = currentHour >= 5 && currentHour <= 7;
+            const isSunset = currentHour >= 18 && currentHour <= 20;
+            const isNight = currentHour >= 21 || currentHour <= 4;
+            
+            // Remove all sky classes
+            body.classList.remove('clear', 'clouds', 'rain', 'thunderstorm', 'snow', 'mist', 'dawn', 'sunset', 'night');
+            
+            let skyClass = '';
+            let skyText = '';
+            
+            // Apply sky gradient based on weather and time of day
+            if (isNight && !weatherCode.startsWith('11')) {
+                skyClass = 'night';
+                skyText = 'Cielo Nocturno';
+            } else if (isDawn && weatherCode.startsWith('01')) {
+                skyClass = 'dawn';
+                skyText = 'Amanecer Dorado';
+            } else if (isSunset && weatherCode.startsWith('01')) {
+                skyClass = 'sunset';
+                skyText = 'Atardecer Cálido';
+            } else if (weatherCode.startsWith('01')) { // Clear sky
+                skyClass = 'clear';
+                skyText = 'Cielo Despejado';
+            } else if (weatherCode.startsWith('02') || weatherCode.startsWith('03') || weatherCode.startsWith('04')) { // Clouds
+                skyClass = 'clouds';
+                skyText = 'Cielo Nublado';
+            } else if (weatherCode.startsWith('09') || weatherCode.startsWith('10')) { // Rain
+                skyClass = 'rain';
+                skyText = 'Cielo Lluvioso';
+            } else if (weatherCode.startsWith('11')) { // Thunderstorm
+                skyClass = 'thunderstorm';
+                skyText = 'Tormenta Dramática';
+            } else if (weatherCode.startsWith('13')) { // Snow
+                skyClass = 'snow';
+                skyText = 'Cielo Nevado';
+            } else if (weatherCode.startsWith('50')) { // Mist/Fog - Anna's "magic" feeling
+                skyClass = 'mist';
+                skyText = 'Niebla Mágica';
+            } else {
+                // Default to cloudy for unknown conditions
+                skyClass = 'clouds';
+                skyText = 'Cielo Variable';
+            }
+            
+            body.classList.add(skyClass);
+            if (skyStatus) {
+                skyStatus.textContent = skyText;
+            }
+            
+            // Add smooth transition effect
+            setTimeout(() => {
+                body.style.transition = 'all 1.5s ease-in-out';
+            }, 100);
+            
+            document.getElementById('temperature').textContent = `${Math.round(data.main.temp)}┬░`;
             document.getElementById('weatherDescription').textContent = data.weather[0].description;
             document.getElementById('cityName').textContent = `${data.name}, ${data.sys.country}`;
-            document.getElementById('feelsLike').textContent = `${Math.round(data.main.feels_like)}°`;
+            document.getElementById('feelsLike').textContent = `${Math.round(data.main.feels_like)}┬░`;
             document.getElementById('humidity').textContent = `${data.main.humidity}%`;
             document.getElementById('windSpeed').textContent = `${Math.round(data.wind.speed * 3.6)} km/h`;
             document.getElementById('pressure').textContent = `${data.main.pressure} hPa`;
@@ -856,6 +1419,44 @@
             weatherDisplay.classList.remove('hidden');
             weatherDisplay.classList.add('fade-in');
             weatherDisplay.style.display = 'block';
+        }
+
+        // Function to create snow particles
+        function createSnowParticles(container) {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'wind-particles';
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'snow-particle';
+                particle.textContent = '❄';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (3 + Math.random() * 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+            
+            container.appendChild(particlesContainer);
+        }
+
+        // Function to create wind particles
+        function createWindParticles(container) {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'wind-particles';
+            
+            const windSymbols = ['~', '≈', '∼', '≋', '∿'];
+            
+            for (let i = 0; i < 12; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'wind-particle';
+                particle.textContent = windSymbols[Math.floor(Math.random() * windSymbols.length)];
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+            
+            container.appendChild(particlesContainer);
         }
 
         function displayForecast(data) {
@@ -875,7 +1476,7 @@
                 forecastItem.className = 'forecast-item';
                 forecastItem.innerHTML = `
                     <div class="forecast-day">${dayName}</div>
-                    <div class="forecast-icon">${weatherIcons[forecast.weather[0].icon] || '🌤️'}</div>
+                    <div class="forecast-icon">${weatherIcons[forecast.weather[0].icon] || '☁'}</div>
                     <div class="forecast-temps">
                         <span class="forecast-high">${Math.round(forecast.main.temp_max)}°</span> / 
                         <span class="forecast-low">${Math.round(forecast.main.temp_min)}°</span>
@@ -921,7 +1522,7 @@
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
             
-            // Cambiar estilo según el tipo
+            // Cambiar estilo seg├║n el tipo
             if (type === 'info') {
                 errorMessage.style.backgroundColor = '#3498db';
                 errorMessage.style.color = 'white';
