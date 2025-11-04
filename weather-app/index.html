@@ -1412,13 +1412,13 @@
                 body.style.transition = 'all 1.5s ease-in-out';
             }, 100);
             
-            document.getElementById('temperature').textContent = `${Math.round(data.main.temp)}-�`;
-            document.getElementById('weatherDescription').textContent = data.weather[0].description;
-            document.getElementById('cityName').textContent = `${data.name}, ${data.sys.country}`;
-            document.getElementById('feelsLike').textContent = `${Math.round(data.main.feels_like)}-�`;
-            document.getElementById('humidity').textContent = `${data.main.humidity}%`;
-            document.getElementById('windSpeed').textContent = `${Math.round(data.wind.speed * 3.6)} km/h`;
-            document.getElementById('pressure').textContent = `${data.main.pressure} hPa`;
+            document.getElementById('temperature').textContent = `${Math.round(weatherData.main.temp)}-�`;
+            document.getElementById('weatherDescription').textContent = weatherData.weather[0].description;
+            document.getElementById('cityName').textContent = `${weatherData.name}, ${weatherData.sys.country}`;
+            document.getElementById('feelsLike').textContent = `${Math.round(weatherData.main.feels_like)}-�`;
+            document.getElementById('humidity').textContent = `${weatherData.main.humidity}%`;
+            document.getElementById('windSpeed').textContent = `${Math.round(weatherData.wind.speed * 3.6)} km/h`;
+            document.getElementById('pressure').textContent = `${weatherData.main.pressure} hPa`;
 
             // Show weather display with animation
             hideLoading();
