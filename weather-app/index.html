@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App | Jorge Luis Risso Patrón</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌤️</text></svg>">
+    <title>Weather App | Jorge Luis Risso Patron</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>W</text></svg>">
     <style>
         /* Variables CSS - Paleta Azul Unificada */
         :root {
@@ -229,6 +229,7 @@
             text-align: center;
             margin-bottom: 2rem;
             background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem;
@@ -237,7 +238,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Adaptación para fondos oscuros */
+        /* Adaptacion para fondos oscuros */
         body.thunderstorm .header,
         body.night .header,
         body.rain .header {
@@ -245,7 +246,7 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Adaptación para fondos claros */
+        /* Adaptaci+�n para fondos claros */
         body.clear .header,
         body.snow .header,
         body.clouds .header {
@@ -281,6 +282,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
+            -webkit-backdrop-filter: blur(5px);
             backdrop-filter: blur(5px);
         }
 
@@ -295,6 +297,7 @@
         /* Search Section adaptativa */
         .search-section {
             background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem;
@@ -304,7 +307,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Adaptación para fondos oscuros */
+        /* Adaptacion para fondos oscuros */
         body.thunderstorm .search-section,
         body.night .search-section,
         body.rain .search-section {
@@ -312,7 +315,7 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Adaptación para fondos claros */
+        /* Adaptaci+�n para fondos claros */
         body.clear .search-section,
         body.snow .search-section,
         body.clouds .search-section {
@@ -445,6 +448,7 @@
         .weather-display {
             display: none;
             background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: var(--border-radius);
@@ -457,6 +461,7 @@
             padding: 2.5rem;
             text-align: center;
             background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
@@ -464,7 +469,7 @@
             transition: all 0.5s ease;
         }
 
-        /* Adaptación para fondos oscuros */
+        /* Adaptacion para fondos oscuros */
         body.thunderstorm .weather-display,
         body.night .weather-display,
         body.rain .weather-display {
@@ -479,7 +484,7 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Adaptación para fondos claros */
+        /* Adaptaci+�n para fondos claros */
         body.clear .weather-display,
         body.snow .weather-display,
         body.clouds .weather-display {
@@ -494,7 +499,7 @@
             border-color: rgba(0, 0, 0, 0.05);
         }
 
-        /* Temas dinámicos según el clima */
+        /* Temas din+�micos seg+�n el clima */
         .current-weather.sunny {
             background: linear-gradient(135deg, 
                 rgba(255, 140, 0, 0.9), 
@@ -565,7 +570,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Iconos específicos con tamaños y efectos personalizados */
+        /* Iconos espec+�ficos con tama+�os y efectos personalizados */
         .weather-icon.sun {
             font-size: 8rem;
             animation: rotateSun 10s linear infinite, bounceWeather 3s ease-in-out infinite;
@@ -599,7 +604,7 @@
             text-shadow: 0 0 15px rgba(135, 206, 235, 0.6);
         }
 
-        /* Animaciones específicas para cada tipo de clima */
+        /* Animaciones espec+�ficas para cada tipo de clima */
         @keyframes rotateSun {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -639,7 +644,7 @@
             75% { transform: translateX(15px) rotate(5deg); }
         }
 
-        /* Partículas de viento y nieve */
+        /* Part+�culas de viento y nieve */
         .wind-particles {
             position: absolute;
             top: 0;
@@ -967,9 +972,9 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>🌤️ Weather App</h1>
+            <h1>Weather App</h1>
             <p>Consulta el clima en cualquier ciudad del mundo</p>
-            <div class="sky-status" id="skyStatus">🌤️ Cielo Esperando</div>
+            <div class="sky-status" id="skyStatus">Esperando busqueda...</div>
         </header>
 
         <!-- Search Section -->
@@ -978,16 +983,16 @@
                 <input 
                     type="text" 
                     class="search-input" 
-                    placeholder="Buscar ciudad (ej: Ciudad de Panamá)"
+                    placeholder="Buscar ciudad (ej: Panama, Madrid, Tokyo)"
                     id="cityInput"
                 >
                 <button class="btn btn-primary" onclick="searchWeather()">
-                    🔍 Buscar
+                    Buscar
                 </button>
             </div>
             
             <button class="btn btn-secondary geolocation-btn" onclick="getCurrentLocation()">
-                📍 Usar Mi Ubicación
+                Usar Mi Ubicacion
             </button>
 
             <div class="error" id="errorMessage"></div>
@@ -996,14 +1001,14 @@
         <!-- Loading -->
         <div class="loading" id="loadingIndicator">
             <div class="spinner"></div>
-            <p>Obteniendo información del clima...</p>
+            <p>Obteniendo informacion del clima...</p>
         </div>
 
         <!-- Weather Display -->
         <main class="weather-display" id="weatherDisplay">
             <!-- Current Weather -->
             <section class="current-weather">
-                <div class="weather-icon" id="weatherIcon">🌤️</div>
+                <div class="weather-icon" id="weatherIcon">--</div>
                 <div class="temperature" id="temperature">--°</div>
                 <div class="weather-description" id="weatherDescription">--</div>
                 <div class="city-name" id="cityName">--</div>
@@ -1017,7 +1022,7 @@
                 <!-- Weather Details -->
                 <div class="weather-details">
                     <div class="detail-item">
-                        <div class="detail-label">Sensación Térmica</div>
+                        <div class="detail-label">Sensacion Termica</div>
                         <div class="detail-value" id="feelsLike">--°</div>
                     </div>
                     <div class="detail-item">
@@ -1029,7 +1034,7 @@
                         <div class="detail-value" id="windSpeed">-- km/h</div>
                     </div>
                     <div class="detail-item">
-                        <div class="detail-label">Presión</div>
+                        <div class="detail-label">Presion</div>
                         <div class="detail-value" id="pressure">-- hPa</div>
                     </div>
                 </div>
@@ -1037,7 +1042,7 @@
 
             <!-- Forecast Section -->
             <section class="forecast-section">
-                <h2 class="forecast-title">Pronóstico de 5 Días</h2>
+                <h2 class="forecast-title">Pronostico de 5 Dias</h2>
                 <div class="forecast-container" id="forecastContainer">
                     <!-- Forecast items will be populated by JavaScript -->
                 </div>
@@ -1046,13 +1051,13 @@
     </div>
 
     <script>
-        // ==================== CONFIGURACIÓN OpenWeatherMap ====================
-        // 🔑 Usando tu API Key de OpenWeatherMap (ya creada)
-        // 🔑 Plan gratuito: 60 calls/minuto, 1,000,000 calls/mes
-        // 🔑 Debería funcionar después de 10 minutos de creada
+        // ==================== CONFIGURACI+�N OpenWeatherMap ====================
+        // ���� Usando tu API Key de OpenWeatherMap (ya creada)
+        // ���� Plan gratuito: 60 calls/minuto, 1,000,000 calls/mes
+        // ���� Deber+�a funcionar despu+�s de 10 minutos de creada
         
-        const DEMO_MODE = true; // MODO DEMO ACTIVADO - Cambia a false cuando API funcione
-        const API_KEY = '8d3599da8294f99fb8f1bc2ac0c7829b'; // ✅ Tu API Key de OpenWeather
+        const DEMO_MODE = false; // API REAL ACTIVADA
+        const API_KEY = '8d3599da8294f99fb8f1bc2ac0c7829b'; // Tu API Key de OpenWeather
         const API_BASE_URL = 'https://api.openweathermap.org/data/2.5';
         
         // Global variables
@@ -1062,53 +1067,124 @@
         // Datos de demo para portfolio
         const demoWeatherData = {
             'panama': {
-                name: 'Ciudad de Panamá',
+                name: 'Ciudad de Panama',
                 main: { temp: 28, feels_like: 32, humidity: 78, pressure: 1012 },
                 weather: [{ main: 'Partly Cloudy', description: 'parcialmente nublado', icon: '02d' }],
                 wind: { speed: 12 },
-                coord: { lat: 8.9824, lon: -79.5199 }
+                coord: { lat: 8.9824, lon: -79.5199 },
+                sys: { country: 'PA' }
             },
             'madrid': {
                 name: 'Madrid',
                 main: { temp: 18, feels_like: 16, humidity: 65, pressure: 1015 },
                 weather: [{ main: 'Clear', description: 'cielo claro', icon: '01d' }],
                 wind: { speed: 8 },
-                coord: { lat: 40.4168, lon: -3.7038 }
+                coord: { lat: 40.4168, lon: -3.7038 },
+                sys: { country: 'ES' }
             },
             'tokyo': {
                 name: 'Tokio',
                 main: { temp: 22, feels_like: 24, humidity: 72, pressure: 1018 },
                 weather: [{ main: 'Cloudy', description: 'nublado', icon: '04d' }],
                 wind: { speed: 6 },
-                coord: { lat: 35.6762, lon: 139.6503 }
+                coord: { lat: 35.6762, lon: 139.6503 },
+                sys: { country: 'JP' }
             },
             'new york': {
                 name: 'Nueva York',
                 main: { temp: 15, feels_like: 12, humidity: 60, pressure: 1020 },
                 weather: [{ main: 'Rain', description: 'lluvia ligera', icon: '10d' }],
                 wind: { speed: 15 },
-                coord: { lat: 40.7128, lon: -74.0060 }
+                coord: { lat: 40.7128, lon: -74.0060 },
+                sys: { country: 'US' }
+            },
+            'london': {
+                name: 'Londres',
+                main: { temp: 12, feels_like: 10, humidity: 75, pressure: 1008 },
+                weather: [{ main: 'Rain', description: 'lluvia', icon: '10d' }],
+                wind: { speed: 18 },
+                coord: { lat: 51.5074, lon: -0.1278 },
+                sys: { country: 'GB' }
             },
             'paris': {
-                name: 'París',
+                name: 'Paris',
                 main: { temp: 16, feels_like: 14, humidity: 68, pressure: 1013 },
                 weather: [{ main: 'Overcast', description: 'muy nublado', icon: '04d' }],
                 wind: { speed: 10 },
-                coord: { lat: 48.8566, lon: 2.3522 }
+                coord: { lat: 48.8566, lon: 2.3522 },
+                sys: { country: 'FR' }
             }
         };
 
-        // Weather icons mapping - Iconos mejorados para mejor contraste
+        // Demo forecast data - 5 dias para cada ciudad
+        const demoForecastData = {
+            'panama': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 32, temp_min: 24 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 31, temp_min: 24 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '10d', description: 'lluvia' }], main: { temp_max: 28, temp_min: 23 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '09d', description: 'lluvia ligera' }], main: { temp_max: 29, temp_min: 23 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 31, temp_min: 24 } }
+                ]
+            },
+            'madrid': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 14, temp_min: 6 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 15, temp_min: 7 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '03d', description: 'nublado' }], main: { temp_max: 13, temp_min: 6 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '10d', description: 'lluvia' }], main: { temp_max: 11, temp_min: 5 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '04d', description: 'muy nublado' }], main: { temp_max: 12, temp_min: 5 } }
+                ]
+            },
+            'tokyo': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 11, temp_min: 3 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 12, temp_min: 4 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '03d', description: 'nublado' }], main: { temp_max: 10, temp_min: 3 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 13, temp_min: 4 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 12, temp_min: 3 } }
+                ]
+            },
+            'new york': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '13d', description: 'nieve' }], main: { temp_max: 2, temp_min: -3 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '04d', description: 'muy nublado' }], main: { temp_max: 4, temp_min: -2 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 6, temp_min: 0 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 7, temp_min: 1 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '03d', description: 'nublado' }], main: { temp_max: 5, temp_min: -1 } }
+                ]
+            },
+            'london': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '10d', description: 'lluvia' }], main: { temp_max: 12, temp_min: 8 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '04d', description: 'muy nublado' }], main: { temp_max: 11, temp_min: 7 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '09d', description: 'lluvia ligera' }], main: { temp_max: 10, temp_min: 6 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '03d', description: 'nublado' }], main: { temp_max: 12, temp_min: 7 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 13, temp_min: 8 } }
+                ]
+            },
+            'paris': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '04d', description: 'muy nublado' }], main: { temp_max: 16, temp_min: 12 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '03d', description: 'nublado' }], main: { temp_max: 15, temp_min: 11 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '10d', description: 'lluvia' }], main: { temp_max: 14, temp_min: 10 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 16, temp_min: 11 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 17, temp_min: 12 } }
+                ]
+            }
+        };
+
+        // Weather icons mapping - TEXTO SIMPLE (sin emojis para evitar corrupcion)
         const weatherIcons = {
-            '01d': '☀️', '01n': '�',
-            '02d': '⛅', '02n': '☁️',
-            '03d': '☁️', '03n': '☁️',
-            '04d': '☁️', '04n': '☁️',
-            '09d': '🌧️', '09n': '🌧️',
-            '10d': '⛈️', '10n': '🌧️',
-            '11d': '⛈️', '11n': '⛈️',
-            '13d': '❄️', '13n': '❄️',
-            '50d': '�️', '50n': '🌫️'
+            '01d': 'SOL', '01n': 'LUNA',
+            '02d': 'SOL-NUBES', '02n': 'LUNA-NUBES',
+            '03d': 'NUBES', '03n': 'NUBES',
+            '04d': 'NUBLADO', '04n': 'NUBLADO',
+            '09d': 'LLUVIA', '09n': 'LLUVIA',
+            '10d': 'LLUVIA', '10n': 'LLUVIA',
+            '11d': 'TORMENTA', '11n': 'TORMENTA',
+            '13d': 'NIEVE', '13n': 'NIEVE',
+            '50d': 'NIEBLA', '50n': 'NIEBLA'
         };
 
         // DOM Elements
@@ -1127,10 +1203,10 @@
         // Check for API key configuration
         window.addEventListener('load', () => {
             if (API_KEY === 'TU_NUEVA_API_KEY_AQUI' || API_KEY === 'TU_API_KEY_AQUI') {
-                showError('🔑 CONFIGURACIÓN REQUERIDA: Necesitas configurar tu API Key de OpenWeatherMap.');
+                showError('CONFIGURACI�N REQUERIDA: Necesitas configurar tu API Key de OpenWeatherMap.');
             } else {
                 // API key configurada, mostrar mensaje informativo
-                console.log('✅ API Key configurada. Si no funciona, espera 10 minutos para que se active.');
+                console.log('API Key configurada. Si no funciona, espera 10 minutos para que se active.');
             }
         });
 
@@ -1151,21 +1227,23 @@
                 setTimeout(() => {
                     const cityKey = city.toLowerCase();
                     const weatherData = demoWeatherData[cityKey] || demoWeatherData['panama'];
+                    const forecastData = demoForecastData[cityKey] || demoForecastData['panama'];
                     
                     currentWeatherData = weatherData;
                     displayWeather(weatherData);
+                    displayForecast(forecastData);
                     hideLoading();
                     
                     // Mostrar mensaje de demo
                     setTimeout(() => {
-                        showError('🎬 MODO DEMO: Mostrando datos simulados para portfolio. En producción usaría OpenWeatherMap API.', 'info');
+                        showError('MODO DEMO: Mostrando datos simulados para portfolio. En produccion usaria OpenWeatherMap API.', 'info');
                     }, 1000);
                 }, 800);
                 return;
             }
 
             if (API_KEY === 'TU_API_KEY_AQUI') {
-                showError('⚠️ API Key no configurada. Ve las instrucciones en el README.');
+                showError('API Key no configurada. Ve las instrucciones en el README.');
                 return;
             }
 
@@ -1174,28 +1252,30 @@
 
         async function getCurrentLocation() {
             if (DEMO_MODE) {
-                // Modo demo - simular ubicación de Panamá
+                // Modo demo - simular ubicacion de Panama
                 showLoading();
                 setTimeout(() => {
                     const weatherData = demoWeatherData['panama'];
+                    const forecastData = demoForecastData['panama'];
                     currentWeatherData = weatherData;
                     displayWeather(weatherData);
+                    displayForecast(forecastData);
                     hideLoading();
                     
                     setTimeout(() => {
-                        showError('🎬 MODO DEMO: Simulando ubicación de Panamá para portfolio.', 'info');
+                        showError('MODO DEMO: Simulando ubicacion de Panama para portfolio.', 'info');
                     }, 1000);
                 }, 800);
                 return;
             }
 
             if (!navigator.geolocation) {
-                showError('La geolocalización no está disponible en tu navegador');
+                showError('La geolocalizacion no esta disponible en tu navegador');
                 return;
             }
 
             if (API_KEY === 'TU_API_KEY_AQUI') {
-                showError('⚠️ API Key no configurada. Ve las instrucciones en el README.');
+                showError('API Key no configurada. Ve las instrucciones en el README.');
                 return;
             }
 
@@ -1210,16 +1290,16 @@
                     hideLoading();
                     switch(error.code) {
                         case error.PERMISSION_DENIED:
-                            showError('Permiso de ubicación denegado');
+                            showError('Permiso de ubicaci�n denegado');
                             break;
                         case error.POSITION_UNAVAILABLE:
-                            showError('Información de ubicación no disponible');
+                            showError('Informaci�n de ubicaci�n no disponible');
                             break;
                         case error.TIMEOUT:
                             showError('Tiempo de espera agotado');
                             break;
                         default:
-                            showError('Error desconocido al obtener ubicación');
+                            showError('Error desconocido al obtener ubicaci�n');
                             break;
                     }
                 }
@@ -1228,17 +1308,24 @@
 
         async function getWeatherByCity(city) {
             showLoading();
+            console.log('🔍 Buscando ciudad:', city);
+            console.log('🔑 API Key:', API_KEY.substring(0, 8) + '...');
             
             try {
-                const response = await fetch(
-                    `${API_BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=${currentUnit}&lang=es`
-                );
+                const url = `${API_BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=${currentUnit}&lang=es`;
+                console.log('📡 URL:', url.replace(API_KEY, 'API_KEY_HIDDEN'));
+                
+                const response = await fetch(url);
+                console.log('📥 Response status:', response.status, response.statusText);
                 
                 if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('❌ Error response:', errorText);
                     throw new Error(`Error ${response.status}: ${response.statusText}`);
                 }
                 
                 const data = await response.json();
+                console.log('✅ Datos recibidos:', data);
                 await displayWeather(data);
                 await getForecast(data.coord.lat, data.coord.lon);
                 
@@ -1247,15 +1334,15 @@
                 console.error('Error completo:', error);
                 
                 if (error.message.includes('404')) {
-                    showError('🏙️ Ciudad no encontrada. Verifica el nombre e intenta nuevamente.');
+                    showError('Ciudad no encontrada. Verifica el nombre e intenta nuevamente.');
                 } else if (error.message.includes('401')) {
-                    showError('🔑 API Key de OpenWeather aún no activa. Espera 10-15 minutos y vuelve a intentar.');
+                    showError('API Key de OpenWeather a�n no activa. Espera 10-15 minutos y vuelve a intentar.');
                 } else if (error.message.includes('403')) {
-                    showError('⛔ API Key sin permisos. Verifica tu plan gratuito en OpenWeatherMap.');
+                    showError('API Key sin permisos. Verifica tu plan gratuito en OpenWeatherMap.');
                 } else if (error.message.includes('429')) {
-                    showError('⏱️ Límite de requests alcanzado. Intenta en unos minutos.');
+                    showError('L�mite de requests alcanzado. Intenta en unos minutos.');
                 } else {
-                    showError(`❌ Error al obtener datos del clima: ${error.message}`);
+                    showError(`Error al obtener datos del clima: ${error.message}`);
                 }
             }
         }
@@ -1276,7 +1363,7 @@
                 
             } catch (error) {
                 hideLoading();
-                showError('Error al obtener datos del clima para tu ubicación');
+                showError('Error al obtener datos del clima para tu ubicaci�n');
                 console.error('Error:', error);
             }
         }
@@ -1296,7 +1383,7 @@
                 
             } catch (error) {
                 console.error('Error getting forecast:', error);
-                // No mostrar error si falla el pronóstico, solo el clima actual
+                // No mostrar error si falla el pron+�stico, solo el clima actual
             }
         }
 
@@ -1310,7 +1397,7 @@
             const weatherCode = data.weather[0].icon;
             
             // Update current weather
-            weatherIconElement.textContent = weatherIcons[weatherCode] || '🌤️';
+            weatherIconElement.textContent = weatherIcons[weatherCode] || '?';
             
             // Remove existing weather classes and particles
             weatherIconElement.className = 'weather-icon';
@@ -1342,7 +1429,7 @@
                 createWindParticles(weatherDisplay);
             }
 
-            // 🌤️ SKY-INSPIRED BACKGROUND - Anna Grand's Concept Implementation
+            // ������� SKY-INSPIRED BACKGROUND - Anna Grand's Concept Implementation
             updateSkyBackground(weatherCode, data);
         }
 
@@ -1364,35 +1451,35 @@
             // Apply sky gradient based on weather and time of day
             if (isNight && !weatherCode.startsWith('11')) {
                 skyClass = 'night';
-                skyText = '🌙 Cielo Nocturno';
+                skyText = 'Cielo Nocturno';
             } else if (isDawn && weatherCode.startsWith('01')) {
                 skyClass = 'dawn';
-                skyText = '🌅 Amanecer Dorado';
+                skyText = 'Amanecer Dorado';
             } else if (isSunset && weatherCode.startsWith('01')) {
                 skyClass = 'sunset';
-                skyText = '🌇 Atardecer Cálido';
+                skyText = 'Atardecer C�lido';
             } else if (weatherCode.startsWith('01')) { // Clear sky
                 skyClass = 'clear';
-                skyText = '☀️ Cielo Despejado';
+                skyText = 'Cielo Despejado';
             } else if (weatherCode.startsWith('02') || weatherCode.startsWith('03') || weatherCode.startsWith('04')) { // Clouds
                 skyClass = 'clouds';
-                skyText = '☁️ Cielo Nublado';
+                skyText = 'Cielo Nublado';
             } else if (weatherCode.startsWith('09') || weatherCode.startsWith('10')) { // Rain
                 skyClass = 'rain';
-                skyText = '🌧️ Cielo Lluvioso';
+                skyText = 'Cielo Lluvioso';
             } else if (weatherCode.startsWith('11')) { // Thunderstorm
                 skyClass = 'thunderstorm';
-                skyText = '⛈️ Tormenta Dramática';
+                skyText = 'Tormenta Dram�tica';
             } else if (weatherCode.startsWith('13')) { // Snow
                 skyClass = 'snow';
-                skyText = '❄️ Cielo Nevado';
+                skyText = 'Cielo Nevado';
             } else if (weatherCode.startsWith('50')) { // Mist/Fog - Anna's "magic" feeling
                 skyClass = 'mist';
-                skyText = '🌫️ Niebla Mágica';
+                skyText = 'Niebla M�gica';
             } else {
                 // Default to cloudy for unknown conditions
                 skyClass = 'clouds';
-                skyText = '☁️ Cielo Variable';
+                skyText = 'Cielo Variable';
             }
             
             body.classList.add(skyClass);
@@ -1405,13 +1492,13 @@
                 body.style.transition = 'all 1.5s ease-in-out';
             }, 100);
             
-            document.getElementById('temperature').textContent = `${Math.round(data.main.temp)}°`;
-            document.getElementById('weatherDescription').textContent = data.weather[0].description;
-            document.getElementById('cityName').textContent = `${data.name}, ${data.sys.country}`;
-            document.getElementById('feelsLike').textContent = `${Math.round(data.main.feels_like)}°`;
-            document.getElementById('humidity').textContent = `${data.main.humidity}%`;
-            document.getElementById('windSpeed').textContent = `${Math.round(data.wind.speed * 3.6)} km/h`;
-            document.getElementById('pressure').textContent = `${data.main.pressure} hPa`;
+            document.getElementById('temperature').textContent = `${Math.round(weatherData.main.temp)}°`;
+            document.getElementById('weatherDescription').textContent = weatherData.weather[0].description;
+            document.getElementById('cityName').textContent = `${weatherData.name}, ${weatherData.sys.country}`;
+            document.getElementById('feelsLike').textContent = `${Math.round(weatherData.main.feels_like)}°`;
+            document.getElementById('humidity').textContent = `${weatherData.main.humidity}%`;
+            document.getElementById('windSpeed').textContent = `${Math.round(weatherData.wind.speed * 3.6)} km/h`;
+            document.getElementById('pressure').textContent = `${weatherData.main.pressure} hPa`;
 
             // Show weather display with animation
             hideLoading();
@@ -1429,7 +1516,7 @@
             for (let i = 0; i < 15; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'snow-particle';
-                particle.textContent = '❄';
+                particle.textContent = '?';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 6 + 's';
                 particle.style.animationDuration = (3 + Math.random() * 3) + 's';
@@ -1444,7 +1531,7 @@
             const particlesContainer = document.createElement('div');
             particlesContainer.className = 'wind-particles';
             
-            const windSymbols = ['～', '〜', '≈', '∼', '⌇'];
+            const windSymbols = ['~', '�', '~', '?', '?'];
             
             for (let i = 0; i < 12; i++) {
                 const particle = document.createElement('div');
@@ -1468,15 +1555,17 @@
                 item.dt_txt.includes('12:00:00')
             ).slice(0, 5);
 
-            dailyForecasts.forEach(forecast => {
-                const date = new Date(forecast.dt * 1000);
+            dailyForecasts.forEach((forecast, index) => {
+                // Calcular fecha: hoy + (index + 1) dias
+                const date = new Date();
+                date.setDate(date.getDate() + (index + 1));
                 const dayName = date.toLocaleDateString('es-ES', { weekday: 'short' });
                 
                 const forecastItem = document.createElement('div');
                 forecastItem.className = 'forecast-item';
                 forecastItem.innerHTML = `
                     <div class="forecast-day">${dayName}</div>
-                    <div class="forecast-icon">${weatherIcons[forecast.weather[0].icon] || '🌤️'}</div>
+                    <div class="forecast-icon">${weatherIcons[forecast.weather[0].icon] || '?'}</div>
                     <div class="forecast-temps">
                         <span class="forecast-high">${Math.round(forecast.main.temp_max)}°</span> / 
                         <span class="forecast-low">${Math.round(forecast.main.temp_min)}°</span>
@@ -1522,7 +1611,7 @@
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
             
-            // Cambiar estilo según el tipo
+            // Cambiar estilo seg+�n el tipo
             if (type === 'info') {
                 errorMessage.style.backgroundColor = '#3498db';
                 errorMessage.style.color = 'white';
@@ -1546,10 +1635,10 @@
         // Initialize app
         function initApp() {
             console.log('Weather App initialized');
-            console.log('Por Jorge Luis Risso Patrón - Desarrollador Frontend Junior');
+            console.log('Por Jorge Luis Risso Patron - Desarrollador Frontend Junior');
             
             // Add some example cities to the input placeholder
-            const cities = ['Ciudad de Panamá', 'Madrid', 'Londres', 'Nueva York', 'Tokio'];
+            const cities = ['Panama', 'Madrid', 'Londres', 'Nueva York', 'Tokio'];
             let currentCityIndex = 0;
             
             setInterval(() => {
