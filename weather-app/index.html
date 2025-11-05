@@ -9,6 +9,9 @@
     <!-- Weather Icons Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css">
     
+    <!-- Pexels API Configuration -->
+    <script src="pexels-config.js"></script>
+    
     <style>
         /* Variables CSS - Paleta Azul Unificada */
         :root {
@@ -33,22 +36,49 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Sky-inspired dynamic background - Default: Clear Day */
-            background: var(--sky-gradient, 
-                linear-gradient(180deg, 
-                    #87CEEB 0%,        /* Sky blue */
-                    #B0E0E6 30%,       /* Powder blue */
-                    #E0F6FF 60%,       /* Alice blue */
-                    #F0F8FF 100%       /* Alice blue light */
-                )
-            );
+            /* Realistic background images from Pexels API */
+            background-color: #87CEEB; /* Fallback color */
+            background-position: center center;
+            background-size: cover;
             background-attachment: fixed;
-            background-size: 100% 100%;
+            background-repeat: no-repeat;
             min-height: 100vh;
             padding: 20px;
             color: var(--text-color, #2c3e50);
             position: relative;
-            transition: all 1.5s ease-in-out;
+            transition: background-image 1.5s ease-in-out;
+        }
+
+        /* Dark overlay for better text readability on photos */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+            z-index: 0;
+            pointer-events: none;
+            transition: background 1.5s ease-in-out;
+        }
+
+        /* Stronger overlay for darker weather conditions */
+        body.rain::before,
+        body.thunderstorm::before {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        body.night::before {
+            background: rgba(0, 0, 20, 0.5);
+        }
+
+        /* Ensure all content is above the overlay */
+        .container,
+        .weather-display,
+        .search-container {
+            position: relative;
+            z-index: 1;
         }
 
         /* Sky gradients inspired by Anna Grand's concept */
@@ -191,35 +221,7 @@
             }
         }
 
-        /* Dynamic cloud movement */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 60%),
-                radial-gradient(ellipse at 40% 70%, rgba(255, 255, 255, 0.12) 0%, transparent 45%);
-            pointer-events: none;
-            animation: driftClouds 20s ease-in-out infinite;
-            z-index: 1;
-        }
-
-        @keyframes driftClouds {
-            0%, 100% { 
-                transform: translateX(0px);
-                opacity: 0.3;
-            }
-            50% { 
-                transform: translateX(30px);
-                opacity: 0.5;
-            }
-        }
-
-        /* Removed floating icons - replaced with sky-inspired dynamic clouds */
+        /* Removed old cloud animation - now using realistic Pexels backgrounds */
 
         .container {
             max-width: 900px;
@@ -605,6 +607,24 @@
             transition: all 0.3s ease;
         }
 
+        /* Realistic Weather Icon Images from OpenWeatherMap */
+        .weather-icon-img {
+            width: 180px;
+            height: 180px;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+            animation: bounceWeather 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .weather-icon-img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Sun icon specific animation */
+        .weather-icon.sun .weather-icon-img {
+            animation: rotateSun 20s linear infinite, bounceWeather 3s ease-in-out infinite;
+        }
+
         /* Weather Icons - Asegurar que los iconos <i> hereden estilos */
         .weather-icon i {
             font-size: inherit;
@@ -954,6 +974,14 @@
             transition: transform 0.3s ease;
         }
 
+        /* Realistic forecast icon images */
+        .forecast-icon-img {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+
         /* Weather Icons en forecast cards */
         .forecast-icon i {
             font-size: inherit;
@@ -962,6 +990,10 @@
         
         .forecast-item:hover .forecast-icon {
             transform: scale(1.15);
+        }
+
+        .forecast-item:hover .forecast-icon-img {
+            transform: scale(1.2);
         }
 
         .forecast-temps {
@@ -1591,9 +1623,10 @@
             const currentWeatherElement = weatherDisplay.querySelector('.current-weather');
             const weatherCode = data.weather[0].icon;
             
-            // Update current weather icon with Weather Icons library
-            const iconClass = weatherIcons[weatherCode] || 'wi wi-na';
-            weatherIconElement.innerHTML = `<i class="${iconClass}"></i>`;
+            // Update current weather icon with realistic OpenWeatherMap icons
+            // Using @4x for ultra-high quality (400x400px)
+            const iconUrl = `https://openweathermap.org/img/wn/${weatherCode}@4x.png`;
+            weatherIconElement.innerHTML = `<img src="${iconUrl}" alt="${data.weather[0].description}" class="weather-icon-img">`;
             
             // Remove existing weather classes and particles
             weatherIconElement.className = 'weather-icon';
@@ -1627,6 +1660,138 @@
 
             // SKY-INSPIRED BACKGROUND - Anna Grand's Concept Implementation
             updateSkyBackground(weatherCode, data);
+        }
+
+        // Pexels API - Realistic Background Images
+        async function fetchPexelsBackground(weatherCode, weatherCondition, currentHour) {
+            const PEXELS_API_KEY = PEXELS_CONFIG.API_KEY;
+            
+            // Detect day/night from weatherCode (d = day, n = night)
+            const isNight = weatherCode.endsWith('n') || currentHour >= 20 || currentHour <= 5;
+            const isDawn = currentHour >= 5 && currentHour <= 7;
+            const isSunset = currentHour >= 18 && currentHour <= 20;
+            
+            // ULTRA-SPECIFIC search queries - focusing on actual weather conditions
+            const searchQueries = {
+                // CLEAR SKY - Emphasize weather condition
+                'clear_day': 'sunny blue sky no clouds weather',
+                'clear_dawn': 'sunrise clear morning sky orange',
+                'clear_sunset': 'sunset clear sky orange evening',
+                'clear_night': 'clear starry night sky stars',
+                
+                // CLOUDY - Emphasize GRAY and OVERCAST
+                'clouds_day': 'gray cloudy overcast sky no sun',
+                'clouds_night': 'dark cloudy night overcast',
+                
+                // RAIN - Show ACTUAL rain
+                'rain_day': 'rainy day rain drops wet',
+                'rain_night': 'rainy night rain wet dark',
+                
+                // THUNDERSTORM - Dark and dramatic
+                'thunderstorm_day': 'thunderstorm dark clouds stormy',
+                'thunderstorm_night': 'lightning thunderstorm night',
+                
+                // SNOW - White winter
+                'snow_day': 'snowy winter white snow',
+                'snow_night': 'snow night winter snowy',
+                
+                // MIST/FOG - Misty atmosphere
+                'mist_day': 'foggy misty weather fog',
+                'mist_night': 'foggy night mist dark'
+            };
+
+            // Build query key based on condition and time
+            let queryKey = weatherCondition;
+            
+            if (isDawn && weatherCondition === 'clear') {
+                queryKey = 'clear_dawn';
+            } else if (isSunset && weatherCondition === 'clear') {
+                queryKey = 'clear_sunset';
+            } else if (isNight) {
+                queryKey = `${weatherCondition}_night`;
+            } else {
+                queryKey = `${weatherCondition}_day`;
+            }
+
+            const query = searchQueries[queryKey] || searchQueries[`${weatherCondition}_day`] || 'weather sky';
+            
+            console.log(`🎨 Pexels search: "${query}" (weatherCode: ${weatherCode}, hour: ${currentHour})`);
+            
+            const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=15&orientation=landscape`;
+
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': PEXELS_API_KEY
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Pexels API error');
+                }
+
+                const data = await response.json();
+                
+                if (data.photos && data.photos.length > 0) {
+                    // Get random photo from results
+                    const randomIndex = Math.floor(Math.random() * Math.min(data.photos.length, 10));
+                    const photo = data.photos[randomIndex];
+                    
+                    // Use large version for better quality
+                    return photo.src.large2x || photo.src.large;
+                }
+            } catch (error) {
+                console.warn('Failed to load Pexels background:', error);
+                return null;
+            }
+        }
+
+        // Apply realistic background to body
+        async function applyRealisticBackground(weatherCode, skyClass, currentHour) {
+            // Fallback gradients for each weather condition
+            const fallbackGradients = {
+                'clear_day': 'linear-gradient(180deg, #4A90E2 0%, #87CEEB 40%, #B0E0E6 70%, #E0F6FF 100%)',
+                'clear_night': 'linear-gradient(180deg, #000428 0%, #004e92 50%, #1a1a2e 100%)',
+                'clouds_day': 'linear-gradient(180deg, #606c88 0%, #8B9CAB 40%, #B0BEC5 70%, #CFD8DC 100%)',
+                'clouds_night': 'linear-gradient(180deg, #1a1a2e 0%, #2c3e50 50%, #34495e 100%)',
+                'rain_day': 'linear-gradient(180deg, #283E51 0%, #4B79A1 40%, #6B92B0 70%, #7F8C8D 100%)',
+                'rain_night': 'linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%)',
+                'thunderstorm': 'linear-gradient(180deg, #141E30 0%, #243B55 50%, #1a1a2e 100%)',
+                'snow_day': 'linear-gradient(180deg, #E6EEFF 0%, #F0F4FF 40%, #FAFBFF 70%, #FFFFFF 100%)',
+                'snow_night': 'linear-gradient(180deg, #2c3e50 0%, #bdc3c7 50%, #ecf0f1 100%)',
+                'mist_day': 'linear-gradient(180deg, #B0BEC5 0%, #CFD8DC 40%, #ECEFF1 70%, #F5F5F5 100%)',
+                'mist_night': 'linear-gradient(180deg, #1a1a2e 0%, #3d3d5c 50%, #6B6B83 100%)'
+            };
+
+            // Determine fallback key
+            let fallbackKey = `${skyClass}_day`;
+            if (weatherCode.endsWith('n') || currentHour >= 20 || currentHour <= 5) {
+                fallbackKey = `${skyClass}_night`;
+            }
+            if (skyClass === 'thunderstorm') {
+                fallbackKey = 'thunderstorm';
+            }
+
+            // Try to fetch from Pexels
+            const imageUrl = await fetchPexelsBackground(weatherCode, skyClass, currentHour);
+            
+            if (imageUrl) {
+                // Preload image for smooth transition
+                const img = new Image();
+                img.onload = () => {
+                    document.body.style.backgroundImage = `url('${imageUrl}')`;
+                };
+                img.onerror = () => {
+                    // If image fails, use gradient fallback
+                    console.warn('Image failed to load, using gradient fallback');
+                    document.body.style.backgroundImage = fallbackGradients[fallbackKey] || fallbackGradients['clouds_day'];
+                };
+                img.src = imageUrl;
+            } else {
+                // No image from Pexels, use gradient fallback immediately
+                console.log(`📐 Using CSS gradient fallback for: ${fallbackKey}`);
+                document.body.style.backgroundImage = fallbackGradients[fallbackKey] || fallbackGradients['clouds_day'];
+            }
         }
 
         // Sky-inspired background changer based on Anna Grand's concept
@@ -1682,6 +1847,10 @@
             if (skyStatus) {
                 skyStatus.textContent = skyText;
             }
+
+            // Fetch and apply realistic background from Pexels API
+            // Pass weatherCode (with 'd'/'n'), skyClass, and currentHour for accurate searches
+            applyRealisticBackground(weatherCode, skyClass, currentHour);
             
             // Add smooth transition effect
             setTimeout(() => {
@@ -1766,14 +1935,15 @@
                 date.setDate(date.getDate() + (index + 1));
                 const dayName = date.toLocaleDateString('es-ES', { weekday: 'short' });
                 
-                // Obtener clase de icono
-                const iconClass = weatherIcons[forecast.weather[0].icon] || 'wi wi-na';
+                // Obtener URL de icono realista de OpenWeatherMap
+                const iconCode = forecast.weather[0].icon;
+                const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
                 
                 const forecastItem = document.createElement('div');
                 forecastItem.className = 'forecast-item';
                 forecastItem.innerHTML = `
                     <div class="forecast-day">${dayName}</div>
-                    <div class="forecast-icon"><i class="${iconClass}"></i></div>
+                    <div class="forecast-icon"><img src="${iconUrl}" alt="${forecast.weather[0].description}" class="forecast-icon-img"></div>
                     <div class="forecast-temps">
                         <span class="forecast-high">${Math.round(forecast.main.temp_max)}°</span> / 
                         <span class="forecast-low">${Math.round(forecast.main.temp_min)}°</span>
