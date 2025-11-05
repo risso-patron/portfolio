@@ -2,21 +2,13 @@
 # Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  # Comando de build
-  command = "npm run build"
+  # Portfolio estatico - sin comando de build necesario
+  publish = "."
   
-  # Directorio de publicación
-  publish = "dist"
-  
-  # Funciones serverless (si las necesitas en el futuro)
-  functions = "netlify/functions"
-
 [build.environment]
-  # Versión de Node.js
+  # Portfolio estatico HTML/CSS/JS vanilla
   NODE_VERSION = "18"
-  
-  # Optimizaciones de build
-  NPM_FLAGS = "--legacy-peer-deps"
+
 
 # Redirects para SPA (Single Page Application)
 [[redirects]]
