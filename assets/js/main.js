@@ -1,11 +1,27 @@
         // ==================== Navegación con scroll ==================== 
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+
         window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
+            const currentScroll = window.pageYOffset;
+            
+            // Agregar clase 'scrolled' si está por debajo de 50px
+            if (currentScroll > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+            
+            // Esconder/mostrar navbar al hacer scroll
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling hacia abajo - esconder navbar
+                navbar.classList.add('nav-hidden');
+            } else {
+                // Scrolling hacia arriba - mostrar navbar
+                navbar.classList.remove('nav-hidden');
+            }
+            
+            lastScroll = currentScroll;
         });
 
         // ==================== Scroll suave para enlaces ==================== 

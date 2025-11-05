@@ -59,14 +59,19 @@
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             z-index: 1000;
-            padding: 24px 0;
-            transition: all 0.3s ease;
+            padding: 20px 0;
+            transition: transform 0.3s ease, background 0.3s ease, padding 0.3s ease;
+            transform: translateY(0);
+        }
+
+        .nav.nav-hidden {
+            transform: translateY(-100%);
         }
 
         .nav.scrolled {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.95);
             box-shadow: var(--shadow-md);
-            padding: 20px 0;
+            padding: 12px 0;
         }
 
         .nav-content {
@@ -78,14 +83,13 @@
         .logo {
             font-family: "Corinthia", cursive;
             font-weight: 400;
-            font-size: 96px;
+            font-size: clamp(2rem, 8vw, 4.5rem);
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-decoration: none;
             transition: transform 0.3s ease;
-
         }
 
         .logo:hover {
@@ -102,6 +106,7 @@
             text-decoration: none;
             color: var(--text);
             font-weight: 500;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
             position: relative;
             transition: color 0.3s ease;
         }
@@ -775,21 +780,53 @@
         }
 
         /* ==================== Responsive ==================== */
+        
+        /* Tablets y dispositivos medianos */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero-content {
+                gap: 2.5rem;
+            }
+            
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
         @media (max-width: 768px) {
+            /* Navegación móvil */
+            .nav {
+                padding: 12px 0;
+            }
+            
+            .nav.scrolled {
+                padding: 8px 0;
+            }
+            
             .nav-links {
                 display: none;
             }
 
+            /* Hero responsive */
             .hero {
-                height: 100vh;
-                padding: 0 1rem;
+                min-height: 100vh;
+                padding: 80px 1rem 40px;
             }
 
             .hero-content {
                 flex-direction: column;
                 text-align: center;
-                gap: 2rem;
-                max-width: 600px;
+                gap: 1.5rem;
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .hero-text {
+                width: 100%;
             }
 
             .profile-pic {
@@ -798,36 +835,68 @@
             }
 
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+            }
+            
+            .hero-subtitle {
+                font-size: clamp(1rem, 4vw, 1.3rem);
+            }
+            
+            .hero-description {
+                font-size: clamp(0.9rem, 3.5vw, 1.1rem);
             }
 
             .hero-buttons {
                 flex-direction: column;
-                align-items: center;
+                align-items: stretch;
+                width: 100%;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+                padding: 14px 24px;
             }
 
+            /* Proyectos */
             .projects-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
+            /* Habilidades */
             .skills-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
             }
 
+            /* Contacto */
             .contact-links {
-                flex-direction: column;
-                align-items: center;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
 
             .project-links {
                 flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .btn-demo,
+            .btn-code {
+                width: 100%;
+                text-align: center;
             }
 
             .section-title {
-                font-size: 2.5rem;
+                font-size: clamp(2rem, 7vw, 2.5rem);
+            }
+            
+            .section-subtitle {
+                font-size: clamp(0.95rem, 3.5vw, 1.1rem);
             }
 
+            /* WhatsApp flotante */
             .whatsapp-float {
                 bottom: 20px;
                 right: 20px;
@@ -841,32 +910,109 @@
             }
         }
 
+        /* Móviles pequeños */
         @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .hero {
+                padding: 70px 0.75rem 30px;
+            }
+            
             .hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
+                gap: 1rem;
+                padding: 0.5rem;
             }
 
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: clamp(1.5rem, 7vw, 2rem);
+                margin-bottom: 0.5rem;
             }
 
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: clamp(0.95rem, 4vw, 1.1rem);
             }
 
             .hero-description {
-                font-size: 1rem;
+                font-size: clamp(0.85rem, 3.5vw, 1rem);
+                line-height: 1.5;
+            }
+            
+            .hero-location {
+                font-size: 0.9rem;
             }
 
             .profile-pic {
                 width: 100px;
                 height: 100px;
+                border: 3px solid rgba(255, 255, 255, 0.9);
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                padding: 12px 20px;
+                font-size: 0.95rem;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: clamp(1.75rem, 8vw, 2rem);
+                margin-bottom: 0.75rem;
+            }
+            
+            .section-subtitle {
+                font-size: clamp(0.9rem, 3.5vw, 1rem);
+            }
+            
+            .about,
+            .projects,
+            .skills,
+            .contact {
+                padding: 3rem 0;
+            }
+            
+            /* Habilidades en 1 columna en móviles muy pequeños */
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            
+            /* Contacto en 1 columna */
+            .contact-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .whatsapp-float svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        
+        /* Móviles extra pequeños (iPhone SE, etc.) */
+        @media (max-width: 375px) {
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .profile-pic {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
             }
         }
     
+
