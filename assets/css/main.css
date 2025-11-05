@@ -349,20 +349,20 @@
 
         /* ==================== Proyectos ==================== */
         .projects {
-            padding: 100px 0;
+            padding: 80px 0;
             background: white;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .project-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: var(--shadow-md);
             transition: all 0.4s ease;
@@ -374,38 +374,38 @@
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
         }
 
         .project-mockup {
             position: relative;
-            padding: 2rem;
+            padding: 1.5rem;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 250px;
+            min-height: 180px;
         }
 
         .mockup-laptop {
-            width: 280px;
+            width: clamp(200px, 80%, 280px);
             height: auto;
-            border-radius: 8px;
+            border-radius: 6px;
             position: relative;
         }
 
         .mockup-screen {
             background: #000;
-            border-radius: 8px 8px 0 0;
-            padding: 3px;
+            border-radius: 6px 6px 0 0;
+            padding: 2px;
             position: relative;
         }
 
         .mockup-content {
             background: white;
             border-radius: 4px;
-            height: 160px;
+            height: clamp(120px, 15vw, 160px);
             overflow: hidden;
             position: relative;
         }
@@ -417,37 +417,37 @@
         }
 
         .project-info {
-            padding: 2rem;
+            padding: 1.5rem;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
         .project-icon {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: var(--gradient-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
         }
 
         .project-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             font-weight: 700;
             color: var(--dark);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             margin-top: 0;
         }
 
         .project-description {
             color: var(--text-light);
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             line-height: 1.6;
             margin-bottom: 1.5rem;
         }
@@ -519,20 +519,20 @@
         /* ==================== Habilidades ==================== */
         .skills {
             background: var(--bg-section);
-            padding: 100px 0;
+            padding: 80px 0;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
         .skill-category {
             background: white;
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
+            padding: 1.75rem 1.5rem;
+            border-radius: 16px;
             text-align: center;
             box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
@@ -547,7 +547,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: var(--gradient-primary);
         }
 
@@ -582,8 +582,8 @@
         }
 
         .skill-icon {
-            width: 250px;
-            height: 250px;
+            width: clamp(120px, 30vw, 180px);
+            height: clamp(120px, 30vw, 180px);
             margin: 0 auto 1rem;
             display: flex;
             align-items: center;
@@ -607,9 +607,9 @@
 
         .skill-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             color: var(--dark);
         }
 
@@ -617,10 +617,11 @@
             list-style: none;
             color: var(--text-light);
             margin-top: 0.5rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
         }
 
         .skill-list li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
             font-weight: 500;
             position: relative;
             padding-left: 1rem;
@@ -859,19 +860,51 @@
                 padding: 14px 24px;
             }
 
-            /* Proyectos */
+            /* Proyectos responsive */
+            .projects {
+                padding: 60px 0;
+            }
+            
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .project-mockup {
+                min-height: 150px;
+                padding: 1rem;
+            }
+            
+            .project-info {
+                padding: 1.25rem;
             }
 
-            /* Habilidades */
+            /* Habilidades responsive */
+            .skills {
+                padding: 60px 0;
+            }
+            
             .skills-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+            
+            .skill-category {
+                padding: 1.25rem 1rem;
+            }
+            
+            .skill-icon {
+                width: clamp(100px, 25vw, 140px);
+                height: clamp(100px, 25vw, 140px);
             }
 
             /* Contacto */
+            .contact {
+                padding: 60px 0;
+            }
+            
             .contact-links {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
@@ -894,6 +927,14 @@
             
             .section-subtitle {
                 font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+                margin: 1.5rem auto 2.5rem;
+            }
+            
+            .about,
+            .projects,
+            .skills,
+            .contact {
+                padding: 50px 0;
             }
 
             /* WhatsApp flotante */
@@ -962,19 +1003,58 @@
             
             .section-subtitle {
                 font-size: clamp(0.9rem, 3.5vw, 1rem);
+                margin: 1rem auto 2rem;
             }
             
             .about,
             .projects,
             .skills,
             .contact {
-                padding: 3rem 0;
+                padding: 40px 0;
+            }
+            
+            /* Proyectos mobile */
+            .projects-grid {
+                gap: 1.25rem;
+            }
+            
+            .project-mockup {
+                min-height: 120px;
+                padding: 0.75rem;
+            }
+            
+            .project-info {
+                padding: 1rem;
+            }
+            
+            .tech-stack {
+                gap: 0.4rem;
+            }
+            
+            .tech-tag {
+                padding: 0.3rem 0.75rem;
+                font-size: 0.75rem;
             }
             
             /* Habilidades en 1 columna en móviles muy pequeños */
             .skills-grid {
                 grid-template-columns: 1fr;
-                gap: 1.25rem;
+                gap: 1rem;
+            }
+            
+            .skill-category {
+                padding: 1rem 0.75rem;
+            }
+            
+            .skill-icon {
+                width: clamp(90px, 22vw, 120px);
+                height: clamp(90px, 22vw, 120px);
+                margin-bottom: 0.75rem;
+            }
+            
+            .skill-list li {
+                margin-bottom: 0.5rem;
+                font-size: 0.85rem;
             }
             
             /* Contacto en 1 columna */

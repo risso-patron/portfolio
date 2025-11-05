@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#667eea">
     <title>Calculadora de Presupuesto Personal</title>
     <style>
         * {
@@ -270,11 +271,42 @@
             transition: width 0.5s ease;
         }
 
+        @media (max-width: 1024px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: clamp(1.8rem, 5vw, 2.5rem);
+            }
+        }
+        
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+                margin-bottom: 8px;
+            }
+            
+            .header p {
+                font-size: clamp(0.9rem, 3vw, 1rem);
+            }
+            
             .main-content {
                 grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 20px;
+                gap: 15px;
+                padding: 15px;
             }
             
             .form-row {
@@ -284,6 +316,62 @@
             
             .form-row input, .form-row select {
                 flex: none;
+                width: 100%;
+            }
+            
+            .section h2 {
+                font-size: clamp(1.3rem, 4vw, 1.5rem);
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
+            .header {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header p {
+                font-size: 0.85rem;
+            }
+            
+            .main-content {
+                padding: 10px;
+                gap: 10px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            input, select {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .btn {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .balance-item h3 {
+                font-size: 0.9rem;
+            }
+            
+            .balance-item p {
+                font-size: 1.5rem;
             }
         }
 

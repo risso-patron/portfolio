@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#e74c3c">
     <title>Pomodoro Timer | Jorge Luis Risso Patrón</title>
     <meta name="description" content="Aplicación Pomodoro Timer para aumentar productividad con técnica Pomodoro. Incluye notificaciones, sonidos y estadísticas.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍅</text></svg>">
@@ -357,27 +358,53 @@
         }
 
         /* ==================== Responsive ==================== */
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 100%;
+                padding: 1.5rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
 
+            .header {
+                padding: 0.75rem 0;
+            }
+            
+            .header h1 {
+                font-size: clamp(1.5rem, 5vw, 2rem);
+            }
+            
+            .header p {
+                font-size: clamp(0.8rem, 3vw, 0.9rem);
+            }
+
             .timer-container {
-                padding: 2rem;
+                padding: 2rem 1.5rem;
                 margin: 1rem 0;
             }
 
             .timer-display {
-                font-size: 3rem;
+                font-size: clamp(2.5rem, 10vw, 3.5rem);
+            }
+            
+            .session-type {
+                font-size: clamp(1rem, 4vw, 1.2rem);
             }
 
             .controls {
                 gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .btn {
-                padding: 0.6rem 1.2rem;
+                padding: 0.7rem 1.3rem;
                 font-size: 0.9rem;
+                min-width: 120px;
             }
 
             .settings, .stats {
@@ -387,12 +414,46 @@
 
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .setting-group label {
+                font-size: 0.9rem;
+            }
+            
+            input[type="number"] {
+                padding: 0.6rem;
+                font-size: 0.9rem;
             }
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding: 0.75rem;
+            }
+            
+            .timer-container {
+                padding: 1.5rem 1rem;
+            }
+            
             .timer-display {
-                font-size: 2.5rem;
+                font-size: clamp(2rem, 12vw, 2.5rem);
+            }
+            
+            .session-type {
+                font-size: clamp(0.9rem, 4vw, 1rem);
+                margin-bottom: 0.75rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 0.8rem 1rem;
+                font-size: 0.95rem;
             }
 
             .setting-group {
@@ -400,9 +461,45 @@
                 gap: 0.5rem;
                 align-items: flex-start;
             }
+            
+            .setting-group label {
+                width: 100%;
+            }
+            
+            input[type="number"] {
+                width: 100%;
+            }
 
             .stats-grid {
                 grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .stat-item {
+                padding: 1rem;
+            }
+            
+            .stat-value {
+                font-size: clamp(1.8rem, 8vw, 2rem);
+            }
+            
+            .stat-label {
+                font-size: clamp(0.8rem, 3vw, 0.9rem);
+            }
+            
+            h2 {
+                font-size: clamp(1.3rem, 5vw, 1.5rem);
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .timer-display {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 0.9rem;
+                font-size: 0.9rem;
             }
         }
 
