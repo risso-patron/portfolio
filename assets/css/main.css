@@ -349,15 +349,15 @@
 
         /* ==================== Proyectos ==================== */
         .projects {
-            padding: 80px 0;
+            padding: 60px 0;
             background: white;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
         }
 
         .project-card {
@@ -380,16 +380,16 @@
 
         .project-mockup {
             position: relative;
-            padding: 1.5rem;
+            padding: 1rem;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 180px;
+            min-height: 140px;
         }
 
         .mockup-laptop {
-            width: clamp(200px, 80%, 280px);
+            width: clamp(160px, 70%, 240px);
             height: auto;
             border-radius: 6px;
             position: relative;
@@ -405,7 +405,7 @@
         .mockup-content {
             background: white;
             border-radius: 4px;
-            height: clamp(120px, 15vw, 160px);
+            height: clamp(100px, 12vw, 140px);
             overflow: hidden;
             position: relative;
         }
@@ -519,20 +519,20 @@
         /* ==================== Habilidades ==================== */
         .skills {
             background: var(--bg-section);
-            padding: 80px 0;
+            padding: 60px 0;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2.5rem;
         }
 
         .skill-category {
             background: white;
-            padding: 1.75rem 1.5rem;
-            border-radius: 16px;
+            padding: 1.25rem 1rem;
+            border-radius: 12px;
             text-align: center;
             box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
@@ -582,9 +582,9 @@
         }
 
         .skill-icon {
-            width: clamp(120px, 30vw, 180px);
-            height: clamp(120px, 30vw, 180px);
-            margin: 0 auto 1rem;
+            width: clamp(80px, 20vw, 120px);
+            height: clamp(80px, 20vw, 120px);
+            margin: 0 auto 0.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -862,42 +862,42 @@
 
             /* Proyectos responsive */
             .projects {
-                padding: 60px 0;
+                padding: 40px 0;
             }
             
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-                margin-top: 2rem;
+                gap: 1.25rem;
+                margin-top: 1.5rem;
             }
             
             .project-mockup {
-                min-height: 150px;
-                padding: 1rem;
+                min-height: 110px;
+                padding: 0.75rem;
             }
             
             .project-info {
-                padding: 1.25rem;
+                padding: 1rem;
             }
 
             /* Habilidades responsive */
             .skills {
-                padding: 60px 0;
+                padding: 40px 0;
             }
             
             .skills-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                margin-top: 2rem;
+                gap: 0.875rem;
+                margin-top: 1.5rem;
             }
             
             .skill-category {
-                padding: 1.25rem 1rem;
+                padding: 1rem 0.75rem;
             }
             
             .skill-icon {
-                width: clamp(100px, 25vw, 140px);
-                height: clamp(100px, 25vw, 140px);
+                width: clamp(70px, 18vw, 100px);
+                height: clamp(70px, 18vw, 100px);
             }
 
             /* Contacto */
@@ -934,7 +934,7 @@
             .projects,
             .skills,
             .contact {
-                padding: 50px 0;
+                padding: 35px 0;
             }
 
             /* WhatsApp flotante */
@@ -1010,51 +1010,63 @@
             .projects,
             .skills,
             .contact {
-                padding: 40px 0;
+                padding: 30px 0;
             }
             
             /* Proyectos mobile */
             .projects-grid {
-                gap: 1.25rem;
+                gap: 1rem;
             }
             
             .project-mockup {
-                min-height: 120px;
-                padding: 0.75rem;
+                min-height: 90px;
+                padding: 0.5rem;
+            }
+            
+            .mockup-laptop {
+                width: clamp(140px, 65%, 200px);
             }
             
             .project-info {
-                padding: 1rem;
+                padding: 0.875rem;
+            }
+            
+            .project-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+                margin-bottom: 0.75rem;
             }
             
             .tech-stack {
-                gap: 0.4rem;
+                gap: 0.35rem;
+                margin-bottom: 1.25rem;
             }
             
             .tech-tag {
-                padding: 0.3rem 0.75rem;
-                font-size: 0.75rem;
+                padding: 0.25rem 0.65rem;
+                font-size: 0.7rem;
             }
             
             /* Habilidades en 1 columna en móviles muy pequeños */
             .skills-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 0.875rem;
             }
             
             .skill-category {
-                padding: 1rem 0.75rem;
+                padding: 0.875rem 0.625rem;
             }
             
             .skill-icon {
-                width: clamp(90px, 22vw, 120px);
-                height: clamp(90px, 22vw, 120px);
-                margin-bottom: 0.75rem;
+                width: clamp(65px, 16vw, 90px);
+                height: clamp(65px, 16vw, 90px);
+                margin-bottom: 0.5rem;
             }
             
             .skill-list li {
-                margin-bottom: 0.5rem;
-                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+                font-size: 0.8rem;
             }
             
             /* Contacto en 1 columna */
@@ -1063,25 +1075,39 @@
             }
             
             .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                bottom: 15px;
-                right: 15px;
-            }
-
-            .whatsapp-float svg {
-                width: 24px;
-                height: 24px;
-            }
-        }
-        
         /* Móviles extra pequeños (iPhone SE, etc.) */
         @media (max-width: 375px) {
             .hero-content h1 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             
             .hero-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .profile-pic {
+                width: 85px;
+                height: 85px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .project-mockup {
+                min-height: 80px;
+                padding: 0.4rem;
+            }
+            
+            .skill-icon {
+                width: clamp(60px, 15vw, 80px);
+                height: clamp(60px, 15vw, 80px);
+            }
+            
+            .skill-category {
+                padding: 0.75rem 0.5rem;
+            }
+        }   .hero-subtitle {
                 font-size: 1rem;
             }
             
