@@ -1116,6 +1116,64 @@
             }
         };
 
+        // Demo forecast data - 5 dias para cada ciudad
+        const demoForecastData = {
+            'panama': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 32, temp_min: 24 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 31, temp_min: 24 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '10d', description: 'lluvia' }], main: { temp_max: 28, temp_min: 23 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '09d', description: 'lluvia ligera' }], main: { temp_max: 29, temp_min: 23 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 31, temp_min: 24 } }
+                ]
+            },
+            'madrid': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 14, temp_min: 6 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 15, temp_min: 7 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '03d', description: 'nublado' }], main: { temp_max: 13, temp_min: 6 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '10d', description: 'lluvia' }], main: { temp_max: 11, temp_min: 5 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '04d', description: 'muy nublado' }], main: { temp_max: 12, temp_min: 5 } }
+                ]
+            },
+            'tokyo': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 11, temp_min: 3 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 12, temp_min: 4 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '03d', description: 'nublado' }], main: { temp_max: 10, temp_min: 3 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 13, temp_min: 4 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 12, temp_min: 3 } }
+                ]
+            },
+            'new york': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '13d', description: 'nieve' }], main: { temp_max: 2, temp_min: -3 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '04d', description: 'muy nublado' }], main: { temp_max: 4, temp_min: -2 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 6, temp_min: 0 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 7, temp_min: 1 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '03d', description: 'nublado' }], main: { temp_max: 5, temp_min: -1 } }
+                ]
+            },
+            'london': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '10d', description: 'lluvia' }], main: { temp_max: 12, temp_min: 8 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '04d', description: 'muy nublado' }], main: { temp_max: 11, temp_min: 7 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '09d', description: 'lluvia ligera' }], main: { temp_max: 10, temp_min: 6 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '03d', description: 'nublado' }], main: { temp_max: 12, temp_min: 7 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 13, temp_min: 8 } }
+                ]
+            },
+            'paris': {
+                list: [
+                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '04d', description: 'muy nublado' }], main: { temp_max: 16, temp_min: 12 } },
+                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '03d', description: 'nublado' }], main: { temp_max: 15, temp_min: 11 } },
+                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '10d', description: 'lluvia' }], main: { temp_max: 14, temp_min: 10 } },
+                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 16, temp_min: 11 } },
+                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 17, temp_min: 12 } }
+                ]
+            }
+        };
+
         // Weather icons mapping - TEXTO SIMPLE (sin emojis para evitar corrupcion)
         const weatherIcons = {
             '01d': 'SOL', '01n': 'LUNA',
@@ -1169,14 +1227,16 @@
                 setTimeout(() => {
                     const cityKey = city.toLowerCase();
                     const weatherData = demoWeatherData[cityKey] || demoWeatherData['panama'];
+                    const forecastData = demoForecastData[cityKey] || demoForecastData['panama'];
                     
                     currentWeatherData = weatherData;
                     displayWeather(weatherData);
+                    displayForecast(forecastData);
                     hideLoading();
                     
                     // Mostrar mensaje de demo
                     setTimeout(() => {
-                        showError('MODO DEMO: Mostrando datos simulados para portfolio. En producci�n usar�a OpenWeatherMap API.', 'info');
+                        showError('MODO DEMO: Mostrando datos simulados para portfolio. En produccion usaria OpenWeatherMap API.', 'info');
                     }, 1000);
                 }, 800);
                 return;
@@ -1192,23 +1252,25 @@
 
         async function getCurrentLocation() {
             if (DEMO_MODE) {
-                // Modo demo - simular ubicaci+�n de Panam+�
+                // Modo demo - simular ubicacion de Panama
                 showLoading();
                 setTimeout(() => {
                     const weatherData = demoWeatherData['panama'];
+                    const forecastData = demoForecastData['panama'];
                     currentWeatherData = weatherData;
                     displayWeather(weatherData);
+                    displayForecast(forecastData);
                     hideLoading();
                     
                     setTimeout(() => {
-                        showError('MODO DEMO: Simulando ubicaci�n de Panam� para portfolio.', 'info');
+                        showError('MODO DEMO: Simulando ubicacion de Panama para portfolio.', 'info');
                     }, 1000);
                 }, 800);
                 return;
             }
 
             if (!navigator.geolocation) {
-                showError('La geolocalizaci�n no est� disponible en tu navegador');
+                showError('La geolocalizacion no esta disponible en tu navegador');
                 return;
             }
 
@@ -1430,10 +1492,10 @@
                 body.style.transition = 'all 1.5s ease-in-out';
             }, 100);
             
-            document.getElementById('temperature').textContent = `${Math.round(weatherData.main.temp)}-�`;
+            document.getElementById('temperature').textContent = `${Math.round(weatherData.main.temp)}°`;
             document.getElementById('weatherDescription').textContent = weatherData.weather[0].description;
             document.getElementById('cityName').textContent = `${weatherData.name}, ${weatherData.sys.country}`;
-            document.getElementById('feelsLike').textContent = `${Math.round(weatherData.main.feels_like)}-�`;
+            document.getElementById('feelsLike').textContent = `${Math.round(weatherData.main.feels_like)}°`;
             document.getElementById('humidity').textContent = `${weatherData.main.humidity}%`;
             document.getElementById('windSpeed').textContent = `${Math.round(weatherData.wind.speed * 3.6)} km/h`;
             document.getElementById('pressure').textContent = `${weatherData.main.pressure} hPa`;
@@ -1503,8 +1565,8 @@
                     <div class="forecast-day">${dayName}</div>
                     <div class="forecast-icon">${weatherIcons[forecast.weather[0].icon] || '?'}</div>
                     <div class="forecast-temps">
-                        <span class="forecast-high">${Math.round(forecast.main.temp_max)}�</span> / 
-                        <span class="forecast-low">${Math.round(forecast.main.temp_min)}�</span>
+                        <span class="forecast-high">${Math.round(forecast.main.temp_max)}°</span> / 
+                        <span class="forecast-low">${Math.round(forecast.main.temp_min)}°</span>
                     </div>
                 `;
                 
