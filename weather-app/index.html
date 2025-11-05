@@ -2,7 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="description" content="Weather App - Consulta el clima en cualquier ciudad del mundo con fondos realistas">
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Weather App | Jorge Luis Risso Patron</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>W</text></svg>">
     
@@ -40,7 +44,12 @@
             background-attachment: fixed;
             background-repeat: no-repeat;
             min-height: 100vh;
+            min-height: -webkit-fill-available; /* iOS Safari fix */
             padding: 20px;
+            padding-top: max(20px, env(safe-area-inset-top)); /* Notch/Dynamic Island */
+            padding-bottom: max(20px, env(safe-area-inset-bottom)); /* Home indicator */
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
             color: var(--text-color, #2c3e50);
             position: relative;
             transition: background 1.5s ease-in-out;
@@ -1096,56 +1105,406 @@
         }
 
         /* Responsive */
+        /* Responsive Design - Mobile First Approach */
+        
+        /* Tablets y pantallas medianas (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 95%;
+                padding: 0 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Tablets portrait y móviles landscape (481px - 768px) */
         @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
             .container {
                 padding: 0 10px;
+            }
+
+            .header {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
             }
 
             .header h1 {
                 font-size: 2rem;
             }
+            
+            .header p {
+                font-size: 1rem;
+            }
 
             .search-container {
                 flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            #cityInput {
+                width: 100%;
+                font-size: 1rem;
+            }
+            
+            #searchBtn {
+                width: 100%;
+                padding: 0.875rem;
             }
 
             .temperature {
                 font-size: 5rem;
             }
             
+            .temp-value {
+                font-size: 5rem;
+            }
+            
+            .unit {
+                font-size: 2.5rem;
+            }
+            
             .temp-range {
                 top: 1rem;
                 right: 1rem;
-                font-size: 0.95rem;
-                gap: 1rem;
+                font-size: 0.9rem;
+                gap: 0.75rem;
+                padding: 0.5rem 0.75rem;
+            }
+            
+            .temp-range .temp-high,
+            .temp-range .temp-low {
+                font-size: 1.1rem;
+            }
+
+            .weather-icon-img {
+                width: 140px;
+                height: 140px;
             }
 
             .weather-details {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .detail-item {
+                padding: 1rem;
+            }
+            
+            .detail-item i {
+                font-size: 2rem;
             }
 
             .forecast-container {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
             
-            .forecast-icon {
-                font-size: 3rem;
+            .forecast-icon-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .unit-toggle {
+                gap: 0.5rem;
+            }
+            
+            .unit-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
             }
         }
 
+        /* Móviles portrait (320px - 480px) */
         @media (max-width: 480px) {
             body {
                 padding: 10px;
+            }
+            
+            .container {
+                padding: 0;
+            }
+
+            .header {
+                padding: 1.25rem;
+                margin-bottom: 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header p {
+                font-size: 0.95rem;
+            }
+            
+            .sky-status {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
             }
 
             .search-section,
             .current-weather,
             .forecast-section {
-                padding: 1.5rem;
+                padding: 1.25rem;
+            }
+            
+            #cityInput {
+                padding: 0.75rem;
+                font-size: 0.95rem;
+            }
+            
+            #searchBtn {
+                padding: 0.75rem;
+                font-size: 0.95rem;
+            }
+
+            .temperature {
+                font-size: 4rem;
+            }
+            
+            .temp-value {
+                font-size: 4rem;
+            }
+            
+            .unit {
+                font-size: 2rem;
+            }
+            
+            .description {
+                font-size: 1.1rem;
+            }
+            
+            .location {
+                font-size: 1rem;
+            }
+            
+            .temp-range {
+                top: 0.75rem;
+                right: 0.75rem;
+                font-size: 0.85rem;
+                gap: 0.5rem;
+                padding: 0.4rem 0.6rem;
+            }
+            
+            .temp-range .temp-high,
+            .temp-range .temp-low {
+                font-size: 1rem;
+            }
+
+            .weather-icon-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .weather-details {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .detail-item {
+                padding: 0.875rem;
+            }
+            
+            .detail-label {
+                font-size: 0.8rem;
+            }
+            
+            .detail-value {
+                font-size: 1.1rem;
             }
 
             .forecast-container {
                 grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .forecast-item {
+                padding: 1rem;
+            }
+            
+            .forecast-day {
+                font-size: 0.9rem;
+            }
+            
+            .forecast-icon-img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .forecast-temps {
+                font-size: 1rem;
+            }
+            
+            .unit-toggle {
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            
+            .unit-btn {
+                width: 100%;
+                padding: 0.625rem;
+                font-size: 0.875rem;
+            }
+            
+            .footer {
+                margin-top: 2rem;
+                padding: 1.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Móviles pequeños (max 375px) - iPhone SE, iPhone 8 */
+        @media (max-width: 375px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .temperature {
+                font-size: 3.5rem;
+            }
+            
+            .temp-value {
+                font-size: 3.5rem;
+            }
+            
+            .unit {
+                font-size: 1.75rem;
+            }
+            
+            .weather-icon-img {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .search-section,
+            .current-weather,
+            .forecast-section {
+                padding: 1rem;
+            }
+        }
+        
+        /* iPhone 12, iPhone 12 Pro, iPhone 13, iPhone 14 (390px) */
+        @media (min-width: 376px) and (max-width: 430px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .header {
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .temperature {
+                font-size: 4.5rem;
+            }
+            
+            .temp-value {
+                font-size: 4.5rem;
+            }
+            
+            .unit {
+                font-size: 2.25rem;
+            }
+            
+            .weather-icon-img {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .weather-details {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .forecast-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .forecast-icon-img {
+                width: 65px;
+                height: 65px;
+            }
+        }
+        
+        /* iPhone 12 Pro Max, iPhone 13 Pro Max, iPhone 14 Plus, iPhone 15, iPhone 16 (430px) */
+        @media (min-width: 414px) and (max-width: 480px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .header {
+                padding: 1.75rem;
+            }
+            
+            .header h1 {
+                font-size: 2.25rem;
+            }
+            
+            .header p {
+                font-size: 1.05rem;
+            }
+            
+            .temperature {
+                font-size: 5rem;
+            }
+            
+            .temp-value {
+                font-size: 5rem;
+            }
+            
+            .unit {
+                font-size: 2.5rem;
+            }
+            
+            .description {
+                font-size: 1.3rem;
+            }
+            
+            .weather-icon-img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .weather-details {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+            }
+            
+            .detail-item {
+                padding: 1.125rem;
+            }
+            
+            .forecast-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+            }
+            
+            .forecast-item {
+                padding: 1.25rem;
+            }
+            
+            .forecast-icon-img {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .forecast-temps {
+                font-size: 1.1rem;
             }
         }
 
@@ -1162,6 +1521,59 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* Mejoras para dispositivos táctiles */
+        @media (hover: none) and (pointer: coarse) {
+            /* Botones más grandes para tocar */
+            button, 
+            .btn-primary, 
+            .btn-secondary,
+            .unit-btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Eliminar efectos hover en táctiles */
+            .btn-primary:hover,
+            .btn-secondary:hover,
+            .unit-btn:hover {
+                transform: none;
+            }
+            
+            /* Efectos de toque activo */
+            .btn-primary:active {
+                transform: scale(0.95);
+                opacity: 0.9;
+            }
+            
+            .btn-secondary:active {
+                transform: scale(0.95);
+                opacity: 0.9;
+            }
+            
+            .unit-btn:active {
+                transform: scale(0.95);
+            }
+            
+            /* Input más grande para mejor experiencia táctil */
+            input[type="text"],
+            input[type="search"] {
+                min-height: 44px;
+                font-size: 16px; /* Previene zoom en iOS */
+            }
+        }
+        
+        /* Mejoras de rendimiento para animaciones en móviles */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
         .footer {
   margin-top: 4rem;
   padding: 2rem 1rem;
