@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App | Jorge Luis Risso Patron</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>W</text></svg>">
+    
+    <!-- Weather Icons Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css">
+    
     <style>
         /* Variables CSS - Paleta Azul Unificada */
         :root {
@@ -601,6 +605,79 @@
             transition: all 0.3s ease;
         }
 
+        /* Weather Icons - Asegurar que los iconos <i> hereden estilos */
+        .weather-icon i {
+            font-size: inherit;
+            color: #ffffff;
+            text-shadow: inherit;
+        }
+
+        /* Iconos específicos por clima - día */
+        .weather-icon i.wi-day-sunny,
+        .weather-icon i.wi-day-clear {
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 140, 0, 0.4);
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+            animation: rotateSun 10s linear infinite;
+        }
+
+        .weather-icon i.wi-day-cloudy,
+        .weather-icon i.wi-day-cloudy-high,
+        .weather-icon i.wi-cloudy,
+        .weather-icon i.wi-cloud {
+            color: #E0E0E0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .weather-icon i.wi-day-rain,
+        .weather-icon i.wi-showers,
+        .weather-icon i.wi-rain {
+            color: #4A90E2;
+            text-shadow: 0 0 15px rgba(74, 144, 226, 0.6);
+            animation: bounceWeather 2s ease-in-out infinite;
+        }
+
+        .weather-icon i.wi-day-thunderstorm,
+        .weather-icon i.wi-thunderstorm {
+            color: #9B59B6;
+            text-shadow: 0 0 20px rgba(155, 89, 182, 0.7), 0 0 40px rgba(142, 68, 173, 0.5);
+            animation: bounceWeather 1.5s ease-in-out infinite;
+        }
+
+        .weather-icon i.wi-day-snow,
+        .weather-icon i.wi-snow {
+            color: #FFFFFF;
+            text-shadow: 0 0 15px rgba(173, 216, 230, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            animation: snowfall 4s ease-in-out infinite, sway 6s ease-in-out infinite;
+        }
+
+        .weather-icon i.wi-day-fog,
+        .weather-icon i.wi-fog {
+            color: #B0B0B0;
+            text-shadow: 0 0 20px rgba(176, 176, 176, 0.8);
+            opacity: 0.85;
+        }
+
+        /* Iconos noche */
+        .weather-icon i.wi-night-clear,
+        .weather-icon i.wi-night-alt-cloudy {
+            color: #F0E68C;
+            text-shadow: 0 0 20px rgba(240, 230, 140, 0.6);
+        }
+
+        .weather-icon i.wi-night-alt-rain,
+        .weather-icon i.wi-night-alt-thunderstorm,
+        .weather-icon i.wi-night-alt-snow {
+            color: #87CEEB;
+            text-shadow: 0 0 15px rgba(135, 206, 235, 0.5);
+        }
+
+        .weather-icon i.wi-night-fog {
+            color: #A9A9A9;
+            text-shadow: 0 0 20px rgba(169, 169, 169, 0.7);
+            opacity: 0.8;
+        }
+
         /* Iconos espec+�ficos con tama+�os y efectos personalizados */
         .weather-icon.sun {
             font-size: 8rem;
@@ -875,6 +952,12 @@
             margin: 1rem 0;
             filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
             transition: transform 0.3s ease;
+        }
+
+        /* Weather Icons en forecast cards */
+        .forecast-icon i {
+            font-size: inherit;
+            color: #ffffff;
         }
         
         .forecast-item:hover .forecast-icon {
@@ -1277,17 +1360,26 @@
             }
         };
 
-        // Weather icons mapping - TEXTO SIMPLE (sin emojis para evitar corrupcion)
+        // Weather icons mapping - Weather Icons Library (iconos realistas)
         const weatherIcons = {
-            '01d': 'SOL', '01n': 'LUNA',
-            '02d': 'SOL-NUBES', '02n': 'LUNA-NUBES',
-            '03d': 'NUBES', '03n': 'NUBES',
-            '04d': 'NUBLADO', '04n': 'NUBLADO',
-            '09d': 'LLUVIA', '09n': 'LLUVIA',
-            '10d': 'LLUVIA', '10n': 'LLUVIA',
-            '11d': 'TORMENTA', '11n': 'TORMENTA',
-            '13d': 'NIEVE', '13n': 'NIEVE',
-            '50d': 'NIEBLA', '50n': 'NIEBLA'
+            '01d': 'wi wi-day-sunny',           // Despejado dia
+            '01n': 'wi wi-night-clear',         // Despejado noche
+            '02d': 'wi wi-day-cloudy',          // Pocas nubes dia
+            '02n': 'wi wi-night-alt-cloudy',    // Pocas nubes noche
+            '03d': 'wi wi-cloud',               // Nubes dispersas
+            '03n': 'wi wi-cloud',               // Nubes dispersas noche
+            '04d': 'wi wi-cloudy',              // Muy nublado
+            '04n': 'wi wi-cloudy',              // Muy nublado noche
+            '09d': 'wi wi-showers',             // Lluvia ligera
+            '09n': 'wi wi-showers',             // Lluvia ligera noche
+            '10d': 'wi wi-day-rain',            // Lluvia dia
+            '10n': 'wi wi-night-alt-rain',      // Lluvia noche
+            '11d': 'wi wi-day-thunderstorm',    // Tormenta dia
+            '11n': 'wi wi-night-alt-thunderstorm', // Tormenta noche
+            '13d': 'wi wi-day-snow',            // Nieve dia
+            '13n': 'wi wi-night-alt-snow',      // Nieve noche
+            '50d': 'wi wi-day-fog',             // Niebla dia
+            '50n': 'wi wi-night-fog'            // Niebla noche
         };
 
         // DOM Elements
@@ -1499,8 +1591,9 @@
             const currentWeatherElement = weatherDisplay.querySelector('.current-weather');
             const weatherCode = data.weather[0].icon;
             
-            // Update current weather
-            weatherIconElement.textContent = weatherIcons[weatherCode] || '?';
+            // Update current weather icon with Weather Icons library
+            const iconClass = weatherIcons[weatherCode] || 'wi wi-na';
+            weatherIconElement.innerHTML = `<i class="${iconClass}"></i>`;
             
             // Remove existing weather classes and particles
             weatherIconElement.className = 'weather-icon';
@@ -1532,7 +1625,7 @@
                 createWindParticles(weatherDisplay);
             }
 
-            // ������� SKY-INSPIRED BACKGROUND - Anna Grand's Concept Implementation
+            // SKY-INSPIRED BACKGROUND - Anna Grand's Concept Implementation
             updateSkyBackground(weatherCode, data);
         }
 
@@ -1673,11 +1766,14 @@
                 date.setDate(date.getDate() + (index + 1));
                 const dayName = date.toLocaleDateString('es-ES', { weekday: 'short' });
                 
+                // Obtener clase de icono
+                const iconClass = weatherIcons[forecast.weather[0].icon] || 'wi wi-na';
+                
                 const forecastItem = document.createElement('div');
                 forecastItem.className = 'forecast-item';
                 forecastItem.innerHTML = `
                     <div class="forecast-day">${dayName}</div>
-                    <div class="forecast-icon">${weatherIcons[forecast.weather[0].icon] || '?'}</div>
+                    <div class="forecast-icon"><i class="${iconClass}"></i></div>
                     <div class="forecast-temps">
                         <span class="forecast-high">${Math.round(forecast.main.temp_max)}°</span> / 
                         <span class="forecast-low">${Math.round(forecast.main.temp_min)}°</span>
