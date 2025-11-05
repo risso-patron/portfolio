@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App | Jorge Luis Risso Patr�n</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>?</text></svg>">
+    <title>Weather App | Jorge Luis Risso Patron</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>W</text></svg>">
     <style>
         /* Variables CSS - Paleta Azul Unificada */
         :root {
@@ -229,7 +229,8 @@
             text-align: center;
             margin-bottom: 2rem;
             background: rgba(255, 255, 255, 0.1);
-            -webkit-backdrop-filter: blur`n            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem;
             border-radius: var(--border-radius);
@@ -237,7 +238,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Adaptaci+�n para fondos oscuros */
+        /* Adaptacion para fondos oscuros */
         body.thunderstorm .header,
         body.night .header,
         body.rain .header {
@@ -281,7 +282,8 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            -webkit-backdrop-filter: blur`n            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
         }
 
         /* Sky status colors for different weather */
@@ -295,7 +297,8 @@
         /* Search Section adaptativa */
         .search-section {
             background: rgba(255, 255, 255, 0.1);
-            -webkit-backdrop-filter: blur`n            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 2rem;
             border-radius: var(--border-radius);
@@ -304,7 +307,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Adaptaci+�n para fondos oscuros */
+        /* Adaptacion para fondos oscuros */
         body.thunderstorm .search-section,
         body.night .search-section,
         body.rain .search-section {
@@ -445,7 +448,8 @@
         .weather-display {
             display: none;
             background: rgba(255, 255, 255, 0.1);
-            -webkit-backdrop-filter: blur`n            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: var(--border-radius);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -457,14 +461,15 @@
             padding: 2.5rem;
             text-align: center;
             background: rgba(255, 255, 255, 0.05);
-            -webkit-backdrop-filter: blur`n            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
             transition: all 0.5s ease;
         }
 
-        /* Adaptaci+�n para fondos oscuros */
+        /* Adaptacion para fondos oscuros */
         body.thunderstorm .weather-display,
         body.night .weather-display,
         body.rain .weather-display {
@@ -967,9 +972,9 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>&#9729;&#65039; Weather App</h1>
+            <h1>Weather App</h1>
             <p>Consulta el clima en cualquier ciudad del mundo</p>
-            <div class="sky-status" id="skyStatus">&#9729;&#65039; Cielo Esperando</div>
+            <div class="sky-status" id="skyStatus">Esperando busqueda...</div>
         </header>
 
         <!-- Search Section -->
@@ -978,16 +983,16 @@
                 <input 
                     type="text" 
                     class="search-input" 
-                    placeholder="Buscar ciudad (ej: Londres, Panama, Tokyo)"
+                    placeholder="Buscar ciudad (ej: Panama, Madrid, Tokyo)"
                     id="cityInput"
                 >
                 <button class="btn btn-primary" onclick="searchWeather()">
-                    &#128269; Buscar
+                    Buscar
                 </button>
             </div>
             
             <button class="btn btn-secondary geolocation-btn" onclick="getCurrentLocation()">
-                &#128205; Usar Mi Ubicacion
+                Usar Mi Ubicacion
             </button>
 
             <div class="error" id="errorMessage"></div>
@@ -996,29 +1001,29 @@
         <!-- Loading -->
         <div class="loading" id="loadingIndicator">
             <div class="spinner"></div>
-            <p>Obteniendo informaci+�n del clima...</p>
+            <p>Obteniendo informacion del clima...</p>
         </div>
 
         <!-- Weather Display -->
         <main class="weather-display" id="weatherDisplay">
             <!-- Current Weather -->
             <section class="current-weather">
-                <div class="weather-icon" id="weatherIcon">�������</div>
-                <div class="temperature" id="temperature">---�</div>
+                <div class="weather-icon" id="weatherIcon">--</div>
+                <div class="temperature" id="temperature">--°</div>
                 <div class="weather-description" id="weatherDescription">--</div>
                 <div class="city-name" id="cityName">--</div>
                 
                 <!-- Units Toggle -->
                 <div class="units-toggle">
-                    <button class="unit-btn active" onclick="toggleUnits('celsius')">-�C</button>
-                    <button class="unit-btn" onclick="toggleUnits('fahrenheit')">-�F</button>
+                    <button class="unit-btn active" onclick="toggleUnits('celsius')">°C</button>
+                    <button class="unit-btn" onclick="toggleUnits('fahrenheit')">°F</button>
                 </div>
 
                 <!-- Weather Details -->
                 <div class="weather-details">
                     <div class="detail-item">
-                        <div class="detail-label">Sensaci+�n T+�rmica</div>
-                        <div class="detail-value" id="feelsLike">---�</div>
+                        <div class="detail-label">Sensacion Termica</div>
+                        <div class="detail-value" id="feelsLike">--°</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">Humedad</div>
@@ -1029,7 +1034,7 @@
                         <div class="detail-value" id="windSpeed">-- km/h</div>
                     </div>
                     <div class="detail-item">
-                        <div class="detail-label">Presi+�n</div>
+                        <div class="detail-label">Presion</div>
                         <div class="detail-value" id="pressure">-- hPa</div>
                     </div>
                 </div>
@@ -1037,7 +1042,7 @@
 
             <!-- Forecast Section -->
             <section class="forecast-section">
-                <h2 class="forecast-title">Pron+�stico de 5 D+�as</h2>
+                <h2 class="forecast-title">Pronostico de 5 Dias</h2>
                 <div class="forecast-container" id="forecastContainer">
                     <!-- Forecast items will be populated by JavaScript -->
                 </div>
@@ -1063,65 +1068,65 @@
         const demoWeatherData = {
             'panama': {
                 name: 'Ciudad de Panama',
-                sys: { country: 'PA' },
                 main: { temp: 28, feels_like: 32, humidity: 78, pressure: 1012 },
                 weather: [{ main: 'Partly Cloudy', description: 'parcialmente nublado', icon: '02d' }],
                 wind: { speed: 12 },
-                coord: { lat: 8.9824, lon: -79.5199 }
+                coord: { lat: 8.9824, lon: -79.5199 },
+                sys: { country: 'PA' }
             },
             'madrid': {
                 name: 'Madrid',
-                sys: { country: 'ES' },
                 main: { temp: 18, feels_like: 16, humidity: 65, pressure: 1015 },
                 weather: [{ main: 'Clear', description: 'cielo claro', icon: '01d' }],
                 wind: { speed: 8 },
-                coord: { lat: 40.4168, lon: -3.7038 }
+                coord: { lat: 40.4168, lon: -3.7038 },
+                sys: { country: 'ES' }
             },
             'tokyo': {
                 name: 'Tokio',
-                sys: { country: 'JP' },
                 main: { temp: 22, feels_like: 24, humidity: 72, pressure: 1018 },
                 weather: [{ main: 'Cloudy', description: 'nublado', icon: '04d' }],
                 wind: { speed: 6 },
-                coord: { lat: 35.6762, lon: 139.6503 }
+                coord: { lat: 35.6762, lon: 139.6503 },
+                sys: { country: 'JP' }
             },
             'new york': {
                 name: 'Nueva York',
-                sys: { country: 'US' },
                 main: { temp: 15, feels_like: 12, humidity: 60, pressure: 1020 },
                 weather: [{ main: 'Rain', description: 'lluvia ligera', icon: '10d' }],
                 wind: { speed: 15 },
-                coord: { lat: 40.7128, lon: -74.0060 }
+                coord: { lat: 40.7128, lon: -74.0060 },
+                sys: { country: 'US' }
             },
             'london': {
                 name: 'Londres',
-                sys: { country: 'GB' },
-                main: { temp: 12, feels_like: 10, humidity: 75, pressure: 1010 },
-                weather: [{ main: 'Rain', description: 'lluvia moderada', icon: '10d' }],
+                main: { temp: 12, feels_like: 10, humidity: 75, pressure: 1008 },
+                weather: [{ main: 'Rain', description: 'lluvia', icon: '10d' }],
                 wind: { speed: 18 },
-                coord: { lat: 51.5074, lon: -0.1278 }
+                coord: { lat: 51.5074, lon: -0.1278 },
+                sys: { country: 'GB' }
             },
             'paris': {
                 name: 'Paris',
-                sys: { country: 'FR' },
                 main: { temp: 16, feels_like: 14, humidity: 68, pressure: 1013 },
                 weather: [{ main: 'Overcast', description: 'muy nublado', icon: '04d' }],
                 wind: { speed: 10 },
-                coord: { lat: 48.8566, lon: 2.3522 }
+                coord: { lat: 48.8566, lon: 2.3522 },
+                sys: { country: 'FR' }
             }
         };
 
-        // Weather icons mapping - Iconos mejorados para mejor contraste
+        // Weather icons mapping - TEXTO SIMPLE (sin emojis para evitar corrupcion)
         const weatherIcons = {
-            '01d': '��Ǵ��', '01n': '�+�',
-            '02d': '���', '02n': '������',
-            '03d': '������', '03n': '������',
-            '04d': '������', '04n': '������',
-            '09d': '����', '09n': '����',
-            '10d': '��괩�', '10n': '����',
-            '11d': '��괩�', '11n': '��괩�',
-            '13d': '��䴩�', '13n': '��䴩�',
-            '50d': '�+����', '50n': '����'
+            '01d': 'SOL', '01n': 'LUNA',
+            '02d': 'SOL-NUBES', '02n': 'LUNA-NUBES',
+            '03d': 'NUBES', '03n': 'NUBES',
+            '04d': 'NUBLADO', '04n': 'NUBLADO',
+            '09d': 'LLUVIA', '09n': 'LLUVIA',
+            '10d': 'LLUVIA', '10n': 'LLUVIA',
+            '11d': 'TORMENTA', '11n': 'TORMENTA',
+            '13d': 'NIEVE', '13n': 'NIEVE',
+            '50d': 'NIEBLA', '50n': 'NIEBLA'
         };
 
         // DOM Elements
@@ -1566,10 +1571,10 @@
         // Initialize app
         function initApp() {
             console.log('Weather App initialized');
-            console.log('Por Jorge Luis Risso Patr�n - Desarrollador Frontend Junior');
+            console.log('Por Jorge Luis Risso Patron - Desarrollador Frontend Junior');
             
             // Add some example cities to the input placeholder
-            const cities = ['Ciudad de Panam�', 'Madrid', 'Londres', 'Nueva York', 'Tokio'];
+            const cities = ['Panama', 'Madrid', 'Londres', 'Nueva York', 'Tokio'];
             let currentCityIndex = 0;
             
             setInterval(() => {
