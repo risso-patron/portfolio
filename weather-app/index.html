@@ -1754,6 +1754,8 @@
             // Fallback gradients for each weather condition
             const fallbackGradients = {
                 'clear_day': 'linear-gradient(180deg, #4A90E2 0%, #87CEEB 40%, #B0E0E6 70%, #E0F6FF 100%)',
+                'clear_dawn': 'linear-gradient(180deg, #FF6B6B 0%, #FFB88C 40%, #FFA07A 70%, #FFE5B4 100%)',
+                'clear_sunset': 'linear-gradient(180deg, #FF6B6B 0%, #FF8E53 40%, #FE6B8B 70%, #FF8E53 100%)',
                 'clear_night': 'linear-gradient(180deg, #000428 0%, #004e92 50%, #1a1a2e 100%)',
                 'clouds_day': 'linear-gradient(180deg, #606c88 0%, #8B9CAB 40%, #B0BEC5 70%, #CFD8DC 100%)',
                 'clouds_night': 'linear-gradient(180deg, #1a1a2e 0%, #2c3e50 50%, #34495e 100%)',
@@ -1767,12 +1769,24 @@
             };
 
             // Determine fallback key
-            let fallbackKey = `${skyClass}_day`;
-            if (weatherCode.endsWith('n') || currentHour >= 20 || currentHour <= 5) {
-                fallbackKey = `${skyClass}_night`;
-            }
-            if (skyClass === 'thunderstorm') {
+            // Manejar caso especial cuando skyClass ya es 'night', 'dawn' o 'sunset'
+            let fallbackKey;
+            
+            if (skyClass === 'night') {
+                // Para noche, usar clear_night como base
+                fallbackKey = 'clear_night';
+            } else if (skyClass === 'dawn') {
+                fallbackKey = 'clear_dawn';
+            } else if (skyClass === 'sunset') {
+                fallbackKey = 'clear_sunset';
+            } else if (skyClass === 'thunderstorm') {
                 fallbackKey = 'thunderstorm';
+            } else {
+                // Para otros casos, determinar día/noche
+                fallbackKey = `${skyClass}_day`;
+                if (weatherCode.endsWith('n') || currentHour >= 20 || currentHour <= 5) {
+                    fallbackKey = `${skyClass}_night`;
+                }
             }
 
             // Try to fetch from Pexels
