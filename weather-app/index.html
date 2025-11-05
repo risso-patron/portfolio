@@ -1162,6 +1162,73 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .footer {
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.footer a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--primary);
+}
+
+.footer-note {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+body.clear .footer {
+  background: rgba(135, 206, 235, 0.1);
+  border-top: 1px solid rgba(135, 206, 235, 0.3);
+}
+
+body.clouds .footer {
+  background: rgba(169, 169, 169, 0.1);
+  border-top: 1px solid rgba(169, 169, 169, 0.3);
+}
+
+body.rain .footer {
+  background: rgba(47, 79, 79, 0.2);
+  border-top: 1px solid rgba(47, 79, 79, 0.4);
+  color: #ffffff;
+}
+
+body.thunderstorm .footer {
+  background: rgba(25, 25, 112, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+body.snow .footer {
+  background: rgba(240, 248, 255, 0.1);
+  border-top: 1px solid rgba(240, 248, 255, 0.3);
+}
+
+body.mist .footer {
+  background: rgba(221, 160, 221, 0.1);
+  border-top: 1px solid rgba(221, 160, 221, 0.3);
+}
+
+body.night .footer {
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
         
     </style>
 <script>
@@ -2089,6 +2156,20 @@
             };
             document.head.appendChild(script);
         })();
+          document.getElementById("year").textContent = new Date().getFullYear();
+
     </script>
+    <footer class="footer">
+  <div class="footer-content">
+    <p>Hecho con ☀️ y ☕ por <strong>Jorge Luis Risso Patrón</strong></p>
+    <p class="footer-links">
+      <a href="https://github.com/tuusuario" target="_blank" rel="noopener">GitHub</a> |
+      <a href="mailto:tuemail@ejemplo.com">Contacto</a> |
+      <a href="#top">Volver arriba ↑</a>
+    </p>
+    <p class="footer-note">© <span id="year"></span> Todos los derechos reservados.</p>
+  </div>
+</footer>
 </body>
+
 </html>
