@@ -1932,29 +1932,51 @@
             const forecastContainer = document.getElementById('forecastContainer');
             forecastContainer.innerHTML = '';
 
-            // Get daily forecasts (one per day at 12:00 PM)
-            const dailyForecasts = data.list.filter(item => 
-                item.dt_txt.includes('12:00:00')
-            ).slice(0, 5);
-
-            dailyForecasts.forEach((forecast, index) => {
-                // Calcular fecha: hoy + (index + 1) dias
-                const date = new Date();
-                date.setDate(date.getDate() + (index + 1));
-                const dayName = date.toLocaleDateString('es-ES', { weekday: 'short' });
+            // Agrupar pronósticos por día y calcular max/min de cada día
+            const dailyData = {};
+            
+            data.list.forEach(item => {
+                const date = new Date(item.dt * 1000);
+                const dateKey = date.toDateString();
                 
-                // Obtener URL de icono realista de OpenWeatherMap
-                const iconCode = forecast.weather[0].icon;
+                if (!dailyData[dateKey]) {
+                    dailyData[dateKey] = {
+                        temps: [],
+                        icons: [],
+                        descriptions: []
+                    };
+                }
+                
+                dailyData[dateKey].temps.push(item.main.temp);
+                dailyData[dateKey].icons.push(item.weather[0].icon);
+                dailyData[dateKey].descriptions.push(item.weather[0].description);
+            });
+
+            // Convertir a array y tomar los próximos 5 días (excluyendo hoy)
+            const days = Object.keys(dailyData).slice(1, 6);
+
+            days.forEach((dateKey, index) => {
+                const dayData = dailyData[dateKey];
+                const date = new Date(dateKey);
+                const dayName = date.toLocaleDateString('es-ES', { weekday: 'short' }).toUpperCase();
+                
+                // Calcular temperatura máxima y mínima del día
+                const tempMax = Math.round(Math.max(...dayData.temps));
+                const tempMin = Math.round(Math.min(...dayData.temps));
+                
+                // Usar el icono más frecuente del día (o el del mediodía si está disponible)
+                const iconCode = dayData.icons[Math.floor(dayData.icons.length / 2)] || dayData.icons[0];
                 const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+                const description = dayData.descriptions[0];
                 
                 const forecastItem = document.createElement('div');
                 forecastItem.className = 'forecast-item';
                 forecastItem.innerHTML = `
                     <div class="forecast-day">${dayName}</div>
-                    <div class="forecast-icon"><img src="${iconUrl}" alt="${forecast.weather[0].description}" class="forecast-icon-img"></div>
+                    <div class="forecast-icon"><img src="${iconUrl}" alt="${description}" class="forecast-icon-img"></div>
                     <div class="forecast-temps">
-                        <span class="forecast-high">${Math.round(forecast.main.temp_max)}°</span> / 
-                        <span class="forecast-low">${Math.round(forecast.main.temp_min)}°</span>
+                        <span class="forecast-high">${tempMax}°</span> / 
+                        <span class="forecast-low">${tempMin}°</span>
                     </div>
                 `;
                 
