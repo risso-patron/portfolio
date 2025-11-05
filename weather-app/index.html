@@ -9,9 +9,6 @@
     <!-- Weather Icons Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css">
     
-    <!-- Pexels API Configuration (opcional - solo en desarrollo local) -->
-    <script src="pexels-config.js" onerror="console.log('Pexels config no disponible - usando fallback CSS')"></script>
-    
     <style>
         /* Variables CSS - Paleta Azul Unificada */
         :root {
@@ -2059,6 +2056,18 @@
 
         // Start app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initApp);
+
+        // Intentar cargar configuración de Pexels (solo local)
+        // Si falla, PEXELS_CONFIG quedará undefined y se usarán gradientes CSS
+        (function() {
+            const script = document.createElement('script');
+            script.src = 'pexels-config.js';
+            script.async = true;
+            script.onerror = function() {
+                console.log('📐 Pexels config no disponible - usando solo gradientes CSS');
+            };
+            document.head.appendChild(script);
+        })();
     </script>
 </body>
 </html>
