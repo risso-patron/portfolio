@@ -468,6 +468,37 @@
             overflow: hidden;
             transition: all 0.5s ease;
         }
+        
+        /* High/Low Temperature Header */
+        .temp-range {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            z-index: 3;
+        }
+        
+        .temp-high {
+            color: #ff6b6b;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .temp-low {
+            color: #4dabf7;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .arrow-up, .arrow-down {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
 
         /* Adaptacion para fondos oscuros */
         body.thunderstorm .weather-display,
@@ -710,16 +741,27 @@
         }
 
         .temperature {
-            font-size: 4rem;
+            font-size: 8rem;
             font-weight: 900;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(45deg, #fff, #FFD700, #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            margin-bottom: 0;
+            color: #ffffff;
+            text-shadow: 
+                0 2px 10px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(255, 255, 255, 0.2);
             position: relative;
             z-index: 2;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        
+        .temperature .unit {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-left: 0.2rem;
+            opacity: 0.9;
         }
 
         .weather-description {
@@ -762,16 +804,24 @@
             );
             border-color: rgba(255, 215, 0, 0.5);
         }
+        
+        .detail-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
 
         .detail-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .detail-value {
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.3rem;
+            font-weight: 700;
         }
 
         /* Forecast */
@@ -793,40 +843,63 @@
         }
 
         .forecast-item {
-            background: var(--light);
+            background: rgba(30, 50, 70, 0.7);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
             padding: 1.5rem 1rem;
-            border-radius: var(--border-radius);
+            border-radius: 16px;
             text-align: center;
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .forecast-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px var(--shadow);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            background: rgba(40, 60, 80, 0.8);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .forecast-day {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .forecast-icon {
-            font-size: 2rem;
-            margin: 0.5rem 0;
+            font-size: 3.5rem;
+            margin: 1rem 0;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+            transition: transform 0.3s ease;
+        }
+        
+        .forecast-item:hover .forecast-icon {
+            transform: scale(1.15);
         }
 
         .forecast-temps {
-            font-size: 0.9rem;
-            color: var(--dark);
+            font-size: 1.1rem;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .forecast-high {
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #ff6b6b;
         }
 
         .forecast-low {
-            opacity: 0.7;
+            font-weight: 600;
+            color: #4dabf7;
+            opacity: 0.9;
         }
 
         /* Loading */
@@ -925,7 +998,14 @@
             }
 
             .temperature {
-                font-size: 2.5rem;
+                font-size: 5rem;
+            }
+            
+            .temp-range {
+                top: 1rem;
+                right: 1rem;
+                font-size: 0.95rem;
+                gap: 1rem;
             }
 
             .weather-details {
@@ -934,6 +1014,10 @@
 
             .forecast-container {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .forecast-icon {
+                font-size: 3rem;
             }
         }
 
@@ -1008,8 +1092,23 @@
         <main class="weather-display" id="weatherDisplay">
             <!-- Current Weather -->
             <section class="current-weather">
+                <!-- High/Low Header -->
+                <div class="temp-range">
+                    <span class="temp-high">
+                        <span class="arrow-up">▲</span>
+                        <span id="tempHigh">--</span>°
+                    </span>
+                    <span class="temp-low">
+                        <span class="arrow-down">▼</span>
+                        <span id="tempLow">--</span>°
+                    </span>
+                </div>
+                
                 <div class="weather-icon" id="weatherIcon">--</div>
-                <div class="temperature" id="temperature">--°</div>
+                <div class="temperature" id="temperature">
+                    <span class="temp-value">--</span>
+                    <span class="unit">°C</span>
+                </div>
                 <div class="weather-description" id="weatherDescription">--</div>
                 <div class="city-name" id="cityName">--</div>
                 
@@ -1022,18 +1121,22 @@
                 <!-- Weather Details -->
                 <div class="weather-details">
                     <div class="detail-item">
-                        <div class="detail-label">Sensacion Termica</div>
-                        <div class="detail-value" id="feelsLike">--°</div>
-                    </div>
-                    <div class="detail-item">
+                        <div class="detail-icon">💧</div>
                         <div class="detail-label">Humedad</div>
                         <div class="detail-value" id="humidity">--%</div>
                     </div>
                     <div class="detail-item">
+                        <div class="detail-icon">💨</div>
                         <div class="detail-label">Viento</div>
                         <div class="detail-value" id="windSpeed">-- km/h</div>
                     </div>
                     <div class="detail-item">
+                        <div class="detail-icon">🌡️</div>
+                        <div class="detail-label">Sensacion</div>
+                        <div class="detail-value" id="feelsLike">--°</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-icon">📊</div>
                         <div class="detail-label">Presion</div>
                         <div class="detail-value" id="pressure">-- hPa</div>
                     </div>
@@ -1492,7 +1595,16 @@
                 body.style.transition = 'all 1.5s ease-in-out';
             }, 100);
             
-            document.getElementById('temperature').textContent = `${Math.round(weatherData.main.temp)}°`;
+            // Update temperature with new structure
+            const tempValue = Math.round(weatherData.main.temp);
+            const tempElement = document.getElementById('temperature');
+            const unitSymbol = currentUnit === 'metric' ? 'C' : 'F';
+            tempElement.innerHTML = `<span class="temp-value">${tempValue}</span><span class="unit">°${unitSymbol}</span>`;
+            
+            // Update high/low temps
+            document.getElementById('tempHigh').textContent = Math.round(weatherData.main.temp_max);
+            document.getElementById('tempLow').textContent = Math.round(weatherData.main.temp_min);
+            
             document.getElementById('weatherDescription').textContent = weatherData.weather[0].description;
             document.getElementById('cityName').textContent = `${weatherData.name}, ${weatherData.sys.country}`;
             document.getElementById('feelsLike').textContent = `${Math.round(weatherData.main.feels_like)}°`;
