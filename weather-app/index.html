@@ -9,8 +9,8 @@
     <!-- Weather Icons Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css">
     
-    <!-- Pexels API Configuration -->
-    <script src="pexels-config.js"></script>
+    <!-- Pexels API Configuration (opcional - solo en desarrollo local) -->
+    <script src="pexels-config.js" onerror="console.log('Pexels config no disponible - usando fallback CSS')"></script>
     
     <style>
         /* Variables CSS - Paleta Azul Unificada */
@@ -1664,6 +1664,12 @@
 
         // Pexels API - Realistic Background Images
         async function fetchPexelsBackground(weatherCode, weatherCondition, currentHour) {
+            // Check if Pexels API is available
+            if (typeof PEXELS_CONFIG === 'undefined' || !PEXELS_CONFIG.API_KEY) {
+                console.log('📐 Pexels API no configurada - usando gradientes CSS');
+                return null;
+            }
+            
             const PEXELS_API_KEY = PEXELS_CONFIG.API_KEY;
             
             // Detect day/night from weatherCode (d = day, n = night)
