@@ -1030,6 +1030,200 @@
             opacity: 0.9;
         }
 
+        /* Extended Details Section - NEW */
+        .extended-details-section {
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .extended-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .detail-card {
+            background: rgba(30, 50, 70, 0.7);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 1rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(40, 60, 80, 0.8);
+        }
+
+        .detail-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .detail-card-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-card-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-card-info {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        /* Air Quality Section - NEW */
+        .air-quality-section {
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .air-quality-container {
+            background: rgba(30, 50, 70, 0.7);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .aqi-main {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .aqi-value {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #4dabf7, #339af0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* AQI Color States */
+        .aqi-good .aqi-value {
+            background: linear-gradient(135deg, #51cf66, #37b24d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aqi-moderate .aqi-value {
+            background: linear-gradient(135deg, #ffd43b, #fab005);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aqi-unhealthy-sensitive .aqi-value {
+            background: linear-gradient(135deg, #ff8c42, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aqi-unhealthy .aqi-value {
+            background: linear-gradient(135deg, #ff6b6b, #f03e3e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aqi-very-unhealthy .aqi-value {
+            background: linear-gradient(135deg, #cc5de8, #9c36b5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aqi-hazardous .aqi-value {
+            background: linear-gradient(135deg, #862e9c, #5f3dc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aqi-level {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .aqi-icon {
+            font-size: 3rem;
+            margin-top: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .aqi-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .aqi-component {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .aqi-component-name {
+            display: block;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .aqi-component-value {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .aqi-recommendation {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1.25rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            border-left: 4px solid var(--primary);
+        }
+
         /* Loading */
         .loading {
             display: none;
@@ -1224,6 +1418,33 @@
                 height: 60px;
             }
             
+            /* Extended Details Responsive */
+            .extended-details-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .detail-card {
+                padding: 1.25rem 1rem;
+            }
+            
+            .detail-card-value {
+                font-size: 1.2rem;
+            }
+            
+            /* Air Quality Responsive */
+            .air-quality-container {
+                padding: 1.5rem;
+            }
+            
+            .aqi-value {
+                font-size: 3rem;
+            }
+            
+            .aqi-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
             .unit-toggle {
                 gap: 0.5rem;
             }
@@ -1357,6 +1578,67 @@
             
             .forecast-temps {
                 font-size: 1rem;
+            }
+            
+            /* Extended Details Mobile */
+            .extended-details-section {
+                padding: 1.25rem;
+            }
+            
+            .extended-details-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .detail-card {
+                padding: 1rem 0.875rem;
+            }
+            
+            .detail-card-icon {
+                font-size: 2rem;
+            }
+            
+            .detail-card-label {
+                font-size: 0.8rem;
+            }
+            
+            .detail-card-value {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            /* Air Quality Mobile */
+            .air-quality-section {
+                padding: 1.25rem;
+            }
+            
+            .air-quality-container {
+                padding: 1.25rem;
+            }
+            
+            .aqi-value {
+                font-size: 2.5rem;
+            }
+            
+            .aqi-level {
+                font-size: 1.1rem;
+            }
+            
+            .aqi-icon {
+                font-size: 2.5rem;
+            }
+            
+            .aqi-details {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .aqi-recommendation {
+                padding: 1rem;
+                font-size: 0.9rem;
             }
             
             .unit-toggle {
@@ -1761,6 +2043,77 @@ body.night .footer {
                         <div class="detail-icon">📊</div>
                         <div class="detail-label">Presion</div>
                         <div class="detail-value" id="pressure">-- hPa</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Extended Details Section - NEW -->
+            <section class="extended-details-section">
+                <h2 class="section-title">Detalles Completos</h2>
+                <div class="extended-details-grid">
+                    <div class="detail-card">
+                        <div class="detail-card-icon">👁️</div>
+                        <div class="detail-card-label">Visibilidad</div>
+                        <div class="detail-card-value" id="visibility">-- km</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-card-icon">☀️</div>
+                        <div class="detail-card-label">Indice UV</div>
+                        <div class="detail-card-value" id="uvIndex">--</div>
+                        <div class="detail-card-info" id="uvLevel">--</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-card-icon">🌅</div>
+                        <div class="detail-card-label">Amanecer</div>
+                        <div class="detail-card-value" id="sunrise">--:--</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-card-icon">🌇</div>
+                        <div class="detail-card-label">Atardecer</div>
+                        <div class="detail-card-value" id="sunset">--:--</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-card-icon">☁️</div>
+                        <div class="detail-card-label">Nubosidad</div>
+                        <div class="detail-card-value" id="cloudiness">--%</div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-card-icon">🧭</div>
+                        <div class="detail-card-label">Direccion Viento</div>
+                        <div class="detail-card-value" id="windDirection">--</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Air Quality Section - NEW -->
+            <section class="air-quality-section" id="airQualitySection" style="display: none;">
+                <h2 class="section-title">Calidad del Aire</h2>
+                <div class="air-quality-container">
+                    <div class="aqi-main">
+                        <div class="aqi-value" id="aqiValue">--</div>
+                        <div class="aqi-level" id="aqiLevel">Cargando...</div>
+                        <div class="aqi-icon" id="aqiIcon">🌫️</div>
+                    </div>
+                    <div class="aqi-details">
+                        <div class="aqi-component">
+                            <span class="aqi-component-name">PM2.5</span>
+                            <span class="aqi-component-value" id="pm25">-- µg/m³</span>
+                        </div>
+                        <div class="aqi-component">
+                            <span class="aqi-component-name">PM10</span>
+                            <span class="aqi-component-value" id="pm10">-- µg/m³</span>
+                        </div>
+                        <div class="aqi-component">
+                            <span class="aqi-component-name">O₃</span>
+                            <span class="aqi-component-value" id="o3">-- µg/m³</span>
+                        </div>
+                        <div class="aqi-component">
+                            <span class="aqi-component-name">NO₂</span>
+                            <span class="aqi-component-value" id="no2">-- µg/m³</span>
+                        </div>
+                    </div>
+                    <div class="aqi-recommendation" id="aqiRecommendation">
+                        Obteniendo datos de calidad del aire...
                     </div>
                 </div>
             </section>
@@ -2403,12 +2756,48 @@ body.night .footer {
             document.getElementById('windSpeed').textContent = `${Math.round(weatherData.wind.speed * 3.6)} km/h`;
             document.getElementById('pressure').textContent = `${weatherData.main.pressure} hPa`;
 
+            // ==================== NEW: Extended Details ====================
+            
+            // Visibility (convert from meters to km)
+            const visibility = weatherData.visibility ? (weatherData.visibility / 1000).toFixed(1) : '--';
+            document.getElementById('visibility').textContent = `${visibility} km`;
+            
+            // Sunrise and Sunset
+            if (weatherData.sys.sunrise && weatherData.sys.sunset) {
+                const sunrise = new Date(weatherData.sys.sunrise * 1000);
+                const sunset = new Date(weatherData.sys.sunset * 1000);
+                document.getElementById('sunrise').textContent = sunrise.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+                document.getElementById('sunset').textContent = sunset.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            }
+            
+            // Cloudiness
+            const cloudiness = weatherData.clouds?.all || 0;
+            document.getElementById('cloudiness').textContent = `${cloudiness}%`;
+            
+            // Wind Direction
+            const windDeg = weatherData.wind?.deg || 0;
+            const windDirection = getWindDirection(windDeg);
+            document.getElementById('windDirection').textContent = windDirection;
+            
+            // Fetch Air Quality and UV Index (async)
+            const lat = weatherData.coord.lat;
+            const lon = weatherData.coord.lon;
+            getAirQuality(lat, lon);
+            getUVIndex(lat, lon);
+
             // Show weather display with animation
             hideLoading();
             hideError();
             weatherDisplay.classList.remove('hidden');
             weatherDisplay.classList.add('fade-in');
             weatherDisplay.style.display = 'block';
+        }
+
+        // Helper function to convert wind degrees to cardinal direction
+        function getWindDirection(deg) {
+            const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSO', 'SO', 'OSO', 'O', 'ONO', 'NO', 'NNO'];
+            const index = Math.round(deg / 22.5) % 16;
+            return directions[index];
         }
 
         // Function to create snow particles
