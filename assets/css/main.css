@@ -1,6 +1,6 @@
         /* ==================== Variables CSS ==================== */
         :root {
-            /* Paleta de colores moderna */
+            /* Paleta de colores moderna - MODO CLARO */
             --primary: #0072ff;           /* Azul eléctrico */
             --primary-light: #00c6ff;     /* Azul claro */
             --accent: #ff6b6b;            /* Coral suave */
@@ -24,6 +24,61 @@
             --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
             --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.2);
             --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
+            
+            /* Transiciones */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        /* ==================== MODO OSCURO ==================== */
+        [data-theme="dark"] {
+            --primary: #4d9fff;           
+            --primary-light: #66b3ff;     
+            --accent: #ff8787;            
+            --accent-gold: #ffe666;       
+            --dark: #f8f9fa;              
+            --darker: #ffffff;            
+            --text: #e9ecef;              
+            --text-light: #adb5bd;        
+            --bg: #0f1419;                
+            --bg-light: #1a1f2e;          
+            --bg-section: #16202e;        
+            --border: #2d3748;            
+            
+            --gradient-primary: linear-gradient(135deg, #4d9fff 0%, #66b3ff 100%);
+            --gradient-hero: linear-gradient(135deg, rgba(15, 20, 25, 0.85) 0%, rgba(26, 31, 46, 0.75) 100%);
+            --gradient-accent: linear-gradient(135deg, #ff8787 0%, #ffe666 100%);
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.7);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Detección automática de preferencia del sistema */
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --primary: #4d9fff;
+                --primary-light: #66b3ff;
+                --accent: #ff8787;
+                --accent-gold: #ffe666;
+                --dark: #f8f9fa;
+                --darker: #ffffff;
+                --text: #e9ecef;
+                --text-light: #adb5bd;
+                --bg: #0f1419;
+                --bg-light: #1a1f2e;
+                --bg-section: #16202e;
+                --border: #2d3748;
+                
+                --gradient-primary: linear-gradient(135deg, #4d9fff 0%, #66b3ff 100%);
+                --gradient-hero: linear-gradient(135deg, rgba(15, 20, 25, 0.85) 0%, rgba(26, 31, 46, 0.75) 100%);
+                --gradient-accent: linear-gradient(135deg, #ff8787 0%, #ffe666 100%);
+                --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+                --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+                --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.7);
+                --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.5);
+            }
         }
 
         /* ==================== Reset y estilos globales ==================== */
@@ -40,6 +95,7 @@
             background: var(--bg);
             scroll-behavior: smooth;
             overflow-x: hidden;
+            transition: background-color var(--transition-normal), color var(--transition-normal);
         }
 
         .container {
@@ -54,14 +110,25 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.068);
+            background: rgba(255, 255, 255, 0.95);
             -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid var(--border);
             z-index: 1000;
             padding: 20px 0;
-            transition: transform 0.3s ease, background 0.3s ease, padding 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
             transform: translateY(0);
+        }
+
+        /* Navegación en modo oscuro */
+        [data-theme="dark"] .nav {
+            background: rgba(15, 20, 25, 0.95);
+            border-bottom: 1px solid var(--border);
+        }
+
+        [data-theme="dark"] .nav.scrolled {
+            background: rgba(15, 20, 25, 0.98);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
         }
 
         .nav.nav-hidden {
@@ -69,7 +136,7 @@
         }
 
         .nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             box-shadow: var(--shadow-md);
             padding: 12px 0;
         }
@@ -128,6 +195,42 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* ==================== Theme Toggle ==================== */
+        .theme-toggle {
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            margin-left: 20px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 114, 255, 0.4);
+        }
+
+        .theme-toggle:active {
+            transform: rotate(15deg) scale(0.95);
+        }
+
+        #themeIcon {
+            transition: transform var(--transition-normal);
+        }
+
+        .theme-toggle:hover #themeIcon {
+            transform: rotate(360deg);
         }
 
         /* ==================== Hero Section ==================== */
@@ -524,7 +627,7 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.25rem;
             margin-top: 2.5rem;
         }
@@ -637,7 +740,7 @@
 
         /* ==================== Contacto ==================== */
         .contact {
-            background: var(--dark);
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
             color: white;
             padding: 100px 0;
             text-align: center;
@@ -704,6 +807,137 @@
             text-align: center;
         }
 
+        /* ==================== Estilos Específicos Modo Oscuro ==================== */
+        
+        /* Hero en modo oscuro */
+        [data-theme="dark"] .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                        url('../../image/background-hero.png') center/cover no-repeat;
+        }
+
+        [data-theme="dark"] .hero::before {
+            background: rgba(15, 20, 25, 0.3);
+        }
+
+        /* Botones en modo oscuro */
+        [data-theme="dark"] .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--bg);
+            box-shadow: 0 4px 15px rgba(77, 159, 255, 0.3);
+        }
+
+        [data-theme="dark"] .btn-primary:hover {
+            box-shadow: 0 8px 25px rgba(77, 159, 255, 0.5);
+        }
+
+        [data-theme="dark"] .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+            color: var(--text);
+        }
+
+        [data-theme="dark"] .btn-secondary:hover {
+            background: rgba(77, 159, 255, 0.15);
+            border-color: var(--primary-light);
+        }
+
+        /* Tarjetas en modo oscuro */
+        [data-theme="dark"] .about-card,
+        [data-theme="dark"] .project-card,
+        [data-theme="dark"] .skill-category {
+            background: var(--bg-light);
+            border-color: var(--border);
+        }
+
+        [data-theme="dark"] .about-card:hover,
+        [data-theme="dark"] .project-card:hover,
+        [data-theme="dark"] .skill-category:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(77, 159, 255, 0.2);
+        }
+
+        /* Iconos sociales en modo oscuro */
+        [data-theme="dark"] .social-icon {
+            background: rgba(77, 159, 255, 0.1);
+            color: var(--text);
+            border-color: var(--primary);
+        }
+
+        [data-theme="dark"] .social-icon:hover {
+            background: var(--primary);
+            color: var(--bg);
+            box-shadow: 0 10px 25px rgba(77, 159, 255, 0.5);
+        }
+
+        /* Proyectos en modo oscuro */
+        [data-theme="dark"] .projects {
+            background: var(--bg);
+        }
+
+        [data-theme="dark"] .project-card {
+            background: var(--bg-light);
+            border-color: var(--border);
+        }
+
+        [data-theme="dark"] .project-mockup {
+            background: var(--bg-section);
+        }
+
+        [data-theme="dark"] .project-info h3,
+        [data-theme="dark"] .project-info p {
+            color: var(--text);
+        }
+
+        /* Secciones en modo oscuro */
+        [data-theme="dark"] .about {
+            background: var(--bg);
+        }
+
+        [data-theme="dark"] .section-title,
+        [data-theme="dark"] .section-subtitle {
+            color: var(--text);
+        }
+
+        [data-theme="dark"] .about-text {
+            color: var(--text-light);
+        }
+
+        /* Habilidades en modo oscuro */
+        [data-theme="dark"] .skills {
+            background: var(--bg);
+        }
+
+        /* Partículas en modo oscuro */
+        [data-theme="dark"] .particle {
+            background: rgba(77, 159, 255, 0.3);
+        }
+
+        /* Contacto en modo oscuro */
+        [data-theme="dark"] .contact-card {
+            background: var(--bg-light);
+            border-color: var(--border);
+        }
+
+        [data-theme="dark"] .contact-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 25px rgba(77, 159, 255, 0.3);
+        }
+
+        /* Profile pic border en modo oscuro */
+        [data-theme="dark"] .profile-pic {
+            border-color: rgba(77, 159, 255, 0.5);
+            box-shadow: 0 0 30px rgba(77, 159, 255, 0.4);
+        }
+
+        [data-theme="dark"] .profile-pic:hover {
+            box-shadow: 0 0 40px rgba(77, 159, 255, 0.6);
+        }
+
+        /* Profile glow en modo oscuro */
+        [data-theme="dark"] .profile-glow {
+            background: radial-gradient(circle, rgba(77, 159, 255, 0.4) 0%, transparent 70%);
+        }
+
         /* ==================== Animaciones ==================== */
         @keyframes fadeInUp {
             from {
@@ -734,6 +968,292 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* ==================== Animaciones Modernas ==================== */
+        /* Animaciones de entrada para hero */
+        .animate-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease-out 0.2s forwards;
+        }
+
+        .animate-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 0.8s ease-out 0.4s forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Efecto de brillo en foto de perfil */
+        .profile-glow {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            right: -10%;
+            bottom: -10%;
+            background: radial-gradient(circle, rgba(0, 114, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity var(--transition-slow);
+            pointer-events: none;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image:hover .profile-glow {
+            opacity: 1;
+        }
+
+        /* Efecto de escritura para subtítulo */
+        .typing-text {
+            display: inline-block;
+            border-right: 2px solid var(--primary);
+            padding-right: 5px;
+            animation: blink 0.7s steps(1) infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        .cursor {
+            animation: blink 0.7s steps(1) infinite;
+        }
+
+        /* Botones animados */
+        .btn-animated {
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+
+        .btn-animated::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-animated:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-animated span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Iconos sociales */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all var(--transition-normal);
+            border: 2px solid transparent;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            border-color: white;
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 10px 25px rgba(0, 114, 255, 0.4);
+        }
+
+        /* Partículas flotantes en hero */
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) {
+            width: 8px;
+            height: 8px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 12s;
+        }
+
+        .particle:nth-child(2) {
+            width: 12px;
+            height: 12px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+            animation-duration: 18s;
+        }
+
+        .particle:nth-child(3) {
+            width: 6px;
+            height: 6px;
+            top: 40%;
+            left: 30%;
+            animation-delay: 4s;
+            animation-duration: 15s;
+        }
+
+        .particle:nth-child(4) {
+            width: 10px;
+            height: 10px;
+            top: 80%;
+            left: 60%;
+            animation-delay: 1s;
+            animation-duration: 20s;
+        }
+
+        .particle:nth-child(5) {
+            width: 7px;
+            height: 7px;
+            top: 30%;
+            left: 90%;
+            animation-delay: 3s;
+            animation-duration: 16s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-100px) translateX(50px);
+            }
+        }
+
+        /* Animaciones para tarjetas de "Sobre Mí" */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .about-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            border: 1px solid var(--border);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            transition: transform var(--transition-normal);
+        }
+
+        .about-card:hover .card-icon {
+            transform: rotateY(360deg);
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-delay {
+            animation-delay: 0.2s;
+        }
+
+        /* Títulos animados */
+        .animate-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .animate-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transition: width 0.8s ease-out;
+        }
+
+        .fade-in.visible .animate-title::after {
+            width: 100%;
         }
 
         /* ==================== WhatsApp Flotante ==================== */
@@ -795,6 +1315,11 @@
             .profile-pic {
                 width: 150px;
                 height: 150px;
+            }
+            
+            /* Skills en 2 columnas para tablets */
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 

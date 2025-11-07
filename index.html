@@ -18,6 +18,17 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jorge-luis-risso-patron-dev.netlify.app/">
     <meta property="og:image" content="image/profile-image.jpg">
+    
+    <!-- Script inline para evitar flash de contenido -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const preferredTheme = savedTheme || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', preferredTheme);
+        })();
+    </script>
+    
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
@@ -27,27 +38,35 @@
             <div class="nav-content">
                 <a href="#" class="logo">Jorge Luis</a>
                 <ul class="nav-links">
-                    <li><a href="#sobre-mi">Sobre Mí</a></li>
-                    <li><a href="#proyectos">Proyectos</a></li>
-                    <li><a href="#habilidades">Habilidades</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
+                    <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                    <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
                 </ul>
+                <!-- Toggle de modo claro/oscuro -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section con imagen de fondo de Panamá -->
     <header class="hero" id="hero">
-        <div class="hero-content">
+        <div class="hero-content fade-in">
             <!-- Foto personal profesional a la izquierda -->
-            <div class="hero-image">
+            <div class="hero-image animate-slide-left">
                 <img src="image/jorge-luis-perfil.png" alt="Jorge Luis Risso Patrón - Desarrollador Web Frontend" class="profile-pic">
+                <div class="profile-glow"></div>
             </div>
             
             <!-- Contenido de texto a la derecha -->
-            <div class="hero-text">
-                <h1>Jorge Luis Risso Patrón</h1>
-                <p class="hero-subtitle">Desarrollador Web Frontend</p>
+            <div class="hero-text animate-slide-right">
+                <h1 class="glitch-text">Jorge Luis Risso Patrón</h1>
+                <p class="hero-subtitle">
+                    <span class="typing-text">Desarrollador Web Frontend</span>
+                    <span class="cursor">|</span>
+                </p>
                 <p class="hero-location">
                     <i class="fas fa-map-marker-alt"></i>
                     Panamá, Panamá
@@ -57,37 +76,67 @@
                     Apasionado por aprender, crear y crecer en tecnología.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#proyectos" class="btn-primary">
-                        <i class="fas fa-code"></i>
-                        Ver Proyectos
+                    <a href="#proyectos" class="btn-primary btn-animated">
+                        <span><i class="fas fa-code"></i> Ver Proyectos</span>
                     </a>
-                    <a href="https://github.com/Luisitorisso" target="_blank" rel="noopener" class="btn-secondary">
+                    <a href="https://github.com/Luisitorisso" target="_blank" rel="noopener" class="btn-secondary btn-animated">
+                        <span><i class="fab fa-github"></i> GitHub</span>
+                    </a>
+                </div>
+                <!-- Iconos sociales -->
+                <div class="social-links">
+                    <a href="https://github.com/Luisitorisso" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub">
                         <i class="fab fa-github"></i>
-                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/jorge-luis-risso" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:luisrissopa@gmail.com" class="social-icon" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
                     </a>
                 </div>
             </div>
+        </div>
+        <!-- Partículas de fondo decorativas -->
+        <div class="hero-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
         </div>
     </header>
 
     <!-- Sobre Mí -->
     <section id="sobre-mi" class="about">
         <div class="container">
-            <div class="about-content">
-                <h2 class="section-title">Sobre Mí</h2>
+            <div class="about-content fade-in">
+                <h2 class="section-title animate-title">Sobre Mí</h2>
                 <p class="section-subtitle">
                     Developer junior enfocado en crear experiencias web funcionales y atractivas
                 </p>
-                <p class="about-text">
-                    Hola, soy Jorge Luis, un desarrollador web frontend junior de Panamá. 
-                    Autodidacta construyendo proyectos funcionales con HTML, CSS y JavaScript 
-                    para aplicar mis conocimientos y demostrar mis habilidades.
-                </p>
-                <p class="about-text">
-                    Busco mi primera oportunidad laboral en tecnología donde pueda seguir 
-                    aprendiendo y creciendo como programador. Me caracterizo por ser 
-                    comprometido, curioso y siempre dispuesto a aprender nuevas tecnologías.
-                </p>
+                <div class="about-grid">
+                    <div class="about-card animate-fade-up">
+                        <div class="card-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <p class="about-text">
+                            Hola, soy Jorge Luis, un desarrollador web frontend junior de Panamá. 
+                            Autodidacta construyendo proyectos funcionales con HTML, CSS y JavaScript 
+                            para aplicar mis conocimientos y demostrar mis habilidades.
+                        </p>
+                    </div>
+                    <div class="about-card animate-fade-up animate-delay">
+                        <div class="card-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <p class="about-text">
+                            Busco mi primera oportunidad laboral en tecnología donde pueda seguir 
+                            aprendiendo y creciendo como programador. Me caracterizo por ser 
+                            comprometido, curioso y siempre dispuesto a aprender nuevas tecnologías.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
