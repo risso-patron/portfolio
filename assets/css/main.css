@@ -738,6 +738,107 @@
             left: 0;
         }
 
+        /* ==================== Tech Stack Slider ==================== */
+        .tech-stack-section {
+            margin-top: 4rem;
+            padding: 2rem 0;
+        }
+
+        .tech-stack-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .tech-slider-wrapper {
+            overflow: hidden;
+            padding: 2rem 0;
+            position: relative;
+            background: var(--bg-light);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .tech-slider-wrapper::before,
+        .tech-slider-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .tech-slider-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-light), transparent);
+        }
+
+        .tech-slider-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-light), transparent);
+        }
+
+        .tech-slider {
+            display: flex;
+            gap: 3rem;
+            width: max-content;
+            animation: scroll-left 30s linear infinite;
+        }
+
+        .tech-slider-reverse {
+            animation: scroll-right 30s linear infinite;
+        }
+
+        .tech-slider:hover {
+            animation-play-state: paused;
+        }
+
+        .tech-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+            height: 80px;
+            padding: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+
+        .tech-slide:hover img {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
         /* ==================== Contacto ==================== */
         .contact {
             background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
@@ -847,6 +948,27 @@
         [data-theme="dark"] .skill-category {
             background: var(--bg-light);
             border-color: var(--border);
+        }
+
+        /* Tech Stack Slider en modo oscuro */
+        [data-theme="dark"] .tech-slider-wrapper {
+            background: var(--bg-light);
+        }
+
+        [data-theme="dark"] .tech-slider-wrapper::before {
+            background: linear-gradient(to right, var(--bg-light), transparent);
+        }
+
+        [data-theme="dark"] .tech-slider-wrapper::after {
+            background: linear-gradient(to left, var(--bg-light), transparent);
+        }
+
+        [data-theme="dark"] .tech-slide img {
+            opacity: 0.9;
+        }
+
+        [data-theme="dark"] .tech-slide:hover img {
+            opacity: 1;
         }
 
         [data-theme="dark"] .about-card:hover,
@@ -1423,6 +1545,21 @@
             .skill-icon {
                 width: clamp(70px, 18vw, 100px);
                 height: clamp(70px, 18vw, 100px);
+            }
+
+            /* Tech Stack Slider responsive */
+            .tech-stack-section {
+                margin-top: 2rem;
+            }
+
+            .tech-slide {
+                min-width: 60px;
+                height: 60px;
+                padding: 0.75rem;
+            }
+
+            .tech-slider {
+                gap: 2rem;
             }
 
             /* Contacto */
