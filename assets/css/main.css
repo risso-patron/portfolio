@@ -741,15 +741,15 @@
         /* ==================== Tech Stack Slider ==================== */
         .tech-stack-section {
             margin-top: 4rem;
-            padding: 2rem 0;
+            padding: 3rem 0;
         }
 
         .tech-stack-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            font-weight: 600;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
             color: var(--text);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2.5rem;
             text-align: center;
         }
 
