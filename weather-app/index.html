@@ -2779,11 +2779,10 @@ body.night .footer {
             const windDirection = getWindDirection(windDeg);
             document.getElementById('windDirection').textContent = windDirection;
             
-            // Fetch Air Quality and UV Index (async)
-            const lat = weatherData.coord.lat;
-            const lon = weatherData.coord.lon;
-            getAirQuality(lat, lon);
-            getUVIndex(lat, lon);
+            // Note: Air Quality and UV Index require OpenWeatherMap paid tiers
+            // These elements don't exist in current HTML, so commented out:
+            // document.getElementById('airQuality').textContent = '--';
+            // document.getElementById('uvIndex').textContent = '--';
 
             // Show weather display with animation
             hideLoading();

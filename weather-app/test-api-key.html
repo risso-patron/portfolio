@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔑 Test API Key - OpenWeatherMap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .result.success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+
+        .result.error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+
+        .result.info {
+            background: #d1ecf1;
+            border: 2px solid #17a2b8;
+            color: #0c5460;
+        }
+
+        .result-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .result-message {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .result-data {
+            background: rgba(0,0,0,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            word-break: break-all;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #667eea;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .instructions {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .instructions strong {
+            color: #856404;
+        }
+
+        .api-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .api-link:hover {
+            text-decoration: underline;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔑 Test de API Key</h1>
+        <p class="subtitle">OpenWeatherMap API Validator</p>
+
+        <div class="instructions">
+            <strong>📋 Instrucciones:</strong><br>
+            1. Copia tu API Key de <a href="https://home.openweathermap.org/api_keys" target="_blank" class="api-link">OpenWeatherMap Dashboard</a><br>
+            2. Pégala en el campo de abajo<br>
+            3. Click en "Probar API Key"<br>
+            <br>
+            <strong>⚠️ Importante:</strong> Las API keys nuevas tardan <code>10-15 minutos</code> en activarse
+        </div>
+
+        <div class="input-group">
+            <label for="apiKeyInput">🔐 Tu API Key:</label>
+            <input 
+                type="text" 
+                id="apiKeyInput" 
+                placeholder="8d3599da8294f99fb8f1bc2ac0c7829b"
+                value="8d3599da8294f99fb8f1bc2ac0c7829b"
+            >
+        </div>
+
+        <button id="testBtn" onclick="testApiKey()">🚀 Probar API Key</button>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Probando conexión con OpenWeatherMap...</p>
+        </div>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        async function testApiKey() {
+            const apiKey = document.getElementById('apiKeyInput').value.trim();
+            const resultDiv = document.getElementById('result');
+            const loadingDiv = document.getElementById('loading');
+            const testBtn = document.getElementById('testBtn');
+
+            // Validación básica
+            if (!apiKey) {
+                showResult('error', 'Error de Validación', 'Por favor ingresa una API Key');
+                return;
+            }
+
+            if (apiKey.length < 30) {
+                showResult('error', 'Error de Validación', 'La API Key parece muy corta. Las API keys de OpenWeatherMap tienen 32 caracteres.');
+                return;
+            }
+
+            // Mostrar loading
+            resultDiv.style.display = 'none';
+            loadingDiv.classList.add('active');
+            testBtn.disabled = true;
+
+            try {
+                // Test 1: Buscar ciudad (Panamá)
+                console.log('🔍 Test 1: Buscando Ciudad de Panamá...');
+                const url = `https://api.openweathermap.org/data/2.5/weather?q=Panama&appid=${apiKey}&units=metric&lang=es`;
+                
+                console.log('📡 URL:', url.replace(apiKey, 'API_KEY_HIDDEN'));
+                
+                const response = await fetch(url);
+                const status = response.status;
+                
+                console.log('📥 Status:', status);
+
+                // Ocultar loading
+                loadingDiv.classList.remove('active');
+                testBtn.disabled = false;
+
+                if (status === 200) {
+                    // ✅ SUCCESS
+                    const data = await response.json();
+                    console.log('✅ Datos:', data);
+                    
+                    showResult(
+                        'success', 
+                        '✅ ¡API Key Funcional!', 
+                        `Tu API key está activa y funcionando correctamente.<br><br>
+                        <strong>Datos de prueba (Panamá):</strong><br>
+                        • Ciudad: ${data.name}, ${data.sys.country}<br>
+                        • Temperatura: ${data.main.temp}°C<br>
+                        • Clima: ${data.weather[0].description}<br>
+                        • Humedad: ${data.main.humidity}%<br><br>
+                        <strong>✨ Tu Weather App debería funcionar perfectamente.</strong>`,
+                        JSON.stringify(data, null, 2)
+                    );
+
+                } else if (status === 401) {
+                    // ❌ UNAUTHORIZED - API Key inválida
+                    const errorData = await response.json();
+                    console.error('❌ Error 401:', errorData);
+                    
+                    showResult(
+                        'error',
+                        '❌ API Key Inválida',
+                        `La API key no es válida o aún no está activa.<br><br>
+                        <strong>Posibles causas:</strong><br>
+                        • API key recién creada (espera 10-15 minutos)<br>
+                        • API key incorrecta (verifica en tu dashboard)<br>
+                        • API key revocada o expirada<br><br>
+                        <strong>Solución:</strong><br>
+                        1. Ve a <a href="https://home.openweathermap.org/api_keys" target="_blank" class="api-link">tu dashboard</a><br>
+                        2. Copia la API key correcta<br>
+                        3. Si es nueva, espera 15 minutos y vuelve a probar`,
+                        JSON.stringify(errorData, null, 2)
+                    );
+
+                } else if (status === 404) {
+                    // Ciudad no encontrada (pero API key funciona)
+                    showResult(
+                        'success',
+                        '✅ API Key OK (pero ciudad no encontrada)',
+                        `Tu API key funciona, pero la ciudad "Panama" no fue encontrada.<br>
+                        Esto es raro, pero tu API key está activa.`,
+                        null
+                    );
+
+                } else if (status === 429) {
+                    // Límite excedido
+                    showResult(
+                        'error',
+                        '⚠️ Límite de Requests Excedido',
+                        `Has excedido el límite de llamadas del plan gratuito (1,000/día).<br><br>
+                        <strong>Solución:</strong><br>
+                        • Espera hasta mañana<br>
+                        • O actualiza a plan de pago`,
+                        null
+                    );
+
+                } else {
+                    // Otro error
+                    const errorText = await response.text();
+                    showResult(
+                        'error',
+                        `❌ Error ${status}`,
+                        `Error inesperado al conectar con OpenWeatherMap.<br><br>
+                        <strong>Status:</strong> ${status}<br>
+                        <strong>Mensaje:</strong> ${response.statusText}`,
+                        errorText
+                    );
+                }
+
+            } catch (error) {
+                loadingDiv.classList.remove('active');
+                testBtn.disabled = false;
+                
+                console.error('💥 Error de red:', error);
+                
+                showResult(
+                    'error',
+                    '❌ Error de Conexión',
+                    `No se pudo conectar con OpenWeatherMap.<br><br>
+                    <strong>Posibles causas:</strong><br>
+                    • Sin conexión a internet<br>
+                    • Firewall bloqueando la petición<br>
+                    • CORS issue (prueba desde un servidor, no desde file://)<br><br>
+                    <strong>Error:</strong> ${error.message}`,
+                    null
+                );
+            }
+        }
+
+        function showResult(type, title, message, data = null) {
+            const resultDiv = document.getElementById('result');
+            
+            let html = `
+                <div class="result-title">${title}</div>
+                <div class="result-message">${message}</div>
+            `;
+            
+            if (data) {
+                html += `<div class="result-data">${data}</div>`;
+            }
+            
+            resultDiv.className = `result ${type}`;
+            resultDiv.innerHTML = html;
+            resultDiv.style.display = 'block';
+        }
+
+        // Auto-ejecutar al cargar si hay API key
+        window.addEventListener('load', () => {
+            const apiKeyInput = document.getElementById('apiKeyInput');
+            if (apiKeyInput.value.trim()) {
+                console.log('🔄 Auto-ejecutando test con API key predefinida...');
+                setTimeout(() => {
+                    testApiKey();
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
