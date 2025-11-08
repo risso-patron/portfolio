@@ -355,6 +355,7 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center;
+            justify-content: center; /* Centrar contenido */
             gap: 0.5rem;
         }
 
@@ -441,10 +442,10 @@
         }
 
         .about-text {
-            font-size: 1.2rem;
+            font-size: 1rem; /* Reducido de 1.2rem */
             color: var(--text);
-            margin-bottom: 2rem;
-            line-height: 1.8;
+            margin-bottom: 1.5rem; /* Reducido de 2rem */
+            line-height: 1.7; /* Reducido de 1.8 */
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 0.6s ease-out 0.3s forwards;
@@ -627,7 +628,7 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr); /* Cambiado de 3 a 2 columnas */
             gap: 1.25rem;
             margin-top: 2.5rem;
         }
@@ -906,6 +907,11 @@
             color: rgba(255, 255, 255, 0.8);
             padding: 2rem 0;
             text-align: center;
+            margin: 0; /* Eliminar margen */
+        }
+
+        .footer p {
+            margin: 0; /* Eliminar margen del párrafo */
         }
 
         /* ==================== Estilos Específicos Modo Oscuro ==================== */
@@ -1302,14 +1308,14 @@
         /* Animaciones para tarjetas de "Sobre Mí" */
         .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr); /* 2 columnas lado a lado */
             gap: 25px;
             margin-top: 30px;
         }
 
         .about-card {
             background: var(--bg-light);
-            padding: 30px;
+            padding: 25px; /* Reducido de 30px */
             border-radius: 15px;
             box-shadow: var(--shadow-md);
             transition: all var(--transition-normal);
@@ -1323,16 +1329,16 @@
         }
 
         .card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
+            width: 50px; /* Reducido de 60px */
+            height: 50px; /* Reducido de 60px */
+            border-radius: 12px; /* Reducido de 15px */
             background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 1.5rem; /* Reducido de 1.8rem */
+            margin-bottom: 15px; /* Reducido de 20px */
             transition: transform var(--transition-normal);
         }
 
@@ -1597,6 +1603,12 @@
             .skills,
             .contact {
                 padding: 35px 0;
+            }
+            
+            /* About grid en 1 columna para móviles */
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
             /* WhatsApp flotante */
