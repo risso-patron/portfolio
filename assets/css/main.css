@@ -444,11 +444,12 @@
         .about-text {
             font-size: 1rem; /* Reducido de 1.2rem */
             color: var(--text);
-            margin-bottom: 1.5rem; /* Reducido de 2rem */
             line-height: 1.7; /* Reducido de 1.8 */
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 0.6s ease-out 0.3s forwards;
+            text-align: left;
+            margin: 0;
         }
 
         /* ==================== Proyectos ==================== */
@@ -686,8 +687,8 @@
         }
 
         .skill-icon {
-            width: clamp(80px, 20vw, 120px);
-            height: clamp(80px, 20vw, 120px);
+            width: clamp(100px, 24vw, 140px);
+            height: clamp(100px, 24vw, 140px);
             margin: 0 auto 0.75rem;
             display: flex;
             align-items: center;
@@ -727,16 +728,6 @@
         .skill-list li {
             margin-bottom: 0.6rem;
             font-weight: 500;
-            position: relative;
-            padding-left: 1rem;
-        }
-
-        .skill-list li::before {
-            content: '•';
-            color: var(--primary);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
         }
 
         /* ==================== Tech Stack Slider ==================== */
@@ -903,15 +894,93 @@
 
         /* ==================== Footer ==================== */
         .footer {
-            background: var(--darker);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 2rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #eef4ff 100%);
+            color: #0f1419;
+            padding: 2.5rem 0 2rem;
             text-align: center;
-            margin: 0; /* Eliminar margen */
+            margin: 0;
+            border-top: 1px solid rgba(22, 33, 62, 0.08);
         }
 
-        .footer p {
-            margin: 0; /* Eliminar margen del párrafo */
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .footer-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f1419;
+            margin: 0;
+        }
+
+        .footer-role,
+        .footer-availability,
+        .footer-copy {
+            margin: 0;
+            color: #4a4f5c;
+            font-size: 0.95rem;
+        }
+
+        .footer-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+        }
+
+        .footer-detail {
+            background: #ffffff;
+            border-radius: 999px;
+            padding: 0.65rem 1.25rem;
+            border: 1px solid rgba(22, 33, 62, 0.1);
+            box-shadow: var(--shadow-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            color: #0f1419;
+        }
+
+        .footer-detail i {
+            color: var(--primary);
+        }
+
+        .footer-detail a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+        }
+
+        [data-theme="dark"] .footer {
+            background: linear-gradient(135deg, #ffffff 0%, #e6ecfb 100%);
+            color: #0f1419;
+            border-top-color: rgba(15, 20, 25, 0.15);
+        }
+
+        [data-theme="dark"] .footer-detail {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(15, 20, 25, 0.12);
+            color: #0f1419;
+        }
+
+        [data-theme="dark"] .footer-role,
+        [data-theme="dark"] .footer-availability,
+        [data-theme="dark"] .footer-copy {
+            color: #4a4f5c;
         }
 
         /* ==================== Estilos Específicos Modo Oscuro ==================== */
@@ -1320,6 +1389,11 @@
             box-shadow: var(--shadow-md);
             transition: all var(--transition-normal);
             border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+            height: 100%;
         }
 
         .about-card:hover {
@@ -1340,6 +1414,7 @@
             font-size: 1.5rem; /* Reducido de 1.8rem */
             margin-bottom: 15px; /* Reducido de 20px */
             transition: transform var(--transition-normal);
+            align-self: center;
         }
 
         .about-card:hover .card-icon {
@@ -1549,8 +1624,8 @@
             }
             
             .skill-icon {
-                width: clamp(70px, 18vw, 100px);
-                height: clamp(70px, 18vw, 100px);
+                width: clamp(90px, 22vw, 120px);
+                height: clamp(90px, 22vw, 120px);
             }
 
             /* Tech Stack Slider responsive */
@@ -1579,13 +1654,15 @@
             }
 
             .project-links {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 0.75rem;
             }
             
             .btn-demo,
             .btn-code {
-                width: 100%;
+                flex: 1;
+                width: auto;
+                justify-content: center;
                 text-align: center;
             }
 
@@ -1605,10 +1682,19 @@
                 padding: 35px 0;
             }
             
-            /* About grid en 1 columna para móviles */
+            /* About grid en 2 columnas incluso en móviles */
             .about-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 15px;
+            }
+
+            .about-card {
+                padding: 18px;
+            }
+
+            .about-text {
+                font-size: 0.9rem;
+                line-height: 1.6;
             }
 
             /* WhatsApp flotante */
@@ -1722,10 +1808,10 @@
                 font-size: 0.7rem;
             }
             
-            /* Habilidades en 1 columna en móviles muy pequeños */
+            /* Habilidades en 2 columnas incluso en móviles */
             .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 0.875rem;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.75rem;
             }
             
             .skill-category {
@@ -1733,8 +1819,8 @@
             }
             
             .skill-icon {
-                width: clamp(65px, 16vw, 90px);
-                height: clamp(65px, 16vw, 90px);
+                width: clamp(80px, 20vw, 110px);
+                height: clamp(80px, 20vw, 110px);
                 margin-bottom: 0.5rem;
             }
             
@@ -1774,8 +1860,8 @@
             }
             
             .skill-icon {
-                width: clamp(60px, 15vw, 80px);
-                height: clamp(60px, 15vw, 80px);
+                width: clamp(70px, 18vw, 95px);
+                height: clamp(70px, 18vw, 95px);
             }
             
             .skill-category {
