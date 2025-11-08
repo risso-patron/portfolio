@@ -16,7 +16,15 @@
 - **🌡️ Información completa**: Temperatura, sensación térmica, humedad, viento, presión
 - **📅 Pronóstico 5 días**: Predicción del clima para los próximos días
 - **🌓 Conversión de unidades**: Cambia entre Celsius y Fahrenheit
-- **📱 Responsive Design**: Funciona perfectamente en móviles y desktop
+- **📱 100% Responsive**: Optimizado para TODOS los dispositivos
+  - 📱 Móviles (iPhone SE, 12, 13, 14, 15, 16, Android)
+  - 📱 Orientación landscape móvil
+  - 📲 Tablets (iPad, iPad Pro 11", iPad Pro 12.9")
+  - 💻 Laptops (1366px - 1440px)
+  - 🖥️ Desktop 2K/QHD (1440px - 1920px)
+  - 📺 Smart TV Full HD (1920px - 3840px)
+  - 📺 TV 4K Ultra HD (3840px+)
+- **👆 Touch-optimized**: Botones y controles de 44px+ para dispositivos táctiles
 - **⚡ Sin dependencias**: JavaScript vanilla puro
 
 ---
@@ -47,7 +55,18 @@
   - Variables CSS para theming
   - Grid y Flexbox para layouts
   - Animaciones suaves
-  - Responsive design mobile-first
+  - **Responsive Design Mobile-First + TV Support**:
+    - 📺 TV 4K Ultra HD (3840px+)
+    - 📺 TV Full HD (1920px - 3839px)
+    - 🖥️ Desktop 2K (1440px - 1919px)
+    - 💻 Laptop L (1366px - 1439px)
+    - 📲 iPad Pro (1025px - 1365px)
+    - 📱 Tablets landscape
+    - 📱 Mobile landscape (896px)
+    - 📱 iPhone 12/13/14 (376px - 430px)
+    - 📱 iPhone SE (max 375px)
+  - Touch device optimization (@media hover: none)
+  - Reduced motion support (@media prefers-reduced-motion)
 - **JavaScript ES6+**:
   - Fetch API para requests HTTP
   - Async/await para operaciones asíncronas
@@ -161,7 +180,86 @@ Lo que aprendí construyendo esta Weather App:
 
 ---
 
-## 🔮 Próximas Mejoras
+## � Arquitectura Responsive
+
+La app implementa un sistema **Mobile First + TV Support** con 10+ breakpoints optimizados:
+
+### Breakpoints Implementados
+
+| Dispositivo | Rango | Grid Columnas | Tamaño Fuente Principal | Ícono Clima |
+|-------------|-------|---------------|-------------------------|-------------|
+| 📺 **TV 4K Ultra HD** | 3840px+ | 4-5 columnas | 20rem | 600px |
+| 📺 **TV Full HD** | 1920px - 3839px | 4-5 columnas | 12rem | 400px |
+| 🖥️ **Desktop 2K** | 1440px - 1919px | 4-5 columnas | 9rem | 300px |
+| 💻 **Laptop L** | 1366px - 1439px | 4-5 columnas | 8rem | 280px |
+| 📲 **iPad Pro 12.9"** | 1025px - 1365px | 3-4 columnas | 7rem | 250px |
+| 📱 **Tablet Landscape** | 768px - 1024px (landscape) | 3-4 columnas | 6rem | 200px |
+| 📱 **Tablet Portrait** | max 1024px | 2 columnas | 2.5rem | 180px |
+| 📱 **Mobile Landscape** | max 896px (landscape) | 4-5 columnas | 4rem | 120px |
+| 📱 **iPhone 12/13/14** | 376px - 430px | 2 columnas | 4.5-5rem | 130-150px |
+| 📱 **iPhone SE** | max 375px | 1-2 columnas | 3.5rem | 100px |
+
+### Optimizaciones Específicas
+
+#### 📺 Pantallas Grandes (TV/Desktop)
+- **Container max-width**: 1600px - 3200px
+- **Typography**: Font-size 8rem - 20rem para títulos
+- **Grid layouts**: 4-5 columnas en weather details y forecast
+- **Icons**: Escalados hasta 600px en 4K
+- **Spacing**: Padding/gap 2rem - 6rem
+
+#### 📲 Tablets
+- **iPad Pro optimización**: Grid 3 columnas, iconos 250px
+- **Landscape mode**: Layout horizontal con search inline
+- **Touch targets**: Mínimo 44px × 44px
+- **Grid adaptativos**: 3-4 columnas según orientación
+
+#### 📱 Móviles
+- **Grid responsive**: 1-2 columnas en portrait
+- **Landscape optimization**: 4-5 columnas para aprovechar ancho
+- **Typography scaling**: clamp() para texto fluido
+- **Touch interactions**: Botones 44px+, sin hover effects
+- **Performance**: Animaciones reducidas (@media prefers-reduced-motion)
+
+### Técnicas CSS Utilizadas
+
+```css
+/* Tipografía fluida con clamp() */
+font-size: clamp(1.3rem, 7vw, 1.75rem);
+
+/* Grid responsive automático */
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+/* Touch device detection */
+@media (hover: none) and (pointer: coarse) {
+  button { min-height: 44px; min-width: 44px; }
+}
+
+/* Orientation queries */
+@media (orientation: landscape) { /* ... */ }
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; }
+}
+```
+
+### Testeo de Dispositivos
+
+✅ **Testeado en**:
+- Chrome DevTools (todos los presets)
+- Firefox Responsive Design Mode
+- Real devices: iPhone, iPad, Android phones
+- Desktop: 1920×1080, 2560×1440, 3840×2160
+
+🔧 **Herramientas de testing recomendadas**:
+- Chrome DevTools (F12 → Toggle device toolbar)
+- [Responsively App](https://responsively.app/)
+- [BrowserStack](https://www.browserstack.com/)
+
+---
+
+## �🔮 Próximas Mejoras
 
 - [ ] **Favoritos**: Guardar ciudades favoritas en LocalStorage
 - [ ] **Gráficos**: Visualización de temperatura con Chart.js
