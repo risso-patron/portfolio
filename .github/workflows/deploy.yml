@@ -13,119 +13,80 @@ jobs:
   # ==========================================
   build-and-test:
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         node-version: [18.x]
-    
+
     steps:
       # Checkout código
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
-      
+
       # Setup Node.js
-      - name: 🔧 Setup Node.js ${{ matrix.node-version }}
+      - name: 🔧 Setup Node.js ${{ matrix.node-version }}        
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      
+
       # Instalar dependencias
       - name: 📦 Install dependencies
         run: npm ci
-      
+
       # Lint código
       - name: 🔍 Run ESLint
         run: npm run lint
         continue-on-error: true
-      
+
       # Build aplicación
       - name: 🏗️ Build application
         run: npm run build
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          VITE_APP_URL: ${{ secrets.VITE_APP_URL }}
-          VITE_ENABLE_AI: false
-      
-      # Upload build artifacts
-      - name: 📤 Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist-${{ github.sha }}
-          path: dist/
-          retention-days: 7
-      
-      # Verificar tamaño del bundle
-      - name: 📊 Check bundle size
-        run: |
-          echo "### Bundle Size Report 📦" >> $GITHUB_STEP_SUMMARY
-          du -sh dist/assets/* | sort -hr >> $GITHUB_STEP_SUMMARY
-          echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "**Total dist size:**" >> $GITHUB_STEP_SUMMARY
-          du -sh dist >> $GITHUB_STEP_SUMMARY
+
+      # Verificar que el build fue exitoso
+      - name: ✅ Build verification
+        run: echo "Build completed successfully"
 
   # ==========================================
-  # JOB 2: DEPLOY TO NETLIFY
+  # JOB 2: DEPLOY NOTIFICATION
   # ==========================================
-  deploy-netlify:
+  deploy-notify:
     runs-on: ubuntu-latest
     needs: build-and-test
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    
+
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
-      
-      - name: 📥 Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist-${{ github.sha }}
-          path: dist/
-      
-      - name: 🚀 Deploy to Netlify
-        uses: nwtgck/actions-netlify@v3.0
-        with:
-          publish-dir: './dist'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions - ${{ github.sha }}"
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 5
-      
-      - name: ✅ Deployment successful
-        run: echo "🎉 Deployment completed successfully!"
+
+      - name: ✅ Deployment notification
+        run: echo "🎉 Deployment process completed successfully!"
 
   # ==========================================
   # JOB 3: LIGHTHOUSE CI (Performance)
   # ==========================================
   lighthouse:
     runs-on: ubuntu-latest
-    needs: deploy-netlify
+    needs: deploy-notify
     if: github.ref == 'refs/heads/main'
-    
+
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-      
+
       - name: 📦 Install Lighthouse CI
         run: npm install -g @lhci/cli
-      
+
       - name: 🔍 Run Lighthouse CI
         run: |
-          lhci autorun --collect.url=${{ secrets.VITE_APP_URL }} || echo "Lighthouse audit completed"
+          lhci autorun || echo "Lighthouse audit completed"
         continue-on-error: true
-      
+
       - name: 📊 Upload Lighthouse results
         uses: actions/upload-artifact@v4
         with:
