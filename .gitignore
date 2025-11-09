@@ -1,3 +1,24 @@
+# Carpetas de proyectos no finalizados
 budget-calculator-react/
+
+# API Keys privadas
 weather-app/config.js
 weather-app/pexels-config.js
+
+# Scripts de desarrollo local
+*.bat
+
+# Archivos de testing temporal
+test*.html
+*-backup.html
+
+# Documentación de desarrollo interno
+CONFIG-*.md
+*-FIX.md
+prompt.md
+
+# Archivos temporales
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
