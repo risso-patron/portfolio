@@ -887,51 +887,50 @@
 
         .weather-details {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.25rem;
             margin-top: 1rem;
         }
 
         .detail-item {
             text-align: center;
-            padding: 1.2rem;
-            background: linear-gradient(135deg, 
-                rgba(20, 30, 40, 0.9), 
-                rgba(30, 40, 50, 0.85)
-            );
-            border-radius: var(--border-radius);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 1.35rem;
+            background: linear-gradient(135deg, rgba(20, 30, 40, 0.92), rgba(32, 45, 58, 0.88));
+            border-radius: 18px;
+            border: 2px solid rgba(255, 215, 0, 0.35);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
             transition: all 0.3s ease;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .detail-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, 
-                rgba(25, 35, 45, 0.95), 
-                rgba(35, 45, 55, 0.9)
-            );
-            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.35);
+            background: linear-gradient(135deg, rgba(25, 35, 45, 0.96), rgba(38, 50, 63, 0.92));
+            border-color: rgba(255, 215, 0, 0.55);
         }
         
         .detail-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            font-size: 2.4rem;
+            margin-bottom: 0.35rem;
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
         }
 
         .detail-label {
-            font-size: 0.85rem;
-            opacity: 0.7;
-            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            opacity: 0.75;
+            margin-bottom: 0.2rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
         }
 
         .detail-value {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 800;
         }
 
         /* Forecast */
@@ -1046,8 +1045,8 @@
 
         .extended-details-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
         }
 
         .detail-card {
@@ -1952,12 +1951,13 @@
             }
 
             .weather-details {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.85rem;
             }
             
             .detail-item {
-                padding: 0.875rem;
+                padding: 1rem;
+                min-height: 140px;
             }
             
             .detail-label {
@@ -1965,7 +1965,7 @@
             }
             
             .detail-value {
-                font-size: 1.1rem;
+                font-size: 1.25rem;
             }
 
             .forecast-container {
@@ -1996,8 +1996,8 @@
             }
             
             .extended-details-grid {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.65rem;
             }
             
             .detail-card {
@@ -2108,6 +2108,20 @@
             .forecast-section {
                 padding: 1rem;
             }
+
+            .weather-details {
+                grid-template-columns: 1fr;
+                gap: 0.65rem;
+            }
+
+            .detail-item {
+                min-height: 130px;
+            }
+
+            .extended-details-grid {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+            }
         }
         
         /* iPhone 12, iPhone 12 Pro, iPhone 13, iPhone 14 (390px) */
@@ -2154,6 +2168,11 @@
             .forecast-icon-img {
                 width: 65px;
                 height: 65px;
+            }
+
+            .extended-details-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.85rem;
             }
         }
         
@@ -2221,6 +2240,11 @@
             
             .forecast-temps {
                 font-size: 1.1rem;
+            }
+
+            .extended-details-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1rem;
             }
         }
         
