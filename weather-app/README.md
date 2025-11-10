@@ -2,10 +2,18 @@
 
 **App del clima con geolocalización y pronóstico de 5 días**
 
+![Weather App - Portada](./screenshots/weather-app-screenshot.png)
+
+<div align="center">
+
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
 [![OpenWeather API](https://img.shields.io/badge/API-OpenWeather-orange?style=flat-square)](https://openweathermap.org/api)
+
+🔗 **[Ver Demo en Vivo](https://luisitorisso.github.io/Luisitorisso/weather-app/)** | 📱 **[Probar Ahora](https://jorge-luis-risso-patron-dev.netlify.app/weather-app/)**
+
+</div>
 
 ---
 
@@ -29,21 +37,9 @@
 
 ---
 
-## 🚀 Demo
+## � Más Capturas
 
-🔗 **[Ver Demo en Vivo](https://luisitorisso.github.io/Luisitorisso/weather-app/)**
-
-> ⚠️ **Nota**: Para usar la demo necesitas configurar tu propia API key (ver instrucciones abajo)
-
----
-
-## 📸 Capturas
-
-### 🖥️ Vista Principal
-![Weather App - Vista Principal](./screenshots/weather-app-screenshot.png)
-*Aplicación mostrando el clima actual de Panama City con interfaz moderna*
-
-### 🖥️ Desktop (Otras vistas)
+### 🖥️ Desktop
 ![Weather App Desktop](./screenshots/desktop-view.png)
 
 ### 📱 Mobile
