@@ -1,26 +1,140 @@
-# 👨‍💻 Jorge Luis Risso Patrón - Portfolio# ¡Hola! Soy Jorge Luis Risso Patrón
+# 👨‍💻 Jorge Luis Risso Patrón - Portfolio
 
-
-
-[![GitHub Pages](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://luisitorisso.github.io/Luisitorisso/)<div align="center">
-
+[![GitHub Pages](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://risso-patron.github.io/portfolio/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)**Desarrollador Web Frontend Junior**  
+## 🎯 Sobre el Portfolio
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)*HTML5 • CSS3 • JavaScript*
+[![Portfolio](https://img.shields.io/badge/Portfolio-Ver%20Demo-0072ff?style=for-the-badge&logo=firefox&logoColor=white)](https://risso-patron.github.io/portfolio/)
+[![GitHub](https://img.shields.io/badge/GitHub-Seguir-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/risso-patron)
 
+Portfolio web personal de desarrollador frontend, construido con **HTML5, CSS3 y JavaScript vanilla**. Diseño moderno, responsive y con modo oscuro/claro.
 
+### ✨ Características
 
-## 🎯 Sobre el Portfolio[![Portfolio](https://img.shields.io/badge/Portfolio-Ver%20Demo-0072ff?style=for-the-badge&logo=firefox&logoColor=white)](https://luisitorisso.github.io/Luisitorisso/)
+- 🌓 **Modo Oscuro/Claro** con persistencia en localStorage
+- 🎨 **Diseño Moderno** con animaciones suaves
+- 📱 **100% Responsive** adaptado a todos los dispositivos
+- ⚡ **Performance optimizado** sin frameworks
+- 🎯 **Proyectos funcionales** con demos en vivo
 
-[![GitHub](https://img.shields.io/badge/GitHub-Seguir-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Luisitorisso)
+---
 
-Portfolio web personal de desarrollador frontend, construido con **HTML5, CSS3 y JavaScript vanilla**. Diseño moderno, responsive y con modo oscuro/claro.[![WhatsApp](https://img.shields.io/badge/WhatsApp-+507%2064560263-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/50764560263)
+## 🚀 Proyectos Destacados
 
+### Weather App
+**App del clima con geolocalización y API**
+- Stack: HTML5, CSS3, JavaScript, OpenWeather API
+- Features: Geolocalización, búsqueda de ciudades, datos en tiempo real
+- [Ver Demo](https://risso-patron.github.io/portfolio/weather-app/) | [Ver Código](https://github.com/risso-patron/portfolio/tree/main/weather-app)
 
+### Pomodoro Timer
+**Técnica Pomodoro con notificaciones y estadísticas**
+- Stack: HTML5, CSS3, JavaScript, LocalStorage
+- Features: Timer personalizable, estadísticas, notificaciones
+- [Ver Demo](https://risso-patron.github.io/portfolio/pomodoro-timer/) | [Ver Código](https://github.com/risso-patron/portfolio/tree/main/pomodoro-timer)
 
-### ✨ Características</div>
+### Budget App
+**App de finanzas personales con gráficos**
+- Stack: HTML5, CSS3, JavaScript, Chart.js, LocalStorage
+- Features: Gestión de ingresos/gastos, gráficos, categorías
+- [Ver Demo](https://risso-patron.github.io/portfolio/budget-app/) | [Ver Código](https://github.com/risso-patron/portfolio/tree/main/budget-app)
+
+---
+
+## 📂 Estructura del Proyecto
+
+```
+portfolio/
+├── index.html              # Página principal
+├── assets/
+│   ├── css/
+│   │   └── main.css       # Estilos principales (~1700 líneas)
+│   └── js/
+│       └── main.js        # JavaScript (tema, animaciones)
+├── image/                 # Imágenes del portfolio
+├── budget-app/           # Proyecto: Budget App
+├── pomodoro-timer/       # Proyecto: Pomodoro Timer
+├── weather-app/          # Proyecto: Weather App
+└── README.md
+```
+
+---
+
+## 🚀 Deploy
+
+El portfolio está desplegado automáticamente en GitHub Pages:
+
+🔗 **[Ver Portfolio en Vivo](https://risso-patron.github.io/portfolio/)**
+
+---
+
+## 💻 Ejecutar Localmente
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/risso-patron/portfolio.git
+
+# Navegar al directorio
+cd portfolio
+
+# Abrir con servidor local (recomendado)
+# Opción 1: Python
+python -m http.server 8000
+
+# Opción 2: Node.js
+npx serve
+
+# Opción 3: VS Code Live Server
+# Abrir index.html con la extensión Live Server
+```
+
+Abre tu navegador en `http://localhost:8000`
+
+---
+
+## 💡 Stack Técnico
+
+### Frontend
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Responsive](https://img.shields.io/badge/Responsive-Design-ff6b6b?style=flat-square)
+
+### Herramientas
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white)
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=flat-square&logo=github&logoColor=white)
+
+---
+
+## 📫 Contacto
+
+- 📧 Email: luisrissopa@gmail.com
+- 💼 GitHub: [@risso-patron](https://github.com/risso-patron)
+- 🌐 Portfolio: [risso-patron.github.io/portfolio](https://risso-patron.github.io/portfolio/)
+- 📍 Ubicación: Panamá 🇵🇦
+
+---
+
+## 📄 Licencia
+
+MIT License - Siéntete libre de usar este código para tu propio portfolio.
+
+---
+
+<div align="center">
+
+**¿Tienes una oportunidad para un developer junior?**  
+¡Me encantaría hablar contigo!
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-Ver%20Proyectos-0072ff?style=for-the-badge&logo=firefox&logoColor=white)](https://risso-patron.github.io/portfolio/)
+[![Email](https://img.shields.io/badge/Email-Contactar-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:luisrissopa@gmail.com)
+
+</div>
 
 
 
