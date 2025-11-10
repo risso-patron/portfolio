@@ -61,6 +61,12 @@
             align-items: start;
         }
 
+        .income-expense-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
         /* Cards de Categorías */
         .category-card {
             background: white;
@@ -85,7 +91,7 @@
         }
 
         .card-title {
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: 600;
             color: #2c3e50;
         }
@@ -94,10 +100,10 @@
             background: linear-gradient(135deg, #4d9fff, #66b3ff);
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.9em;
+            font-size: 0.8em;
             font-weight: 500;
             transition: all 0.3s ease;
         }
@@ -114,19 +120,19 @@
 
         .input-group label {
             display: block;
-            font-size: 0.85em;
+            font-size: 0.75em;
             color: #7f8c8d;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: 500;
         }
 
         .input-group input,
         .input-group select {
             width: 100%;
-            padding: 12px 15px;
+            padding: 10px 12px;
             border: 2px solid #e9ecef;
-            border-radius: 10px;
-            font-size: 0.95em;
+            border-radius: 8px;
+            font-size: 0.85em;
             font-family: 'Poppins', sans-serif;
             transition: all 0.3s ease;
         }
@@ -167,19 +173,19 @@
         .transaction-name {
             font-weight: 500;
             color: #2c3e50;
-            font-size: 0.95em;
+            font-size: 0.85em;
         }
 
         .transaction-category {
-            font-size: 0.8em;
+            font-size: 0.7em;
             color: #95a5a6;
             margin-top: 2px;
         }
 
         .transaction-amount {
             font-weight: 600;
-            font-size: 0.95em;
-            margin-right: 10px;
+            font-size: 0.85em;
+            margin-right: 8px;
         }
 
         .transaction-amount.income {
@@ -428,25 +434,159 @@
 
         @media (max-width: 768px) {
             body {
-                padding: 15px;
+                padding: 10px;
+            }
+
+            .header {
+                margin-bottom: 20px;
             }
 
             .logo {
-                font-size: 2em;
+                font-size: 1.5em;
+            }
+
+            .logo-subtitle {
+                font-size: 0.85em;
             }
 
             .main-grid {
                 gap: 15px;
             }
 
-            .category-card,
+            /* Cajas de ingresos y gastos lado a lado en móvil */
+            .income-expense-wrapper {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .category-card {
+                padding: 15px;
+            }
+
+            .card-header {
+                margin-bottom: 12px;
+                padding-bottom: 10px;
+            }
+
+            .card-title {
+                font-size: 0.9em;
+            }
+
+            .add-btn {
+                padding: 5px 10px;
+                font-size: 0.7em;
+            }
+
+            .input-group {
+                margin-bottom: 10px;
+            }
+
+            .input-group label {
+                font-size: 0.7em;
+                margin-bottom: 3px;
+            }
+
+            .input-group input,
+            .input-group select {
+                padding: 8px 10px;
+                font-size: 0.75em;
+            }
+
+            .transaction-list {
+                max-height: 250px;
+            }
+
+            .transaction-item {
+                padding: 8px 0;
+            }
+
+            .transaction-name {
+                font-size: 0.75em;
+            }
+
+            .transaction-category {
+                font-size: 0.65em;
+            }
+
+            .transaction-amount {
+                font-size: 0.75em;
+                margin-right: 5px;
+            }
+
+            .delete-btn {
+                width: 24px;
+                height: 24px;
+                font-size: 14px;
+            }
+
             .expenses-list-card,
             .results-card {
-                padding: 20px;
+                padding: 15px;
             }
 
             .category-buttons {
                 grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .category-btn {
+                padding: 12px 15px;
+                font-size: 0.8em;
+            }
+
+            .empty-state {
+                padding: 40px 15px;
+            }
+
+            .empty-state-icon {
+                font-size: 2.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+
+            .logo {
+                font-size: 1.2em;
+            }
+
+            .logo-subtitle {
+                font-size: 0.75em;
+            }
+
+            .category-card {
+                padding: 12px;
+            }
+
+            .card-title {
+                font-size: 0.85em;
+            }
+
+            .add-btn {
+                padding: 4px 8px;
+                font-size: 0.65em;
+            }
+
+            .transaction-name {
+                font-size: 0.7em;
+            }
+
+            .transaction-amount {
+                font-size: 0.7em;
+            }
+
+            .delete-btn {
+                width: 20px;
+                height: 20px;
+                font-size: 12px;
+            }
+
+            .category-btn {
+                padding: 10px 12px;
+                font-size: 0.75em;
             }
         }
 
@@ -484,7 +624,7 @@
 
         <div class="main-grid">
             <!-- Columna Izquierda: Categorías -->
-            <div>
+            <div class="income-expense-wrapper">
                 <!-- Card de Ingresos -->
                 <div class="category-card">
                     <div class="card-header">
@@ -495,20 +635,20 @@
                     <div id="incomeForm" style="display: none;">
                         <div class="input-group">
                             <label>Descripción</label>
-                            <input type="text" id="incomeDesc" placeholder="Ej: Salario, Freelance">
+                            <input type="text" id="incomeDesc" placeholder="Ej: Salario">
                         </div>
                         <div class="input-group">
                             <label>Cantidad (€)</label>
                             <input type="number" id="incomeAmount" placeholder="0.00" step="0.01">
                         </div>
-                        <button class="add-btn" style="width: 100%; margin-top: 10px;" onclick="addIncome()">Guardar Ingreso</button>
+                        <button class="add-btn" style="width: 100%; margin-top: 10px;" onclick="addIncome()">Guardar</button>
                     </div>
 
                     <div class="transaction-list" id="incomeList"></div>
                 </div>
 
                 <!-- Card de Gastos -->
-                <div class="category-card" style="margin-top: 20px;">
+                <div class="category-card">
                     <div class="card-header">
                         <span class="card-title">💳 Gastos</span>
                         <button class="add-btn" onclick="toggleExpenseForm()">+ Agregar</button>
@@ -535,7 +675,7 @@
                             <label>Cantidad (€)</label>
                             <input type="number" id="expenseAmount" placeholder="0.00" step="0.01">
                         </div>
-                        <button class="add-btn" style="width: 100%; margin-top: 10px;" onclick="addExpense()">Guardar Gasto</button>
+                        <button class="add-btn" style="width: 100%; margin-top: 10px;" onclick="addExpense()">Guardar</button>
                     </div>
 
                     <div class="transaction-list" id="expenseList"></div>
