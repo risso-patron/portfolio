@@ -494,8 +494,8 @@
         }
 
         .mockup-laptop {
-            width: clamp(160px, 70%, 240px);
-            height: auto;
+            width: 281px;
+            height: 585px;
             border-radius: 6px;
             position: relative;
         }
@@ -505,12 +505,13 @@
             border-radius: 6px 6px 0 0;
             padding: 2px;
             position: relative;
+            height: 100%;
         }
 
         .mockup-content {
             background: white;
             border-radius: 4px;
-            height: clamp(100px, 12vw, 140px);
+            height: 100%;
             overflow: hidden;
             position: relative;
         }
@@ -1784,7 +1785,9 @@
             }
             
             .mockup-laptop {
-                width: clamp(140px, 65%, 200px);
+                width: 200px;
+                height: auto;
+                max-height: 416px;
             }
             
             .project-info {
