@@ -267,35 +267,21 @@
             text-transform: uppercase;
         }
 
-        /* Sky status indicator - Info superior como en imagen */
+        /* Sky status indicator - Mostrar ciudad y país */
         .sky-status {
             display: block;
-            padding: 1rem;
+            padding: 0.5rem 0;
             background: transparent;
             border: none;
-            font-size: 0.75rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.7);
-            letter-spacing: 0.08em;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 0.05em;
             text-transform: uppercase;
             line-height: 1.6;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
             transition: all 0.3s ease;
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
         }
-
-        /* Sky status colors for different weather */
-        body.clear .sky-status { background: rgba(135, 206, 235, 0.2); }
-        body.clouds .sky-status { background: rgba(169, 169, 169, 0.2); }
-        body.rain .sky-status { background: rgba(47, 79, 79, 0.3); }
-        body.thunderstorm .sky-status { background: rgba(25, 25, 112, 0.3); }
-        body.snow .sky-status { background: rgba(240, 248, 255, 0.2); }
-        body.mist .sky-status { background: rgba(221, 160, 221, 0.2); }
 
         /* Search Section adaptativa */
         .search-section {
@@ -2528,7 +2514,7 @@ body.night .footer {
         <header class="header">
             <h1>Weather App</h1>
             <p>Consulta el clima en cualquier ciudad del mundo</p>
-            <div class="sky-status" id="skyStatus">Esperando busqueda...</div>
+            <div class="sky-status" id="skyStatus">Esperando búsqueda...</div>
         </header>
 
         <!-- Search Section -->
@@ -3292,8 +3278,13 @@ body.night .footer {
             }
             
             body.classList.add(skyClass);
+            
+            // Actualizar el sky-status con el nombre de la ciudad
             if (skyStatus) {
-                skyStatus.textContent = skyText;
+                // Obtener el nombre de la ciudad desde weatherData
+                const cityName = weatherData.name;
+                const countryCode = weatherData.sys.country;
+                skyStatus.textContent = `${cityName}, ${countryCode}`;
             }
 
             // Fetch and apply realistic background from Pexels API
