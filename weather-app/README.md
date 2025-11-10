@@ -2,7 +2,9 @@
 
 **App del clima con geolocalización y pronóstico de 5 días**
 
-![Weather App - Portada](./screenshots/weather-app-screenshot.png)
+<div align="center">
+  <img src="./screenshots/weather-app-screenshot.png" alt="Weather App Preview" width="400"/>
+</div>
 
 <div align="center">
 
