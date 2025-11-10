@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#f5f7fa">
-    <title>Cash Budget Calculator</title>
+    <title>Budget App</title>
     
     <!-- Google Fonts: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@
 
         .main-grid {
             display: grid;
-            grid-template-columns: 350px 1fr 380px;
+            grid-template-columns: 350px 380px 1fr;
             gap: 25px;
             align-items: start;
         }
@@ -618,8 +618,8 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <div class="logo">CASH BUDGET CALCULATOR</div>
-            <div class="logo-subtitle">Hello, Marina! · Today, <span id="currentDate"></span></div>
+            <div class="logo">BUDGET APP</div>
+            <div class="logo-subtitle"><span id="currentDate"></span></div>
         </div>
 
         <div class="main-grid">
@@ -638,7 +638,7 @@
                             <input type="text" id="incomeDesc" placeholder="Ej: Salario">
                         </div>
                         <div class="input-group">
-                            <label>Cantidad (€)</label>
+                            <label>Cantidad ($)</label>
                             <input type="number" id="incomeAmount" placeholder="0.00" step="0.01">
                         </div>
                         <button class="add-btn" style="width: 100%; margin-top: 10px;" onclick="addIncome()">Guardar</button>
@@ -662,17 +662,17 @@
                         <div class="input-group">
                             <label>Categoría</label>
                             <select id="expenseCategory">
-                                <option value="Food">🍽️ Food</option>
-                                <option value="Apartment / Utilities">🏠 Apartment / Utilities</option>
-                                <option value="Household items">🛋️ Household items</option>
-                                <option value="Clothes / Personal care">👕 Clothes / Personal care</option>
-                                <option value="Fun time / Restaurants">🎉 Fun time / Restaurants</option>
-                                <option value="Traveling">✈️ Traveling</option>
-                                <option value="Others">📦 Others</option>
+                                <option value="Comida">🍽️ Comida</option>
+                                <option value="Vivienda / Servicios">🏠 Vivienda / Servicios</option>
+                                <option value="Artículos del hogar">🛋️ Artículos del hogar</option>
+                                <option value="Ropa / Cuidado personal">👕 Ropa / Cuidado personal</option>
+                                <option value="Diversión / Restaurantes">🎉 Diversión / Restaurantes</option>
+                                <option value="Viajes">✈️ Viajes</option>
+                                <option value="Otros">📦 Otros</option>
                             </select>
                         </div>
                         <div class="input-group">
-                            <label>Cantidad (€)</label>
+                            <label>Cantidad ($)</label>
                             <input type="number" id="expenseAmount" placeholder="0.00" step="0.01">
                         </div>
                         <button class="add-btn" style="width: 100%; margin-top: 10px;" onclick="addExpense()">Guardar</button>
@@ -682,11 +682,58 @@
                 </div>
             </div>
 
-            <!-- Columna Centro: Lista de Gastos por Categoría -->
+            <!-- Columna Centro: Resultados y Gráfica -->
+            <div class="results-card">
+                <div class="results-header">
+                    <span class="results-title">Resultados</span>
+                    <span class="month-badge" id="currentMonth">FEBRUARY</span>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="budgetChart"></canvas>
+                </div>
+
+                <div class="summary-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Vivienda / Servicios</span>
+                        <span class="stat-value">$<span id="statApartment">0.00</span></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Comida</span>
+                        <span class="stat-value">$<span id="statFood">0.00</span></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Viajes</span>
+                        <span class="stat-value">$<span id="statTraveling">0.00</span></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Diversión / Restaurantes</span>
+                        <span class="stat-value">$<span id="statFun">0.00</span></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Otros</span>
+                        <span class="stat-value">$<span id="statOthers">0.00</span></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Ropa / Cuidado personal</span>
+                        <span class="stat-value">$<span id="statClothes">0.00</span></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Artículos del hogar</span>
+                        <span class="stat-value">$<span id="statHousehold">0.00</span></span>
+                    </div>
+                    <div class="stat-item" style="border-top: 2px solid #e9ecef; margin-top: 15px; padding-top: 15px;">
+                        <span class="stat-label" style="font-weight: 600;">Estadísticas Totales</span>
+                        <span class="stat-value total">$<span id="totalExpenses">0.00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Lista de Gastos por Categoría -->
             <div class="expenses-list-card">
                 <div class="expenses-header">
-                    <h2 class="expenses-title" id="selectedCategoryTitle">Food</h2>
-                    <a href="#" class="view-all-btn" onclick="showAllExpenses(); return false;">View all</a>
+                    <h2 class="expenses-title" id="selectedCategoryTitle">Comida</h2>
+                    <a href="#" class="view-all-btn" onclick="showAllExpenses(); return false;">Ver todo</a>
                 </div>
 
                 <div id="categoryExpensesList">
@@ -697,74 +744,27 @@
                 </div>
 
                 <div class="category-buttons">
-                    <button class="category-btn food" onclick="filterByCategory('Food')">
-                        🍽️ Food
+                    <button class="category-btn food" onclick="filterByCategory('Comida')">
+                        🍽️ Comida
                     </button>
-                    <button class="category-btn apartment" onclick="filterByCategory('Apartment / Utilities')">
-                        🏠 Apartment / Utilities
+                    <button class="category-btn apartment" onclick="filterByCategory('Vivienda / Servicios')">
+                        🏠 Vivienda / Servicios
                     </button>
-                    <button class="category-btn household" onclick="filterByCategory('Household items')">
-                        🛋️ Household items
+                    <button class="category-btn household" onclick="filterByCategory('Artículos del hogar')">
+                        🛋️ Artículos del hogar
                     </button>
-                    <button class="category-btn clothes" onclick="filterByCategory('Clothes / Personal care')">
-                        👕 Clothes / Personal care
+                    <button class="category-btn clothes" onclick="filterByCategory('Ropa / Cuidado personal')">
+                        👕 Ropa / Cuidado personal
                     </button>
-                    <button class="category-btn fun" onclick="filterByCategory('Fun time / Restaurants')">
-                        🎉 Fun time / Restaurants
+                    <button class="category-btn fun" onclick="filterByCategory('Diversión / Restaurantes')">
+                        🎉 Diversión / Restaurantes
                     </button>
-                    <button class="category-btn traveling" onclick="filterByCategory('Traveling')">
-                        ✈️ Traveling
+                    <button class="category-btn traveling" onclick="filterByCategory('Viajes')">
+                        ✈️ Viajes
                     </button>
-                    <button class="category-btn others" onclick="filterByCategory('Others')">
-                        📦 Others
+                    <button class="category-btn others" onclick="filterByCategory('Otros')">
+                        📦 Otros
                     </button>
-                </div>
-            </div>
-
-            <!-- Columna Derecha: Resultados y Gráfica -->
-            <div class="results-card">
-                <div class="results-header">
-                    <span class="results-title">Results</span>
-                    <span class="month-badge" id="currentMonth">FEBRUARY</span>
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="budgetChart"></canvas>
-                </div>
-
-                <div class="summary-stats">
-                    <div class="stat-item">
-                        <span class="stat-label">Apartment / Utilities</span>
-                        <span class="stat-value">€<span id="statApartment">0.00</span></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Food</span>
-                        <span class="stat-value">€<span id="statFood">0.00</span></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Traveling</span>
-                        <span class="stat-value">€<span id="statTraveling">0.00</span></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Fun time / Restaurants</span>
-                        <span class="stat-value">€<span id="statFun">0.00</span></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Others</span>
-                        <span class="stat-value">€<span id="statOthers">0.00</span></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Clothes / Personal care</span>
-                        <span class="stat-value">€<span id="statClothes">0.00</span></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Household items</span>
-                        <span class="stat-value">€<span id="statHousehold">0.00</span></span>
-                    </div>
-                    <div class="stat-item" style="border-top: 2px solid #e9ecef; margin-top: 15px; padding-top: 15px;">
-                        <span class="stat-label" style="font-weight: 600;">My Statistics</span>
-                        <span class="stat-value total">€<span id="totalExpenses">0.00</span></span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -779,7 +779,7 @@
         let currentFilter = null;
 
         // Inicializar fecha
-        const months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
+        const months = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
         const today = new Date();
         document.getElementById('currentDate').textContent = today.toLocaleDateString('es-ES');
         document.getElementById('currentMonth').textContent = months[today.getMonth()];
@@ -865,7 +865,7 @@
                         <div class="transaction-name">${income.description}</div>
                         <div class="transaction-category">${income.date}</div>
                     </div>
-                    <span class="transaction-amount income">+€${income.amount.toFixed(2)}</span>
+                    <span class="transaction-amount income">+$${income.amount.toFixed(2)}</span>
                     <button class="delete-btn" onclick="removeIncome(${income.id})">×</button>
                 </div>
             `).join('');
@@ -886,7 +886,7 @@
                         <div class="transaction-name">${expense.description}</div>
                         <div class="transaction-category">${expense.category}</div>
                     </div>
-                    <span class="transaction-amount expense">-€${expense.amount.toFixed(2)}</span>
+                    <span class="transaction-amount expense">-$${expense.amount.toFixed(2)}</span>
                     <button class="delete-btn" onclick="removeExpense(${expense.id})">×</button>
                 </div>
             `).join('');
@@ -929,7 +929,7 @@
                         <div class="expense-store">${expense.description}</div>
                         <div class="expense-date">${expense.date}</div>
                     </div>
-                    <div class="expense-price">€${expense.amount.toFixed(2)}</div>
+                    <div class="expense-price">$${expense.amount.toFixed(2)}</div>
                 </div>
             `).join('');
         }
@@ -951,7 +951,7 @@
                         <div class="expense-store">${expense.description}</div>
                         <div class="expense-date">${expense.category} · ${expense.date}</div>
                     </div>
-                    <div class="expense-price">€${expense.amount.toFixed(2)}</div>
+                    <div class="expense-price">$${expense.amount.toFixed(2)}</div>
                 </div>
             `).join('');
         }
@@ -959,26 +959,26 @@
         // Actualizar estadísticas
         function updateStats() {
             const categories = {
-                'Apartment / Utilities': 0,
-                'Food': 0,
-                'Traveling': 0,
-                'Fun time / Restaurants': 0,
-                'Others': 0,
-                'Clothes / Personal care': 0,
-                'Household items': 0
+                'Vivienda / Servicios': 0,
+                'Comida': 0,
+                'Viajes': 0,
+                'Diversión / Restaurantes': 0,
+                'Otros': 0,
+                'Ropa / Cuidado personal': 0,
+                'Artículos del hogar': 0
             };
 
             expenses.forEach(expense => {
                 categories[expense.category] += expense.amount;
             });
 
-            document.getElementById('statApartment').textContent = categories['Apartment / Utilities'].toFixed(2);
-            document.getElementById('statFood').textContent = categories['Food'].toFixed(2);
-            document.getElementById('statTraveling').textContent = categories['Traveling'].toFixed(2);
-            document.getElementById('statFun').textContent = categories['Fun time / Restaurants'].toFixed(2);
-            document.getElementById('statOthers').textContent = categories['Others'].toFixed(2);
-            document.getElementById('statClothes').textContent = categories['Clothes / Personal care'].toFixed(2);
-            document.getElementById('statHousehold').textContent = categories['Household items'].toFixed(2);
+            document.getElementById('statApartment').textContent = categories['Vivienda / Servicios'].toFixed(2);
+            document.getElementById('statFood').textContent = categories['Comida'].toFixed(2);
+            document.getElementById('statTraveling').textContent = categories['Viajes'].toFixed(2);
+            document.getElementById('statFun').textContent = categories['Diversión / Restaurantes'].toFixed(2);
+            document.getElementById('statOthers').textContent = categories['Otros'].toFixed(2);
+            document.getElementById('statClothes').textContent = categories['Ropa / Cuidado personal'].toFixed(2);
+            document.getElementById('statHousehold').textContent = categories['Artículos del hogar'].toFixed(2);
 
             const total = Object.values(categories).reduce((a, b) => a + b, 0);
             document.getElementById('totalExpenses').textContent = total.toFixed(2);
@@ -987,13 +987,13 @@
         // Actualizar gráfica
         function updateChart() {
             const categories = {
-                'Apartment / Utilities': 0,
-                'Food': 0,
-                'Traveling': 0,
-                'Fun time / Restaurants': 0,
-                'Others': 0,
-                'Clothes / Personal care': 0,
-                'Household items': 0
+                'Vivienda / Servicios': 0,
+                'Comida': 0,
+                'Viajes': 0,
+                'Diversión / Restaurantes': 0,
+                'Otros': 0,
+                'Ropa / Cuidado personal': 0,
+                'Artículos del hogar': 0
             };
 
             expenses.forEach(expense => {
@@ -1046,7 +1046,7 @@
                                 label: function(context) {
                                     const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                     const percentage = total > 0 ? ((context.parsed / total) * 100).toFixed(1) : 0;
-                                    return ` ${context.label}: €${context.parsed.toFixed(2)} (${percentage}%)`;
+                                    return ` ${context.label}: $${context.parsed.toFixed(2)} (${percentage}%)`;
                                 }
                             }
                         }
