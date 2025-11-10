@@ -594,15 +594,20 @@
 
         /* Realistic Weather Icon Images from OpenWeatherMap */
         .weather-icon-img {
-            width: 200px; /* Más grande para mejor visibilidad */
-            height: 200px;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+            width: 220px; /* Más grande para mayor impacto visual */
+            height: 220px;
+            filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.6)) 
+                    drop-shadow(0 8px 15px rgba(0, 0, 0, 0.4)); /* Doble sombra para efecto 3D */
             animation: bounceWeather 3s ease-in-out infinite;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            image-rendering: -webkit-optimize-contrast; /* Mejor calidad de renderizado */
+            image-rendering: crisp-edges;
         }
 
         .weather-icon-img:hover {
-            transform: scale(1.1);
+            transform: scale(1.15); /* Hover más pronunciado */
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7)) 
+                    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
         }
 
         /* Sun icon specific animation */
@@ -989,12 +994,15 @@
             transition: transform 0.3s ease;
         }
 
-        /* Realistic forecast icon images */
+        /* Realistic forecast icon images - Iconos 3D mejorados */
         .forecast-icon-img {
-            width: 60px;
-            height: 60px;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-            transition: transform 0.3s ease;
+            width: 70px; /* Más grande para mejor visibilidad */
+            height: 70px;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5)) 
+                    drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3)); /* Doble sombra 3D */
+            transition: transform 0.3s ease, filter 0.3s ease;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         /* Weather Icons en forecast cards */
@@ -1008,7 +1016,9 @@
         }
 
         .forecast-item:hover .forecast-icon-img {
-            transform: scale(1.15);
+            transform: scale(1.2); /* Hover más pronunciado */
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6)) 
+                    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
         }
 
         .forecast-temps {
