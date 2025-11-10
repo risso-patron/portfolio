@@ -2,6 +2,9 @@
 
 ## Cómo capturar las imágenes para el README
 
+### ✅ Screenshot Principal (weather-app-screenshot.png)
+**¡YA AGREGADO!** - Vista principal mostrando Panama City con lluvia ligera
+
 ### 1. Screenshot Desktop (desktop-view.png)
 1. Abre la Weather App en Chrome o Firefox
 2. Configura la ventana a 1200px de ancho aproximadamente
@@ -15,6 +18,11 @@
 3. Busca una ciudad con buen clima para mostrar
 4. Captura pantalla completa del móvil simulado
 5. Guarda como `mobile-view.png` en esta carpeta
+
+### 📋 Pasos para guardar weather-app-screenshot.png:
+1. Guarda la imagen adjunta en esta carpeta (`weather-app/screenshots/`)
+2. Nómbrala exactamente: `weather-app-screenshot.png`
+3. El README ya está actualizado para mostrarla
 
 ### Herramientas Recomendadas:
 - **Windows**: Recortes de pantalla (Win + Shift + S)

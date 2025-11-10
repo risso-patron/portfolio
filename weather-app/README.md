@@ -39,7 +39,11 @@
 
 ## 📸 Capturas
 
-### 🖥️ Desktop
+### 🖥️ Vista Principal
+![Weather App - Vista Principal](./screenshots/weather-app-screenshot.png)
+*Aplicación mostrando el clima actual de Panama City con interfaz moderna*
+
+### 🖥️ Desktop (Otras vistas)
 ![Weather App Desktop](./screenshots/desktop-view.png)
 
 ### 📱 Mobile
