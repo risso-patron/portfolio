@@ -110,25 +110,28 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            -webkit-backdrop-filter: blur(15px);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
+            background: transparent;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+            border-bottom: 1px solid transparent;
             z-index: 1000;
             padding: 20px 0;
-            transition: transform 0.3s ease, background 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease, padding 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
             transform: translateY(0);
         }
 
         /* Navegación en modo oscuro */
         [data-theme="dark"] .nav {
-            background: rgba(15, 20, 25, 0.95);
-            border-bottom: 1px solid var(--border);
+            background: transparent;
+            border-bottom: 1px solid transparent;
         }
 
         [data-theme="dark"] .nav.scrolled {
-            background: rgba(15, 20, 25, 0.98);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+            background: rgba(15, 20, 25, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
         }
 
         .nav.nav-hidden {
@@ -136,8 +139,11 @@
         }
 
         .nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
             padding: 12px 0;
         }
 
@@ -157,6 +163,7 @@
             background-clip: text;
             text-decoration: none;
             transition: transform 0.3s ease;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
         }
 
         .logo:hover {
@@ -171,14 +178,25 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text);
+            color: #ffffff;
             font-weight: 500;
             font-size: clamp(0.9rem, 1.5vw, 1rem);
             position: relative;
             transition: color 0.3s ease;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Links oscuros cuando el navbar tiene fondo */
+        .nav.scrolled .nav-links a {
+            color: var(--text);
+            text-shadow: none;
+        }
+
+        .nav.scrolled .nav-links a:hover {
             color: var(--primary);
         }
 
@@ -246,7 +264,7 @@
             color: white;
             text-align: center;
             overflow: hidden;
-            padding: 100px 0 60px;
+            padding: 180px 0 60px;
         }
 
         .hero::before {
