@@ -518,63 +518,106 @@
 
         /* ==================== Estadísticas ==================== */
         .stats {
-            background: var(--bg-light);
-            border-radius: 15px;
-            padding: 2rem;
+            background: rgba(26, 31, 58, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 2.5rem;
             margin: 2rem 0;
             width: 100%;
-            max-width: 500px;
-            box-shadow: 0 5px 20px var(--shadow);
+            max-width: 600px;
+            box-shadow: 0 20px 60px var(--shadow);
+            position: relative;
+            z-index: 1;
         }
 
         .stats h3 {
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.25rem;
         }
 
         .stat-item {
             text-align: center;
-            padding: 1rem;
-            background: var(--bg);
-            border-radius: 10px;
+            padding: 1.5rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
             border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .stat-item:hover::before {
+            transform: scaleX(1);
         }
 
         .stat-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             display: block;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
             color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
 
         /* ==================== Notificación ==================== */
         .notification {
             position: fixed;
-            top: 20px;
+            top: 90px;
             right: 20px;
-            background: var(--gradient-primary);
+            background: rgba(26, 31, 58, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px var(--shadow);
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 40px var(--shadow);
             transform: translateX(400px);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
-            max-width: 300px;
+            max-width: 320px;
         }
 
         .notification.show {
@@ -582,11 +625,14 @@
         }
 
         .notification.success {
-            background: var(--gradient-secondary);
+            background: rgba(78, 205, 196, 0.95);
+            border-color: var(--secondary);
         }
 
         .notification.warning {
-            background: var(--gradient-warning);
+            background: rgba(255, 230, 109, 0.95);
+            border-color: var(--primary-light);
+            color: #0A0E27;
         }
 
         /* ==================== Responsive ==================== */
