@@ -2,10 +2,10 @@
 
 ## 📋 CONTEXTO COMPLETO
 
-Soy Jorge Luis Risso Patrón (@Luisitorisso en GitHub), desarrollador web junior autodidacta de Panamá en transición desde operaciones/marketing a tecnología. Necesito ayuda para transformar mi portafolio y GitHub en un perfil profesional enfocado 100% en desarrollo web frontend.
+Soy Jorge Luis Risso Patrón (@risso-patron en GitHub), desarrollador web junior autodidacta de Panamá en transición desde operaciones/marketing a tecnología. Necesito ayuda para transformar mi portafolio y GitHub en un perfil profesional enfocado 100% en desarrollo web frontend.
 
 ### Mi Situación Actual:
-- **GitHub actual**: github.com/Luisitorisso
+- **GitHub actual**: github.com/risso-patron
 - **Portfolio actual**: jorge-luis-risso-patron-dev.netlify.app
 - **Stack real**: HTML5, CSS3, JavaScript (vanilla)
 - **Objetivo**: Conseguir mi primera oportunidad como developer frontend junior
@@ -101,8 +101,8 @@ Lo que aprendí construyendo esto:
 
 ## 👤 Autor
 **Jorge Luis Risso Patrón**
-- GitHub: [@Luisitorisso](https://github.com/Luisitorisso)
-- Portfolio: [URL]
+- GitHub: [@risso-patron](https://github.com/risso-patron)
+- Portfolio: [risso-patron.github.io/portfolio](https://risso-patron.github.io/portfolio/)
 
 ## 📄 Licencia
 MIT License
@@ -339,7 +339,7 @@ Sabré que mi portfolio está listo cuando:
 
 - **Editor**: VS Code
 - **Control de versiones**: Git + GitHub
-- **Hosting**: GitHub Pages, Netlify
+- **Hosting**: GitHub Pages
 - **Diseño**: Figma (básico), Photoshop
 - **Browser**: Chrome DevTools
 - **OS**: [Tu sistema operativo]
@@ -351,7 +351,7 @@ Sabré que mi portfolio está listo cuando:
 Puedo usar este prompt para pedirte:
 
 ### Auditoría:
-> "Revisa mi GitHub actual (github.com/Luisitorisso) y dame un diagnóstico completo según el criterio del prompt maestro"
+> "Revisa mi GitHub actual (github.com/risso-patron) y dame un diagnóstico completo según el criterio del prompt maestro"
 
 ### Creación de proyectos:
 > "Crea un proyecto de [tipo] siguiendo la estructura del prompt maestro, con código completo y README"
@@ -405,10 +405,10 @@ Cuando uses este prompt, asegúrate de:
 
 ```
 Jorge Luis Risso Patrón
-- GitHub: @Luisitorisso
+- GitHub: @risso-patron
 - Email: luisrissopa@gmail.com
 - Location: Panamá 🇵🇦
-- Portfolio: jorge-luis-risso-patron-dev.netlify.app
+- Portfolio: https://risso-patron.github.io/portfolio/
 - LinkedIn: [Agregar cuando lo tengas]
 ```
 

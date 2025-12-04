@@ -94,7 +94,7 @@
 ## URLs de Testing
 
 - **Local**: `http://localhost:3000/pomodoro-timer/`
-- **GitHub Pages**: `https://luisitorisso.github.io/Luisitorisso/pomodoro-timer/`
+- **GitHub Pages**: `https://risso-patron.github.io/portfolio/pomodoro-timer/`
 
 ## Casos Edge
 

@@ -1,28 +1,28 @@
-# 👨‍💻 Jorge Luis Risso Patrón - Portfolio
+#  Jorge Luis Risso Patrón - Portfolio
 
 [![GitHub Pages](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://risso-patron.github.io/portfolio/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-## 🎯 Sobre el Portfolio
+##  Sobre el Portfolio
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-Ver%20Demo-0072ff?style=for-the-badge&logo=firefox&logoColor=white)](https://risso-patron.github.io/portfolio/)
 [![GitHub](https://img.shields.io/badge/GitHub-Seguir-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/risso-patron)
 
 Portfolio web personal de desarrollador frontend, construido con **HTML5, CSS3 y JavaScript vanilla**. Diseño moderno, responsive y con modo oscuro/claro.
 
-### ✨ Características
+###  Características
 
-- 🌓 **Modo Oscuro/Claro** con persistencia en localStorage
-- 🎨 **Diseño Moderno** con animaciones suaves
-- 📱 **100% Responsive** adaptado a todos los dispositivos
-- ⚡ **Performance optimizado** sin frameworks
-- 🎯 **Proyectos funcionales** con demos en vivo
+-  **Modo Oscuro/Claro** con persistencia en localStorage
+-  **Diseño Moderno** con animaciones suaves
+-  **100% Responsive** adaptado a todos los dispositivos
+-  **Performance optimizado** sin frameworks
+-  **Proyectos funcionales** con demos en vivo
 
 ---
 
-## 🚀 Proyectos Destacados
+##  Proyectos Destacados
 
 ### Weather App
 **App del clima con geolocalización y API**
@@ -44,7 +44,7 @@ Portfolio web personal de desarrollador frontend, construido con **HTML5, CSS3 y
 
 ---
 
-## 📂 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
 portfolio/
@@ -63,15 +63,15 @@ portfolio/
 
 ---
 
-## 🚀 Deploy
+##  Deploy
 
 El portfolio está desplegado automáticamente en GitHub Pages:
 
-🔗 **[Ver Portfolio en Vivo](https://risso-patron.github.io/portfolio/)**
+ **[Ver Portfolio en Vivo](https://risso-patron.github.io/portfolio/)**
 
 ---
 
-## 💻 Ejecutar Localmente
+##  Ejecutar Localmente
 
 ```bash
 # Clonar el repositorio
@@ -95,7 +95,7 @@ Abre tu navegador en `http://localhost:8000`
 
 ---
 
-## 💡 Stack Técnico
+##  Stack Técnico
 
 ### Frontend
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
@@ -111,16 +111,16 @@ Abre tu navegador en `http://localhost:8000`
 
 ---
 
-## 📫 Contacto
+##  Contacto
 
-- 📧 Email: luisrissopa@gmail.com
-- 💼 GitHub: [@risso-patron](https://github.com/risso-patron)
-- 🌐 Portfolio: [risso-patron.github.io/portfolio](https://risso-patron.github.io/portfolio/)
-- 📍 Ubicación: Panamá 🇵🇦
+-  Email: luisrissopa@gmail.com
+-  GitHub: [@risso-patron](https://github.com/risso-patron)
+-  Portfolio: [risso-patron.github.io/portfolio](https://risso-patron.github.io/portfolio/)
+-  Ubicación: Panamá 🇵🇦
 
 ---
 
-## 📄 Licencia
+##  Licencia
 
 MIT License - Siéntete libre de usar este código para tu propio portfolio.
 
@@ -138,23 +138,17 @@ MIT License - Siéntete libre de usar este código para tu propio portfolio.
 
 
 
-- 🌓 **Modo Oscuro/Claro** con persistencia en localStorage---
-
-- 🎨 **Diseño Moderno** con animaciones suaves
-
-- 📱 **100% Responsive** - Mobile First## Sobre Mí
-
-- ⚡ **Performance Optimizado** - CSS puro, sin frameworks
-
-- 🎭 **Animaciones CSS** - Scroll reveal, hover effectsDeveloper junior autodidacta de **Panamá 🇵🇦** en transición hacia tecnología. Me apasiona crear interfaces web funcionales y estoy construyendo proyectos prácticos con vanilla JavaScript. **Buscando mi primera oportunidad en desarrollo frontend.**
-
-- 🔄 **Tech Stack Slider** - Carrusel infinito de tecnologías
-
-- 🚀 **GitHub Pages** - Deploy automático```javascript
+-  **Modo Oscuro/Claro** con persistencia en localStorage---
+-  **Diseño Moderno** con animaciones suaves
+-  **100% Responsive** - Mobile First## Sobre Mí
+-  **Performance Optimizado** - CSS puro, sin frameworks
+-  **Animaciones CSS** - Scroll reveal, hover effectsDeveloper junior autodidacta de **Panamá 🇵🇦** en transición hacia tecnología. Me apasiona crear interfaces web funcionales y estoy construyendo proyectos prácticos con vanilla JavaScript. **Buscando mi primera oportunidad en desarrollo frontend.**
+-  **Tech Stack Slider** - Carrusel infinito de tecnologías
+-  **GitHub Pages** - Deploy automático```javascript
 
 const jorge = {
 
-## 🛠️ Tech Stack  ubicacion: "Ciudad de Panamá, PA",
+##  Tech Stack  ubicacion: "Ciudad de Panamá, PA",
 
   rol: "Frontend Developer Junior",
 
@@ -184,43 +178,26 @@ const jorge = {
 
 **App del clima con geolocalización y API**
 
-## 📂 Estructura del Proyecto- Stack: HTML5, CSS3, JavaScript, OpenWeather API
+##  Estructura del Proyecto
 
-- Features: Geolocalización, búsqueda de ciudades, datos en tiempo real
-
-```- [Ver Demo](https://luisitorisso.github.io/Luisitorisso/weather-app/) | [Ver Código](https://github.com/Luisitorisso/Luisitorisso/tree/main/weather-app)
-
-Luisitorisso/
-
-├── index.html              # Página principal### Pomodoro Timer
-
-├── assets/**Técnica Pomodoro con notificaciones y estadísticas**
-
-│   ├── css/- Stack: HTML5, CSS3, JavaScript, LocalStorage
-
-│   │   └── main.css       # Estilos principales (~1700 líneas)- Features: Timer personalizable, estadísticas, notificaciones
-
-│   └── js/- [Ver Demo](https://luisitorisso.github.io/Luisitorisso/pomodoro-timer/) | [Ver Código](https://github.com/Luisitorisso/Luisitorisso/tree/main/pomodoro-timer)
-
+```
+portfolio/
+├── index.html              # Página principal
+├── assets/
+│   ├── css/
+│   │   └── main.css       # Estilos principales (~1700 líneas)
+│   └── js/
 │       └── main.js        # JavaScript (tema, animaciones)
-
-├── image/                 # Imágenes del portfolio### Calculadora de Presupuesto
-
-├── pomodoro-timer/        # Proyecto: Pomodoro Timer**App de finanzas personales con CRUD completo**
-
-├── weather-app/           # Proyecto: Weather App- Stack: HTML5, CSS3, JavaScript, LocalStorage
-
-├── Experiencia/- Features: Gestión de ingresos/gastos, gráficos, persistencia
-
-│   └── Calculadora-de-presupuesto.html- [Ver Demo](https://luisitorisso.github.io/Luisitorisso/Experiencia/Calculadora-de-presupuesto.html) | [Ver Código](https://github.com/Luisitorisso/Calculadora-de-Presupuesto)
-
+├── image/                 # Imágenes del portfolio
+├── pomodoro-timer/        # Proyecto: Pomodoro Timer
+├── weather-app/           # Proyecto: Weather App
+├── budget-app/            # Proyecto: Calculadora de Presupuesto
 └── README.md
-
 ```---
 
 
 
-## 🚀 Deploy## Stack Técnico
+##  Deploy## Stack Técnico
 
 
 
@@ -228,11 +205,11 @@ El portfolio está desplegado automáticamente en GitHub Pages:### Frontend
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 
-🔗 **[Ver Portfolio en Vivo](https://luisitorisso.github.io/Luisitorisso/)**![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+ **[Ver Portfolio en Vivo](https://risso-patron.github.io/portfolio/)**
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
-## 💻 Ejecutar Localmente![Responsive](https://img.shields.io/badge/Responsive-Design-ff6b6b?style=flat-square)
+##  Ejecutar Localmente![Responsive](https://img.shields.io/badge/Responsive-Design-ff6b6b?style=flat-square)
 
 
 
@@ -264,11 +241,11 @@ python -m http.server 8000![JSON](https://img.shields.io/badge/JSON-000000?style
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white&opacity=0.6)
 
-## 📋 Proyectos Destacados![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white&opacity=0.6)
+##  Proyectos Destacados![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white&opacity=0.6)
 
 
 
-### 🍅 Pomodoro Timer---
+###  Pomodoro Timer---
 
 - Técnica Pomodoro (25/5 min)
 
@@ -280,11 +257,11 @@ python -m http.server 8000![JSON](https://img.shields.io/badge/JSON-000000?style
 
 
 
-### 🌤️ Weather App[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Luisitorisso&show_icons=true&theme=radical&count_private=true)](https://github.com/Luisitorisso)
+###  Weather App[![GitHub Stats](https://github-readme-stats.vercel.app/api?username=risso-patron&show_icons=true&theme=radical&count_private=true)](https://github.com/risso-patron)
 
 - Integración con OpenWeather API
 
-- Búsqueda por ciudad[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Luisitorisso&layout=compact&theme=radical)](https://github.com/Luisitorisso)
+- Búsqueda por ciudad[![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=risso-patron&layout=compact&theme=radical)](https://github.com/risso-patron)
 
 - Imágenes dinámicas con Pexels API
 
@@ -292,7 +269,7 @@ python -m http.server 8000![JSON](https://img.shields.io/badge/JSON-000000?style
 
 
 
-### 💰 Calculadora de Presupuesto---
+###  Calculadora de Presupuesto---
 
 - Gestión de ingresos/gastos
 
@@ -304,7 +281,7 @@ python -m http.server 8000![JSON](https://img.shields.io/badge/JSON-000000?style
 
 *Desarrollador Web*
 
-## 🎨 Características Técnicas- Desarrollo y mantenimiento de [spaceventos.com](https://spaceventos.com)
+##  Características Técnicas- Desarrollo y mantenimiento de [spaceventos.com](https://spaceventos.com)
 
 - HTML, CSS, JavaScript para interfaces responsivas
 
@@ -344,7 +321,7 @@ python -m http.server 8000![JSON](https://img.shields.io/badge/JSON-000000?style
 
     database: "MongoDB"
 
-## 📝 Documentación  },
+##  Documentación  },
 
   objetivo: "Full Stack Developer"
 
@@ -358,7 +335,7 @@ python -m http.server 8000![JSON](https://img.shields.io/badge/JSON-000000?style
 
 
 
-## 👤 Autor## 📞 Contacto
+##  Autor##  Contacto
 
 
 
@@ -366,21 +343,21 @@ python -m http.server 8000![JSON](https://img.shields.io/badge/JSON-000000?style
 
 
 
-- 🌐 Portfolio: [luisitorisso.github.io/Luisitorisso](https://luisitorisso.github.io/Luisitorisso/)**¿Tienes una oportunidad para un developer junior?**
+-  Portfolio: [luisitorisso.github.io/Luisitorisso](https://luisitorisso.github.io/Luisitorisso/)**¿Tienes una oportunidad para un developer junior?**
 
-- 💼 GitHub: [@Luisitorisso](https://github.com/Luisitorisso)
+-  GitHub: [@Luisitorisso](https://github.com/Luisitorisso)
 
-- 📧 Email: luisrissopa@gmail.com[![Email](https://img.shields.io/badge/Email-luisrissopa%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:luisrissopa@gmail.com)
+-  Email: luisrissopa@gmail.com[![Email](https://img.shields.io/badge/Email-luisrissopa%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:luisrissopa@gmail.com)
 
-- 📍 Panamá 🇵🇦[![WhatsApp](https://img.shields.io/badge/WhatsApp-+507%206456--0263-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/50764560263?text=Hola%20Jorge%21%20Vi%20tu%20portfolio%20en%20GitHub)
+-  Panamá 🇵🇦[![WhatsApp](https://img.shields.io/badge/WhatsApp-+507%206456--0263-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/50764560263?text=Hola%20Jorge%21%20Vi%20tu%20portfolio%20en%20GitHub)
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Ver%20Proyectos-0072ff?style=for-the-badge&logo=firefox&logoColor=white)](https://luisitorisso.github.io/Luisitorisso/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Ver%20Proyectos-0072ff?style=for-the-badge&logo=firefox&logoColor=white)](https://risso-patron.github.io/portfolio/)
 
-## 📄 Licencia[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jorge-luis-risso-/)
+##  Licencia[![LinkedIn](https://img.shields.io/badge/LinkedIn-Conectar-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jorge-luis-risso-/)
 
 
 
-Este proyecto está bajo la Licencia MIT.**📍 Ciudad de Panamá, PA | 🇵🇦**
+Este proyecto está bajo la Licencia MIT.** Ciudad de Panamá, PA | 🇵🇦**
 
 
 
@@ -388,7 +365,7 @@ Este proyecto está bajo la Licencia MIT.**📍 Ciudad de Panamá, PA | 🇵🇦
 
 
 
-⭐ Si te gustó este portfolio, considera darle una estrella!---
+Si te gustó este portfolio, considera darle una estrella!---
 
 
 
@@ -399,11 +376,11 @@ Este proyecto está bajo la Licencia MIT.**📍 Ciudad de Panamá, PA | 🇵🇦
 
 *Construyendo el futuro, un proyecto a la vez.*
 
-[![GitHub followers](https://img.shields.io/github/followers/Luisitorisso?style=social)](https://github.com/Luisitorisso)
-[![GitHub stars](https://img.shields.io/github/stars/Luisitorisso?style=social)](https://github.com/Luisitorisso)
+[![GitHub followers](https://img.shields.io/github/followers/risso-patron?style=social)](https://github.com/risso-patron)
+[![GitHub stars](https://img.shields.io/github/stars/risso-patron?style=social)](https://github.com/risso-patron)
 
 </div>
 
 ---
 
-<sub>💡 **Tip para reclutadores**: Todos mis proyectos tienen demos funcionales y código documentado. ¡Click en "Ver Demo" para probar las apps en vivo!</sub>
+<sub> **Tip para reclutadores**: Todos mis proyectos tienen demos funcionales y código documentado. ¡Click en "Ver Demo" para probar las apps en vivo!</sub>

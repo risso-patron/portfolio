@@ -13,7 +13,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
 [![OpenWeather API](https://img.shields.io/badge/API-OpenWeather-orange?style=flat-square)](https://openweathermap.org/api)
 
-🔗 **[Ver Demo en Vivo](https://luisitorisso.github.io/Luisitorisso/weather-app/)** | 📱 **[Probar Ahora](https://jorge-luis-risso-patron-dev.netlify.app/weather-app/)**
+🔗 **[Ver Demo en Vivo](https://risso-patron.github.io/portfolio/weather-app/)**
 
 </div>
 
@@ -141,10 +141,10 @@ php -S localhost:8000
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/Luisitorisso/Luisitorisso.git
+git clone https://github.com/risso-patron/portfolio.git
 
 # Navegar a la carpeta
-cd Luisitorisso/weather-app
+cd portfolio/weather-app
 
 # Configurar API key (ver sección anterior)
 # Editar index.html con tu API key
@@ -333,8 +333,8 @@ weather-app/
 ## 👤 Autor
 
 **Jorge Luis Risso Patrón**
-- GitHub: [@Luisitorisso](https://github.com/Luisitorisso)
-- Portfolio: [luisitorisso.github.io/Luisitorisso](https://luisitorisso.github.io/Luisitorisso/)
+- GitHub: [@risso-patron](https://github.com/risso-patron)
+- Portfolio: [risso-patron.github.io/portfolio](https://risso-patron.github.io/portfolio/)
 - Email: [luisrissopa@gmail.com](mailto:luisrissopa@gmail.com)
 - WhatsApp: [+507 6456-0263](https://wa.me/50764560263)
 - Ubicación: Ciudad de Panamá, PA 🇵🇦
@@ -372,8 +372,8 @@ MIT License - Siéntete libre de usar este código para tus propios proyectos.
 
 ### 🌟 ¿Te gustó este proyecto?
 
-[![GitHub stars](https://img.shields.io/github/stars/Luisitorisso/Luisitorisso?style=social)](https://github.com/Luisitorisso/Luisitorisso)
-[![GitHub forks](https://img.shields.io/github/forks/Luisitorisso/Luisitorisso?style=social)](https://github.com/Luisitorisso/Luisitorisso/fork)
+[![GitHub stars](https://img.shields.io/github/stars/risso-patron/portfolio?style=social)](https://github.com/risso-patron/portfolio)
+[![GitHub forks](https://img.shields.io/github/forks/risso-patron/portfolio?style=social)](https://github.com/risso-patron/portfolio/fork)
 
 **¡Dale una ⭐ al repo si te fue útil!**
 
@@ -381,4 +381,4 @@ MIT License - Siéntete libre de usar este código para tus propios proyectos.
 
 ---
 
-<sub>**Creado con ❤️ por Jorge Luis Risso Patrón | Desarrollador Frontend Junior**</sub>
+<sub>**Creado con coffee por Jorge Luis Risso Patrón | Desarrollador Frontend Junior**</sub>

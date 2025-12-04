@@ -19,7 +19,7 @@ Aplicación web que implementa la técnica Pomodoro para mejorar la productivida
 
 ## Demo
 
-**[Ver Demo en Vivo](https://luisitorisso.github.io/Luisitorisso/pomodoro-timer/)**
+**[Ver Demo en Vivo](https://risso-patron.github.io/portfolio/pomodoro-timer/)**
 
 ## Capturas de Pantalla
 
@@ -107,10 +107,10 @@ Lo que aprendí construyendo este proyecto:
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/Luisitorisso/Luisitorisso.git
+git clone https://github.com/risso-patron/portfolio.git
 
 # Navegar al proyecto
-cd Luisitorisso/pomodoro-timer
+cd portfolio/pomodoro-timer
 
 # Abrir en navegador
 open index.html
@@ -138,8 +138,8 @@ pomodoro-timer/
 ## Autor
 
 **Jorge Luis Risso Patrón**
-- GitHub: [@Luisitorisso](https://github.com/Luisitorisso)
-- Portfolio: [jorge-luis-risso-patron-dev.netlify.app](https://jorge-luis-risso-patron-dev.netlify.app)
+- GitHub: [@risso-patron](https://github.com/risso-patron)
+- Portfolio: [risso-patron.github.io/portfolio](https://risso-patron.github.io/portfolio/)
 - Email: luisrissopa@gmail.com
 
 ## Licencia
