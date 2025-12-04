@@ -13,6 +13,35 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     
     <style>
+        :root {
+            /* Colores principales */
+            --primary: #FF6B6B;
+            --primary-hover: #ff5252;
+            --secondary: #4ECDC4;
+            --secondary-hover: #45b8af;
+            
+            /* Backgrounds */
+            --bg-dark: #0A0E27;
+            --bg-darker: #151A36;
+            --bg-card: rgba(26, 31, 58, 0.6);
+            
+            /* Texto */
+            --text-primary: #F7F7FF;
+            --text-secondary: rgba(247, 247, 255, 0.7);
+            
+            /* Bordes y efectos */
+            --border: rgba(255, 255, 255, 0.1);
+            --glass-blur: blur(20px);
+            --border-radius: 16px;
+            
+            /* Gradients */
+            --gradient-start: #FF6B6B;
+            --gradient-end: #4ECDC4;
+            
+            /* Fonts */
+            --font-primary: 'Inter', 'Roboto', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -24,16 +53,17 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            background: linear-gradient(135deg, #4d9fff, #66b3ff);
-            color: white;
-            border: none;
-            border-radius: 12px;
+            background: var(--bg-card);
+            -webkit-backdrop-filter: var(--glass-blur);
+            backdrop-filter: var(--glass-blur);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
             padding: 0.75rem 1.25rem;
             font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(77, 159, 255, 0.3);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 9999;
             text-decoration: none;
             display: inline-flex;
@@ -43,20 +73,19 @@
 
         .back-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(77, 159, 255, 0.4);
-        }
-
-        .back-button:focus {
-            outline: 3px solid #4d9fff;
-            outline-offset: 2px;
+            background: rgba(26, 31, 58, 0.8);
+            border-color: var(--primary);
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            font-family: var(--font-primary);
+            background: var(--bg-dark);
+            background-image: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.15) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, rgba(78, 205, 196, 0.15) 0%, transparent 50%);
+            background-attachment: fixed;
             min-height: 100vh;
             padding: 20px;
-            color: #2c3e50;
+            color: var(--text-primary);
         }
 
         .container {
@@ -66,24 +95,26 @@
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 3rem;
+            margin-top: 2rem;
         }
 
         .logo {
             display: inline-block;
-            background: linear-gradient(135deg, #4d9fff 0%, #2ecc71 100%);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
         }
 
         .logo-subtitle {
-            color: #7f8c8d;
+            color: var(--text-secondary);
             font-weight: 400;
-            font-size: 1.1em;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
         }
 
         .main-grid {
@@ -101,79 +132,84 @@
 
         /* Cards de Categorías */
         .category-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            background: var(--bg-card);
+            -webkit-backdrop-filter: var(--glass-blur);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+            background: rgba(26, 31, 58, 0.8);
+            border-color: var(--primary);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
         }
 
         .card-title {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #2c3e50;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
         }
 
         .add-btn {
-            background: linear-gradient(135deg, #4d9fff, #66b3ff);
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 0.5rem 1rem;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8em;
+            font-size: 0.85rem;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .add-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(77, 159, 255, 0.3);
+            background: var(--primary-hover);
+            transform: translateY(-2px);
         }
 
         /* Input Group */
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
         }
 
         .input-group label {
             display: block;
-            font-size: 0.75em;
-            color: #7f8c8d;
-            margin-bottom: 4px;
-            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
         }
 
         .input-group input,
         .input-group select {
             width: 100%;
-            padding: 10px 12px;
-            border: 2px solid #e9ecef;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
             border-radius: 8px;
-            font-size: 0.85em;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-family: var(--font-primary);
+            background: rgba(26, 31, 58, 0.4);
+            color: var(--text-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .input-group input:focus,
         .input-group select:focus {
             outline: none;
-            border-color: #4d9fff;
-            box-shadow: 0 0 0 4px rgba(77, 159, 255, 0.1);
+            border-color: var(--primary);
+            background: rgba(26, 31, 58, 0.6);
         }
 
         /* Transaction List */
@@ -187,14 +223,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
-            transition: all 0.2s ease;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .transaction-item:hover {
-            background: #f8f9fa;
-            padding-left: 10px;
+            background: rgba(26, 31, 58, 0.4);
+            padding-left: 0.75rem;
             border-radius: 8px;
         }
 
@@ -204,53 +240,56 @@
 
         .transaction-name {
             font-weight: 500;
-            color: #2c3e50;
-            font-size: 0.85em;
+            color: var(--text-primary);
+            font-size: 0.9rem;
         }
 
         .transaction-category {
-            font-size: 0.7em;
-            color: #95a5a6;
-            margin-top: 2px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
         }
 
         .transaction-amount {
             font-weight: 600;
-            font-size: 0.85em;
-            margin-right: 8px;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
         }
 
         .transaction-amount.income {
-            color: #2ecc71;
+            color: var(--secondary);
         }
 
         .transaction-amount.expense {
-            color: #e74c3c;
+            color: var(--primary);
         }
 
         .delete-btn {
-            background: #ffebee;
-            color: #e74c3c;
-            border: none;
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .delete-btn:hover {
-            background: #e74c3c;
+            background: var(--primary);
             color: white;
+            border-color: var(--primary);
         }
 
         /* Centro - Lista de Gastos */
         .expenses-list-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            background: var(--bg-card);
+            -webkit-backdrop-filter: var(--glass-blur);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
             min-height: 600px;
         }
 
@@ -258,33 +297,36 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 2rem;
         }
 
         .expenses-title {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: #2c3e50;
+            font-size: 1.5rem;
+            font-weight: 500;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .view-all-btn {
-            color: #7f8c8d;
+            color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.9em;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .view-all-btn:hover {
-            color: #4d9fff;
+            color: var(--primary);
         }
 
         .expense-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
         }
 
         .expense-item:last-child {
@@ -293,115 +335,81 @@
 
         .expense-store {
             font-weight: 500;
-            color: #2c3e50;
-            font-size: 1em;
+            color: var(--text-primary);
+            font-size: 1rem;
         }
 
         .expense-date {
-            font-size: 0.85em;
-            color: #95a5a6;
-            margin-top: 3px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
         }
 
         .expense-price {
             font-weight: 600;
-            color: #e74c3c;
-            font-size: 1.05em;
+            color: var(--primary);
+            font-size: 1.05rem;
         }
 
         /* Categorías con gradientes */
         .category-buttons {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
         }
 
         .category-btn {
-            padding: 18px 20px;
-            border: none;
-            border-radius: 15px;
+            padding: 1.25rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 0.95em;
+            font-size: 0.95rem;
             font-weight: 500;
             text-align: left;
-            transition: all 0.3s ease;
-            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-primary);
+            background: rgba(26, 31, 58, 0.4);
             position: relative;
             overflow: hidden;
         }
 
-        .category-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .category-btn:hover::before {
-            opacity: 1;
-        }
-
-        .category-btn.food {
-            background: linear-gradient(135deg, #ff9a56, #ffc371);
-        }
-
-        .category-btn.apartment {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-        }
-
-        .category-btn.household {
-            background: linear-gradient(135deg, #90ee90, #43e97b);
-        }
-
-        .category-btn.clothes {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-        }
-
-        .category-btn.fun {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
-        }
-
-        .category-btn.traveling {
-            background: linear-gradient(135deg, #ffd93d, #ffb347);
-        }
-
-        .category-btn.others {
-            background: linear-gradient(135deg, #c3cfe2, #a8b8d0);
+        .category-btn:hover {
+            background: rgba(26, 31, 58, 0.6);
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
         /* Panel de Resultados */
         .results-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            background: var(--bg-card);
+            -webkit-backdrop-filter: var(--glass-blur);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
         }
 
         .results-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
 
         .results-title {
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #2c3e50;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-primary);
         }
 
         .month-badge {
-            background: linear-gradient(135deg, #e0c3fc, #d4a5f9);
-            padding: 8px 18px;
+            background: rgba(78, 205, 196, 0.2);
+            border: 1px solid var(--secondary);
+            padding: 0.5rem 1.25rem;
             border-radius: 20px;
-            color: white;
-            font-size: 0.9em;
+            color: var(--secondary);
+            font-size: 0.9rem;
             font-weight: 500;
         }
 
@@ -421,34 +429,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            font-size: 0.95em;
+            padding: 1rem 0;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
         }
 
         .stat-label {
-            color: #7f8c8d;
+            color: var(--text-secondary);
             font-weight: 400;
         }
 
         .stat-value {
             font-weight: 600;
-            color: #2c3e50;
+            color: var(--text-primary);
         }
 
         .stat-value.total {
-            color: #4d9fff;
-            font-size: 1.1em;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
         }
 
         .empty-state {
             text-align: center;
-            padding: 60px 20px;
-            color: #95a5a6;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
         }
 
         .empty-state-icon {
-            font-size: 4em;
-            margin-bottom: 15px;
+            font-size: 4rem;
+            margin-bottom: 1rem;
             opacity: 0.3;
         }
 
@@ -456,7 +472,7 @@
         @media (max-width: 1200px) {
             .main-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 1.5rem;
             }
 
             .results-card {
@@ -466,130 +482,71 @@
 
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 1rem;
             }
 
             .header {
-                margin-bottom: 20px;
+                margin-bottom: 2rem;
             }
 
             .logo {
-                font-size: 1.5em;
+                font-size: 2rem;
             }
 
             .logo-subtitle {
-                font-size: 0.85em;
+                font-size: 0.9rem;
             }
 
             .main-grid {
-                gap: 15px;
+                gap: 1rem;
             }
 
-            /* Cajas de ingresos y gastos lado a lado en móvil */
             .income-expense-wrapper {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                gap: 1rem;
             }
 
             .category-card {
-                padding: 15px;
-            }
-
-            .card-header {
-                margin-bottom: 12px;
-                padding-bottom: 10px;
-            }
-
-            .card-title {
-                font-size: 0.9em;
-            }
-
-            .add-btn {
-                padding: 5px 10px;
-                font-size: 0.7em;
-            }
-
-            .input-group {
-                margin-bottom: 10px;
-            }
-
-            .input-group label {
-                font-size: 0.7em;
-                margin-bottom: 3px;
-            }
-
-            .input-group input,
-            .input-group select {
-                padding: 8px 10px;
-                font-size: 0.75em;
+                padding: 1.25rem;
             }
 
             .transaction-list {
-                max-height: 250px;
-            }
-
-            .transaction-item {
-                padding: 8px 0;
-            }
-
-            .transaction-name {
-                font-size: 0.75em;
-            }
-
-            .transaction-category {
-                font-size: 0.65em;
-            }
-
-            .transaction-amount {
-                font-size: 0.75em;
-                margin-right: 5px;
-            }
-
-            .delete-btn {
-                width: 24px;
-                height: 24px;
-                font-size: 14px;
+                max-height: 300px;
             }
 
             .expenses-list-card,
             .results-card {
-                padding: 15px;
+                padding: 1.5rem;
             }
 
             .category-buttons {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-
-            .category-btn {
-                padding: 12px 15px;
-                font-size: 0.8em;
-            }
-
-            .empty-state {
-                padding: 40px 15px;
-            }
-
-            .empty-state-icon {
-                font-size: 2.5em;
+                gap: 0.5rem;
             }
         }
 
         @media (max-width: 480px) {
             body {
-                padding: 8px;
+                padding: 0.75rem;
             }
 
             .logo {
-                font-size: 1.2em;
+                font-size: 1.75rem;
             }
 
-            .logo-subtitle {
-                font-size: 0.75em;
+            .income-expense-wrapper {
+                grid-template-columns: 1fr;
             }
 
             .category-card {
+                padding: 1rem;
+            }
+
+            .expenses-list-card,
+            .results-card {
+                padding: 1.25rem;
+            }
+        }
                 padding: 12px;
             }
 
