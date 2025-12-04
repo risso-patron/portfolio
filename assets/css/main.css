@@ -407,9 +407,10 @@
 
         /* ==================== Sobre Mí ==================== */
         .about {
-            background: var(--bg-light);
-            padding: 100px 0;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%);
+            padding: 120px 0;
             position: relative;
+            overflow: hidden;
         }
 
         .about::before {
@@ -418,17 +419,32 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 1px;
+            height: 2px;
             background: var(--gradient-primary);
+        }
+
+        .about::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 114, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .section-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
             text-align: center;
             margin-bottom: 1rem;
-            color: var(--dark);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             position: relative;
         }
 
@@ -438,7 +454,7 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 80px;
             height: 4px;
             background: var(--gradient-primary);
             border-radius: 2px;
@@ -446,49 +462,114 @@
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: var(--text-light);
-            max-width: 600px;
+            max-width: 700px;
             margin: 2rem auto 4rem;
-            line-height: 1.8;
+            line-height: 1.6;
+            font-weight: 400;
         }
 
         .about-content {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
 
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .about-card {
+            background: rgba(26, 31, 46, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 48px rgba(0, 114, 255, 0.15);
+        }
+
+        .about-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 24px rgba(0, 114, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
         .about-text {
-            font-size: 1rem; /* Reducido de 1.2rem */
+            font-size: 1.05rem;
             color: var(--text);
-            line-height: 1.7; /* Reducido de 1.8 */
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.6s ease-out 0.3s forwards;
-            text-align: left;
+            line-height: 1.8;
+            text-align: center;
             margin: 0;
         }
 
         /* ==================== Proyectos ==================== */
         .projects {
-            padding: 60px 0;
-            background: white;
+            padding: 120px 0;
+            background: var(--bg);
+            position: relative;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
         .project-card {
-            background: white;
-            border-radius: 16px;
+            background: var(--bg-light);
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             border: 1px solid var(--border);
             display: flex;
@@ -496,9 +577,16 @@
             height: 100%;
         }
 
+        [data-theme="dark"] .project-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
         .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-10px);
+            box-shadow: 0 12px 48px rgba(0, 114, 255, 0.15);
+            border-color: var(--primary);
         }
 
         .project-mockup {
