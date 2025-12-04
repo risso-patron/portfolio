@@ -19,6 +19,38 @@
             box-sizing: border-box;
         }
 
+        /* Botón Volver */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #4d9fff, #66b3ff);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(77, 159, 255, 0.3);
+            transition: all 0.3s ease;
+            z-index: 9999;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(77, 159, 255, 0.4);
+        }
+
+        .back-button:focus {
+            outline: 3px solid #4d9fff;
+            outline-offset: 2px;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
@@ -615,6 +647,12 @@
     </style>
 </head>
 <body>
+    <!-- Botón Volver al Portfolio -->
+    <a href="../index.html" class="back-button" aria-label="Volver al portfolio">
+        <span>←</span>
+        <span>Volver</span>
+    </a>
+
     <div class="container">
         <!-- Header -->
         <div class="header">

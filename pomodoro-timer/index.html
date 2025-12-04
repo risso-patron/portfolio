@@ -73,6 +73,38 @@
             overflow-x: hidden;
         }
 
+        /* ==================== Botón Volver ==================== */
+        .back-button {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 9999;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .back-button:focus {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
         /* ==================== Header ==================== */
         .header {
             background: var(--bg-light);
@@ -692,6 +724,12 @@
     </style>
 </head>
 <body>
+    <!-- Botón Volver al Portfolio -->
+    <a href="../index.html" class="back-button" aria-label="Volver al portfolio">
+        <span>←</span>
+        <span>Volver</span>
+    </a>
+
     <header class="header">
         <div class="header-content">
             <div class="header-text">
