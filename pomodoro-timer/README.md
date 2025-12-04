@@ -15,7 +15,7 @@ Aplicación web que implementa la técnica Pomodoro para mejorar la productivida
 - **Persistencia**: Guarda configuración y estadísticas en LocalStorage
 - **Responsive**: Optimizado para desktop, tablet y móvil
 - **Atajos de Teclado**: Espacio para iniciar/pausar, Ctrl+R para reiniciar
-- **PWA Ready**: Funciona offline y se puede instalar como app
+- **Sonido Confiable**: Sistema de audio con fallbacks múltiples
 
 ## Demo
 
@@ -73,13 +73,15 @@ Lo que aprendí construyendo este proyecto:
 
 ### JavaScript Avanzado
 - **Clases ES6**: Organización de código con constructor y métodos
-- **Intervals y Timing**: Manejo preciso de setInterval y clearInterval
+- **Timing Preciso**: Uso de `Date.now()` con timestamps para evitar drift
+- **Intervals**: Manejo de `setInterval` y `clearInterval` optimizado
 - **LocalStorage**: Persistencia de datos entre sesiones
 - **Event Listeners**: Manejo de eventos de teclado y clic
 
 ### APIs del Navegador
 - **Notifications API**: Permisos y notificaciones del sistema
-- **Web Audio API**: Generación de sonidos sintéticos
+- **Web Audio API**: Generación de sonidos sintéticos con fallbacks
+- **HTML5 Audio**: Implementación de audio confiable multiplataforma
 - **Document Title**: Actualización dinámica del título
 
 ### CSS Moderno
@@ -90,18 +92,20 @@ Lo que aprendí construyendo este proyecto:
 
 ### UX/UI
 - **Estados de Loading**: Feedback visual durante transiciones
-- **Accessibility**: Contraste, tamaños de touch y navegación por teclado
+- **Accessibility**: ARIA labels, roles semánticos, navegación por teclado
+- **Focus States**: Indicadores visuales claros para navegación con teclado
 - **Mobile-First**: Diseño responsive desde dispositivos pequeños
+- **Contraste**: Cumple WCAG 2.1 AA para legibilidad
 
 ## Próximas Mejoras
 
-- [ ] PWA completa con Service Worker
-- [ ] Exportar estadísticas a CSV/JSON  
-- [ ] Temas personalizables (oscuro/claro)
-- [ ] Integración con Spotify para música de fondo
-- [ ] Gráficos de productividad semanal/mensual
-- [ ] Sincronización en la nube
-- [ ] Pomodoros por proyecto/categoría
+- [ ] **PWA completa** con Service Worker y funcionamiento offline
+- [ ] **Exportar estadísticas** a CSV/JSON  
+- [ ] **Temas personalizables** (oscuro/claro con más variantes)
+- [ ] **Integración con Spotify** para música de fondo
+- [ ] **Gráficos de productividad** semanal/mensual
+- [ ] **Sincronización en la nube** (Firebase/Supabase)
+- [ ] **Pomodoros por proyecto** con categorías personalizadas
 
 ## Instalación
 
@@ -129,11 +133,20 @@ pomodoro-timer/
 
 ## Navegadores Compatibles
 
-- Chrome/Edge 60+
-- Firefox 55+  
-- Safari 11+
-- Chrome Mobile 60+
-- Safari Mobile 11+
+- Chrome/Edge 60+ ✅
+- Firefox 55+ ✅
+- Safari 11+ ✅
+- Chrome Mobile 60+ ✅
+- Safari Mobile 11+ ✅
+
+### Características de Accesibilidad
+
+- ✅ **WCAG 2.1 Nivel AA** compliance
+- ✅ **Lectores de pantalla** compatibles (NVDA, JAWS, VoiceOver)
+- ✅ **Navegación por teclado** completa
+- ✅ **Focus states** visibles
+- ✅ **Zoom sin límites** (hasta 500%+)
+- ✅ **ARIA labels** descriptivos
 
 ## Autor
 

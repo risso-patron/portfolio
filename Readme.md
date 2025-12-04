@@ -217,13 +217,13 @@ El portfolio está desplegado automáticamente en GitHub Pages:### Frontend
 
 # Clonar el repositorio![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
 
-git clone https://github.com/Luisitorisso/Luisitorisso.git![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
+git clone https://github.com/risso-patron/portfolio.git![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
 
 ![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white)
 
 # Navegar al directorio![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=flat-square&logo=github&logoColor=white)
 
-cd Luisitorisso
+cd portfolio
 
 ### APIs y Datos
 
@@ -343,9 +343,9 @@ python -m http.server 8000![JSON](https://img.shields.io/badge/JSON-000000?style
 
 
 
--  Portfolio: [luisitorisso.github.io/Luisitorisso](https://luisitorisso.github.io/Luisitorisso/)**¿Tienes una oportunidad para un developer junior?**
+-  Portfolio: [risso-patron.github.io/portfolio](https://risso-patron.github.io/portfolio/)**¿Tienes una oportunidad para un developer junior?**
 
--  GitHub: [@Luisitorisso](https://github.com/Luisitorisso)
+-  GitHub: [@risso-patron](https://github.com/risso-patron)
 
 -  Email: luisrissopa@gmail.com[![Email](https://img.shields.io/badge/Email-luisrissopa%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:luisrissopa@gmail.com)
 
