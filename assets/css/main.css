@@ -1198,6 +1198,7 @@
         .footer-copy {
             font-size: 0.95rem;
             margin: 0;
+            color: var(--text);
         }
 
         .footer-copy::before {
@@ -1210,13 +1211,21 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
         }
+        
         .footer {
-            background: linear-gradient(135deg, #ffffff 0%, #eef4ff 100%);
-            color: #0f1419;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--text);
             padding: 2.5rem 0 2rem;
             text-align: center;
             margin: 0;
-            border-top: 1px solid rgba(22, 33, 62, 0.08);
+            border-top: 1px solid var(--border);
+        }
+
+        /* Footer modo oscuro */
+        [data-theme="dark"] .footer {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            color: var(--text);
+            border-top: 1px solid var(--border);
         }
 
         .footer-content {
@@ -1280,24 +1289,6 @@
 
         .footer-copy {
             font-size: 0.85rem;
-        }
-
-        [data-theme="dark"] .footer {
-            background: linear-gradient(135deg, #ffffff 0%, #e6ecfb 100%);
-            color: #0f1419;
-            border-top-color: rgba(15, 20, 25, 0.15);
-        }
-
-        [data-theme="dark"] .footer-detail {
-            background: rgba(255, 255, 255, 0.95);
-            border-color: rgba(15, 20, 25, 0.12);
-            color: #0f1419;
-        }
-
-        [data-theme="dark"] .footer-role,
-        [data-theme="dark"] .footer-availability,
-        [data-theme="dark"] .footer-copy {
-            color: #4a4f5c;
         }
 
         /* ==================== Estilos Específicos Modo Oscuro ==================== */
