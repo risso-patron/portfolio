@@ -508,6 +508,17 @@
             width: 100%;
         }
 
+        /* Centrar la caja de sonido cuando está sola en la segunda fila */
+        .setting-group:nth-child(4) {
+            grid-column: 2 / 3;
+        }
+
+        @media (max-width: 768px) {
+            .setting-group:nth-child(4) {
+                grid-column: auto;
+            }
+        }
+
         .setting-label {
             color: var(--text);
             font-weight: 600;
@@ -1042,7 +1053,7 @@
 
             <div class="settings-grid">
                 <div class="setting-group">
-                    <span class="setting-label">🎯 Trabajo</span>
+                    <span class="setting-label"> Trabajo</span>
                     <div class="setting-controls">
                         <button class="btn btn-outline btn-small" 
                                 onclick="adjustTime('work', -1)"
@@ -1056,7 +1067,7 @@
                 </div>
 
                 <div class="setting-group">
-                    <span class="setting-label">☕ Corto</span>
+                    <span class="setting-label"> Corto</span>
                     <div class="setting-controls">
                         <button class="btn btn-outline btn-small" 
                                 onclick="adjustTime('shortBreak', -1)"
@@ -1070,7 +1081,7 @@
                 </div>
 
                 <div class="setting-group">
-                    <span class="setting-label">🌙 Largo</span>
+                    <span class="setting-label"> Largo</span>
                     <div class="setting-controls">
                         <button class="btn btn-outline btn-small" 
                                 onclick="adjustTime('longBreak', -1)"
@@ -1084,7 +1095,7 @@
                 </div>
 
                 <div class="setting-group">
-                    <span class="setting-label">🔊 Sonido</span>
+                    <span class="setting-label"> Sonido</span>
                     <div class="setting-controls">
                         <button class="btn btn-outline btn-small" 
                                 id="soundToggle" 
