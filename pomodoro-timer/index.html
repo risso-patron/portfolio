@@ -333,10 +333,11 @@
         /* ==================== Controles ==================== */
         .controls {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 1rem;
             margin: 1rem auto;
             justify-content: center;
+            align-items: center;
             width: 100%;
             max-width: 500px;
             position: relative;
@@ -344,21 +345,25 @@
         }
 
         .controls .btn {
-            flex: 1 1 calc(50% - 1rem);
-            min-width: 150px;
-            text-align: center;
+            flex: 0 0 auto;
+            min-width: 70px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
         }
 
         .btn {
-            padding: 1rem 2rem;
             border: 1px solid var(--border);
-            border-radius: 16px;
-            font-size: 0.95rem;
+            font-size: 0.75rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
@@ -728,15 +733,16 @@
 
             .controls {
                 gap: 0.75rem;
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
                 justify-content: center;
                 margin: 0.75rem auto;
             }
 
-            .btn {
-                padding: 0.75rem 1.25rem;
-                font-size: 0.85rem;
-                min-width: 120px;
+            .controls .btn {
+                width: 60px;
+                height: 60px;
+                min-width: 60px;
+                font-size: 0.7rem;
             }
 
             .settings, .stats {
@@ -822,14 +828,10 @@
             }
             
             .controls .btn {
-                flex: 1 1 calc(50% - 0.25rem);
-                min-width: auto;
-            }
-            
-            .btn {
-                padding: 0.75rem 0.75rem;
-                font-size: 0.8rem;
-                border-radius: 12px;
+                width: 55px;
+                height: 55px;
+                min-width: 55px;
+                font-size: 0.65rem;
             }
 
             .setting-group {
