@@ -189,6 +189,26 @@
             font-size: 1.1rem;
         }
 
+        /* Estilos para iconos personalizados */
+        .icon-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .header h1 .icon-img {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.5rem;
+        }
+
+        .settings-icon .icon-img {
+            width: 36px;
+            height: 36px;
+        }
+
         /* ==================== Container Principal ==================== */
         .container {
             flex: 1;
@@ -939,11 +959,11 @@
     <header class="header">
         <div class="header-content">
             <div class="header-text">
-                <h1>🍅 Pomodoro Timer</h1>
+                <h1><img src="icons/tomato.webp" alt="" class="icon-img">Pomodoro Timer</h1>
                 <p>Técnica de productividad desarrollada por Francesco Cirillo</p>
             </div>
             <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-                <span id="themeIcon">🌙</span>
+                <img src="icons/moon.webp" alt="" class="icon-img" id="themeIcon">
                 <span id="themeLabel">Modo oscuro</span>
             </button>
         </div>
@@ -989,7 +1009,9 @@
 
             <div class="settings-header">
 
-                <div class="settings-icon">⚙️</div>
+                <div class="settings-icon">
+                    <img src="icons/cogwheel.webp" alt="" class="icon-img">
+                </div>
 
                 <div class="settings-titles">
 
@@ -1456,10 +1478,10 @@
                 document.documentElement.setAttribute('data-theme', theme);
                 localStorage.setItem('pomodoro-theme', theme);
                 if (theme === 'light') {
-                    themeIcon.textContent = '☀️';
+                    themeIcon.src = 'icons/sun.webp';
                     themeLabel.textContent = 'Modo claro';
                 } else {
-                    themeIcon.textContent = '🌙';
+                    themeIcon.src = 'icons/moon.webp';
                     themeLabel.textContent = 'Modo oscuro';
                 }
             };
