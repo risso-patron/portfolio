@@ -660,6 +660,21 @@
                 font-size: clamp(0.75rem, 3vw, 0.85rem);
             }
 
+            /* Ocultar texto del botón de tema, solo mostrar icono */
+            .theme-toggle {
+                padding: 0.6rem;
+                min-width: auto;
+                border-radius: 50%;
+            }
+
+            #themeLabel {
+                display: none;
+            }
+
+            .theme-toggle span {
+                font-size: 1.3rem;
+            }
+
             .timer-container {
                 padding: 1.5rem 1.25rem;
                 margin: 1rem 0;
@@ -724,12 +739,29 @@
                 padding: 0.75rem 0.5rem;
             }
 
+            .header-content {
+                gap: 0.5rem;
+            }
+
             .header h1 {
                 font-size: clamp(1.1rem, 5vw, 1.4rem);
             }
 
             .header p {
                 font-size: clamp(0.7rem, 3vw, 0.8rem);
+            }
+
+            .theme-toggle {
+                padding: 0.5rem;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .theme-toggle span {
+                font-size: 1.2rem;
             }
             
             .timer-container {
