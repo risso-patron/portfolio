@@ -1104,7 +1104,9 @@
                                 aria-pressed="true">ON</button>
                         <button class="btn btn-outline btn-small" 
                                 onclick="testSound()" 
-                                aria-label="Probar sonido de notificación">🔊</button>
+                                aria-label="Probar sonido de notificación">
+                            <img src="icons/sound.webp" alt="" id="soundIcon" style="width: 20px; height: 20px; object-fit: contain;">
+                        </button>
                     </div>
                     <span class="setting-unit"> </span>
                 </div>
@@ -1513,6 +1515,12 @@
                 document.getElementById('shortBreakTime').textContent = this.settings.shortBreakTime;
                 document.getElementById('longBreakTime').textContent = this.settings.longBreakTime;
                 document.getElementById('soundToggle').textContent = this.settings.soundEnabled ? 'ON' : 'OFF';
+                
+                // Cambiar icono de sonido según estado
+                const soundIcon = document.getElementById('soundIcon');
+                if (soundIcon) {
+                    soundIcon.src = this.settings.soundEnabled ? 'icons/sound.webp' : 'icons/sound-stop.webp';
+                }
             }
         }
 
