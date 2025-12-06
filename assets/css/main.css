@@ -251,6 +251,17 @@
             transform: rotate(360deg);
         }
 
+        /* Mantener fondo oscuro del botón en modo claro */
+        [data-theme="light"] .theme-toggle {
+            background: rgba(26, 31, 58, 0.9);
+            border-color: rgba(26, 31, 58, 0.9);
+        }
+
+        [data-theme="light"] .theme-toggle:hover {
+            background: rgba(26, 31, 58, 1);
+            border-color: rgba(26, 31, 58, 1);
+        }
+
         /* ==================== Hero Section ==================== */
         .hero {
             position: relative;
