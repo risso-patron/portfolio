@@ -578,183 +578,210 @@
             margin: 0;
         }
 
-        /* ==================== Proyectos ==================== */
+        /* ==================== Proyectos - Vertical Alternado ==================== */
         .projects {
             padding: 120px 0;
             background: var(--bg);
             position: relative;
         }
 
-        .projects-grid {
+        .projects-container {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .project-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: var(--bg-light);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        [data-theme="dark"] .project-card {
-            background: var(--bg-light);
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 48px rgba(0, 114, 255, 0.15);
-            border-color: var(--primary);
-        }
-
-        .project-mockup {
-            position: relative;
-            padding: 1rem;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            display: flex;
-            justify-content: center;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
             align-items: center;
-            min-height: 140px;
-        }
-
-        .mockup-laptop {
-            width: 180px;
-            height: 375px;
-            border-radius: 6px;
+            margin-bottom: 8rem;
             position: relative;
-            margin: 0 auto;
         }
 
-        .mockup-screen {
-            background: #000;
-            border-radius: 6px 6px 0 0;
-            padding: 2px;
+        .project-row:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Proyecto con imagen a la izquierda */
+        .project-left .project-image {
+            order: 1;
+        }
+
+        .project-left .project-content {
+            order: 2;
+        }
+
+        /* Proyecto con imagen a la derecha */
+        .project-right .project-image {
+            order: 2;
+        }
+
+        .project-right .project-content {
+            order: 1;
+        }
+
+        /* Imagen del proyecto */
+        .project-image {
             position: relative;
-            height: 100%;
         }
 
-        .mockup-content {
-            background: white;
-            border-radius: 4px;
-            height: 100%;
+        .image-wrapper {
+            position: relative;
+            border-radius: 20px;
             overflow: hidden;
-            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--bg-light);
         }
 
-        .mockup-content img {
+        .image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
         }
 
-        .project-info {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+        .project-row:hover .image-wrapper::before {
+            opacity: 0.1;
         }
 
-        .project-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+        .project-row:hover .image-wrapper {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 114, 255, 0.25);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-row:hover .image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* Contenido del proyecto */
+        .project-content {
+            padding: 2rem;
         }
 
         .project-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 700;
             color: var(--dark);
-            margin-bottom: 0.75rem;
-            margin-top: 0;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .project-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
         }
 
         .project-description {
             color: var(--text-light);
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
         }
 
         .tech-tag {
             background: var(--bg-section);
             color: var(--text);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            padding: 0.5rem 1.25rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
             font-weight: 500;
             border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
         .project-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.25rem;
             flex-wrap: wrap;
-            margin-top: auto;
         }
 
         .btn-demo {
             background: var(--gradient-primary);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
+            padding: 1rem 2rem;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
         }
 
         .btn-demo:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 114, 255, 0.4);
         }
 
         .btn-code {
             background: transparent;
             color: var(--text);
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             border: 2px solid var(--border);
-            border-radius: 25px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
         }
 
         .btn-code:hover {
             border-color: var(--primary);
             color: var(--primary);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            background: rgba(0, 114, 255, 0.05);
+        }
+
+        /* Modo oscuro */
+        [data-theme="dark"] .project-title {
+            color: var(--dark);
+        }
+
+        [data-theme="dark"] .image-wrapper {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
         /* ==================== Habilidades ==================== */
@@ -1932,15 +1959,24 @@
                 padding: 40px 0;
             }
             
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
+            .projects-container {
                 margin-top: 1.5rem;
             }
             
-            .project-mockup {
-                min-height: 110px;
-                padding: 0.75rem;
+            .project-row {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-bottom: 4rem;
+            }
+            
+            .project-image,
+            .project-content {
+                order: initial;
+            }
+            
+            .image-wrapper {
+                height: 250px;
             }
             
             .project-info {
@@ -2113,18 +2149,17 @@
             }
             
             /* Proyectos mobile */
-            .projects-grid {
+            .projects-container {
                 gap: 1rem;
             }
             
-            .project-mockup {
-                min-height: 90px;
-                padding: 0.5rem;
+            .project-row {
+                gap: 1.5rem;
+                margin-bottom: 3rem;
             }
             
-            .mockup-laptop {
-                width: 140px;
-                height: 292px;
+            .image-wrapper {
+                height: 200px;
             }
             
             .project-info {
