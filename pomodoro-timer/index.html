@@ -209,8 +209,8 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 32px;
-            padding: 4rem 3rem;
-            margin: 2rem 0;
+            padding: 2.5rem 2rem;
+            margin: 1.5rem 0;
             box-shadow: 0 20px 60px var(--shadow);
             text-align: center;
             min-width: 400px;
@@ -239,7 +239,7 @@
         .session-type {
             font-size: 0.95rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 600;
@@ -260,10 +260,10 @@
         }
 
         .timer-display {
-            font-size: 7rem;
+            font-size: 5.5rem;
             font-weight: 300;
             color: var(--text);
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
             letter-spacing: -0.02em;
             position: relative;
@@ -276,7 +276,7 @@
             height: 6px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            margin: 2.5rem 0;
+            margin: 1.5rem 0;
             overflow: hidden;
             position: relative;
             z-index: 1;
@@ -315,7 +315,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
-            margin: 2rem auto;
+            margin: 1rem auto;
             justify-content: center;
             width: 100%;
             max-width: 500px;
@@ -649,39 +649,49 @@
             }
 
             .header {
-                padding: 0.75rem 0;
+                padding: 0.75rem 1rem;
             }
             
             .header h1 {
-                font-size: clamp(1.5rem, 5vw, 2rem);
+                font-size: clamp(1.3rem, 5vw, 1.6rem);
             }
             
             .header p {
-                font-size: clamp(0.8rem, 3vw, 0.9rem);
+                font-size: clamp(0.75rem, 3vw, 0.85rem);
             }
 
             .timer-container {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem 1.25rem;
                 margin: 1rem 0;
+                min-width: auto;
+                border-radius: 24px;
             }
 
             .timer-display {
-                font-size: clamp(2.5rem, 10vw, 3.5rem);
+                font-size: clamp(3rem, 12vw, 4rem);
+                margin: 1rem 0;
             }
             
             .session-type {
-                font-size: clamp(1rem, 4vw, 1.2rem);
+                font-size: clamp(0.75rem, 3vw, 0.85rem);
+                margin-bottom: 0.75rem;
+                letter-spacing: 2px;
+            }
+
+            .timer-progress {
+                margin: 1rem 0;
             }
 
             .controls {
-                gap: 0.5rem;
+                gap: 0.75rem;
                 flex-wrap: wrap;
                 justify-content: center;
+                margin: 0.75rem auto;
             }
 
             .btn {
-                padding: 0.7rem 1.3rem;
-                font-size: 0.9rem;
+                padding: 0.75rem 1.25rem;
+                font-size: 0.85rem;
                 min-width: 120px;
             }
 
@@ -707,35 +717,58 @@
 
         @media (max-width: 480px) {
             .container {
-                padding: 0.75rem;
+                padding: 0.5rem;
+            }
+            
+            .header {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .header h1 {
+                font-size: clamp(1.1rem, 5vw, 1.4rem);
+            }
+
+            .header p {
+                font-size: clamp(0.7rem, 3vw, 0.8rem);
             }
             
             .timer-container {
-                padding: 1.5rem 1rem;
+                padding: 1.25rem 1rem;
+                margin: 0.75rem 0;
+                border-radius: 20px;
             }
             
             .timer-display {
-                font-size: clamp(2rem, 12vw, 2.5rem);
+                font-size: clamp(2.5rem, 15vw, 3.5rem);
+                margin: 0.75rem 0;
             }
             
             .session-type {
-                font-size: clamp(0.9rem, 4vw, 1rem);
-                margin-bottom: 0.75rem;
+                font-size: clamp(0.7rem, 3.5vw, 0.8rem);
+                margin-bottom: 0.5rem;
+                letter-spacing: 1.5px;
+            }
+
+            .timer-progress {
+                margin: 0.75rem 0;
+                height: 5px;
             }
 
             .controls {
-                max-width: 360px;
+                max-width: 100%;
                 gap: 0.5rem;
+                margin: 0.5rem auto;
             }
             
             .controls .btn {
-                flex: 1 1 calc(50% - 0.5rem);
-                min-width: 130px;
+                flex: 1 1 calc(50% - 0.25rem);
+                min-width: auto;
             }
             
             .btn {
-                padding: 0.8rem 1rem;
-                font-size: 0.95rem;
+                padding: 0.75rem 0.75rem;
+                font-size: 0.8rem;
+                border-radius: 12px;
             }
 
             .setting-group {
