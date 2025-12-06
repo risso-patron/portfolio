@@ -991,18 +991,26 @@
             <button class="btn btn-primary" 
                     id="startBtn" 
                     aria-label="Iniciar temporizador Pomodoro"
-                    aria-pressed="false">Iniciar</button>
+                    aria-pressed="false">
+                <img src="icons/start.webp" alt="" id="startIcon" style="width: 100%; height: 100%; object-fit: contain;">
+            </button>
             <button class="btn btn-secondary" 
                     id="pauseBtn" 
                     disabled 
                     aria-label="Pausar temporizador"
-                    aria-pressed="false">Pausar</button>
+                    aria-pressed="false">
+                <img src="icons/stop.webp" alt="" style="width: 100%; height: 100%; object-fit: contain;">
+            </button>
             <button class="btn btn-outline" 
                     id="resetBtn"
-                    aria-label="Reiniciar temporizador al tiempo inicial">Reiniciar</button>
+                    aria-label="Reiniciar temporizador al tiempo inicial">
+                <img src="icons/re-start.webp" alt="" style="width: 100%; height: 100%; object-fit: contain;">
+            </button>
             <button class="btn btn-outline" 
                     id="skipBtn"
-                    aria-label="Saltar a la siguiente sesión">Saltar</button>
+                    aria-label="Saltar a la siguiente sesión">
+                <img src="icons/skip.webp" alt="" style="width: 100%; height: 100%; object-fit: contain;">
+            </button>
         </div>
 
         <!-- Configuración -->
@@ -1188,6 +1196,12 @@
                     this.pauseBtn.setAttribute('aria-pressed', 'false');
                     this.timerContainer.classList.add('active');
 
+                    // Cambiar icono de start a start-1
+                    const startIcon = document.getElementById('startIcon');
+                    if (startIcon) {
+                        startIcon.src = 'icons/start-1.webp';
+                    }
+
                     // Guardar timestamp de inicio para precisión
                     this.startTimestamp = Date.now() - ((this.totalTime - this.currentTime) * 1000);
 
@@ -1215,6 +1229,12 @@
                     this.timerContainer.classList.remove('active');
                     clearInterval(this.interval);
 
+                    // Restaurar icono start original
+                    const startIcon = document.getElementById('startIcon');
+                    if (startIcon) {
+                        startIcon.src = 'icons/start.webp';
+                    }
+
                     this.showNotification('Timer pausado', 'warning');
                 }
             }
@@ -1229,6 +1249,13 @@
                 this.pauseBtn.disabled = true;
                 this.pauseBtn.setAttribute('aria-pressed', 'false');
                 this.timerContainer.classList.remove('active');
+
+                // Restaurar icono start original
+                const startIcon = document.getElementById('startIcon');
+                if (startIcon) {
+                    startIcon.src = 'icons/start.webp';
+                }
+
                 this.updateDisplay();
                 this.showNotification('Timer reiniciado', 'success');
             }
@@ -1246,6 +1273,12 @@
                 this.isRunning = false;
                 clearInterval(this.interval);
                 this.timerContainer.classList.remove('active');
+
+                // Restaurar icono start original
+                const startIcon = document.getElementById('startIcon');
+                if (startIcon) {
+                    startIcon.src = 'icons/start.webp';
+                }
 
                 // Reproducir sonido y mostrar notificación
                 console.log('🔊 Settings soundEnabled:', this.settings.soundEnabled);
