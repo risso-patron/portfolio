@@ -19,11 +19,9 @@
             
             // Cambiar icono
             if (theme === 'dark') {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
+                themeIcon.src = 'assets/icons/sun.webp';
             } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
+                themeIcon.src = 'assets/icons/moon.webp';
             }
             
             // Log para debug
