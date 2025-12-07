@@ -29,11 +29,32 @@ const getAPIKey = () => {
     return '8d3599da8294f99fb8f1bc2ac0c7829b';
 };
 
+// Giphy API Key getter
+const getGiphyAPIKey = () => {
+    // Prioridad 1: Variables de entorno
+    if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GIPHY_API_KEY) {
+        return import.meta.env.VITE_GIPHY_API_KEY;
+    }
+    
+    // Prioridad 2: Variable window
+    if (window.WEATHER_CONFIG?.GIPHY_API_KEY) {
+        return window.WEATHER_CONFIG.GIPHY_API_KEY;
+    }
+    
+    // Prioridad 3: Hardcoded (fallback para desarrollo)
+    // ⚠️ API Key pública de Giphy para demos (reemplazar en producción)
+    return 'GlVGYHkr3WSBnllca'; // API key público de Giphy para testing
+};
+
 // API Configuration
 export const API_CONFIG = {
     // OpenWeatherMap API
     BASE_URL: 'https://api.openweathermap.org/data/2.5',
     API_KEY: getAPIKey(),
+    
+    // Giphy API
+    GIPHY_BASE_URL: 'https://api.giphy.com/v1/gifs',
+    GIPHY_API_KEY: getGiphyAPIKey(),
     
     // API Limits (Free tier)
     RATE_LIMIT: {

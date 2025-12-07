@@ -3,6 +3,7 @@
 // Jorge Luis Risso Patrón - 2025
 
 import { WEATHER_ICONS, MESSAGES } from './config.js';
+import { getWeatherGif, applyGifBackground, clearGifBackground } from './giphy.js';
 
 // Referencias a elementos DOM
 const elements = {
@@ -18,6 +19,7 @@ const elements = {
     searchSection: null,
     loadingIndicator: null,
     errorMessage: null,
+    container: null, // Contenedor principal para GIF de fondo
     
     // Weather info
     weatherIcon: null,
@@ -59,6 +61,7 @@ export function initializeElements() {
     elements.searchSection = document.querySelector('.search-section');
     elements.loadingIndicator = document.getElementById('loadingIndicator');
     elements.errorMessage = document.getElementById('errorMessage');
+    elements.container = document.querySelector('.container'); // Contenedor principal
     
     elements.weatherIcon = document.getElementById('weatherIcon');
     elements.temperature = document.getElementById('temperature');
@@ -155,11 +158,21 @@ export function hideError() {
  * @param {Object} data - Datos del clima de la API
  * @param {string} currentUnit - Unidad actual ('metric' o 'imperial')
  */
-export function displayWeather(data, currentUnit) {
+export async function displayWeather(data, currentUnit) {
     if (!data) return;
     
     const weatherCode = data.weather[0].icon;
     const unitSymbol = currentUnit === 'metric' ? 'C' : 'F';
+    
+    // 🎬 NUEVO: Obtener y aplicar GIF de fondo según clima
+    try {
+        const gifUrl = await getWeatherGif(data);
+        if (gifUrl && elements.container) {
+            applyGifBackground(gifUrl, elements.container);
+        }
+    } catch (error) {
+        console.warn('⚠️ No se pudo cargar GIF de fondo:', error);
+    }
     
     // Actualizar ícono del clima con imagen de OpenWeatherMap
     const iconUrl = `https://openweathermap.org/img/wn/${weatherCode}@4x.png`;
