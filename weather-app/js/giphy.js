@@ -21,43 +21,43 @@ function getWeatherHashtag(weatherData) {
     const icon = weatherData.weather[0].icon;
     const isNight = icon.includes('n');
     
-    // Mapeo de condiciones a hashtags específicos
+    // Mapeo ULTRA-ESPECÍFICO: solo fenómenos climáticos literales
     const hashtagMap = {
-        // Condiciones de lluvia
-        'rain': temp > 20 ? 'tropical rain nature' : 'rain window cozy',
-        'drizzle': 'soft rain nature peaceful',
-        'thunderstorm': isNight ? 'lightning storm night' : 'thunder storm dramatic',
+        // Lluvia - Solo GIFs de agua cayendo
+        'rain': temp > 20 ? 'rainstorm raining' : 'rainfall raindrops',
+        'drizzle': 'drizzle rain',
+        'thunderstorm': isNight ? 'lightning thunderstorm' : 'thunder lightning',
         
-        // Condiciones de nieve
-        'snow': isNight ? 'snow night winter' : 'snowfall winter landscape',
+        // Nieve - Solo copos cayendo
+        'snow': 'snowfall snowing',
         
-        // Condiciones de nubes
+        // Nubes - Solo cielos nublados
         'clouds': (() => {
-            if (description.includes('overcast')) return 'cloudy sky dramatic';
-            if (description.includes('scattered')) return 'partly cloudy nature';
-            return isNight ? 'cloudy night sky' : 'clouds nature peaceful';
+            if (description.includes('overcast')) return 'overcast cloudy';
+            if (description.includes('scattered')) return 'partly cloudy';
+            return isNight ? 'clouds night' : 'cloudy sky';
         })(),
         
-        // Clima despejado
+        // Despejado - Solo cielos claros
         'clear': (() => {
             if (isNight) {
-                return temp > 20 ? 'starry night warm' : 'stars night sky cold';
+                return 'stars night';
             }
-            if (temp > 30) return 'sunny hot summer beach';
-            if (temp > 20) return 'sunny day nature warm';
-            return 'clear sky nature fresh';
+            if (temp > 30) return 'sun sunny hot';
+            if (temp > 20) return 'sunny sunshine';
+            return 'clear sky';
         })(),
         
-        // Condiciones atmosféricas especiales
-        'mist': 'fog nature mysterious',
-        'smoke': 'smoke atmosphere haze',
-        'haze': 'hazy sky soft light',
-        'dust': 'dust storm desert',
-        'fog': isNight ? 'fog night eerie' : 'fog nature morning',
-        'sand': 'sandstorm desert wind',
-        'ash': 'volcanic ash dramatic',
-        'squall': 'windy storm dramatic',
-        'tornado': 'tornado storm extreme'
+        // Atmosféricos
+        'mist': 'misty foggy',
+        'smoke': 'smoke',
+        'haze': 'haze',
+        'dust': 'dust storm',
+        'fog': 'fog foggy',
+        'sand': 'sandstorm',
+        'ash': 'ash',
+        'squall': 'wind storm',
+        'tornado': 'tornado twister'
     };
     
     // Buscar hashtag específico o usar genérico basado en temperatura
@@ -81,13 +81,6 @@ function getWeatherHashtag(weatherData) {
  * @returns {Promise<string>} URL del GIF
  */
 export async function getWeatherGif(weatherData) {
-    // ⚠️ TEMPORALMENTE DESHABILITADO: API key pública de Giphy expiró
-    // Para habilitar: Obtén tu API key en https://developers.giphy.com/
-    // y agrégala en config.js o .env (VITE_GIPHY_API_KEY)
-    console.warn('⚠️ Giphy deshabilitado: Necesitas tu propia API key. Ve a https://developers.giphy.com/');
-    return null;
-    
-    /* CÓDIGO ORIGINAL (descomentar cuando tengas API key):
     const hashtag = getWeatherHashtag(weatherData);
     const cacheKey = `giphy_${hashtag}`;
     
@@ -132,7 +125,6 @@ export async function getWeatherGif(weatherData) {
         console.error('❌ Error obteniendo GIF:', error);
         return null;
     }
-    */ // FIN CÓDIGO ORIGINAL
 }
 
 /**

@@ -42,8 +42,8 @@ const getGiphyAPIKey = () => {
     }
     
     // Prioridad 3: Hardcoded (fallback para desarrollo)
-    // ⚠️ API Key pública de Giphy para demos (reemplazar en producción)
-    return 'GlVGYHkr3WSBnllca'; // API key público de Giphy para testing
+    // ✅ Tu API key personal de Giphy
+    return 'xmeSaIkv8UGN0qz7NiJdysQ1UMKA0B8d';
 };
 
 // API Configuration
