@@ -81,6 +81,13 @@ function getWeatherHashtag(weatherData) {
  * @returns {Promise<string>} URL del GIF
  */
 export async function getWeatherGif(weatherData) {
+    // ⚠️ TEMPORALMENTE DESHABILITADO: API key pública de Giphy expiró
+    // Para habilitar: Obtén tu API key en https://developers.giphy.com/
+    // y agrégala en config.js o .env (VITE_GIPHY_API_KEY)
+    console.warn('⚠️ Giphy deshabilitado: Necesitas tu propia API key. Ve a https://developers.giphy.com/');
+    return null;
+    
+    /* CÓDIGO ORIGINAL (descomentar cuando tengas API key):
     const hashtag = getWeatherHashtag(weatherData);
     const cacheKey = `giphy_${hashtag}`;
     
@@ -125,6 +132,7 @@ export async function getWeatherGif(weatherData) {
         console.error('❌ Error obteniendo GIF:', error);
         return null;
     }
+    */ // FIN CÓDIGO ORIGINAL
 }
 
 /**
