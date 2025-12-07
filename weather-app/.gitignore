@@ -1,0 +1,34 @@
+# Variables de entorno
+.env
+.env.local
+.env.production
+
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backup files
+*-backup.*
+index-original-backup.html
+
+# API keys (por si acaso)
+*config.js
+!config.example.js
+pexels-config.js

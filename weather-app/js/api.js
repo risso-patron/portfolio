@@ -7,6 +7,61 @@ import { API_CONFIG, DEMO_MODE, DEMO_DATA, MESSAGES } from './config.js';
 // Cache para reducir llamadas API
 const cache = new Map();
 
+// ==================== RATE LIMITING ====================
+// Sistema de control de límites de API para evitar exceder quota
+const rateLimiter = {
+    calls: [],
+    
+    /**
+     * Verifica si podemos hacer una llamada sin exceder el límite
+     * @returns {boolean} true si podemos hacer la llamada
+     */
+    canMakeCall() {
+        const now = Date.now();
+        const oneMinuteAgo = now - 60000;
+        
+        // Limpiar llamadas antiguas (más de 1 minuto)
+        this.calls = this.calls.filter(timestamp => timestamp > oneMinuteAgo);
+        
+        // Verificar límite por minuto
+        if (this.calls.length >= API_CONFIG.RATE_LIMIT.CALLS_PER_MINUTE) {
+            console.warn('⚠️ Rate limit alcanzado. Espera un momento...');
+            return false;
+        }
+        
+        // Advertencia si nos acercamos al límite
+        if (this.calls.length >= API_CONFIG.RATE_LIMIT.WARNING_THRESHOLD) {
+            console.warn(`⚠️ Advertencia: ${this.calls.length}/${API_CONFIG.RATE_LIMIT.CALLS_PER_MINUTE} llamadas en el último minuto`);
+        }
+        
+        return true;
+    },
+    
+    /**
+     * Registra una llamada API realizada
+     */
+    recordCall() {
+        this.calls.push(Date.now());
+        console.log(`📊 API calls: ${this.calls.length}/${API_CONFIG.RATE_LIMIT.CALLS_PER_MINUTE} en el último minuto`);
+    },
+    
+    /**
+     * Obtiene estadísticas de uso
+     * @returns {Object} { current, limit, percentage }
+     */
+    getStats() {
+        const now = Date.now();
+        const oneMinuteAgo = now - 60000;
+        this.calls = this.calls.filter(timestamp => timestamp > oneMinuteAgo);
+        
+        return {
+            current: this.calls.length,
+            limit: API_CONFIG.RATE_LIMIT.CALLS_PER_MINUTE,
+            percentage: Math.round((this.calls.length / API_CONFIG.RATE_LIMIT.CALLS_PER_MINUTE) * 100)
+        };
+    }
+};
+
 /**
  * Obtiene datos del clima por nombre de ciudad
  * @param {string} city - Nombre de la ciudad
@@ -34,12 +89,20 @@ export async function getWeatherByCity(city, unit = API_CONFIG.DEFAULT_UNIT) {
         }
     }
 
+    // ⚡ Rate limiting: Verificar antes de hacer request
+    if (!rateLimiter.canMakeCall()) {
+        throw new Error('Límite de requests alcanzado. Intenta en 1 minuto.');
+    }
+
     const url = `${API_CONFIG.BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_CONFIG.API_KEY}&units=${unit}&lang=${API_CONFIG.LANGUAGE}`;
     
     console.log('🔍 Buscando ciudad:', city);
     
     try {
         const response = await fetch(url);
+        
+        // ⚡ Registrar llamada exitosa
+        rateLimiter.recordCall();
         
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -82,10 +145,18 @@ export async function getWeatherByCoords(lat, lon, unit = API_CONFIG.DEFAULT_UNI
         }
     }
 
+    // ⚡ Rate limiting
+    if (!rateLimiter.canMakeCall()) {
+        throw new Error('Límite de requests alcanzado. Intenta en 1 minuto.');
+    }
+
     const url = `${API_CONFIG.BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${API_CONFIG.API_KEY}&units=${unit}&lang=${API_CONFIG.LANGUAGE}`;
     
     try {
         const response = await fetch(url);
+        
+        // ⚡ Registrar llamada
+        rateLimiter.recordCall();
         
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -126,10 +197,18 @@ export async function getForecast(lat, lon, unit = API_CONFIG.DEFAULT_UNIT) {
         }
     }
 
+    // ⚡ Rate limiting
+    if (!rateLimiter.canMakeCall()) {
+        throw new Error('Límite de requests alcanzado. Intenta en 1 minuto.');
+    }
+
     const url = `${API_CONFIG.BASE_URL}/forecast?lat=${lat}&lon=${lon}&appid=${API_CONFIG.API_KEY}&units=${unit}&lang=${API_CONFIG.LANGUAGE}`;
     
     try {
         const response = await fetch(url);
+        
+        // ⚡ Registrar llamada
+        rateLimiter.recordCall();
         
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -283,4 +362,27 @@ export function getCacheStats() {
         size: cache.size,
         keys: Array.from(cache.keys())
     };
+}
+
+/**
+ * Obtiene estadísticas del rate limiter
+ * @returns {Object} { current, limit, percentage }
+ */
+export function getRateLimitStats() {
+    return rateLimiter.getStats();
+}
+
+/**
+ * Función para debugging - muestra estadísticas completas
+ */
+export function showStats() {
+    const cache = getCacheStats();
+    const rateLimit = getRateLimitStats();
+    
+    console.group('📊 Weather App Statistics');
+    console.log('Cache:', cache);
+    console.log('Rate Limit:', rateLimit);
+    console.groupEnd();
+    
+    return { cache, rateLimit };
 }

@@ -1,0 +1,21 @@
+# Robots.txt para Weather App
+# https://risso-patron.github.io/portfolio/weather-app/
+
+User-agent: *
+Allow: /
+
+# Disallow archivos de configuración
+Disallow: /js/config.js
+Disallow: /.env
+Disallow: /config.example.js
+Disallow: /pexels-config.js
+
+# Disallow archivos de testing
+Disallow: /TESTING-RESPONSIVE.md
+Disallow: /DIA-*.md
+
+# Sitemap
+Sitemap: https://risso-patron.github.io/portfolio/weather-app/sitemap.xml
+
+# Crawl-delay para ser respetuoso con los bots
+Crawl-delay: 10

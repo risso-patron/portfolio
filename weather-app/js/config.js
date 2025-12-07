@@ -2,18 +2,44 @@
 // Weather App Configuration
 // Jorge Luis Risso Patrón - 2025
 
+// ==================== SEGURIDAD: API KEY ====================
+// OPCIÓN 1: Variables de entorno (RECOMENDADO para producción)
+// Usar con bundlers como Vite: import.meta.env.VITE_OPENWEATHER_API_KEY
+// 
+// OPCIÓN 2: Hardcoded (SOLO para desarrollo local)
+// Reemplaza 'TU_API_KEY_AQUI' con tu API key real
+// ⚠️ NUNCA subas tu API key real a GitHub
+//
+// Para este proyecto de portfolio, usamos hardcoded temporalmente.
+// En producción real, SIEMPRE usar variables de entorno o backend proxy.
+
+const getAPIKey = () => {
+    // Prioridad 1: Variables de entorno (si usas bundler como Vite)
+    if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_OPENWEATHER_API_KEY) {
+        return import.meta.env.VITE_OPENWEATHER_API_KEY;
+    }
+    
+    // Prioridad 2: Variable window (si se carga desde archivo externo)
+    if (window.WEATHER_CONFIG?.API_KEY) {
+        return window.WEATHER_CONFIG.API_KEY;
+    }
+    
+    // Prioridad 3: Hardcoded (fallback para desarrollo)
+    // ⚠️ En producción, comentar esta línea y usar solo env variables
+    return '8d3599da8294f99fb8f1bc2ac0c7829b';
+};
+
 // API Configuration
 export const API_CONFIG = {
     // OpenWeatherMap API
     BASE_URL: 'https://api.openweathermap.org/data/2.5',
-    // ⚠️ IMPORTANTE: En producción, mover a variables de entorno
-    // Para desarrollo local, reemplaza 'TU_API_KEY_AQUI' con tu API key real
-    API_KEY: '8d3599da8294f99fb8f1bc2ac0c7829b',
+    API_KEY: getAPIKey(),
     
     // API Limits (Free tier)
     RATE_LIMIT: {
         CALLS_PER_MINUTE: 60,
-        CALLS_PER_MONTH: 1000000
+        CALLS_PER_MONTH: 1000000,
+        WARNING_THRESHOLD: 50 // Advertir al 83% del límite
     },
     
     // Default settings

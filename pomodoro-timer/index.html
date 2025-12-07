@@ -6,7 +6,8 @@
     <meta name="theme-color" content="#e74c3c">
     <title>Pomodoro Timer | Jorge Luis Risso Patrón</title>
     <meta name="description" content="Aplicación Pomodoro Timer para aumentar productividad con técnica Pomodoro. Incluye notificaciones, sonidos y estadísticas.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍅</text></svg>">
+    <link rel="icon" type="image/webp" href="icons/tomato.webp">
+    <link rel="apple-touch-icon" href="icons/tomato.webp">
     
     <script>
         (function() {
@@ -50,6 +51,32 @@
             --gradient-primary: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
             --gradient-secondary: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
             --gradient-success: linear-gradient(135deg, #95E1D3 0%, #4ECDC4 100%);
+        }
+
+        /* Ajustes específicos para modo claro */
+        [data-theme="light"] .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .timer-container,
+        [data-theme="light"] .settings {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="light"] .setting-group {
+            background: rgba(247, 247, 255, 0.5);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .setting-group:hover {
+            background: rgba(247, 247, 255, 0.8);
+        }
+
+        [data-theme="light"] body::before {
+            background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(78, 205, 196, 0.08) 0%, transparent 50%);
         }
 
         /* ==================== Reset y Base ==================== */
@@ -145,7 +172,7 @@
 
         .header-text {
             flex: 1;
-            text-align: left;
+            text-align: center;
         }
 
         .header h1 {
@@ -503,19 +530,19 @@
 
         .settings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
             width: 100%;
         }
 
-        /* Centrar la caja de sonido cuando está sola en la segunda fila */
+        /* Remover centrado automático de la caja 4 */
         .setting-group:nth-child(4) {
-            grid-column: 2 / 3;
+            grid-column: auto;
         }
 
         @media (max-width: 768px) {
-            .setting-group:nth-child(4) {
-                grid-column: auto;
+            .settings-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -562,91 +589,6 @@
             font-size: 0.75rem;
             font-weight: 500;
             text-align: center;
-        }
-
-        /* ==================== Estadísticas ==================== */
-        .stats {
-            background: rgba(26, 31, 58, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            padding: 2.5rem;
-            margin: 2rem 0;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 20px 60px var(--shadow);
-            position: relative;
-            z-index: 1;
-        }
-
-        .stats h3 {
-            background: var(--gradient-secondary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.25rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateY(-4px);
-            border-color: var(--primary);
-        }
-
-        .stat-item:hover::before {
-            transform: scaleX(1);
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
         }
 
         /* ==================== Notificación ==================== */
@@ -768,7 +710,7 @@
                 font-size: 0.7rem;
             }
 
-            .settings, .stats {
+            .settings {
                 padding: 1.5rem;
                 margin: 1rem 0;
             }
@@ -776,11 +718,6 @@
             .settings-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.75rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
             }
         }
 
@@ -854,7 +791,7 @@
             }
 
             .settings-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 0.75rem;
             }
 
@@ -868,23 +805,6 @@
             
             .setting-controls {
                 justify-content: center;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-            
-            .stat-item {
-                padding: 1rem;
-            }
-            
-            .stat-value {
-                font-size: clamp(1.8rem, 8vw, 2rem);
-            }
-            
-            .stat-label {
-                font-size: clamp(0.8rem, 3vw, 0.9rem);
             }
             
             h2 {
@@ -1112,28 +1032,6 @@
                 </div>
             </div>
         </div>
-        <!-- Estadísticas -->
-        <div class="stats fade-in" role="region" aria-label="Estadísticas de productividad">
-            <h3>📊 Estadísticas de Hoy</h3>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-value" id="completedSessions" aria-label="Sesiones completadas hoy">0</span>
-                    <div class="stat-label">Sesiones Completadas</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value" id="totalTime" aria-label="Tiempo total de trabajo en minutos">0</span>
-                    <div class="stat-label">Tiempo Total (min)</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value" id="currentStreak" aria-label="Racha actual de sesiones consecutivas">0</span>
-                    <div class="stat-label">Racha Actual</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value" id="todayGoal" aria-label="Objetivo diario de sesiones">8</span>
-                    <div class="stat-label">Objetivo Diario</div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Notificación -->
@@ -1158,9 +1056,6 @@
                 this.currentSession = 'work'; // 'work', 'shortBreak', 'longBreak'
                 this.sessionCount = 0;
                 this.interval = null;
-
-                // Estadísticas
-                this.stats = this.loadStats();
                 
                 // AudioContext para sonidos (se inicializa después de interacción del usuario)
                 this.audioContext = null;
@@ -1169,7 +1064,6 @@
                 this.initializeElements();
                 this.setupEventListeners();
                 this.updateDisplay();
-                this.updateStats();
                 this.loadSettings();
 
                 // Solicitar permisos de notificación
@@ -1305,18 +1199,13 @@
                 this.playSound();
                 this.showBrowserNotification();
 
-                // Actualizar estadísticas
+                // Actualizar contador de sesiones
                 if (this.currentSession === 'work') {
                     this.sessionCount++;
-                    this.stats.completedSessions++;
-                    this.stats.totalTime += this.settings.workTime;
-                    this.stats.currentStreak++;
                 }
 
                 // Determinar siguiente sesión
                 this.switchSession();
-                this.updateStats();
-                this.saveStats();
                 this.reset();
             }
 
@@ -1471,32 +1360,7 @@
                 }
             }
 
-            updateStats() {
-                document.getElementById('completedSessions').textContent = this.stats.completedSessions;
-                document.getElementById('totalTime').textContent = this.stats.totalTime;
-                document.getElementById('currentStreak').textContent = this.stats.currentStreak;
-            }
 
-            loadStats() {
-                const today = new Date().toDateString();
-                const saved = localStorage.getItem(`pomodoroStats_${today}`);
-                
-                if (saved) {
-                    return JSON.parse(saved);
-                } else {
-                    return {
-                        completedSessions: 0,
-                        totalTime: 0,
-                        currentStreak: 0,
-                        date: today
-                    };
-                }
-            }
-
-            saveStats() {
-                const today = new Date().toDateString();
-                localStorage.setItem(`pomodoroStats_${today}`, JSON.stringify(this.stats));
-            }
 
             loadSettings() {
                 const saved = localStorage.getItem('pomodoroSettings');

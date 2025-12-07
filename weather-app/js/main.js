@@ -15,6 +15,7 @@ import {
     updateUnitIcon,
     getCityInputValue 
 } from './ui.js';
+import { initAccessibility, announceToScreenReader } from './accessibility.js';
 
 // Estado global de la aplicación
 const appState = {
@@ -47,6 +48,9 @@ function initializeApp() {
     
     // Inicializar referencias DOM
     initializeElements();
+    
+    // Inicializar accesibilidad
+    initAccessibility();
     
     // Configurar event listeners
     setupEventListeners();
@@ -132,6 +136,12 @@ async function handleSearch() {
             displayForecast(forecast);
         }
         
+        // Anunciar a screen readers
+        announceToScreenReader(
+            `Clima actualizado para ${weather.name}. Temperatura: ${Math.round(weather.main.temp)} grados. ${weather.weather[0].description}.`,
+            'polite'
+        );
+        
         if (DEMO_MODE) {
             setTimeout(() => {
                 showError(MESSAGES.INFO_DEMO_MODE, 'info');
@@ -141,6 +151,7 @@ async function handleSearch() {
     } catch (error) {
         hideLoading();
         showError(error.message);
+        announceToScreenReader(`Error: ${error.message}`, 'assertive');
         console.error('❌ Error en búsqueda:', error);
     } finally {
         appState.isSearching = false;

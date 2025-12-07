@@ -300,17 +300,19 @@ export function displayForecast(data) {
         
         const forecastItem = document.createElement('div');
         forecastItem.className = 'forecast-item';
+        forecastItem.setAttribute('role', 'listitem');
+        forecastItem.setAttribute('aria-label', `Pronóstico para ${dayName}: ${description}, máxima ${tempMax} grados, mínima ${tempMin} grados`);
         forecastItem.innerHTML = `
             <div class="forecast-day">${dayName}</div>
             <div class="forecast-icon">
-                <img src="${iconUrl}" alt="${description}" class="forecast-icon-img">
+                <img src="${iconUrl}" alt="${description}" class="forecast-icon-img" role="img">
                 <div class="forecast-description">${description}</div>
             </div>
-            <div class="forecast-temps">
-                <span class="forecast-high">${tempMax}°</span>
-                <span class="forecast-low">${tempMin}°</span>
+            <div class="forecast-temps" aria-label="Temperaturas del día">
+                <span class="forecast-high" aria-label="Máxima ${tempMax} grados">${tempMax}°</span>
+                <span class="forecast-low" aria-label="Mínima ${tempMin} grados">${tempMin}°</span>
             </div>
-            <div class="forecast-precip">60%</div>
+            <div class="forecast-precip" aria-label="Probabilidad de precipitación 60%">60%</div>
         `;
         
         elements.forecastContainer.appendChild(forecastItem);
@@ -324,12 +326,22 @@ export function displayForecast(data) {
 export function updateUnitIcon(unit) {
     if (!elements.unitIcon) return;
     
+    const unitBtn = document.querySelector('.unit-btn');
+    
     if (unit === 'metric') {
         elements.unitIcon.src = 'icons/celsius.webp';
         elements.unitIcon.alt = 'Celsius';
+        if (unitBtn) {
+            unitBtn.setAttribute('aria-checked', 'true');
+            unitBtn.setAttribute('aria-label', 'Cambiar a Fahrenheit');
+        }
     } else {
         elements.unitIcon.src = 'icons/fahrenheit.webp';
         elements.unitIcon.alt = 'Fahrenheit';
+        if (unitBtn) {
+            unitBtn.setAttribute('aria-checked', 'false');
+            unitBtn.setAttribute('aria-label', 'Cambiar a Celsius');
+        }
     }
 }
 
