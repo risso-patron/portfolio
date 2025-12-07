@@ -1,0 +1,448 @@
+/* ============================================
+   RESPONSIVE DESIGN - Weather App
+   Mobile First + TV Support (10+ breakpoints)
+   ============================================ */
+
+/* ============================================
+   FORZAR GRID EN DESKTOP
+   ============================================ */
+
+@media (min-width: 769px) {
+    .weather-details {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+/* ============================================
+   TV 4K ULTRA HD (3840px+)
+   ============================================ */
+
+@media (min-width: 3840px) {
+    .container {
+        max-width: 3200px;
+        padding: 6rem;
+    }
+    
+    .header h1 { font-size: 8rem; }
+    .header p { font-size: 3.5rem; }
+    .sky-status { font-size: 2.5rem; padding: 2rem 3rem; }
+    
+    .temperature { font-size: 20rem; }
+    .temp-value { font-size: 20rem; }
+    .unit { font-size: 10rem; }
+    .weather-description { font-size: 4rem; }
+    .city-name { font-size: 3.5rem; }
+    
+    .weather-icon-img {
+        width: 600px;
+        height: 600px;
+    }
+    
+    .weather-details {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4rem;
+    }
+    
+    .detail-label { font-size: 2.5rem; }
+    .detail-value { font-size: 4rem; }
+    .detail-item i { font-size: 5rem; }
+    
+    .forecast-container {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 3rem;
+    }
+    
+    .forecast-item { padding: 3rem; }
+    .forecast-icon-img { width: 300px; height: 300px; }
+    .forecast-day { font-size: 2.5rem; }
+    .forecast-temps { font-size: 3rem; }
+    
+    .section-title { font-size: 4.5rem; }
+    
+    #cityInput { font-size: 2.5rem; padding: 2rem 2.5rem; }
+    #searchBtn { font-size: 2.5rem; padding: 2rem 3rem; }
+    
+    .extended-details-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3rem;
+    }
+    
+    .detail-card { padding: 3rem 2.5rem; }
+    .detail-card-icon { font-size: 5rem; }
+    .detail-card-value { font-size: 4rem; }
+    .detail-card-label { font-size: 2rem; }
+}
+
+/* ============================================
+   TV FULL HD (1920px - 3839px)
+   ============================================ */
+
+@media (min-width: 1920px) and (max-width: 3839px) {
+    .container {
+        max-width: 1600px;
+        padding: 4rem;
+    }
+    
+    .header h1 { font-size: 5rem; }
+    .header p { font-size: 2rem; }
+    .sky-status { font-size: 1.5rem; padding: 1.25rem 2rem; }
+    
+    .temperature { font-size: 12rem; }
+    .temp-value { font-size: 12rem; }
+    .unit { font-size: 6rem; }
+    .weather-description { font-size: 2.5rem; }
+    .city-name { font-size: 2rem; }
+    
+    .weather-icon-img {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .weather-details {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2.5rem;
+    }
+    
+    .detail-label { font-size: 1.5rem; }
+    .detail-value { font-size: 2.5rem; }
+    .detail-item i { font-size: 3.5rem; }
+    
+    .forecast-container {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2rem;
+    }
+    
+    .forecast-item { padding: 2rem; }
+    .forecast-icon-img { width: 200px; height: 200px; }
+    .forecast-day { font-size: 1.75rem; }
+    .forecast-temps { font-size: 2rem; }
+    
+    .section-title { font-size: 3rem; }
+    
+    #cityInput { font-size: 1.5rem; padding: 1.25rem 1.5rem; }
+    #searchBtn { font-size: 1.5rem; padding: 1.25rem 2rem; }
+    
+    .extended-details-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+    
+    .detail-card { padding: 2rem 1.75rem; }
+    .detail-card-icon { font-size: 3.5rem; }
+    .detail-card-value { font-size: 3rem; }
+}
+
+/* ============================================
+   DESKTOP 2K (1440px - 1919px)
+   ============================================ */
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .container {
+        max-width: 1300px;
+        padding: 3rem;
+    }
+    
+    .header h1 { font-size: 3.5rem; }
+    .header p { font-size: 1.5rem; }
+    
+    .temperature { font-size: 9rem; }
+    .temp-value { font-size: 9rem; }
+    .unit { font-size: 4.5rem; }
+    
+    .weather-icon-img {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .weather-details {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+    
+    .detail-item i { font-size: 2.5rem; }
+    
+    .forecast-container {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .forecast-icon-img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .extended-details-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ============================================
+   LAPTOP L (1366px - 1439px)
+   ============================================ */
+
+@media (min-width: 1366px) and (max-width: 1439px) {
+    .container {
+        max-width: 1200px;
+    }
+    
+    .header h1 { font-size: 3rem; }
+    
+    .temperature { font-size: 8rem; }
+    .temp-value { font-size: 8rem; }
+    .unit { font-size: 4rem; }
+    
+    .weather-icon-img {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .weather-details {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+    
+    .forecast-container {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* ============================================
+   iPAD PRO 12.9" y TABLETS GRANDES (1025px - 1365px)
+   ============================================ */
+
+@media (min-width: 1025px) and (max-width: 1365px) {
+    .container {
+        max-width: 95%;
+        padding: 2rem;
+    }
+    
+    .header h1 { font-size: 2.75rem; }
+    .header p { font-size: 1.25rem; }
+    
+    .temperature { font-size: 7rem; }
+    .temp-value { font-size: 7rem; }
+    .unit { font-size: 3.5rem; }
+    
+    .weather-icon-img {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .weather-details {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+    }
+    
+    .forecast-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .forecast-icon-img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .extended-details-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ============================================
+   TABLET LANDSCAPE (768px-1024px)
+   ============================================ */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .container {
+        max-width: 100%;
+        padding: 1.5rem 2rem;
+    }
+    
+    .search-section form {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    #cityInput {
+        flex: 1;
+    }
+    
+    .weather-details {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+    
+    .forecast-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ============================================
+   TABLETS y MEDIANAS (max 1024px)
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+        padding: 0 15px;
+    }
+    
+    .header h1 { font-size: 2.5rem; }
+    .header p { font-size: 1.1rem; }
+}
+
+/* ============================================
+   TABLETS PORTRAIT y MÓVILES LANDSCAPE (max 768px)
+   ============================================ */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .header h1 { font-size: 1.3rem; }
+    .header p { font-size: 0.75rem; }
+
+    .search-container {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .search-section.compact {
+        position: fixed;
+        top: auto;
+        bottom: 20px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        padding: 1rem;
+    }
+    
+    .search-section.compact .search-container {
+        flex-direction: row;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .temperature { font-size: 5rem; }
+    .temperature .unit { font-size: 2.5rem; }
+    
+    .temp-range {
+        top: 1rem;
+        right: 1rem;
+        font-size: 0.9rem;
+        gap: 0.75rem;
+    }
+
+    .weather-icon-img {
+        width: 140px;
+        height: 140px;
+    }
+
+    .weather-details {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.875rem;
+    }
+    
+    .detail-item {
+        padding: 1rem 0.75rem;
+        min-height: 85px;
+    }
+
+    .detail-icon { font-size: 1.5rem; }
+    .detail-value { font-size: 1rem; }
+
+    .forecast-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .forecast-item { padding: 1.25rem 0.875rem; }
+    .forecast-description { font-size: 0.7rem; min-height: 2rem; }
+    .forecast-high { font-size: 1.6rem; }
+    .forecast-low { font-size: 1.2rem; }
+    .forecast-icon-img { width: 55px; height: 55px; }
+}
+
+/* ============================================
+   MÓVILES PORTRAIT (max 480px)
+   ============================================ */
+
+@media (max-width: 480px) {
+    .container { padding: 1rem; }
+
+    .header h1 { font-size: 1.8rem; }
+    .header p { font-size: 0.9rem; }
+
+    .search-section,
+    .current-weather,
+    .forecast-section {
+        padding: 1.5rem;
+    }
+
+    .temperature { font-size: 5rem; }
+    .temperature .unit { font-size: 2.5rem; }
+    
+    .temp-range {
+        top: 0.75rem;
+        right: 0.75rem;
+        font-size: 0.85rem;
+        gap: 0.5rem;
+    }
+
+    .units-toggle {
+        position: static;
+        transform: none;
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+
+    .unit-btn {
+        width: 55px;
+        height: 55px;
+    }
+
+    .weather-icon-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .weather-details {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0 1rem;
+    }
+    
+    .detail-item {
+        padding: 0.875rem 0.625rem;
+        min-height: 70px;
+    }
+
+    .detail-icon { font-size: 1.375rem; }
+    .detail-value { font-size: 0.95rem; }
+    .detail-label { font-size: 0.625rem; }
+
+    .forecast-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.625rem;
+        overflow-x: auto;
+    }
+    
+    .forecast-item {
+        padding: 1rem 0.75rem;
+        min-width: 140px;
+    }
+
+    .forecast-day { font-size: 0.8rem; }
+    .forecast-description { font-size: 0.7rem; min-height: 1.8rem; }
+    .forecast-high { font-size: 1.5rem; }
+    .forecast-low { font-size: 1.1rem; }
+    .forecast-icon-img { width: 50px; height: 50px; }
+}
+
+/* CONTINÚA EN RESPONSIVE PART 2... */

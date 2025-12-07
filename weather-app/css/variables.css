@@ -1,0 +1,157 @@
+/* ============================================
+   VARIABLES CSS - Weather App
+   Autor: Jorge Luis Risso Patrón
+   Diseño Minimalista Moderno
+   ============================================ */
+
+:root {
+    /* Colores Base */
+    --bg-primary: #0A0E27;
+    --bg-secondary: #151A36;
+    --bg-card: #1A1F3A;
+    
+    /* Colores Principales */
+    --primary: #60A5FA;
+    --primary-light: #93C5FD;
+    --secondary: #34D399;
+    --accent: #F59E0B;
+    --white: #F7F7FF;
+    
+    /* Texto */
+    --text-primary: #F7F7FF;
+    --text-secondary: rgba(247, 247, 255, 0.8);
+    --text-muted: rgba(247, 247, 255, 0.6);
+    
+    /* Efectos */
+    --shadow: rgba(0, 0, 0, 0.5);
+    --card-bg: rgba(26, 31, 58, 0.6);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --border: rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(20px);
+    
+    /* Espaciado y Formas */
+    --border-radius: 24px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Gradientes de Clima (Sky-inspired) */
+    --gradient-start: #60A5FA;
+    --gradient-end: #93C5FD;
+}
+
+/* ============================================
+   SKY GRADIENTS - Anna Grand's Concept
+   Backgrounds dinámicos según clima
+   ============================================ */
+
+/* Clear/Sunny Day */
+body.clear {
+    --sky-gradient: linear-gradient(180deg, 
+        #87CEEB 0%,
+        #B0E0E6 30%,
+        #E0F6FF 70%,
+        #F0F8FF 100%
+    );
+    --text-color: #2c3e50;
+    color: var(--text-color);
+}
+
+/* Cloudy Day */
+body.clouds {
+    --sky-gradient: linear-gradient(180deg, 
+        #708090 0%,
+        #B0C4DE 25%,
+        #D3D3D3 60%,
+        #F5F5F5 100%
+    );
+    --text-color: #2c3e50;
+    color: var(--text-color);
+}
+
+/* Rainy Day */
+body.rain {
+    --sky-gradient: linear-gradient(180deg, 
+        #2F4F4F 0%,
+        #696969 30%,
+        #808080 60%,
+        #A9A9A9 100%
+    );
+    --text-color: #ffffff;
+    color: var(--text-color);
+}
+
+/* Stormy/Thunderstorm */
+body.thunderstorm {
+    --sky-gradient: linear-gradient(180deg, 
+        #191970 0%,
+        #2F2F2F 25%,
+        #1C1C1C 60%,
+        #000000 100%
+    );
+    --text-color: #ffffff;
+    color: var(--text-color);
+    animation: lightning 8s ease-in-out infinite;
+}
+
+/* Snow */
+body.snow {
+    --sky-gradient: linear-gradient(180deg, 
+        #F8F8FF 0%,
+        #E6E6FA 30%,
+        #D3D3D3 70%,
+        #C0C0C0 100%
+    );
+    --text-color: #2c3e50;
+    color: var(--text-color);
+}
+
+/* Fog/Mist */
+body.mist {
+    --sky-gradient: linear-gradient(180deg, 
+        #E6E6FA 0%,
+        #DDA0DD 20%,
+        #D8BFD8 50%,
+        #F0E68C 80%,
+        #FFB6C1 100%
+    );
+    --text-color: #2c3e50;
+    color: var(--text-color);
+    animation: mysticalFog 12s ease-in-out infinite;
+}
+
+/* Dawn/Sunrise */
+body.dawn {
+    --sky-gradient: linear-gradient(180deg, 
+        #FF69B4 0%,
+        #FFB6C1 20%,
+        #FFA07A 40%,
+        #FFEFD5 70%,
+        #F0F8FF 100%
+    );
+    --text-color: #2c3e50;
+    color: var(--text-color);
+}
+
+/* Sunset */
+body.sunset {
+    --sky-gradient: linear-gradient(180deg, 
+        #FF4500 0%,
+        #FF6347 25%,
+        #FF8C00 50%,
+        #FFD700 75%,
+        #FFFFE0 100%
+    );
+    --text-color: #2c3e50;
+    color: var(--text-color);
+}
+
+/* Night */
+body.night {
+    --sky-gradient: linear-gradient(180deg, 
+        #000000 0%,
+        #191970 30%,
+        #483D8B 60%,
+        #2F4F4F 100%
+    );
+    --text-color: #ffffff;
+    color: var(--text-color);
+}

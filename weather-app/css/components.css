@@ -1,0 +1,335 @@
+/* ============================================
+   COMPONENTES - Weather App
+   Botones, inputs, cards y elementos reutilizables
+   ============================================ */
+
+/* ============================================
+   BOTÓN VOLVER
+   ============================================ */
+
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    left: max(20px, env(safe-area-inset-left));
+    background: rgba(74, 144, 226, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-button:hover {
+    background: rgba(74, 144, 226, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.back-button:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-bottom: none;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.weather-hero-icon {
+    font-size: 2rem;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(96, 165, 250, 0.3));
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.sky-status {
+    display: none;
+}
+
+/* ============================================
+   SEARCH SECTION
+   ============================================ */
+
+.search-section {
+    background: rgba(26, 31, 58, 0.6);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2.5rem;
+    border-radius: 28px;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-section.compact {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    max-width: 380px;
+    padding: 1rem 1.25rem;
+    z-index: 99;
+    margin: 0;
+    border-radius: 20px;
+}
+
+.search-section.compact .search-container {
+    gap: 0.5rem;
+}
+
+.search-section.compact .search-input {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+}
+
+.search-section.compact .btn-primary {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+.search-section.compact .geolocation-btn {
+    display: none;
+}
+
+.search-section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 80px rgba(96, 165, 250, 0.2);
+}
+
+.search-section.compact:hover {
+    transform: translateY(0);
+    box-shadow: 0 8px 24px rgba(96, 165, 250, 0.3);
+}
+
+.search-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0;
+}
+
+/* ============================================
+   INPUTS
+   ============================================ */
+
+.search-input {
+    flex: 1;
+    padding: 1.25rem 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(26, 31, 58, 0.5);
+    color: var(--text-primary);
+    font-weight: 400;
+    font-family: var(--font-primary);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(26, 31, 58, 0.7);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(96, 165, 250, 0.2);
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+
+.btn {
+    padding: 1.25rem 2.5rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+    color: white;
+    border: 1px solid transparent;
+    box-shadow: 0 8px 24px rgba(96, 165, 250, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(96, 165, 250, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(96, 165, 250, 0.2);
+}
+
+.geolocation-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.geolocation-btn::before {
+    content: '📍';
+    font-size: 1.2rem;
+}
+
+/* ============================================
+   UNITS TOGGLE
+   ============================================ */
+
+.units-toggle {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.unit-btn {
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(26, 31, 58, 0.7);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8px;
+}
+
+.unit-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.unit-btn:hover {
+    border-color: rgba(96, 165, 250, 0.8);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(96, 165, 250, 0.4);
+    background: rgba(26, 31, 58, 0.85);
+}
+
+.unit-btn:active {
+    transform: scale(0.95);
+}
+
+/* ============================================
+   LOADING & ERROR
+   ============================================ */
+
+.loading {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 32px var(--shadow);
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--light);
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+.error {
+    display: none;
+    background: #ffebee;
+    color: #c62828;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    border-left: 4px solid #c62828;
+}
