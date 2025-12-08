@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#f5f7fa">
     <title>Budget App</title>
+    <link rel="icon" type="image/webp" href="icons/favicon.webp">
     
     <!-- Google Fonts: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -41,6 +42,26 @@
             /* Fonts */
             --font-primary: 'Inter', 'Roboto', sans-serif;
         }
+        
+        /* Tema Light */
+        body.light-theme {
+            --bg-dark: #F0F4F8;
+            --bg-darker: #E1E8ED;
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --text-primary: #1F2937;
+            --text-secondary: rgba(31, 41, 55, 0.8);
+            --border: rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-theme .theme-toggle {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        body.light-theme .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: var(--primary);
+        }
 
         * {
             margin: 0;
@@ -59,8 +80,8 @@
             color: var(--text-primary);
             border: 1px solid var(--border);
             border-radius: var(--border-radius);
-            padding: 0.75rem 1.25rem;
-            font-size: 0.9rem;
+            padding: 0.5rem 0.9rem;
+            font-size: 0.75rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -68,7 +89,7 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .back-button:hover {
@@ -97,6 +118,48 @@
             text-align: center;
             margin-bottom: 3rem;
             margin-top: 2rem;
+            position: relative;
+        }
+        
+        .header-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            right: 0;
+            background: rgba(26, 31, 58, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(26, 31, 58, 0.5);
+            border-color: var(--primary);
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+        
+        .theme-icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-toggle:hover .theme-icon {
+            transform: rotate(20deg);
         }
 
         .logo {
@@ -166,10 +229,10 @@
             background: var(--primary);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 1rem 2rem;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 1.7rem;
             font-weight: 500;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -360,11 +423,11 @@
         }
 
         .category-btn {
-            padding: 1.25rem 1.5rem;
+            padding: 2.5rem 3rem;
             border: 1px solid var(--border);
             border-radius: 12px;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 1.9rem;
             font-weight: 500;
             text-align: left;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -496,6 +559,39 @@
             .logo-subtitle {
                 font-size: 0.9rem;
             }
+            
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .theme-icon {
+                width: 20px;
+                height: 20px;
+            }
+            
+            /* Reducir íconos en móvil */
+            .card-title img {
+                width: 24px !important;
+                height: 24px !important;
+                margin-right: 8px !important;
+            }
+            
+            .category-btn {
+                padding: 1.25rem 1.5rem;
+                font-size: 0.95rem;
+            }
+            
+            .category-btn img {
+                width: 20px !important;
+                height: 20px !important;
+                margin-right: 8px !important;
+            }
+            
+            .add-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
 
             .main-grid {
                 gap: 1rem;
@@ -533,9 +629,60 @@
             .logo {
                 font-size: 1.75rem;
             }
-
+            
+            .theme-toggle {
+                width: 36px;
+                height: 36px;
+                right: 0.5rem;
+            }
+            
+            .theme-icon {
+                width: 18px;
+                height: 18px;
+            }
+            
+            /* Reordenar grid: Ingresos/Gastos primero */
+            .main-grid {
+                display: flex;
+                flex-direction: column;
+            }
+            
             .income-expense-wrapper {
-                grid-template-columns: 1fr;
+                order: 1;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+            }
+            
+            .results-card {
+                order: 2;
+            }
+            
+            .expenses-list-card {
+                order: 3;
+            }
+            
+            /* Reducir más los íconos */
+            .card-title img {
+                width: 20px !important;
+                height: 20px !important;
+                margin-right: 6px !important;
+            }
+            
+            .category-btn {
+                padding: 1rem 1.25rem;
+                font-size: 0.85rem;
+            }
+            
+            .category-btn img {
+                width: 16px !important;
+                height: 16px !important;
+                margin-right: 6px !important;
+            }
+            
+            .add-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
 
             .category-card {
@@ -613,7 +760,12 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <div class="logo">BUDGET APP</div>
+            <div class="header-wrapper">
+                <div class="logo">BUDGET APP</div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <img src="icons/moon.webp" alt="Tema oscuro" class="theme-icon" id="themeIcon">
+                </button>
+            </div>
             <div class="logo-subtitle"><span id="currentDate"></span></div>
         </div>
 
@@ -623,7 +775,7 @@
                 <!-- Card de Ingresos -->
                 <div class="category-card">
                     <div class="card-header">
-                        <span class="card-title">💰 Ingresos</span>
+                        <span class="card-title"><img src="icons/bag-money.webp" alt="Ingresos" style="width: 40px; height: 40px; vertical-align: middle; margin-right: 16px;"> Ingresos</span>
                         <button class="add-btn" onclick="toggleIncomeForm()">+ Agregar</button>
                     </div>
                     
@@ -645,7 +797,7 @@
                 <!-- Card de Gastos -->
                 <div class="category-card">
                     <div class="card-header">
-                        <span class="card-title">💳 Gastos</span>
+                        <span class="card-title"><img src="icons/credit-card.webp" alt="Gastos" style="width: 40px; height: 40px; vertical-align: middle; margin-right: 16px;"> Gastos</span>
                         <button class="add-btn" onclick="toggleExpenseForm()">+ Agregar</button>
                     </div>
                     
@@ -657,13 +809,13 @@
                         <div class="input-group">
                             <label>Categoría</label>
                             <select id="expenseCategory">
-                                <option value="Comida">🍽️ Comida</option>
-                                <option value="Vivienda / Servicios">🏠 Vivienda / Servicios</option>
-                                <option value="Artículos del hogar">🛋️ Artículos del hogar</option>
-                                <option value="Ropa / Cuidado personal">👕 Ropa / Cuidado personal</option>
-                                <option value="Diversión / Restaurantes">🎉 Diversión / Restaurantes</option>
-                                <option value="Viajes">✈️ Viajes</option>
-                                <option value="Otros">📦 Otros</option>
+                                <option value="Comida">Comida</option>
+                                <option value="Vivienda / Servicios">Vivienda / Servicios</option>
+                                <option value="Artículos del hogar">Artículos del hogar</option>
+                                <option value="Ropa / Cuidado personal">Ropa / Cuidado personal</option>
+                                <option value="Diversión / Restaurantes">Diversión / Restaurantes</option>
+                                <option value="Viajes">Viajes</option>
+                                <option value="Otros">Otros</option>
                             </select>
                         </div>
                         <div class="input-group">
@@ -740,25 +892,25 @@
 
                 <div class="category-buttons">
                     <button class="category-btn food" onclick="filterByCategory('Comida')">
-                        🍽️ Comida
+                        <img src="icons/food.webp" alt="Comida" style="width: 36px; height: 36px; vertical-align: middle; margin-right: 12px;"> Comida
                     </button>
                     <button class="category-btn apartment" onclick="filterByCategory('Vivienda / Servicios')">
-                        🏠 Vivienda / Servicios
+                        <img src="icons/service.webp" alt="Vivienda" style="width: 36px; height: 36px; vertical-align: middle; margin-right: 12px;"> Vivienda / Servicios
                     </button>
                     <button class="category-btn household" onclick="filterByCategory('Artículos del hogar')">
-                        🛋️ Artículos del hogar
+                        <img src="icons/holdhouse-items.webp" alt="Hogar" style="width: 36px; height: 36px; vertical-align: middle; margin-right: 12px;"> Artículos del hogar
                     </button>
                     <button class="category-btn clothes" onclick="filterByCategory('Ropa / Cuidado personal')">
-                        👕 Ropa / Cuidado personal
+                        <img src="icons/clothes.webp" alt="Ropa" style="width: 36px; height: 36px; vertical-align: middle; margin-right: 12px;"> Ropa / Cuidado personal
                     </button>
                     <button class="category-btn fun" onclick="filterByCategory('Diversión / Restaurantes')">
-                        🎉 Diversión / Restaurantes
+                        <img src="icons/restaurant.webp" alt="Diversión" style="width: 36px; height: 36px; vertical-align: middle; margin-right: 12px;"> Diversión / Restaurantes
                     </button>
                     <button class="category-btn traveling" onclick="filterByCategory('Viajes')">
-                        ✈️ Viajes
+                        <img src="icons/dance.webp" alt="Viajes" style="width: 36px; height: 36px; vertical-align: middle; margin-right: 12px;"> Viajes
                     </button>
                     <button class="category-btn others" onclick="filterByCategory('Otros')">
-                        📦 Otros
+                        <img src="icons/others.webp" alt="Otros" style="width: 36px; height: 36px; vertical-align: middle; margin-right: 12px;"> Otros
                     </button>
                 </div>
             </div>
@@ -778,6 +930,43 @@
         const today = new Date();
         document.getElementById('currentDate').textContent = today.toLocaleDateString('es-ES');
         document.getElementById('currentMonth').textContent = months[today.getMonth()];
+        
+        // Sistema de temas
+        function initTheme() {
+            const savedTheme = localStorage.getItem('budget-app-theme') || 'dark';
+            applyTheme(savedTheme);
+            
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    applyTheme(newTheme);
+                    localStorage.setItem('budget-app-theme', newTheme);
+                });
+            }
+        }
+        
+        function applyTheme(theme) {
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (theme === 'light') {
+                document.body.classList.add('light-theme');
+                if (themeIcon) {
+                    themeIcon.src = 'icons/sun.webp';
+                    themeIcon.alt = 'Tema claro';
+                }
+            } else {
+                document.body.classList.remove('light-theme');
+                if (themeIcon) {
+                    themeIcon.src = 'icons/moon.webp';
+                    themeIcon.alt = 'Tema oscuro';
+                }
+            }
+        }
+        
+        // Inicializar tema al cargar
+        initTheme();
 
         // Toggle formularios
         function toggleIncomeForm() {

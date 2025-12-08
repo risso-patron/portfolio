@@ -301,8 +301,12 @@
         padding: 1.5rem;
     }
 
-    .header h1 { font-size: 1.3rem; }
+    .header h1 { font-size: 1.1rem; }
     .header p { font-size: 0.75rem; }
+    
+    .header-top {
+        gap: 0.75rem;
+    }
 
     .search-container {
         flex-direction: column;
@@ -375,8 +379,38 @@
 @media (max-width: 480px) {
     .container { padding: 1rem; }
 
-    .header h1 { font-size: 1.8rem; }
-    .header p { font-size: 0.9rem; }
+    .header { 
+        margin-bottom: 1.5rem; 
+        padding: 0.75rem 0.5rem 0.5rem;
+    }
+    
+    .header h1 { 
+        font-size: 1rem; 
+        white-space: nowrap;
+    }
+    
+    .header p { 
+        font-size: 0.75rem; 
+        margin-top: 0.25rem;
+    }
+    
+    .header-top {
+        gap: 0.5rem;
+        padding-right: 3rem;
+    }
+    
+    .weather-hero-icon { font-size: 1.25rem; }
+    
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+        right: 0.5rem;
+    }
+    
+    .theme-icon {
+        width: 18px;
+        height: 18px;
+    }
 
     .search-section,
     .current-weather,

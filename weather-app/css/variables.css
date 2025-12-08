@@ -1,9 +1,10 @@
 /* ============================================
    VARIABLES CSS - Weather App
    Autor: Jorge Luis Risso Patrón
-   Diseño Minimalista Moderno
+   Sistema de Temas Dark/Light
    ============================================ */
 
+/* TEMA DARK (por defecto) */
 :root {
     /* Colores Base */
     --bg-primary: #0A0E27;
@@ -33,9 +34,40 @@
     --border-radius: 24px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* Gradientes de Clima (Sky-inspired) */
+    /* Gradientes de Clima */
     --gradient-start: #60A5FA;
     --gradient-end: #93C5FD;
+}
+
+/* TEMA LIGHT */
+body.light-theme {
+    /* Colores Base - Invertidos */
+    --bg-primary: #F0F4F8;
+    --bg-secondary: #E1E8ED;
+    --bg-card: #FFFFFF;
+    
+    /* Colores Principales - Ajustados para contraste */
+    --primary: #2563EB;
+    --primary-light: #3B82F6;
+    --secondary: #059669;
+    --accent: #D97706;
+    --white: #1F2937;
+    
+    /* Texto - Negro */
+    --text-primary: #1F2937;
+    --text-secondary: rgba(31, 41, 55, 0.9);
+    --text-muted: rgba(31, 41, 55, 0.7);
+    
+    /* Efectos - Claros */
+    --shadow: rgba(0, 0, 0, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --card-border: rgba(0, 0, 0, 0.1);
+    --border: rgba(0, 0, 0, 0.1);
+    --glass-blur: blur(20px);
+    
+    /* Gradientes */
+    --gradient-start: #3B82F6;
+    --gradient-end: #60A5FA;
 }
 
 /* ============================================

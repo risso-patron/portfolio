@@ -115,6 +115,79 @@ body.keyboard-nav input:focus {
     z-index: 50;
 }
 
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+    position: relative;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(26, 31, 58, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    font-size: 1.5rem;
+}
+
+.theme-toggle:hover {
+    background: rgba(26, 31, 58, 0.5);
+    border-color: var(--primary);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+}
+
+.theme-toggle:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.theme-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.theme-toggle:hover .theme-icon {
+    transform: rotate(20deg);
+    filter: drop-shadow(0 4px 8px rgba(96, 165, 250, 0.4));
+}
+
+body.light-theme .theme-icon {
+    filter: drop-shadow(0 2px 4px rgba(255, 200, 0, 0.3));
+}
+
+body.light-theme .theme-toggle:hover .theme-icon {
+    filter: drop-shadow(0 4px 8px rgba(255, 200, 0, 0.5));
+}
+
+/* Light theme adjustments */
+body.light-theme .theme-toggle {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: var(--primary);
+}
+
 .weather-hero-icon {
     font-size: 2rem;
     animation: float 3s ease-in-out infinite;

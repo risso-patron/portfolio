@@ -83,7 +83,12 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1><span class="weather-hero-icon">🌤️</span>Weather App</h1>
+            <div class="header-top">
+                <h1><span class="weather-hero-icon">🌤️</span>Weather App</h1>
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <img src="icons/moon.webp" alt="Tema oscuro" class="theme-icon" id="themeIcon">
+                </button>
+            </div>
             <p>Consulta el clima en tiempo real de cualquier ciudad del mundo</p>
             <div class="sky-status" id="skyStatus"></div>
         </header>

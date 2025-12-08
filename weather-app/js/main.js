@@ -16,6 +16,7 @@ import {
     getCityInputValue 
 } from './ui.js';
 import { initAccessibility, announceToScreenReader } from './accessibility.js';
+import { initTheme } from './theme.js';
 
 // Estado global de la aplicación
 const appState = {
@@ -48,6 +49,9 @@ function initializeApp() {
     
     // Inicializar referencias DOM
     initializeElements();
+    
+    // Inicializar sistema de temas
+    initTheme();
     
     // Inicializar accesibilidad
     initAccessibility();
