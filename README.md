@@ -12,18 +12,18 @@ Desarrollador web frontend junior enfocado en crear interfaces limpias y accesib
 - **Weather App**
   - Tecnologias: HTML5, CSS3, JavaScript, OpenWeather API
   - Funcionalidades: geolocalizacion, busqueda de ciudades, datos meteorologicos en tiempo real, modos tematicos
-  - Demo: https://luisitorisso.github.io/weather-app/
-  - Codigo: https://github.com/Luisitorisso/Luisitorisso/tree/main/weather-app
+  - Demo: https://risso-patron.github.io/weather-app/
+  - Codigo: https://github.com/risso-patron/portfolio/tree/main/weather-app
 - **Pomodoro Timer**
   - Tecnologias: HTML5, CSS3, JavaScript, LocalStorage
   - Funcionalidades: temporizador configurable, alertas, estadisticas de uso
-  - Demo: https://luisitorisso.github.io/Luisitorisso/pomodoro-timer/
-  - Codigo: https://github.com/Luisitorisso/Luisitorisso/tree/main/pomodoro-timer
+  - Demo: https://risso-patron.github.io/risso-patron/pomodoro-timer/
+  - Codigo: https://github.com/Luisitorisso/risso-patron/tree/main/pomodoro-timer
 - **Calculadora de Presupuesto**
   - Tecnologias: HTML5, CSS3, JavaScript, LocalStorage
   - Funcionalidades: registro de ingresos y gastos, categorias, resumenes visuales, exportacion CSV
-  - Demo: https://luisitorisso.github.io/Luisitorisso/Experiencia/Calculadora-de-presupuesto.html
-  - Codigo: https://github.com/Luisitorisso/Calculadora-de-Presupuesto
+  - Demo: https://risso-patron.github.io/risso-patron/Experiencia/Calculadora-de-presupuesto.html
+  - Codigo: https://github.com/risso-patron/Calculadora-de-Presupuesto
 
 ## Experiencia Relevante
 - **Space Panama** (2021 - Actualidad) – Desarrollador web
@@ -45,8 +45,8 @@ Desarrollador web frontend junior enfocado en crear interfaces limpias y accesib
 ## Contacto
 - Email: luisrissopa@gmail.com
 - WhatsApp: +507 6456 0263
-- Portfolio: https://luisitorisso.github.io/Luisitorisso/
+- Portfolio: https://luisitorisso.github.io/risso-patron/
 - LinkedIn: https://linkedin.com/in/jorge-luis-risso-patron
-- GitHub: https://github.com/Luisitorisso
+- GitHub: https://github.com/risso-patron
 
 Si tienes una vacante para un desarrollador frontend junior, estare encantado de conversar.
