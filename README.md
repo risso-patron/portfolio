@@ -18,7 +18,7 @@ Desarrollador web frontend junior enfocado en crear interfaces limpias y accesib
   - Tecnologias: HTML5, CSS3, JavaScript, LocalStorage
   - Funcionalidades: temporizador configurable, alertas, estadisticas de uso
   - Demo: https://risso-patron.github.io/risso-patron/pomodoro-timer/
-  - Codigo: https://github.com/Luisitorisso/risso-patron/tree/main/pomodoro-timer
+  - Codigo: https://github.com/risso-patron/tree/main/pomodoro-timer
 - **Calculadora de Presupuesto**
   - Tecnologias: HTML5, CSS3, JavaScript, LocalStorage
   - Funcionalidades: registro de ingresos y gastos, categorias, resumenes visuales, exportacion CSV
