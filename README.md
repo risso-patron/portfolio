@@ -45,7 +45,7 @@ Desarrollador web frontend junior enfocado en crear interfaces limpias y accesib
 ## Contacto
 - Email: luisrissopa@gmail.com
 - WhatsApp: +507 6456 0263
-- Portfolio: https://luisitorisso.github.io/risso-patron/
+- Portfolio: https://risso-patron.github.io/risso-patron/
 - LinkedIn: https://linkedin.com/in/jorge-luis-risso-patron
 - GitHub: https://github.com/risso-patron
 
