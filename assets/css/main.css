@@ -268,7 +268,7 @@
             min-height: 80vh;
             height: auto;
             background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
-                        url('../../image/background-hero.png') center/cover no-repeat;
+                        url('../../assets/images/background-hero.png') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1365,7 +1365,7 @@
         /* Hero en modo oscuro */
         [data-theme="dark"] .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
-                        url('../../image/background-hero.png') center/cover no-repeat;
+                        url('../../assets/images/background-hero.png') center/cover no-repeat;
         }
 
         [data-theme="dark"] .hero::before {
