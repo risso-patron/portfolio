@@ -165,6 +165,17 @@
             height: 90px;
             width: auto;
             object-fit: contain;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Logo negro para tema claro */
+        [data-theme="light"] .logo-img {
+            content: url('../../assets/images/Logo-RP-negro-sin-fondo.png');
+        }
+
+        /* Logo dorado para tema oscuro */
+        [data-theme="dark"] .logo-img {
+            content: url('../../assets/images/Logo-RP-dorado-sin-fondo.png');
         }
 
         .logo:hover {
