@@ -162,7 +162,7 @@
         }
 
         .logo-img {
-            height: 90px;
+            height: 180px;
             width: auto;
             object-fit: contain;
             transition: opacity 0.3s ease;
