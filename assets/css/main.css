@@ -1241,7 +1241,10 @@
 
         [data-theme="dark"] .contact .section-title {
             color: white;
-            -webkit-text-fill-color: white;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         [data-theme="dark"] .contact .section-subtitle {
