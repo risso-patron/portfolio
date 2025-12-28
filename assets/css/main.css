@@ -154,16 +154,17 @@
         }
 
         .logo {
-            font-family: "Corinthia", cursive;
-            font-weight: 400;
-            font-size: clamp(2rem, 8vw, 4.5rem);
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: flex;
+            align-items: center;
             text-decoration: none;
             transition: transform 0.3s ease;
             filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
         }
 
         .logo:hover {
