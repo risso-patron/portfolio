@@ -34,13 +34,46 @@
           rel="stylesheet" 
           crossorigin="anonymous">
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://risso-patron.github.io/portfolio/">
+    
     <!-- Meta tags para SEO -->
-    <meta name="description" content="Desarrollador Web Frontend junior especializado en HTML, CSS y JavaScript. Construyendo proyectos funcionales con tecnologías modernas.">
-    <meta property="og:title" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend">
-    <meta property="og:description" content="Developer Frontend junior de Panamá construyendo aplicaciones web funcionales con HTML, CSS y JavaScript">
+    <meta name="description" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend junior de Panamá. Portfolio con proyectos reales en HTML, CSS y JavaScript vanilla. Buscando primera oportunidad tech.">
+    <meta name="keywords" content="desarrollador frontend, web developer, HTML, CSS, JavaScript, portfolio developer, programador junior, developer Panama, frontend junior, vanilla JavaScript, proyectos web">
+    <meta name="author" content="Jorge Luis Risso Patrón">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="PA">
+    <meta name="geo.placename" content="Ciudad de Panamá">
+    <meta name="geo.position" content="8.983333;-79.516670">
+    <meta name="ICBM" content="8.983333, -79.516670">
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://risso-patron.github.io/portfolio/">
-    <meta property="og:image" content="assets/images/jorge-luis-perfil.png">
+    <meta property="og:site_name" content="Jorge Luis Risso Patrón - Portfolio">
+    <meta property="og:title" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend Junior">
+    <meta property="og:description" content="Portfolio profesional con proyectos reales: Weather App, Pomodoro Timer, Budget App. Vanilla JavaScript, HTML5, CSS3. Developer junior buscando oportunidades.">
+    <meta property="og:image" content="https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png">
+    <meta property="og:image:alt" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_PA">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://risso-patron.github.io/portfolio/">
+    <meta name="twitter:title" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend">
+    <meta name="twitter:description" content="Portfolio con proyectos reales en JavaScript vanilla. Weather App, Pomodoro Timer, Budget App. Developer junior de Panamá.">
+    <meta name="twitter:image" content="https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png">
+    <meta name="twitter:creator" content="@JorgeLuisRP">
+    
+    <!-- Additional SEO -->
+    <meta name="language" content="Spanish">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
     
     <!-- Script inline para evitar flash de contenido -->
     <script>
@@ -50,6 +83,102 @@
                 (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             document.documentElement.setAttribute('data-theme', preferredTheme);
         })();
+    </script>
+    
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jorge Luis Risso Patrón",
+        "jobTitle": "Desarrollador Web Frontend",
+        "description": "Desarrollador Web Frontend junior especializado en HTML, CSS y JavaScript vanilla",
+        "url": "https://risso-patron.github.io/portfolio/",
+        "image": "https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png",
+        "email": "luisrissopa@gmail.com",
+        "telephone": "+507-6456-0263",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ciudad de Panamá",
+            "addressCountry": "PA"
+        },
+        "sameAs": [
+            "https://github.com/Risso-patron",
+            "https://linkedin.com/in/jorge-luis-risso"
+        ],
+        "knowsAbout": [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "Responsive Design",
+            "Frontend Development",
+            "Web Development"
+        ],
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Autodidacta"
+        },
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Freelance"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Jorge Luis Risso Patrón - Portfolio",
+        "url": "https://risso-patron.github.io/portfolio/",
+        "description": "Portfolio profesional de Jorge Luis Risso Patrón, desarrollador web frontend",
+        "inLanguage": "es",
+        "author": {
+            "@type": "Person",
+            "name": "Jorge Luis Risso Patrón"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Proyectos de Desarrollo Web",
+        "description": "Portfolio de proyectos desarrollados por Jorge Luis Risso Patrón",
+        "itemListElement": [
+            {
+                "@type": "SoftwareApplication",
+                "position": 1,
+                "name": "Weather App",
+                "description": "Aplicación del clima con geolocalización y API de OpenWeather",
+                "url": "https://risso-patron.github.io/portfolio/weather-app/",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Any",
+                "programmingLanguage": "JavaScript"
+            },
+            {
+                "@type": "SoftwareApplication",
+                "position": 2,
+                "name": "Pomodoro Timer",
+                "description": "Timer con técnica Pomodoro y estadísticas en tiempo real",
+                "url": "https://risso-patron.github.io/portfolio/pomodoro-timer/",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Any",
+                "programmingLanguage": "JavaScript"
+            },
+            {
+                "@type": "SoftwareApplication",
+                "position": 3,
+                "name": "Budget App",
+                "description": "App de finanzas personales con gráficos y localStorage",
+                "url": "https://risso-patron.github.io/portfolio/budget-app/",
+                "applicationCategory": "WebApplication",
+                "operatingSystem": "Any",
+                "programmingLanguage": "JavaScript"
+            }
+        ]
+    }
     </script>
     
     <link rel="stylesheet" href="assets/css/main.css?v=1.1">

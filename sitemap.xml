@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Página principal -->
+    <url>
+        <loc>https://risso-patron.github.io/portfolio/</loc>
+        <lastmod>2025-12-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png</image:loc>
+            <image:title>Jorge Luis Risso Patrón - Desarrollador Web Frontend</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Weather App -->
+    <url>
+        <loc>https://risso-patron.github.io/portfolio/weather-app/</loc>
+        <lastmod>2025-12-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Pomodoro Timer -->
+    <url>
+        <loc>https://risso-patron.github.io/portfolio/pomodoro-timer/</loc>
+        <lastmod>2025-12-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Budget App -->
+    <url>
+        <loc>https://risso-patron.github.io/portfolio/budget-app/</loc>
+        <lastmod>2025-12-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+</urlset>

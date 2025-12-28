@@ -1,0 +1,21 @@
+# robots.txt para Portfolio Jorge Luis Risso Patrón
+# Permitir a todos los bots indexar todo el contenido
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://risso-patron.github.io/portfolio/sitemap.xml
+
+# Crawl-delay para bots agresivos
+Crawl-delay: 1
+
+# Bloquear directorios innecesarios
+Disallow: /assets/
+Disallow: /*.css$
+Disallow: /*.js$
+
+# Permitir indexación de proyectos
+Allow: /weather-app/
+Allow: /pomodoro-timer/
+Allow: /budget-app/
