@@ -1253,16 +1253,16 @@
         }
 
         [data-theme="dark"] .contact-link {
-            background: rgba(255, 255, 255, 0.12);
-            color: #ffffff;
-            border: 2px solid rgba(255, 255, 255, 0.25);
+            background: rgba(0, 0, 0, 0.6);
+            color: #FFD700;
+            border: 2px solid rgba(255, 215, 0, 0.3);
         }
 
         [data-theme="dark"] .contact-link:hover {
-            background: rgba(255, 255, 255, 0.22);
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 12px 40px rgba(0, 114, 255, 0.4);
-            color: #fff;
+            background: rgba(0, 0, 0, 0.8);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.3);
+            color: #FFD700;
         }
 
         /* ==================== Footer ==================== */
