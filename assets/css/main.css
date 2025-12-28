@@ -1177,8 +1177,8 @@
         }
 
         .contact-link {
-            background: rgba(0, 114, 255, 0.08);
-            color: var(--text);
+            background: rgba(0, 114, 255, 0.12);
+            color: #1a1a1a;
             padding: 1.2rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
@@ -1187,7 +1187,7 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 114, 255, 0.2);
+            border: 2px solid rgba(0, 114, 255, 0.3);
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
@@ -1223,10 +1223,11 @@
         }
 
         .contact-link:hover {
-            background: rgba(0, 114, 255, 0.15);
+            background: rgba(0, 114, 255, 0.25);
             transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 114, 255, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 114, 255, 0.3);
             border-color: var(--primary);
+            color: #000;
         }
 
         /* Contacto modo oscuro */
@@ -1252,15 +1253,16 @@
         }
 
         [data-theme="dark"] .contact-link {
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.25);
         }
 
         [data-theme="dark"] .contact-link:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 12px 40px rgba(0, 114, 255, 0.3);
+            background: rgba(255, 255, 255, 0.22);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 12px 40px rgba(0, 114, 255, 0.4);
+            color: #fff;
         }
 
         /* ==================== Footer ==================== */
