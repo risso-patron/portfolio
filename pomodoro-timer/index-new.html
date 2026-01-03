@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#e74c3c">
+    <title>Pomodoro Timer | Luis Risso Patrón</title>
+    <meta name="description" content="Aplicación Pomodoro Timer profesional con estadísticas detalladas y panel de productividad.">
+    <link rel="icon" type="image/webp" href="icons/tomato.webp">
+    <link rel="apple-touch-icon" href="icons/tomato.webp">
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+    
+    <style>
+        /* ==================== Variables CSS ==================== */
+        :root {
+            --primary: #FF6347;
+            --primary-dark: #E5533D;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            
+            --bg-dark: #0A0E27;
+            --bg-darker: #060918;
+            --bg-card: #151A36;
+            --bg-card-hover: #1A1F3A;
+            
+            --text-primary: #F7F7FF;
+            --text-secondary: #B8B8D1;
+            --text-muted: #6B7280;
+            
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow: rgba(0, 0, 0, 0.3);
+            
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        [data-theme="light"] {
+            --bg-dark: #F3F4F6;
+            --bg-darker: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F9FAFB;
+            
+            --text-primary: #111827;
+            --text-secondary: #4B5563;
+            --text-muted: #9CA3AF;
+            
+            --border-color: #E5E7EB;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        /* ==================== Reset y Base ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* ==================== Container ==================== */
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* ==================== Header ==================== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+        }
+
+        .header-title h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .header-title p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .header-right {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* ==================== Navigation Buttons ==================== */
+        .nav-buttons {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            padding: 0.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-btn {
+            padding: 0.5rem 1.25rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-card-hover);
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.65rem 1rem;
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== View Container ==================== */
+        .view-container {
+            display: none;
+        }
+
+        .view-container.active {
+            display: block;
+        }
+
+        /* ==================== Stats Tabs ==================== */
+        .stats-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background: var(--bg-card);
+            padding: 0.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-card-hover);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ==================== Stats Grid ==================== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-title {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        .stat-value {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .stat-change.positive {
+            color: var(--success);
+        }
+
+        .stat-change.negative {
+            color: var(--danger);
+        }
+
+        .stat-change.neutral {
+            color: var(--warning);
+        }
+
+        /* ==================== Charts Grid ==================== */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .chart-menu {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .chart-menu:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .chart-container canvas {
+            max-height: 100%;
+        }
+
+        /* ==================== Sessions Table ==================== */
+        .sessions-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .sessions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .sessions-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .view-all-link {
+            color: var(--primary);
+            font-size: 0.875rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .view-all-link:hover {
+            opacity: 0.8;
+        }
+
+        .sessions-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .sessions-table thead {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sessions-table th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .sessions-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.875rem;
+        }
+
+        .sessions-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .sessions-table tr:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .tag-design {
+            background: rgba(139, 92, 246, 0.2);
+            color: #A78BFA;
+        }
+
+        .tag-investigacion {
+            background: rgba(236, 72, 153, 0.2);
+            color: #F472B6;
+        }
+
+        .tag-reunion {
+            background: rgba(251, 146, 60, 0.2);
+            color: #FB923C;
+        }
+
+        .tag-codificacion {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ADE80;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-completado {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .status-interrumpido {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        /* ==================== Timer View ==================== */
+        .timer-view {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timer-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+
+        .mode-selector {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            background: var(--bg-darker);
+            padding: 0.5rem;
+            border-radius: 12px;
+        }
+
+        .mode-btn {
+            padding: 0.75rem 2rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mode-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .mode-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .timer-display {
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 2rem 0;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.05em;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .control-btn {
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .control-btn.primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 99, 71, 0.3);
+        }
+
+        .control-btn.secondary {
+            background: var(--bg-darker);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .control-btn.secondary:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .session-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* ==================== Responsive ==================== */
+        @media (max-width: 968px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .timer-display {
+                font-size: 4rem;
+            }
+            
+            .timer-controls {
+                flex-direction: column;
+            }
+            
+            .control-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .app-container {
+                padding: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .session-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .timer-display {
+                font-size: 3rem;
+            }
+            
+            .sessions-table {
+                font-size: 0.75rem;
+            }
+            
+            .sessions-table th,
+            .sessions-table td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* ==================== Animations ==================== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card,
+        .chart-card,
+        .sessions-card {
+            animation: fadeIn 0.5s ease;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.05s; }
+        .stat-card:nth-child(2) { animation-delay: 0.1s; }
+        .stat-card:nth-child(3) { animation-delay: 0.15s; }
+        .stat-card:nth-child(4) { animation-delay: 0.2s; }
+
+        /* ==================== Distribution Legend ==================== */
+        .distribution-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .legend-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .legend-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-percentage {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <span class="logo">🍅</span>
+                <div class="header-title">
+                    <h1>Pomodoro Timer</h1>
+                    <p>Panel de Estadísticas</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="nav-buttons">
+                    <button class="nav-btn" onclick="showView('timer')">Temporizador</button>
+                    <button class="nav-btn active" onclick="showView('stats')">Estadísticas</button>
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <span id="themeIcon">🌙</span>
+                    <span>Modo Oscuro</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Stats View -->
+        <div id="statsView" class="view-container active">
+            <!-- Tabs -->
+            <div class="stats-tabs">
+                <button class="tab-btn active" data-period="dia">Día</button>
+                <button class="tab-btn" data-period="semana">Semana</button>
+                <button class="tab-btn" data-period="mes">Mes</button>
+                <button class="tab-btn" data-period="año">Año</button>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Tiempo Total de Foco</span>
+                        <span class="stat-icon">⏱️</span>
+                    </div>
+                    <div class="stat-value">32h 45m</div>
+                    <div class="stat-change positive">
+                        <span>↗</span>
+                        <span>+12% vs semana pasada</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Pomodoros Completados</span>
+                        <span class="stat-icon">✅</span>
+                    </div>
+                    <div class="stat-value">78</div>
+                    <div class="stat-change positive">
+                        <span>↗</span>
+                        <span>+5% vs semana pasada</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Racha Actual</span>
+                        <span class="stat-icon">🔥</span>
+                    </div>
+                    <div class="stat-value">12 Días</div>
+                    <div class="stat-change neutral">
+                        <span>⚡</span>
+                        <span>¡Sigue así!</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Eficiencia Diaria</span>
+                        <span class="stat-icon">📊</span>
+                    </div>
+                    <div class="stat-value">4.2h</div>
+                    <div class="stat-change negative">
+                        <span>↘</span>
+                        <span>-8% vs semana pasada</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="charts-grid">
+                <!-- Bar Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Horas de Foco por Día</h3>
+                        <button class="chart-menu">⋯</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="dailyChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Donut Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Distribución</h3>
+                        <button class="chart-menu">⋯</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                    <div class="distribution-legend">
+                        <div class="legend-item">
+                            <div class="legend-label">
+                                <div class="legend-dot" style="background: #FF6347;"></div>
+                                <span class="legend-text">Trabajo Profundo</span>
+                            </div>
+                            <span class="legend-percentage">65%</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-label">
+                                <div class="legend-dot" style="background: #4ECDC4;"></div>
+                                <span class="legend-text">Estudio</span>
+                            </div>
+                            <span class="legend-percentage">25%</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-label">
+                                <div class="legend-dot" style="background: #FFE66D;"></div>
+                                <span class="legend-text">Lectura</span>
+                            </div>
+                            <span class="legend-percentage">10%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sessions Table -->
+            <div class="sessions-card">
+                <div class="sessions-header">
+                    <h3 class="sessions-title">Sesiones Recientes</h3>
+                    <a href="#" class="view-all-link">Ver todo el Historial</a>
+                </div>
+                <table class="sessions-table">
+                    <thead>
+                        <tr>
+                            <th>FECHA</th>
+                            <th>ETIQUETA</th>
+                            <th>DURACIÓN</th>
+                            <th>ESTADO</th>
+                            <th>HORA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hoy</td>
+                            <td><span class="tag tag-design">Diseño UI</span></td>
+                            <td>25 min</td>
+                            <td><span class="status-badge status-completado"><span class="status-dot"></span> Completado</span></td>
+                            <td>14:30</td>
+                        </tr>
+                        <tr>
+                            <td>Hoy</td>
+                            <td><span class="tag tag-investigacion">Investigación</span></td>
+                            <td>25 min</td>
+                            <td><span class="status-badge status-completado"><span class="status-dot"></span> Completado</span></td>
+                            <td>13:00</td>
+                        </tr>
+                        <tr>
+                            <td>Ayer</td>
+                            <td><span class="tag tag-reunion">Reunión</span></td>
+                            <td>12 min</td>
+                            <td><span class="status-badge status-interrumpido"><span class="status-dot"></span> Interrumpido</span></td>
+                            <td>09:45</td>
+                        </tr>
+                        <tr>
+                            <td>Ayer</td>
+                            <td><span class="tag tag-codificacion">Codificación</span></td>
+                            <td>50 min</td>
+                            <td><span class="status-badge status-completado"><span class="status-dot"></span> Completado</span></td>
+                            <td>08:30</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Timer View -->
+        <div id="timerView" class="view-container">
+            <div class="timer-view">
+                <div class="timer-card">
+                    <div class="mode-selector">
+                        <button class="mode-btn active" data-mode="pomodoro">Pomodoro</button>
+                        <button class="mode-btn" data-mode="short-break">Descanso Corto</button>
+                        <button class="mode-btn" data-mode="long-break">Descanso Largo</button>
+                    </div>
+                    
+                    <div class="timer-display" id="timerDisplay">25:00</div>
+                    
+                    <div class="timer-controls">
+                        <button class="control-btn primary" id="startBtn">Iniciar</button>
+                        <button class="control-btn secondary" id="resetBtn">Reiniciar</button>
+                    </div>
+                    
+                    <div class="session-info">
+                        <div class="info-item">
+                            <div class="info-label">Pomodoros Hoy</div>
+                            <div class="info-value" id="pomodorosToday">4</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Tiempo Hoy</div>
+                            <div class="info-value" id="timeToday">2h 15m</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Racha</div>
+                            <div class="info-value" id="streak">12 🔥</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== Theme Management ====================
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const root = document.documentElement;
+        
+        function toggleTheme() {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('pomodoro-theme', newTheme);
+            
+            themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+            themeToggle.querySelector('span:last-child').textContent = 
+                newTheme === 'dark' ? 'Modo Oscuro' : 'Modo Claro';
+            
+            // Update charts theme
+            updateChartsTheme();
+        }
+        
+        // Initialize theme
+        const savedTheme = localStorage.getItem('pomodoro-theme') || 'dark';
+        root.setAttribute('data-theme', savedTheme);
+        themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+        themeToggle.querySelector('span:last-child').textContent = 
+            savedTheme === 'dark' ? 'Modo Oscuro' : 'Modo Claro';
+
+        // ==================== View Management ====================
+        function showView(viewName) {
+            const statsView = document.getElementById('statsView');
+            const timerView = document.getElementById('timerView');
+            const navBtns = document.querySelectorAll('.nav-btn');
+            
+            if (viewName === 'stats') {
+                statsView.classList.add('active');
+                timerView.classList.remove('active');
+                navBtns[1].classList.add('active');
+                navBtns[0].classList.remove('active');
+                document.querySelector('.header-title p').textContent = 'Panel de Estadísticas';
+            } else {
+                timerView.classList.add('active');
+                statsView.classList.remove('active');
+                navBtns[0].classList.add('active');
+                navBtns[1].classList.remove('active');
+                document.querySelector('.header-title p').textContent = 'Técnica Pomodoro';
+            }
+        }
+
+        // ==================== Tabs Management ====================
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Aquí se cargarían datos según el periodo seleccionado
+            });
+        });
+
+        // ==================== Charts ====================
+        let dailyChart, distributionChart;
+        
+        function getChartColors() {
+            const theme = root.getAttribute('data-theme');
+            return {
+                text: theme === 'dark' ? '#F7F7FF' : '#111827',
+                grid: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : '#E5E7EB'
+            };
+        }
+        
+        function createDailyChart() {
+            const ctx = document.getElementById('dailyChart').getContext('2d');
+            const colors = getChartColors();
+            
+            dailyChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                    datasets: [{
+                        label: 'Horas',
+                        data: [5, 6, 6, 7, 4, 3, 3],
+                        backgroundColor: '#FF6347',
+                        borderRadius: 8,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#1A1F3A',
+                            titleColor: '#F7F7FF',
+                            bodyColor: '#B8B8D1',
+                            padding: 12,
+                            borderColor: 'rgba(255, 255, 255, 0.1)',
+                            borderWidth: 1,
+                            displayColors: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 8,
+                            ticks: {
+                                color: colors.text,
+                                stepSize: 2
+                            },
+                            grid: {
+                                color: colors.grid,
+                                drawBorder: false
+                            },
+                            border: {
+                                display: false
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: colors.text
+                            },
+                            grid: {
+                                display: false
+                            },
+                            border: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createDistributionChart() {
+            const ctx = document.getElementById('distributionChart').getContext('2d');
+            
+            distributionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Trabajo Profundo', 'Estudio', 'Lectura'],
+                    datasets: [{
+                        data: [65, 25, 10],
+                        backgroundColor: ['#FF6347', '#4ECDC4', '#FFE66D'],
+                        borderWidth: 0,
+                        cutout: '75%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#1A1F3A',
+                            titleColor: '#F7F7FF',
+                            bodyColor: '#B8B8D1',
+                            padding: 12,
+                            borderColor: 'rgba(255, 255, 255, 0.1)',
+                            borderWidth: 1
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateChartsTheme() {
+            const colors = getChartColors();
+            
+            if (dailyChart) {
+                dailyChart.options.scales.y.ticks.color = colors.text;
+                dailyChart.options.scales.y.grid.color = colors.grid;
+                dailyChart.options.scales.x.ticks.color = colors.text;
+                dailyChart.update();
+            }
+        }
+        
+        // Initialize charts
+        window.addEventListener('load', () => {
+            createDailyChart();
+            createDistributionChart();
+        });
+
+        // ==================== Timer Logic ====================
+        let timerInterval;
+        let timeRemaining = 25 * 60; // 25 minutes in seconds
+        let isRunning = false;
+        let currentMode = 'pomodoro';
+        
+        const modes = {
+            'pomodoro': 25 * 60,
+            'short-break': 5 * 60,
+            'long-break': 15 * 60
+        };
+        
+        const timerDisplay = document.getElementById('timerDisplay');
+        const startBtn = document.getElementById('startBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const modeBtns = document.querySelectorAll('.mode-btn');
+        
+        function updateDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                startBtn.textContent = 'Pausar';
+                timerInterval = setInterval(() => {
+                    if (timeRemaining > 0) {
+                        timeRemaining--;
+                        updateDisplay();
+                    } else {
+                        stopTimer();
+                        playNotification();
+                    }
+                }, 1000);
+            } else {
+                pauseTimer();
+            }
+        }
+        
+        function pauseTimer() {
+            isRunning = false;
+            startBtn.textContent = 'Reanudar';
+            clearInterval(timerInterval);
+        }
+        
+        function stopTimer() {
+            isRunning = false;
+            startBtn.textContent = 'Iniciar';
+            clearInterval(timerInterval);
+        }
+        
+        function resetTimer() {
+            stopTimer();
+            timeRemaining = modes[currentMode];
+            updateDisplay();
+        }
+        
+        function playNotification() {
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification('¡Pomodoro Completado!', {
+                    body: currentMode === 'pomodoro' ? '¡Tiempo de descansar!' : '¡Vuelve al trabajo!',
+                    icon: 'icons/tomato.webp'
+                });
+            }
+        }
+        
+        // Event listeners
+        startBtn.addEventListener('click', startTimer);
+        resetBtn.addEventListener('click', resetTimer);
+        
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentMode = btn.dataset.mode;
+                resetTimer();
+            });
+        });
+        
+        // Request notification permission
+        if ('Notification' in window && Notification.permission === 'default') {
+            Notification.requestPermission();
+        }
+    </script>
+</body>
+</html>
