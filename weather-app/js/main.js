@@ -1,6 +1,6 @@
 // ==================== MAIN MODULE ====================
 // Inicialización y orquestación de Weather App
-// Jorge Luis Risso Patrón - 2025
+// Luis Risso Patrón - 2025
 
 import { API_CONFIG, EXAMPLE_CITIES, MESSAGES, DEMO_MODE } from './config.js';
 import { getWeatherAndForecast, getWeatherAndForecastByCoords } from './api.js';
@@ -12,17 +12,29 @@ import {
     hideError,
     displayWeather,
     displayForecast,
+    displayHourlyForecast,
     updateUnitIcon,
     getCityInputValue 
 } from './ui.js';
 import { initAccessibility, announceToScreenReader } from './accessibility.js';
 import { initTheme } from './theme.js';
+import { createTemperatureChart, destroyChart } from './charts.js';
+import { getSavedLocations, saveLocation, removeLocation, isLocationSaved, renderSavedLocations } from './savedLocations.js';
+import { displayHourlyForecast, getUIElements } from './ui.js';
+import { 
+    initSavedLocations, 
+    saveCity, 
+    renderSavedCities,
+    onCityClick 
+} from './saved-locations.js';
+import { createTemperatureChart, updateChartTheme } from './chart-handler.js';
 
 // Estado global de la aplicación
 const appState = {
     currentUnit: API_CONFIG.DEFAULT_UNIT,
     currentWeatherData: null,
-    isSearching: false
+    isSearching: false,
+    currentChart: null
 };
 
 /**
@@ -44,7 +56,7 @@ function debounce(fn, delay = 300) {
  */
 function initializeApp() {
     console.log('🌤️ Weather App initialized');
-    console.log('📍 Por Jorge Luis Risso Patrón - Desarrollador Frontend Junior');
+    console.log('📍 Por Luis Risso Patrón - Desarrollador Frontend Junior');
     console.log('🔧 Modo:', DEMO_MODE ? 'DEMO' : 'PRODUCTION');
     
     // Inicializar referencias DOM
@@ -55,6 +67,9 @@ function initializeApp() {
     
     // Inicializar accesibilidad
     initAccessibility();
+    
+    // Inicializar ciudades guardadas
+    initSavedLocations();
     
     // Configurar event listeners
     setupEventListeners();
@@ -109,6 +124,19 @@ function setupEventListeners() {
     if (unitBtn) {
         unitBtn.addEventListener('click', handleUnitToggle);
     }
+    
+    // Guardar ciudad actual
+    const saveCityBtn = document.getElementById('saveCurrentCity');
+    if (saveCityBtn) {
+        saveCityBtn.addEventListener('click', handleSaveCurrentCity);
+    }
+    
+    // Click en ciudades guardadas
+    window.addEventListener('savedCityClick', (e) => {
+        const cityName = e.detail.cityName;
+        document.getElementById('cityInput').value = cityName;
+        handleSearch();
+    });
 }
 
 /**
@@ -138,6 +166,11 @@ async function handleSearch() {
         
         if (forecast) {
             displayForecast(forecast);
+            // Crear gráfico de temperatura con datos del forecast
+            createTemperatureChart(forecast, appState.currentUnit);
+            // Mostrar pronóstico por horas
+            const unit = appState.currentUnit === 'metric' ? 'C' : 'F';
+            displayHourlyForecast(forecast.list, unit);
         }
         
         // Anunciar a screen readers
@@ -179,7 +212,12 @@ async function handleGeolocation() {
                 const { weather, forecast } = await getWeatherAndForecast('panama', appState.currentUnit);
                 appState.currentWeatherData = weather;
                 displayWeather(weather, appState.currentUnit);
-                if (forecast) displayForecast(forecast);
+                if (forecast) {
+                    displayForecast(forecast);
+                    createTemperatureChart(forecast, appState.currentUnit);
+                    const unit = appState.currentUnit === 'metric' ? 'C' : 'F';
+                    displayHourlyForecast(forecast.list, unit);
+                }
                 setTimeout(() => {
                     showError('MODO DEMO: Simulando ubicación de Panamá para portfolio.', 'info');
                 }, 1000);
@@ -209,6 +247,9 @@ async function handleGeolocation() {
                 
                 if (forecast) {
                     displayForecast(forecast);
+                    createTemperatureChart(forecast, appState.currentUnit);
+                    const unit = appState.currentUnit === 'metric' ? 'C' : 'F';
+                    displayHourlyForecast(forecast.list, unit);
                 }
                 
             } catch (error) {
@@ -254,6 +295,9 @@ async function handleUnitToggle() {
     // Actualizar ícono
     updateUnitIcon(newUnit);
     
+    // Actualizar tema del gráfico
+    updateChartTheme();
+    
     // Refrescar clima si hay datos actuales
     if (appState.currentWeatherData) {
         const city = appState.currentWeatherData.name;
@@ -267,6 +311,9 @@ async function handleUnitToggle() {
             
             if (forecast) {
                 displayForecast(forecast);
+                createTemperatureChart(forecast, newUnit);
+                const unit = newUnit === 'metric' ? 'C' : 'F';
+                displayHourlyForecast(forecast.list, unit);
             }
             
         } catch (error) {
@@ -278,6 +325,32 @@ async function handleUnitToggle() {
             appState.currentUnit = newUnit === 'metric' ? 'imperial' : 'metric';
             updateUnitIcon(appState.currentUnit);
         }
+    }
+}
+
+/**
+ * Maneja el guardado de la ciudad actual como favorita
+ */
+function handleSaveCurrentCity() {
+    if (!appState.currentWeatherData) {
+        showError('Primero busca una ciudad para guardarla', 'info');
+        return;
+    }
+    
+    const cityData = {
+        name: appState.currentWeatherData.name,
+        country: appState.currentWeatherData.sys.country,
+        temp: Math.round(appState.currentWeatherData.main.temp),
+        icon: appState.currentWeatherData.weather[0].icon
+    };
+    
+    const result = saveCity(cityData);
+    
+    if (result.success) {
+        showError(`✓ ${result.message}`, 'info');
+        console.log('✓ Ciudad guardada:', cityData.name);
+    } else {
+        showError(result.message, 'info');
     }
 }
 
@@ -328,6 +401,85 @@ window.addEventListener('unhandledrejection', (event) => {
     console.error('❌ Promise rechazada no capturada:', event.reason);
     event.preventDefault();
 });
+
+/**
+ * Carga y renderiza las ciudades guardadas
+ */
+function loadSavedLocations() {
+    const container = document.getElementById('savedLocationsContainer');
+    if (!container) return;
+    
+    renderSavedLocations(container, async (cityName) => {
+        document.getElementById('cityInput').value = cityName;
+        await handleSearch();
+    });
+}
+
+/**
+ * Guarda la ciudad actual en localStorage
+ */
+function handleSaveCurrentCity() {
+    if (!appState.currentWeatherData) {
+        showError('Primero busca una ciudad para guardarla');
+        return;
+    }
+    
+    const { name, sys, coord } = appState.currentWeatherData;
+    const result = saveLocation(name, sys.country, coord);
+    
+    if (result.success) {
+        loadSavedLocations(); // Recargar lista
+        updateSaveLocationButton(name);
+        showError(result.message, 'success');
+    } else {
+        showError(result.message, 'warning');
+    }
+}
+
+/**
+ * Actualiza el gráfico de temperatura
+ * @param {Array} forecastList - Lista de pronósticos
+ */
+function updateTemperatureChart(forecastList) {
+    const canvas = document.getElementById('temperatureChart');
+    if (!canvas) return;
+    
+    // Destruir gráfico anterior si existe
+    if (appState.currentChart) {
+        destroyChart(appState.currentChart);
+    }
+    
+    // Tomar solo las primeras 8 entradas (24 horas)
+    const chartData = forecastList.slice(0, 8).map(item => ({
+        time: new Date(item.dt * 1000),
+        temp: Math.round(item.main.temp),
+        feelsLike: Math.round(item.main.feels_like)
+    }));
+    
+    const unit = appState.currentUnit === 'metric' ? 'C' : 'F';
+    appState.currentChart = createTemperatureChart(canvas, chartData, unit);
+}
+
+/**
+ * Actualiza el botón de guardar ubicación
+ * @param {string} cityName - Nombre de la ciudad
+ */
+function updateSaveLocationButton(cityName) {
+    const saveBtn = document.getElementById('saveCurrentCity');
+    if (!saveBtn) return;
+    
+    const isSaved = isLocationSaved(cityName);
+    
+    if (isSaved) {
+        saveBtn.innerHTML = '<i class="fas fa-star"></i>';
+        saveBtn.classList.add('saved');
+        saveBtn.title = 'Ciudad guardada';
+    } else {
+        saveBtn.innerHTML = '<i class="far fa-star"></i>';
+        saveBtn.classList.remove('saved');
+        saveBtn.title = 'Guardar ciudad';
+    }
+}
 
 // Inicializar cuando el DOM esté listo
 if (document.readyState === 'loading') {

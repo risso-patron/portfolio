@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
     <!-- Primary Meta Tags -->
-    <title>Weather App - Clima en Tiempo Real | Jorge Luis Risso Patrón</title>
-    <meta name="title" content="Weather App - Clima en Tiempo Real | Jorge Luis Risso Patrón">
-    <meta name="description" content="Consulta el clima en tiempo real de cualquier ciudad del mundo. Geolocalización automática, pronóstico de 5 días, temperaturas °C/°F. Desarrollado con JavaScript vanilla por Jorge Luis Risso Patrón.">
-    <meta name="keywords" content="clima, weather, pronóstico, temperatura, geolocalización, OpenWeatherMap, JavaScript, frontend developer, Jorge Luis Risso Patrón, Panamá">
-    <meta name="author" content="Jorge Luis Risso Patrón">
+    <title>Weather App - Clima en Tiempo Real | Luis Risso Patrón</title>
+    <meta name="title" content="Weather App - Clima en Tiempo Real | Luis Risso Patrón">
+    <meta name="description" content="Consulta el clima en tiempo real de cualquier ciudad del mundo. Geolocalización automática, pronóstico de 5 días, temperaturas °C/°F. Desarrollado con JavaScript vanilla por Luis Risso Patrón.">
+    <meta name="keywords" content="clima, weather, pronóstico, temperatura, geolocalización, OpenWeatherMap, JavaScript, frontend developer, Luis Risso Patrón, Panamá">
+    <meta name="author" content="Luis Risso Patrón">
     <meta name="robots" content="index, follow">
     <meta name="language" content="Spanish">
     <meta name="revisit-after" content="7 days">
@@ -24,7 +24,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://risso-patron.github.io/portfolio/weather-app/">
-    <meta property="og:site_name" content="Jorge Luis Risso Patrón - Portfolio">
+    <meta property="og:site_name" content="Luis Risso Patrón - Portfolio">
     <meta property="og:title" content="Weather App - Clima en Tiempo Real">
     <meta property="og:description" content="App del clima con geolocalización automática, pronóstico de 5 días y cambio de unidades °C/°F. Desarrollada con JavaScript vanilla.">
     <meta property="og:image" content="https://risso-patron.github.io/portfolio/weather-app/screenshots/weather-app-screenshot.webp">
@@ -66,10 +66,14 @@
     <!-- Google Fonts - Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+    
     <!-- Estilos CSS Modulares -->
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/enhanced.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -220,6 +224,35 @@
                 </div>
             </section>
 
+            <!-- Saved Locations Section -->
+            <section class="saved-locations-section">
+                <div class="section-header">
+                    <h2 class="section-title">⭐ Ciudades Guardadas</h2>
+                    <button class="save-current-btn" id="saveCurrentCity" title="Guardar ciudad actual">
+                        <i class="wi wi-stars"></i> Guardar
+                    </button>
+                </div>
+                <div class="saved-cities-container" id="savedCitiesContainer">
+                    <!-- Saved cities will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Hourly Forecast Section -->
+            <section class="hourly-forecast-section">
+                <h2 class="section-title">📅 Pronóstico por Hora</h2>
+                <div class="hourly-forecast-container" id="hourlyForecastContainer">
+                    <!-- Hourly forecast will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Temperature Chart Section -->
+            <section class="chart-section">
+                <h2 class="section-title">📊 Tendencia de Temperatura</h2>
+                <div class="chart-container">
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+            </section>
+
             <!-- Forecast Section -->
             <section class="forecast-section">
                 <h2 class="forecast-title">Pronóstico de 5 Días</h2>
@@ -233,7 +266,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <p>Hecho con ☀️ y ☕ por <strong>Jorge Luis Risso Patrón</strong></p>
+            <p>Hecho con ☀️ y ☕ por <strong>Luis Risso Patrón</strong></p>
             <p class="footer-links">
                 <a href="https://github.com/risso-patron" target="_blank" rel="noopener">GitHub</a> |
                 <a href="mailto:luisrissopa@gmail.com">Contacto</a> |
@@ -261,7 +294,7 @@
         "author": {
             "@type": "Person",
             "@id": "https://risso-patron.github.io/portfolio/#author",
-            "name": "Jorge Luis Risso Patrón",
+            "name": "Luis Risso Patrón",
             "jobTitle": "Frontend Developer",
             "email": "luisrissopa@gmail.com",
             "url": "https://risso-patron.github.io/portfolio/",

@@ -1,0 +1,368 @@
+/* ============================================
+   ENHANCED FEATURES - Weather App
+   Estilos para nuevas funcionalidades mejoradas
+   Luis Risso Patrón - 2026
+   ============================================ */
+
+/* ============================================
+   SAVED LOCATIONS SECTION
+   ============================================ */
+
+.saved-locations-section {
+    padding: 2rem 2.5rem;
+    background: rgba(26, 31, 58, 0.08);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.save-current-btn {
+    padding: 0.5rem 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.save-current-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.save-current-btn:active {
+    transform: translateY(0);
+}
+
+.saved-cities-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.saved-city-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.saved-city-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.saved-city-main {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.saved-city-icon {
+    font-size: 2rem;
+}
+
+.saved-city-info {
+    flex: 1;
+}
+
+.saved-city-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.saved-city-country {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.saved-city-temp {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.remove-city-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 24px;
+    height: 24px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 50%;
+    color: #ef4444;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-city-btn:hover {
+    background: #ef4444;
+    color: white;
+    transform: scale(1.1);
+}
+
+.empty-saved {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+}
+
+.empty-saved p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.empty-saved small {
+    font-size: 0.875rem;
+    opacity: 0.7;
+}
+
+/* ============================================
+   HOURLY FORECAST SECTION
+   ============================================ */
+
+.hourly-forecast-section {
+    padding: 2rem 2.5rem;
+    background: rgba(26, 31, 58, 0.05);
+    border-bottom: 1px solid var(--border);
+}
+
+.hourly-forecast-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+.hourly-forecast-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.hourly-forecast-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.hourly-forecast-container::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.hourly-item {
+    min-width: 80px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 0.75rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.hourly-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hourly-time {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.hourly-icon {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+}
+
+.hourly-temp {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 0.5rem;
+}
+
+.hourly-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+/* ============================================
+   CHART SECTION
+   ============================================ */
+
+.chart-section {
+    padding: 2rem 2.5rem;
+    background: rgba(26, 31, 58, 0.08);
+    border-bottom: 1px solid var(--border);
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .saved-cities-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .hourly-forecast-container {
+        gap: 0.75rem;
+    }
+    
+    .hourly-item {
+        min-width: 70px;
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .chart-container {
+        height: 250px;
+        padding: 1rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .save-current-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .saved-locations-section,
+    .hourly-forecast-section,
+    .chart-section {
+        padding: 1.5rem 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    .hourly-item {
+        min-width: 60px;
+    }
+    
+    .hourly-icon {
+        font-size: 1.5rem;
+    }
+    
+    .hourly-temp {
+        font-size: 1rem;
+    }
+    
+    .chart-container {
+        height: 200px;
+    }
+}
+
+/* ============================================
+   DARK THEME ADJUSTMENTS
+   ============================================ */
+
+[data-theme="dark"] .saved-city-card {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .saved-city-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .hourly-item {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .hourly-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .chart-container {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.saved-city-card,
+.hourly-item {
+    animation: slideIn 0.3s ease forwards;
+}
+
+.saved-city-card:nth-child(1) { animation-delay: 0.05s; }
+.saved-city-card:nth-child(2) { animation-delay: 0.1s; }
+.saved-city-card:nth-child(3) { animation-delay: 0.15s; }
+.saved-city-card:nth-child(4) { animation-delay: 0.2s; }
+.saved-city-card:nth-child(5) { animation-delay: 0.25s; }
