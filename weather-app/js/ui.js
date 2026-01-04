@@ -82,6 +82,11 @@ export function initializeElements() {
     
     elements.forecastContainer = document.getElementById('forecastContainer');
     elements.skyStatus = document.getElementById('skyStatus');
+    
+    // Nuevas secciones
+    elements.hourlyForecastContainer = document.getElementById('hourlyForecastContainer');
+    elements.savedLocationsContainer = document.getElementById('savedLocationsContainer');
+    elements.temperatureChart = document.getElementById('temperatureChart');
 }
 
 /**
@@ -446,4 +451,50 @@ export function focusCityInput() {
     if (elements.cityInput) {
         elements.cityInput.focus();
     }
+}
+/**
+ * Muestra el pronóstico por horas (próximas 8-12 horas)
+ * @param {Array} forecastList - Lista de pronósticos cada 3 horas
+ * @param {string} unit - Unidad de temperatura ('C' o 'F')
+ */
+export function displayHourlyForecast(forecastList, unit = 'C') {
+    if (!elements.hourlyForecastContainer) return;
+    
+    // Limpiar contenedor
+    elements.hourlyForecastContainer.innerHTML = '';
+    
+    // Tomar las primeras 8 entradas (24 horas aprox. cada 3h)
+    const hourlyData = forecastList.slice(0, 8);
+    
+    hourlyData.forEach(item => {
+        const time = new Date(item.dt * 1000);
+        const hours = time.getHours().toString().padStart(2, '0');
+        const minutes = time.getMinutes().toString().padStart(2, '0');
+        
+        const temp = Math.round(item.main.temp);
+        const iconCode = item.weather[0].icon;
+        const description = item.weather[0].description;
+        
+        // Obtener icono apropiado
+        const weatherIconClass = WEATHER_ICONS[item.weather[0].main] || WEATHER_ICONS.Default;
+        
+        const hourlyItem = document.createElement('div');
+        hourlyItem.className = 'hourly-item';
+        hourlyItem.innerHTML = `
+            <div class="hourly-time">${hours}:${minutes}</div>
+            <i class="wi ${weatherIconClass} hourly-icon"></i>
+            <div class="hourly-temp">${temp}°${unit}</div>
+            <div class="hourly-desc">${description}</div>
+        `;
+        
+        elements.hourlyForecastContainer.appendChild(hourlyItem);
+    });
+}
+
+/**
+ * Obtiene referencias a elementos DOM necesarios para charts y saved locations
+ * @returns {Object} Referencias a elementos del DOM
+ */
+export function getUIElements() {
+    return elements;
 }
