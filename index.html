@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="theme-color" content="#0072ff">
+    <meta name="theme-color" content="#0ea5e9">
     
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -27,55 +27,54 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
     <link rel="manifest" href="assets/icons/site.webmanifest">
     
-    <!-- Google Fonts: Poppins, Montserrat y Corinthia -->
+    <!-- Google Fonts: Inter (moderna y legible) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700&family=Corinthia:wght@400;700&display=swap" 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" 
           rel="stylesheet" 
           crossorigin="anonymous">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://risso-patron.github.io/portfolio/">
     
-    <!-- Meta tags para SEO -->
-    <meta name="description" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend junior de Panamá. Portfolio con proyectos reales en HTML, CSS y JavaScript vanilla. Buscando primera oportunidad tech.">
-    <meta name="keywords" content="desarrollador frontend, web developer, HTML, CSS, JavaScript, portfolio developer, programador junior, developer Panama, frontend junior, vanilla JavaScript, proyectos web">
+    <!-- Meta tags SEO -->
+    <meta name="description" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend de Panamá. Portfolio con proyectos reales: Weather App, E-commerce, plataformas web. HTML, CSS, JavaScript.">
+    <meta name="keywords" content="desarrollador frontend, web developer, HTML, CSS, JavaScript, portfolio developer, programador Panama, frontend developer Panama, vanilla JavaScript, proyectos web">
     <meta name="author" content="Jorge Luis Risso Patrón">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     
-    <!-- Geo Tags -->
-    <meta name="geo.region" content="PA">
-    <meta name="geo.placename" content="Ciudad de Panamá">
-    <meta name="geo.position" content="8.983333;-79.516670">
-    <meta name="ICBM" content="8.983333, -79.516670">
-    
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://risso-patron.github.io/portfolio/">
-    <meta property="og:site_name" content="Jorge Luis Risso Patrón - Portfolio">
-    <meta property="og:title" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend Junior">
-    <meta property="og:description" content="Portfolio profesional con proyectos reales: Weather App, Pomodoro Timer, Budget App. Vanilla JavaScript, HTML5, CSS3. Developer junior buscando oportunidades.">
+    <meta property="og:title" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend">
+    <meta property="og:description" content="Portfolio profesional con proyectos reales. Desarrollador Frontend especializado en JavaScript vanilla.">
     <meta property="og:image" content="https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png">
-    <meta property="og:image:alt" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="es_PA">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://risso-patron.github.io/portfolio/">
-    <meta name="twitter:title" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend">
-    <meta name="twitter:description" content="Portfolio con proyectos reales en JavaScript vanilla. Weather App, Pomodoro Timer, Budget App. Developer junior de Panamá.">
+    <meta name="twitter:title" content="Jorge Luis Risso Patrón - Frontend Developer">
+    <meta name="twitter:description" content="Portfolio con proyectos reales en JavaScript vanilla.">
     <meta name="twitter:image" content="https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png">
-    <meta name="twitter:creator" content="@JorgeLuisRP">
     
-    <!-- Additional SEO -->
-    <meta name="language" content="Spanish">
-    <meta name="revisit-after" content="7 days">
-    <meta name="distribution" content="global">
-    <meta name="rating" content="general">
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jorge Luis Risso Patrón",
+        "jobTitle": "Desarrollador Web Frontend",
+        "url": "https://risso-patron.github.io/portfolio/",
+        "image": "https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png",
+        "email": "luisrissopa@gmail.com",
+        "sameAs": [
+            "https://github.com/Risso-patron",
+            "https://linkedin.com/in/jorge-luis-risso"
+        ],
+        "knowsAbout": ["HTML5", "CSS3", "JavaScript", "Frontend Development"]
+    }
+    </script>
     
-    <!-- Script inline para evitar flash de contenido -->
+    <!-- Prevent FOUC -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
@@ -85,556 +84,519 @@
         })();
     </script>
     
-    <!-- Schema.org Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Jorge Luis Risso Patrón",
-        "jobTitle": "Desarrollador Web Frontend",
-        "description": "Desarrollador Web Frontend junior especializado en HTML, CSS y JavaScript vanilla",
-        "url": "https://risso-patron.github.io/portfolio/",
-        "image": "https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png",
-        "email": "luisrissopa@gmail.com",
-        "telephone": "+507-6456-0263",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Ciudad de Panamá",
-            "addressCountry": "PA"
-        },
-        "sameAs": [
-            "https://github.com/Risso-patron",
-            "https://linkedin.com/in/jorge-luis-risso"
-        ],
-        "knowsAbout": [
-            "HTML5",
-            "CSS3",
-            "JavaScript",
-            "Responsive Design",
-            "Frontend Development",
-            "Web Development"
-        ],
-        "alumniOf": {
-            "@type": "EducationalOrganization",
-            "name": "Autodidacta"
-        },
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Freelance"
-        }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Jorge Luis Risso Patrón - Portfolio",
-        "url": "https://risso-patron.github.io/portfolio/",
-        "description": "Portfolio profesional de Jorge Luis Risso Patrón, desarrollador web frontend",
-        "inLanguage": "es",
-        "author": {
-            "@type": "Person",
-            "name": "Jorge Luis Risso Patrón"
-        }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Proyectos de Desarrollo Web",
-        "description": "Portfolio de proyectos desarrollados por Jorge Luis Risso Patrón",
-        "itemListElement": [
-            {
-                "@type": "SoftwareApplication",
-                "position": 1,
-                "name": "Weather App",
-                "description": "Aplicación del clima con geolocalización y API de OpenWeather",
-                "url": "https://risso-patron.github.io/portfolio/weather-app/",
-                "applicationCategory": "WebApplication",
-                "operatingSystem": "Any",
-                "programmingLanguage": "JavaScript"
-            },
-            {
-                "@type": "SoftwareApplication",
-                "position": 2,
-                "name": "Pomodoro Timer",
-                "description": "Timer con técnica Pomodoro y estadísticas en tiempo real",
-                "url": "https://risso-patron.github.io/portfolio/pomodoro-timer/",
-                "applicationCategory": "WebApplication",
-                "operatingSystem": "Any",
-                "programmingLanguage": "JavaScript"
-            },
-            {
-                "@type": "SoftwareApplication",
-                "position": 3,
-                "name": "Budget App",
-                "description": "App de finanzas personales con gráficos y localStorage",
-                "url": "https://risso-patron.github.io/portfolio/budget-app/",
-                "applicationCategory": "WebApplication",
-                "operatingSystem": "Any",
-                "programmingLanguage": "JavaScript"
-            }
-        ]
-    }
-    </script>
-    
-    <link rel="stylesheet" href="assets/css/main.css?v=1.1">
+    <link rel="stylesheet" href="assets/css/main-new.css">
 </head>
 <body>
-    <!-- Navegación -->
-    <nav class="nav" id="navbar">
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
         <div class="container">
-            <div class="nav-content">
-                <a href="#" class="logo">
+            <div class="nav-wrapper">
+                <a href="#" class="nav-logo">
                     <img src="assets/images/Logo-RP-dorado-sin-fondo.png" alt="Jorge Luis Risso Patrón" class="logo-img" id="logoImg">
                 </a>
-                <ul class="nav-links">
-                    <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
-                    <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
-                    <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#work" class="nav-link">Work</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#resume" class="nav-link nav-link-resume">Resume</a></li>
                 </ul>
-                <!-- Toggle de modo claro/oscuro -->
-                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-                    <img src="assets/icons/moon.webp" alt="" id="themeIcon" style="width: 20px; height: 20px; object-fit: contain;">
+                
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section con imagen de fondo de Panamá -->
-    <header class="hero" id="hero">
-        <div class="hero-content fade-in">
-            <!-- Foto personal profesional a la izquierda -->
-            <div class="hero-image animate-slide-left">
-                <img src="assets/images/jorge-luis-perfil.png" alt="Jorge Luis Risso Patrón - Desarrollador Web Frontend" class="profile-pic">
-                <div class="profile-glow"></div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Left: Text -->
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <div class="status-dot"></div>
+                        DISPONIBLE PARA TRABAJAR
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Soy Luis,<br>
+                        <span class="gradient-text">Frontend Dev.</span>
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Construyo experiencias web funcionales y atractivas. 
+                        Especializado en JavaScript vanilla, enfocado en código limpio y diseño responsive.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#work" class="btn btn-primary">
+                            <span>Ver Proyectos</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#about" class="btn btn-secondary">Sobre Mí</a>
+                    </div>
+                </div>
+                
+                <!-- Right: Profile Card -->
+                <div class="hero-card">
+                    <div class="profile-card">
+                        <img src="assets/images/jorge-luis-perfil.png" alt="Luis Risso Patrón" class="profile-img">
+                        <div class="profile-info">
+                            <div class="profile-stat">
+                                <span class="stat-label">EXPERIENCIA</span>
+                                <span class="stat-value">1+ Año</span>
+                            </div>
+                            <div class="profile-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-header">
+                <span class="section-label">— SOBRE MÍ</span>
+                <h2 class="section-title">Construyendo<br><span class="gradient-text">Experiencias Digitales</span> que Importan.</h2>
             </div>
             
-            <!-- Contenido de texto a la derecha -->
-            <div class="hero-text animate-slide-right">
-                <h1 class="glitch-text">Jorge Luis Risso Patrón</h1>
-                <p class="hero-subtitle">
-                    <span class="typing-text">Desarrollador Web Frontend</span>
-                    <span class="cursor">|</span>
-                </p>
-                <p class="hero-location">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Panamá, Panamá
-                </p>
-                <p class="hero-description">
-                    Construyo interfaces web funcionales con HTML, CSS y JavaScript. 
-                    Apasionado por aprender, crear y crecer en tecnología.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#proyectos" class="btn-primary btn-animated">
-                        <span><i class="fas fa-code"></i> Ver Proyectos</span>
-                    </a>
-                </div>
-                <!-- Iconos sociales -->
-                <div class="social-links">
-                    <a href="https://github.com/Risso-patron" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/jorge-luis-risso" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="Email" id="emailContact">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- Partículas de fondo decorativas -->
-        <div class="hero-particles">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-        </div>
-    </header>
-
-    <!-- Sobre Mí -->
-    <section id="sobre-mi" class="about">
-        <div class="container">
-            <div class="about-content fade-in">
-                <h2 class="section-title animate-title">Sobre Mí</h2>
-                <p class="section-subtitle">
-                    Developer junior enfocado en crear experiencias web funcionales y atractivas
-                </p>
-                <div class="about-grid">
-                    <div class="about-card animate-fade-up">
-                        <div class="card-icon">
-                            <img src="assets/icons/developer-laptop.webp" alt="Developer" class="icon-3d">
-                        </div>
-                        <p class="about-text">
-                            Hola, soy Jorge Luis, un desarrollador web frontend junior de Panamá. 
-                            Autodidacta construyendo proyectos funcionales con HTML, CSS y JavaScript 
-                            para aplicar mis conocimientos y demostrar mis habilidades.
-                        </p>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="assets/images/jorge-luis-perfil.png" alt="Luis Risso Patrón desarrollando">
+                    <div class="about-status">
+                        <div class="status-dot"></div>
+                        Disponible para Trabajar
                     </div>
-                    <div class="about-card animate-fade-up animate-delay">
-                        <div class="card-icon">
-                            <img src="assets/icons/growth-rocket.webp" alt="Growth" class="icon-3d">
+                </div>
+                
+                <div class="about-content">
+                    <p class="about-text">
+                        Soy un desarrollador frontend autodidacta de Panamá, apasionado por crear interfaces web funcionales y atractivas.
+                    </p>
+                    
+                    <p class="about-text">
+                        Especializado en el stack JavaScript moderno, construyo aplicaciones desde cero aplicando mejores prácticas. Mi enfoque está en código mantenible, diseño responsive y experiencias de usuario fluidas.
+                    </p>
+                    
+                    <p class="about-text">
+                        Cuando no estoy programando, me gusta explorar nuevas tecnologías, contribuir a proyectos open source y documentar mi aprendizaje.
+                    </p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">1+</span>
+                            <span class="stat-label">Año de Experiencia</span>
                         </div>
-                        <p class="about-text">
-                            Busco mi primera oportunidad laboral en tecnología donde pueda seguir 
-                            aprendiendo y creciendo como programador. Me caracterizo por ser 
-                            comprometido, curioso y siempre dispuesto a aprender nuevas tecnologías.
-                        </p>
+                        <div class="stat-item">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Proyectos Completados</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Commits</span>
+                        </div>
                     </div>
+                    
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Contactar</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Proyectos con mockups visuales -->
-    <section id="proyectos" class="projects">
+    <!-- WORK -->
+    <section class="work" id="work">
         <div class="container">
-            <h2 class="section-title">Proyectos</h2>
-            <p class="section-subtitle">
-                Aplicaciones funcionales que demuestran mis habilidades técnicas y capacidad de resolución de problemas
-            </p>
-
-            <div class="projects-container">
-                <!-- Weather App - Imagen Izquierda -->
-                <div class="project-row project-left fade-in">
+            <div class="work-header">
+                <span class="section-label">— TRABAJOS SELECCIONADOS</span>
+                <h2 class="section-title">Construyendo<br><span class="gradient-text">Experiencias Digitales</span></h2>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="work-tabs">
+                <button class="tab-btn active" data-category="all">Todos</button>
+                <button class="tab-btn" data-category="apps">Vanilla JS</button>
+                <button class="tab-btn" data-category="client">Proyectos Cliente</button>
+                <button class="tab-btn" data-category="ui">UI/UX</button>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="projects-grid">
+                <!-- Weather App -->
+                <article class="project-card" data-category="apps">
                     <div class="project-image">
-                        <div class="image-wrapper" style="width: 80%; margin: 0 auto; display: flex; gap: 1.5rem; align-items: center; justify-content: center; background: transparent; box-shadow: none !important; padding: 0; overflow: visible; border-radius: 0;">
-                            <img src="weather-app/screenshots/screenshot-1.webp" alt="Weather App - Vista desktop" loading="lazy" style="width: 48%; height: auto; object-fit: contain; border-radius: 0; box-shadow: none;">
-                            <img src="weather-app/screenshots/screenshot-2.webp" alt="Weather App - Vista mobile" loading="lazy" style="width: 48%; height: auto; object-fit: contain; border-radius: 0; box-shadow: none;">
+                        <img src="weather-app/screenshots/screenshot-1.webp" alt="Weather App">
+                        <div class="project-tags">
+                            <span class="tag">Analytics</span>
                         </div>
                     </div>
                     <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tech">VANILLA JS + API</span>
+                        </div>
                         <h3 class="project-title">Weather App</h3>
-                        <p class="project-description">
-                            Aplicación que permite verificar el clima de cualquier ciudad en tiempo real 
-                            utilizando la API de OpenWeatherMap con interfaz intuitiva y responsive.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">API REST</span>
+                        <p class="project-desc">Aplicación del clima con geolocalización y datos en tiempo real usando OpenWeather API.</p>
+                        <div class="project-stack">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>API REST</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://risso-patron.github.io/portfolio/weather-app/" target="_blank" rel="noopener noreferrer" class="btn-demo">
-                                <i class="fas fa-external-link-alt"></i>
-                                Ver Demo
+                            <a href="https://risso-patron.github.io/portfolio/weather-app/" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Demo
                             </a>
-                            <a href="https://github.com/Risso-patron/portfolio/tree/main/weather-app" target="_blank" rel="noopener noreferrer" class="btn-code">
-                                <i class="fab fa-github"></i>
-                                Código
+                            <a href="https://github.com/Risso-patron/portfolio/tree/main/weather-app" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fab fa-github"></i> Code
                             </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Pomodoro Timer - Imagen Derecha -->
-                <div class="project-row project-right fade-in">
+                <!-- Pomodoro Timer -->
+                <article class="project-card" data-category="apps">
+                    <div class="project-image">
+                        <img src="pomodoro-timer/screenshots/screenshot-1.webp" alt="Pomodoro Timer">
+                        <div class="project-tags">
+                            <span class="tag">Productivity</span>
+                        </div>
+                    </div>
                     <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tech">JAVASCRIPT + NOTIFICATIONS</span>
+                        </div>
                         <h3 class="project-title">Pomodoro Timer</h3>
-                        <p class="project-description">
-                            Aplicación de productividad que implementa la técnica Pomodoro con 
-                            notificaciones, sonidos personalizables y seguimiento de sesiones.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript ES6+</span>
-                            <span class="tech-tag">Notifications API</span>
+                        <p class="project-desc">Timer de productividad con notificaciones, estadísticas y localStorage.</p>
+                        <div class="project-stack">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Notifications API</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://risso-patron.github.io/portfolio/pomodoro-timer/" target="_blank" rel="noopener noreferrer" class="btn-demo">
-                                <i class="fas fa-external-link-alt"></i>
-                                Ver Demo
+                            <a href="https://risso-patron.github.io/portfolio/pomodoro-timer/" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Demo
                             </a>
-                            <a href="https://github.com/Risso-patron/portfolio/tree/main/pomodoro-timer" target="_blank" rel="noopener noreferrer" class="btn-code">
-                                <i class="fab fa-github"></i>
-                                Código
+                            <a href="https://github.com/Risso-patron/portfolio/tree/main/pomodoro-timer" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fab fa-github"></i> Code
                             </a>
                         </div>
                     </div>
-                    <div class="project-image">
-                        <div class="image-wrapper" style="width: 80%; margin: 0 auto; display: flex; gap: 1.5rem; align-items: center; justify-content: center; background: transparent; box-shadow: none !important; padding: 0; overflow: visible; border-radius: 0;">
-                            <img src="pomodoro-timer/screenshots/screenshot-1.webp" alt="Pomodoro Timer - Vista desktop" loading="lazy" style="width: 48%; height: auto; object-fit: contain; border-radius: 0; box-shadow: none;">
-                            <img src="pomodoro-timer/screenshots/screenshot-2.webp" alt="Pomodoro Timer - Vista mobile" loading="lazy" style="width: 48%; height: auto; object-fit: contain; border-radius: 0; box-shadow: none;">
-                        </div>
-                    </div>
-                </div>
+                </article>
 
-                <!-- Budget App - Imagen Izquierda -->
-                <div class="project-row project-left fade-in">
+                <!-- Budget App -->
+                <article class="project-card" data-category="apps">
                     <div class="project-image">
-                        <div class="image-wrapper" style="width: 80%; margin: 0 auto; display: flex; gap: 1.5rem; align-items: center; justify-content: center; background: transparent; box-shadow: none !important; padding: 0; overflow: visible; border-radius: 0;">
-                            <img src="budget-app/screenshots/screenshot-1.webp" alt="Budget App - Vista desktop" loading="lazy" style="width: 48%; height: auto; object-fit: contain; border-radius: 0; box-shadow: none;">
-                            <img src="budget-app/screenshots/screenshot-2.webp" alt="Budget App - Vista mobile" loading="lazy" style="width: 48%; height: auto; object-fit: contain; border-radius: 0; box-shadow: none;">
+                        <img src="budget-app/screenshots/screenshot-1.webp" alt="Budget App">
+                        <div class="project-tags">
+                            <span class="tag">FinTech</span>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Calculadora de Presupuesto</h3>
-                        <p class="project-description">
-                            Herramienta de finanzas personales para gestionar ingresos y gastos 
-                            con categorización, filtros y almacenamiento local persistente.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">HTML5</span>
-                            <span class="tech-tag">CSS3</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">LocalStorage</span>
+                        <div class="project-meta">
+                            <span class="project-tech">JAVASCRIPT + LOCALSTORAGE</span>
+                        </div>
+                        <h3 class="project-title">Budget App</h3>
+                        <p class="project-desc">Calculadora de presupuesto personal con categorización y gráficos interactivos.</p>
+                        <div class="project-stack">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>localStorage</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://risso-patron.github.io/portfolio/budget-app/" target="_blank" rel="noopener noreferrer" class="btn-demo">
-                                <i class="fas fa-external-link-alt"></i>
-                                Ver Demo
+                            <a href="https://risso-patron.github.io/portfolio/budget-app/" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Demo
                             </a>
-                            <a href="https://github.com/Risso-patron/portfolio/tree/main/budget-app" target="_blank" rel="noopener noreferrer" class="btn-code">
-                                <i class="fab fa-github"></i>
-                                Código
+                            <a href="https://github.com/Risso-patron/portfolio/tree/main/budget-app" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fab fa-github"></i> Code
                             </a>
                         </div>
                     </div>
-                </div>
+                </article>
+
+                <!-- Home Power PTY -->
+                <article class="project-card" data-category="client">
+                    <div class="project-image">
+                        <img src="assets/images/projects/homepower/screenshot-desktop.webp" alt="Home Power PTY">
+                        <div class="project-tags">
+                            <span class="tag">E-commerce</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tech">CLIENT PROJECT</span>
+                        </div>
+                        <h3 class="project-title">Home Power PTY</h3>
+                        <p class="project-desc">E-commerce de electrodomésticos al por mayor con catálogo dinámico y WhatsApp integration.</p>
+                        <div class="project-stack">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Responsive</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://homepowerpty.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- SOMOS Properties -->
+                <article class="project-card" data-category="client">
+                    <div class="project-image">
+                        <img src="assets/images/projects/somos-properties/screenshot-desktop.webp" alt="SOMOS Properties">
+                        <div class="project-tags">
+                            <span class="tag">Real Estate</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tech">NEXT.JS + REACT</span>
+                        </div>
+                        <h3 class="project-title">SOMOS Properties</h3>
+                        <p class="project-desc">Plataforma inmobiliaria con búsqueda avanzada de propiedades en Panamá.</p>
+                        <div class="project-stack">
+                            <span>Next.js</span>
+                            <span>React</span>
+                            <span>Tailwind</span>
+                            <span>Forms</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.somosproperties.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- HostPro Panama -->
+                <article class="project-card" data-category="client ui">
+                    <div class="project-image">
+                        <img src="assets/images/projects/hostpropa/screenshot-desktop.webp" alt="HostPro Panama">
+                        <div class="project-tags">
+                            <span class="tag">Services</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tech">LANDING PAGE</span>
+                        </div>
+                        <h3 class="project-title">HostPro Panama</h3>
+                        <p class="project-desc">Agencia de staff premium para eventos corporativos con formularios integrados.</p>
+                        <div class="project-stack">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Forms</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.hostpropanama.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- SEMM International -->
+                <article class="project-card" data-category="client">
+                    <div class="project-image">
+                        <img src="assets/images/projects/semm-international/screenshot-desktop.webp" alt="SEMM International">
+                        <div class="project-tags">
+                            <span class="tag tag-wip">In Development</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tech">UNDER CONSTRUCTION</span>
+                        </div>
+                        <h3 class="project-title">SEMM International</h3>
+                        <p class="project-desc">Sitio corporativo para empresa de construcción y servicios eléctricos.</p>
+                        <div class="project-stack">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>SEO</span>
+                        </div>
+                        <div class="project-links">
+                            <span class="project-link disabled">
+                                <i class="fas fa-code"></i> Coming Soon
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Studio Create -->
+                <article class="project-card" data-category="client ui">
+                    <div class="project-image">
+                        <img src="assets/images/projects/studio-create/screenshot-desktop.webp" alt="Studio Create">
+                        <div class="project-tags">
+                            <span class="tag tag-wip">In Development</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="project-tech">UNDER CONSTRUCTION</span>
+                        </div>
+                        <h3 class="project-title">Studio Create</h3>
+                        <p class="project-desc">Agencia de marketing digital, branding, diseño de logos y desarrollo web.</p>
+                        <div class="project-stack">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Portfolio</span>
+                        </div>
+                        <div class="project-links">
+                            <span class="project-link disabled">
+                                <i class="fas fa-code"></i> Coming Soon
+                            </span>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Habilidades -->
-    <section id="habilidades" class="skills">
+    <!-- TECH ARSENAL -->
+    <section class="arsenal">
         <div class="container">
-            <h2 class="section-title">Habilidades Técnicas</h2>
-            <p class="section-subtitle">
-                Tecnologías y herramientas que domino para crear aplicaciones web funcionales
-            </p>
-
-            <div class="skills-grid">
-                <div class="skill-category frontend fade-in">
-                    <div class="skill-icon">
-                        <img src="assets/images/frontend.png" alt="Frontend Development">
-                    </div>
-                    <ul class="skill-list">
-                        <li>HTML5 & Semántica</li>
-                        <li>CSS3 & Flexbox/Grid</li>
-                        <li>JavaScript ES6+</li>
-                        <li>Responsive Design</li>
-                        <li>DOM Manipulation</li>
-                    </ul>
-                </div>
-
-                <div class="skill-category herramientas fade-in">
-                    <div class="skill-icon">
-                        <img src="assets/images/herramientas.png" alt="Herramientas de Desarrollo">
-                    </div>
-                    <ul class="skill-list">
-                        <li>Git & GitHub</li>
-                        <li>VS Code</li>
-                        <li>Chrome DevTools</li>
-                        <li>Figma (Básico)</li>
-                        <li>GitHub Pages</li>
-                    </ul>
-                </div>
-
-                <div class="skill-category apis-datos fade-in">
-                    <div class="skill-icon">
-                        <img src="assets/images/APIdatos.png" alt="APIs y Bases de Datos">
-                    </div>
-                    <ul class="skill-list">
-                        <li>Fetch API</li>
-                        <li>REST APIs</li>
-                        <li>JSON</li>
-                        <li>LocalStorage</li>
-                        <li>Async/Await</li>
-                    </ul>
-                </div>
-
-                <div class="skill-category aprendiendo fade-in">
-                    <div class="skill-icon">
-                        <img src="assets/images/aprendiendo.png" alt="Tecnologías en Aprendizaje">
-                    </div>
-                    <ul class="skill-list">
-                        <li>React.js</li>
-                        <li>TypeScript</li>
-                        <li>Node.js</li>
-                        <li>Tailwind CSS</li>
-                        <li>Testing (Jest)</li>
-                    </ul>
-                </div>
-
-                <div class="skill-category ux-ui fade-in">
-                    <div class="skill-icon">
-                        <img src="assets/images/UX-UIdesing.png" alt="Diseño UX/UI">
-                    </div>
-                    <ul class="skill-list">
-                        <li>Wireframing</li>
-                        <li>Prototyping</li>
-                        <li>User Interface</li>
-                        <li>Color Theory</li>
-                        <li>Mobile First</li>
-                    </ul>
-                </div>
-
-                <div class="skill-category soft-skills fade-in">
-                    <div class="skill-icon">
-                        <img src="assets/images/soft-skiil.png" alt="Habilidades Blandas">
-                    </div>
-                    <ul class="skill-list">
-                        <li>Autodidacta</li>
-                        <li>Resolución de Problemas</li>
-                        <li>Trabajo en Equipo</li>
-                        <li>Comunicación Efectiva</li>
-                        <li>Adaptabilidad</li>
-                    </ul>
-                </div>
+            <div class="arsenal-header">
+                <span class="section-label">— ARSENAL TÉCNICO</span>
+                <h2 class="section-title">Stack Tecnológico</h2>
             </div>
-
-            <!-- Tech Stack Slider -->
-            <div class="tech-stack-section">
-                <h3 class="tech-stack-title">Skills</h3>
-                <div class="tech-slider-wrapper">
-                    <div class="tech-slider">
-                        <!-- HTML5 -->
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
-                        </div>
-                        <!-- CSS3 -->
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
-                        </div>
-                        <!-- JavaScript -->
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
-                        </div>
-                        <!-- React -->
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
-                        </div>
-                        <!-- Vite -->
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="Vite">
-                        </div>
-                        <!-- Tailwind CSS -->
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS">
-                        </div>
-                        <!-- Git -->
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
-                        </div>
-                        <!-- GitHub -->
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-                        </div>
-                        <!-- Supabase -->
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="Supabase">
-                        </div>
-                        
-                        <!-- Duplicados para efecto infinito -->
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
-                        </div>
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
-                        </div>
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
-                        </div>
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
-                        </div>
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" alt="Vite">
-                        </div>
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS">
-                        </div>
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
-                        </div>
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-                        </div>
-                        <div class="tech-slide">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="Supabase">
-                        </div>
-                    </div>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                    <span>HTML5</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                    <span>CSS3</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                    <span>JavaScript</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                    <span>React</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                    <span>Git</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                    <span>GitHub</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                    <span>VS Code</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                    <span>Figma</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contacto -->
-    <section id="contacto" class="contact">
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">Contacto</h2>
-            <p class="section-subtitle">
-                ¿Tienes un proyecto en mente? Me encantaría colaborar contigo
-            </p>
-
-            <div class="contact-links">
-                <a href="#" class="contact-link" id="emailContactFooter">
-                    <i class="fas fa-envelope"></i>
-                    Email
-                </a>
-                <a href="https://github.com/Risso-patron" target="_blank" rel="noopener noreferrer" class="contact-link">
-                    <i class="fab fa-github"></i>
-                    GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/jorge-luis-risso-/" target="_blank" rel="noopener noreferrer" class="contact-link">
-                    <i class="fab fa-linkedin"></i>
-                    LinkedIn
-                </a>
-                <a href="https://wa.me/50764560263?text=Hola%20Jorge%20Luis,%20me%20interesa%20contactarte%20para%20una%20oportunidad%20laboral" target="_blank" rel="noopener noreferrer" class="contact-link">
-                    <i class="fab fa-whatsapp"></i>
-                    WhatsApp
-                </a>
+            <div class="contact-wrapper">
+                <div class="contact-content">
+                    <h2 class="contact-title">¿Tienes un proyecto en mente?</h2>
+                    <p class="contact-subtitle">
+                        Estoy disponible para freelance y posiciones full-time. 
+                        Si tienes un proyecto interesante o una oportunidad laboral, hablemos.
+                    </p>
+                    
+                    <div class="contact-buttons">
+                        <a href="mailto:luisrissopa@gmail.com" class="btn btn-primary btn-large">
+                            <i class="fas fa-envelope"></i>
+                            <span>Contactar</span>
+                        </a>
+                        <a href="#resume" class="btn btn-secondary btn-large">
+                            <i class="fas fa-download"></i>
+                            <span>Descargar CV</span>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-socials">
+                        <a href="https://github.com/Risso-patron" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/jorge-luis-risso" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://wa.me/50764560263" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:luisrissopa@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="container footer-content">
-            <p class="footer-copy">© 2024. Diseñado y desarrollado por Jorge Luis Risso Patrón.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <img src="assets/images/Logo-RP-dorado-sin-fondo.png" alt="Logo RP" class="footer-logo">
+                    <p>Desarrollador Frontend especializado en crear experiencias web funcionales.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Navegación</h4>
+                        <a href="#work">Proyectos</a>
+                        <a href="#about">Sobre Mí</a>
+                        <a href="#contact">Contacto</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Redes</h4>
+                        <a href="https://github.com/Risso-patron" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://linkedin.com/in/jorge-luis-risso" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://wa.me/50764560263" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 Jorge Luis Risso Patrón. Todos los derechos reservados.</p>
+                <p>Hecho con <i class="fas fa-heart"></i> en Panamá</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Botón de WhatsApp Flotante -->
-    <a href="https://wa.me/50764560263?text=Hola%20Jorge%20Luis,%20me%20interesa%20conocer%20más%20sobre%20tu%20trabajo%20como%20desarrollador%20frontend" 
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/50764560263?text=Hola%20Jorge%20Luis,%20vi%20tu%20portfolio" 
        class="whatsapp-float" 
        target="_blank" 
        rel="noopener noreferrer"
-       title="Contáctame por WhatsApp">
-        <svg viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.085"/>
-        </svg>
+       aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Email Obfuscation Script (Anti-spam) -->
-    <script>
-        (function() {
-            const user = 'luisrissopa';
-            const domain = 'gmail.com';
-            const email = user + '@' + domain;
-            
-            const emailLinks = [
-                document.getElementById('emailContact'),
-                document.getElementById('emailContactFooter')
-            ];
-            
-            emailLinks.forEach(link => {
-                if (link) {
-                    link.href = 'mailto:' + email;
-                    link.setAttribute('aria-label', 'Email: ' + email);
-                }
-            });
-        })();
-    </script>
-
-    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/main-new.js"></script>
 </body>
 </html>
