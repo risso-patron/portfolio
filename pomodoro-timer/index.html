@@ -741,6 +741,40 @@
             color: var(--text-muted);
         }
 
+        /* Botón Volver */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 99, 71, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 9999;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 99, 71, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .back-button:focus {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
         @media (max-width: 640px) {
             .footer-links {
                 flex-direction: column;
@@ -750,6 +784,12 @@
     </style>
 </head>
 <body>
+    <!-- Botón Volver al Portfolio -->
+    <a href="../index.html" class="back-button" aria-label="Volver al portfolio">
+        <span>←</span>
+        <span>Volver</span>
+    </a>
+
     <div class="app-container">
         <!-- Header -->
         <header class="header">
