@@ -649,6 +649,53 @@
             position: relative;
         }
 
+        /* Grid de múltiples imágenes para project cards */
+        .project-card .project-image-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            min-height: 280px;
+        }
+
+        .project-card .project-image-grid img {
+            width: auto;
+            max-width: 45%;
+            height: auto;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card .project-image-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card .project-image-grid .project-tags {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        /* Responsive para grid de imágenes */
+        @media (max-width: 768px) {
+            .project-card .project-image-grid {
+                gap: 15px;
+                padding: 20px 10px;
+                min-height: 200px;
+            }
+            
+            .project-card .project-image-grid img {
+                max-width: 48%;
+                max-height: 250px;
+            }
+        }
+
         .image-wrapper {
             position: relative;
             border-radius: 20px;

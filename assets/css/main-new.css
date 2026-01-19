@@ -594,6 +594,33 @@ a {
     background: var(--bg-tertiary);
 }
 
+/* Grid de múltiples imágenes */
+.project-image-grid {
+    aspect-ratio: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 20px;
+    min-height: 300px;
+}
+
+.project-image-grid img {
+    width: auto !important;
+    max-width: 45%;
+    height: auto !important;
+    max-height: 350px;
+    object-fit: contain !important;
+    border-radius: 0;
+}
+
+.project-image-grid .project-tags {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+}
+
 .project-image img {
     width: 100%;
     height: 100%;
@@ -1005,6 +1032,17 @@ a {
     
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .project-image-grid {
+        gap: 15px;
+        padding: 20px 10px;
+        min-height: 250px;
+    }
+    
+    .project-image-grid img {
+        max-width: 48%;
+        max-height: 250px;
     }
     
     .about-stats {
