@@ -14,20 +14,11 @@ import {
     displayForecast,
     displayHourlyForecast,
     updateUnitIcon,
-    getCityInputValue 
+    getCityInputValue,
+    getUIElements
 } from './ui.js';
 import { initAccessibility, announceToScreenReader } from './accessibility.js';
 import { initTheme } from './theme.js';
-import { createTemperatureChart, destroyChart } from './charts.js';
-import { getSavedLocations, saveLocation, removeLocation, isLocationSaved, renderSavedLocations } from './savedLocations.js';
-import { displayHourlyForecast, getUIElements } from './ui.js';
-import { 
-    initSavedLocations, 
-    saveCity, 
-    renderSavedCities,
-    onCityClick 
-} from './saved-locations.js';
-import { createTemperatureChart, updateChartTheme } from './chart-handler.js';
 
 // Estado global de la aplicación
 const appState = {
