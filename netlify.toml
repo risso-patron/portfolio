@@ -1,0 +1,55 @@
+# Configuración de Netlify para Portfolio
+# Jorge Luis Risso Patrón - risso-patron.com
+
+[build]
+  # Directorio de publicación (raíz del proyecto)
+  publish = "."
+  
+  # No necesitamos comando de build (sitio estático)
+  command = ""
+
+# Configuración de redirecciones
+[[redirects]]
+  # Redirigir 404 al index para SPA-like behavior
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# Headers de seguridad
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Headers para assets estáticos (cache)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Headers para imágenes
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+    
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# No cachear el HTML principal
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
