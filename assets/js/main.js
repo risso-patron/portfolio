@@ -250,6 +250,30 @@
             counters.forEach(counter => counterObserver.observe(counter));
         }
 
+        // ==================== Carrusel de Tecnologías ==================== 
+        const techGrid = document.querySelector('.tech-grid');
+        
+        if (techGrid && window.innerWidth <= 768) {
+            // Duplicar items para efecto infinito
+            const items = Array.from(techGrid.children);
+            items.forEach(item => {
+                const clone = item.cloneNode(true);
+                techGrid.appendChild(clone);
+            });
+            
+            techGrid.classList.add('scrolling');
+        }
+        
+        // Reiniciar en resize
+        window.addEventListener('resize', () => {
+            if (techGrid) {
+                const isScrolling = techGrid.classList.contains('scrolling');
+                if (window.innerWidth <= 768 && !isScrolling) {
+                    location.reload();
+                }
+            }
+        });
+
         // ==================== Log de carga ==================== 
         console.log('%c✨ Portfolio cargado exitosamente', 'color: #0072ff; font-size: 16px; font-weight: bold;');
         console.log('%c🚀 Jorge Luis Risso Patrón - Developer Frontend', 'color: #00c6ff; font-size: 14px;');

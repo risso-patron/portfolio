@@ -178,20 +178,6 @@
                         <div class="status-dot"></div>
                         Disponible para Trabajar
                     </div>
-                </div>
-                
-                <div class="about-content">
-                    <p class="about-text">
-                        Soy un desarrollador frontend autodidacta de Panamá, apasionado por crear interfaces web funcionales y atractivas.
-                    </p>
-                    
-                    <p class="about-text">
-                        Especializado en el stack JavaScript moderno, construyo aplicaciones desde cero aplicando mejores prácticas. Mi enfoque está en código mantenible, diseño responsive y experiencias de usuario fluidas.
-                    </p>
-                    
-                    <p class="about-text">
-                        Cuando no estoy programando, me gusta explorar nuevas tecnologías, contribuir a proyectos open source y documentar mi aprendizaje.
-                    </p>
                     
                     <div class="about-stats">
                         <div class="stat-item">
@@ -207,11 +193,27 @@
                             <span class="stat-label">Commits</span>
                         </div>
                     </div>
+                </div>
+                
+                <div class="about-content">
+                    <p class="about-text">
+                        Soy un desarrollador frontend autodidacta de Panamá, apasionado por crear interfaces web funcionales y atractivas.
+                    </p>
                     
-                    <a href="#contact" class="btn btn-primary">
-                        <span>Contactar</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <p class="about-text">
+                        Especializado en el stack JavaScript moderno, construyo aplicaciones desde cero aplicando mejores prácticas. Mi enfoque está en código mantenible, diseño responsive y experiencias de usuario fluidas.
+                    </p>
+                    
+                    <p class="about-text">
+                        Cuando no estoy programando, me gusta explorar nuevas tecnologías, contribuir a proyectos open source y documentar mi aprendizaje.
+                    </p>
+                    
+                    <div style="text-align: right;">
+                        <a href="#contact" class="btn btn-primary">
+                            <span>Contactar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -237,13 +239,9 @@
             <div class="projects-grid">
                 <!-- Weather App -->
                 <article class="project-card" data-category="apps">
-                    <div class="project-image project-image-grid">
-                        <div class="mobile-mockup">
-                            <img src="weather-app/screenshots/screenshot-1.webp" alt="Weather App - Vista Principal">
-                        </div>
-                        <div class="mobile-mockup">
-                            <img src="weather-app/screenshots/screenshot-2.webp" alt="Weather App - Vista Secundaria">
-                        </div>
+                    <div class="project-image project-image-grid project-image-grid-simple">
+                        <img src="weather-app/screenshots/screenshot-1.webp" alt="Weather App - Vista Principal">
+                        <img src="weather-app/screenshots/screenshot-2.webp" alt="Weather App - Vista Secundaria">
                         <div class="project-tags">
                             <span class="tag">Analytics</span>
                         </div>
@@ -273,13 +271,9 @@
 
                 <!-- Pomodoro Timer -->
                 <article class="project-card" data-category="apps">
-                    <div class="project-image project-image-grid">
-                        <div class="mobile-mockup">
-                            <img src="pomodoro-timer/screenshots/screenshot-1.webp" alt="Pomodoro Timer - Vista Principal">
-                        </div>
-                        <div class="mobile-mockup">
-                            <img src="pomodoro-timer/screenshots/screenshot-2.webp" alt="Pomodoro Timer - Vista Secundaria">
-                        </div>
+                    <div class="project-image project-image-grid project-image-grid-simple">
+                        <img src="pomodoro-timer/screenshots/screenshot-1.webp" alt="Pomodoro Timer - Vista Principal">
+                        <img src="pomodoro-timer/screenshots/screenshot-2.webp" alt="Pomodoro Timer - Vista Secundaria">
                         <div class="project-tags">
                             <span class="tag">Productivity</span>
                         </div>
@@ -309,13 +303,9 @@
 
                 <!-- Budget App -->
                 <article class="project-card" data-category="apps">
-                    <div class="project-image project-image-grid">
-                        <div class="mobile-mockup">
-                            <img src="budget-app/screenshots/screenshot-1.webp" alt="Budget App - Vista Principal">
-                        </div>
-                        <div class="mobile-mockup">
-                            <img src="budget-app/screenshots/screenshot-2.webp" alt="Budget App - Vista Secundaria">
-                        </div>
+                    <div class="project-image project-image-grid project-image-grid-simple">
+                        <img src="budget-app/screenshots/screenshot-1.webp" alt="Budget App - Vista Principal">
+                        <img src="budget-app/screenshots/screenshot-2.webp" alt="Budget App - Vista Secundaria">
                         <div class="project-tags">
                             <span class="tag">FinTech</span>
                         </div>
@@ -345,8 +335,32 @@
 
                 <!-- Home Power PTY -->
                 <article class="project-card" data-category="client">
-                    <div class="project-image">
-                        <img src="assets/images/projects/homepowerpty.com/screenshot-desktop.png" alt="Home Power PTY">
+                    <div class="project-image project-image-grid">
+                        <div class="browser-mockup">
+                            <div class="browser-header">
+                                <div class="browser-buttons">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <div class="browser-address">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                    <span>homepowerpty.com</span>
+                                </div>
+                            </div>
+                            <div class="browser-content">
+                                <img src="assets/images/projects/homepowerpty.com/screenshot-desktop.png" alt="Home Power PTY Desktop" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="phone-mockup-small">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <img src="assets/images/projects/homepowerpty.com/screenshot-mobile.png" alt="Home Power PTY Mobile" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-tags">
                             <span class="tag">E-commerce</span>
                         </div>
@@ -373,8 +387,32 @@
 
                 <!-- SOMOS Properties -->
                 <article class="project-card" data-category="client">
-                    <div class="project-image">
-                        <img src="assets/images/projects/somosproperties.com/screenshot-desktop.png" alt="SOMOS Properties">
+                    <div class="project-image project-image-grid">
+                        <div class="browser-mockup">
+                            <div class="browser-header">
+                                <div class="browser-buttons">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <div class="browser-address">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                    <span>somosproperties.com</span>
+                                </div>
+                            </div>
+                            <div class="browser-content">
+                                <img src="assets/images/projects/somosproperties.com/screenshot-desktop.png" alt="SOMOS Properties Desktop" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="phone-mockup-small">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <img src="assets/images/projects/somosproperties.com/screenshot-mobile..png" alt="SOMOS Properties Mobile" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-tags">
                             <span class="tag">Real Estate</span>
                         </div>
@@ -401,8 +439,32 @@
 
                 <!-- HostPro Panama -->
                 <article class="project-card" data-category="client ui">
-                    <div class="project-image">
-                        <img src="assets/images/projects/hostpropanama.com/screenshot-desktop.png" alt="HostPro Panama">
+                    <div class="project-image project-image-grid">
+                        <div class="browser-mockup">
+                            <div class="browser-header">
+                                <div class="browser-buttons">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <div class="browser-address">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                    <span>hostpropanama.com</span>
+                                </div>
+                            </div>
+                            <div class="browser-content">
+                                <img src="assets/images/projects/hostpropanama.com/screenshot-desktop.png" alt="HostPro Panama Desktop" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="phone-mockup-small">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <img src="assets/images/projects/hostpropanama.com/screenshot-mobile.png" alt="HostPro Panama Mobile" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-tags">
                             <span class="tag">Services</span>
                         </div>
