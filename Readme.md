@@ -20,6 +20,8 @@ Desarrollador frontend autodidacta de Panamá, apasionado por crear interfaces w
 
 ### Apps con Vanilla JavaScript
 
+> Todas las apps incluyen mockups profesionales de iPhone con efectos 3D y diseño moderno
+
 #### 1. Weather App
 Aplicación del clima con geolocalización y datos en tiempo real usando OpenWeather API.
 
@@ -43,23 +45,35 @@ Calculadora de presupuesto personal con categorización y gráficos interactivos
 
 ### Proyectos Cliente
 
-#### Home Power PTY
+#### homepowerpty.com
 E-commerce de equipos electrónicos con sistema de categorías y filtros avanzados.
 
 - **Stack:** HTML5, CSS3, JavaScript, Formularios integrados
 - **[Visitar Sitio](https://homepowerpty.com/)**
 
-#### SOMOS Properties
+#### somosproperties.com
 Plataforma inmobiliaria con galería de propiedades y sistema de búsqueda.
 
 - **Stack:** HTML5, CSS3, JavaScript
 - **[Visitar Sitio](https://www.somosproperties.com/)**
 
-#### HostPro Panama
+#### hostpropanama.com
 Landing page para agencia de staff premium con formularios de contacto.
 
 - **Stack:** HTML5, CSS3, JavaScript
 - **[Visitar Sitio](https://www.hostpropanama.com/)**
+
+#### SEMM International
+Sitio corporativo para empresa de consultoría y servicios empresariales.
+
+- **Stack:** HTML5, CSS3, JavaScript
+- **[Visitar Sitio](https://semm-international.com/)**
+
+#### Studio Create
+Plataforma de servicios creativos y diseño digital.
+
+- **Stack:** HTML5, CSS3, JavaScript
+- **Estado:** 🚧 En desarrollo
 
 ---
 
@@ -85,10 +99,11 @@ Landing page para agencia de staff premium con formularios de contacto.
 ## 📊 Estadísticas
 
 - ✅ **1+ año** de experiencia práctica
-- ✅ **8+ proyectos** completados (apps + clientes)
-- ✅ **100+ commits** en GitHub
-- ✅ **3 apps funcionales** con vanilla JavaScript
-- ✅ **5 sitios cliente** desplegados en producción
+- ✅ **10+ proyectos** completados (apps + clientes)
+- ✅ **150+ commits** en GitHub
+- ✅ **3 apps funcionales** con vanilla JavaScript y mockups profesionales
+- ✅ **6 sitios cliente** desplegados en producción
+- ✅ **Dominio personalizado** con SSL/HTTPS en Netlify
 
 ---
 
@@ -118,18 +133,22 @@ Landing page para agencia de staff premium con formularios de contacto.
 
 ```
 portfolio/
-├── index.html              # Portfolio principal
+├── index.html              # Portfolio principal (versión moderna)
 ├── assets/
 │   ├── css/
-│   │   └── main-new.css   # Estilos principales
+│   │   └── main-new.css   # Estilos con mockups de iPhone
 │   ├── js/
-│   │   └── main-new.js    # JavaScript principal
+│   │   └── main.js        # JavaScript principal
 │   ├── images/            # Imágenes optimizadas
+│   │   └── projects/      # Screenshots de proyectos cliente
 │   └── icons/             # Favicons y iconos
 ├── weather-app/           # App del clima
+│   └── screenshots/       # Mockups de iPhone (2)
 ├── pomodoro-timer/        # Timer Pomodoro
+│   └── screenshots/       # Mockups de iPhone (2)
 ├── budget-app/            # Calculadora de presupuesto
-└── doctrash/              # Archivos obsoletos
+│   └── screenshots/       # Mockups de iPhone (2)
+└── README.md              # Este archivo
 ```
 
 ---
