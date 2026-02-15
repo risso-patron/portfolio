@@ -130,12 +130,15 @@ a {
     transform: scale(1.05);
 }
 
+/* Logo color ajustado por tema */
 [data-theme="light"] .nav-logo img {
-    content: url('../../assets/images/Logo-RP-negro-sin-fondo.png');
+    filter: brightness(0) saturate(100%);
+    /* Convierte dorado → negro para mejor contraste */
 }
 
 [data-theme="dark"] .nav-logo img {
-    content: url('../../assets/images/Logo-RP-dorado-sin-fondo.png');
+    filter: none;
+    /* Mantiene color dorado original */
 }
 
 .nav-menu {
@@ -1113,12 +1116,15 @@ a {
     margin-bottom: 16px;
 }
 
+/* Logo color ajustado por tema */
 [data-theme="light"] .footer-logo {
-    content: url('../../assets/images/Logo-RP-negro-sin-fondo.png');
+    filter: brightness(0) saturate(100%);
+    /* Convierte dorado → negro para mejor contraste */
 }
 
 [data-theme="dark"] .footer-logo {
-    content: url('../../assets/images/Logo-RP-dorado-sin-fondo.png');
+    filter: none;
+    /* Mantiene color dorado original */
 }
 
 .footer-links {
