@@ -85,7 +85,7 @@ export function initializeElements() {
     
     // Nuevas secciones
     elements.hourlyForecastContainer = document.getElementById('hourlyForecastContainer');
-    elements.savedLocationsContainer = document.getElementById('savedLocationsContainer');
+    elements.savedLocationsContainer = document.getElementById('savedCitiesContainer');
     elements.temperatureChart = document.getElementById('temperatureChart');
 }
 

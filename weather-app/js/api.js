@@ -62,6 +62,47 @@ const rateLimiter = {
     }
 };
 
+function buildWeatherByCityUrl(city, unit) {
+    if (API_CONFIG.PROXY.ENABLED) {
+        const params = new URLSearchParams({
+            q: city,
+            units: unit,
+            lang: API_CONFIG.LANGUAGE
+        });
+        return `${API_CONFIG.PROXY.WEATHER_ENDPOINT}?${params.toString()}`;
+    }
+
+    return `${API_CONFIG.BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_CONFIG.API_KEY}&units=${unit}&lang=${API_CONFIG.LANGUAGE}`;
+}
+
+function buildWeatherByCoordsUrl(lat, lon, unit) {
+    if (API_CONFIG.PROXY.ENABLED) {
+        const params = new URLSearchParams({
+            lat: String(lat),
+            lon: String(lon),
+            units: unit,
+            lang: API_CONFIG.LANGUAGE
+        });
+        return `${API_CONFIG.PROXY.WEATHER_ENDPOINT}?${params.toString()}`;
+    }
+
+    return `${API_CONFIG.BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${API_CONFIG.API_KEY}&units=${unit}&lang=${API_CONFIG.LANGUAGE}`;
+}
+
+function buildForecastUrl(lat, lon, unit) {
+    if (API_CONFIG.PROXY.ENABLED) {
+        const params = new URLSearchParams({
+            lat: String(lat),
+            lon: String(lon),
+            units: unit,
+            lang: API_CONFIG.LANGUAGE
+        });
+        return `${API_CONFIG.PROXY.FORECAST_ENDPOINT}?${params.toString()}`;
+    }
+
+    return `${API_CONFIG.BASE_URL}/forecast?lat=${lat}&lon=${lon}&appid=${API_CONFIG.API_KEY}&units=${unit}&lang=${API_CONFIG.LANGUAGE}`;
+}
+
 /**
  * Obtiene datos del clima por nombre de ciudad
  * @param {string} city - Nombre de la ciudad
@@ -75,7 +116,7 @@ export async function getWeatherByCity(city, unit = API_CONFIG.DEFAULT_UNIT) {
     }
 
     // Verificar API key
-    if (API_CONFIG.API_KEY === 'TU_API_KEY_AQUI') {
+    if (!API_CONFIG.PROXY.ENABLED && API_CONFIG.API_KEY === 'TU_API_KEY_AQUI') {
         throw new Error(MESSAGES.ERROR_API_KEY);
     }
 
@@ -94,7 +135,7 @@ export async function getWeatherByCity(city, unit = API_CONFIG.DEFAULT_UNIT) {
         throw new Error('Límite de requests alcanzado. Intenta en 1 minuto.');
     }
 
-    const url = `${API_CONFIG.BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_CONFIG.API_KEY}&units=${unit}&lang=${API_CONFIG.LANGUAGE}`;
+    const url = buildWeatherByCityUrl(city, unit);
     
     console.log('🔍 Buscando ciudad:', city);
     
@@ -137,6 +178,10 @@ export async function getWeatherByCoords(lat, lon, unit = API_CONFIG.DEFAULT_UNI
         return simulateAPICall('panama');
     }
 
+    if (!API_CONFIG.PROXY.ENABLED && API_CONFIG.API_KEY === 'TU_API_KEY_AQUI') {
+        throw new Error(MESSAGES.ERROR_API_KEY);
+    }
+
     const cacheKey = `weather_${lat}_${lon}_${unit}`;
     if (cache.has(cacheKey)) {
         const cached = cache.get(cacheKey);
@@ -150,7 +195,7 @@ export async function getWeatherByCoords(lat, lon, unit = API_CONFIG.DEFAULT_UNI
         throw new Error('Límite de requests alcanzado. Intenta en 1 minuto.');
     }
 
-    const url = `${API_CONFIG.BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${API_CONFIG.API_KEY}&units=${unit}&lang=${API_CONFIG.LANGUAGE}`;
+    const url = buildWeatherByCoordsUrl(lat, lon, unit);
     
     try {
         const response = await fetch(url);
@@ -189,6 +234,10 @@ export async function getForecast(lat, lon, unit = API_CONFIG.DEFAULT_UNIT) {
         return simulateForecastData();
     }
 
+    if (!API_CONFIG.PROXY.ENABLED && API_CONFIG.API_KEY === 'TU_API_KEY_AQUI') {
+        throw new Error(MESSAGES.ERROR_API_KEY);
+    }
+
     const cacheKey = `forecast_${lat}_${lon}_${unit}`;
     if (cache.has(cacheKey)) {
         const cached = cache.get(cacheKey);
@@ -202,7 +251,7 @@ export async function getForecast(lat, lon, unit = API_CONFIG.DEFAULT_UNIT) {
         throw new Error('Límite de requests alcanzado. Intenta en 1 minuto.');
     }
 
-    const url = `${API_CONFIG.BASE_URL}/forecast?lat=${lat}&lon=${lon}&appid=${API_CONFIG.API_KEY}&units=${unit}&lang=${API_CONFIG.LANGUAGE}`;
+    const url = buildForecastUrl(lat, lon, unit);
     
     try {
         const response = await fetch(url);

@@ -1,113 +1,81 @@
-// ==================== CONFIGURACIÓN ====================
-// Weather App Configuration
-// Jorge Luis Risso Patrón - 2025
+// ==================== CONFIGURATION ====================
+// Weather App configuration
+// Jorge Luis Risso Patron - 2026
 
-// ==================== SEGURIDAD: API KEY ====================
-// OPCIÓN 1: Variables de entorno (RECOMENDADO para producción)
-// Usar con bundlers como Vite: import.meta.env.VITE_OPENWEATHER_API_KEY
-// 
-// OPCIÓN 2: Hardcoded (SOLO para desarrollo local)
-// Reemplaza 'TU_API_KEY_AQUI' con tu API key real
-// ⚠️ NUNCA subas tu API key real a GitHub
-//
-// Para este proyecto de portfolio, usamos hardcoded temporalmente.
-// En producción real, SIEMPRE usar variables de entorno o backend proxy.
+const isBrowser = typeof window !== 'undefined';
+const runtimeConfig = isBrowser ? (window.WEATHER_CONFIG || {}) : {};
+const isLocalHost = isBrowser
+    ? ['localhost', '127.0.0.1'].includes(window.location.hostname)
+    : false;
 
-const getAPIKey = () => {
-    // Prioridad 1: Variables de entorno (si usas bundler como Vite)
-    if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_OPENWEATHER_API_KEY) {
-        return import.meta.env.VITE_OPENWEATHER_API_KEY;
-    }
-    
-    // Prioridad 2: Variable window (si se carga desde archivo externo)
-    if (window.WEATHER_CONFIG?.API_KEY) {
-        return window.WEATHER_CONFIG.API_KEY;
-    }
-    
-    // Prioridad 3: Hardcoded (fallback para desarrollo)
-    // ⚠️ En producción, comentar esta línea y usar solo env variables
-    return '8d3599da8294f99fb8f1bc2ac0c7829b';
-};
+const envApiKey = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_OPENWEATHER_API_KEY)
+    ? import.meta.env.VITE_OPENWEATHER_API_KEY
+    : null;
+const envGiphyKey = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GIPHY_API_KEY)
+    ? import.meta.env.VITE_GIPHY_API_KEY
+    : null;
 
-// Giphy API Key getter
-const getGiphyAPIKey = () => {
-    // Prioridad 1: Variables de entorno
-    if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GIPHY_API_KEY) {
-        return import.meta.env.VITE_GIPHY_API_KEY;
-    }
-    
-    // Prioridad 2: Variable window
-    if (window.WEATHER_CONFIG?.GIPHY_API_KEY) {
-        return window.WEATHER_CONFIG.GIPHY_API_KEY;
-    }
-    
-    // Prioridad 3: Hardcoded (fallback para desarrollo)
-    // ✅ Tu API key personal de Giphy
-    return 'xmeSaIkv8UGN0qz7NiJdysQ1UMKA0B8d';
-};
+const useProxyDefault = !isLocalHost;
+const useProxy = typeof runtimeConfig.USE_PROXY === 'boolean'
+    ? runtimeConfig.USE_PROXY
+    : useProxyDefault;
 
-// API Configuration
+const openWeatherKey = envApiKey || runtimeConfig.API_KEY || 'TU_API_KEY_AQUI';
+const giphyKey = envGiphyKey || runtimeConfig.GIPHY_API_KEY || 'TU_GIPHY_API_KEY_AQUI';
+
 export const API_CONFIG = {
-    // OpenWeatherMap API
     BASE_URL: 'https://api.openweathermap.org/data/2.5',
-    API_KEY: getAPIKey(),
-    
-    // Giphy API
+    API_KEY: openWeatherKey,
     GIPHY_BASE_URL: 'https://api.giphy.com/v1/gifs',
-    GIPHY_API_KEY: getGiphyAPIKey(),
-    
-    // API Limits (Free tier)
+    GIPHY_API_KEY: giphyKey,
     RATE_LIMIT: {
         CALLS_PER_MINUTE: 60,
         CALLS_PER_MONTH: 1000000,
-        WARNING_THRESHOLD: 50 // Advertir al 83% del límite
+        WARNING_THRESHOLD: 50
     },
-    
-    // Default settings
-    DEFAULT_UNIT: 'metric', // 'metric' = Celsius, 'imperial' = Fahrenheit
+    DEFAULT_UNIT: 'metric',
     LANGUAGE: 'es',
-    
-    // Cache settings
-    CACHE_DURATION: 10 * 60 * 1000 // 10 minutos en milisegundos
+    CACHE_DURATION: 10 * 60 * 1000,
+    PROXY: {
+        ENABLED: useProxy,
+        WEATHER_ENDPOINT: '/api/weather',
+        FORECAST_ENDPOINT: '/api/forecast',
+        GIPHY_ENDPOINT: '/api/giphy'
+    }
 };
 
-// Pexels API Configuration (opcional - para fondos realistas)
 export const PEXELS_CONFIG = {
-    API_KEY: window.PEXELS_CONFIG?.API_KEY || null,
-    ENABLED: false // Deshabilitado por defecto
+    API_KEY: isBrowser ? (window.PEXELS_CONFIG?.API_KEY || null) : null,
+    ENABLED: false
 };
 
-// Weather Icons Mapping
-// Mapea códigos de OpenWeatherMap a clases de Weather Icons Library
 export const WEATHER_ICONS = {
-    '01d': 'wi wi-day-sunny',           // Despejado día
-    '01n': 'wi wi-night-clear',         // Despejado noche
-    '02d': 'wi wi-day-cloudy',          // Pocas nubes día
-    '02n': 'wi wi-night-alt-cloudy',    // Pocas nubes noche
-    '03d': 'wi wi-cloud',               // Nubes dispersas
-    '03n': 'wi wi-cloud',               // Nubes dispersas noche
-    '04d': 'wi wi-cloudy',              // Muy nublado
-    '04n': 'wi wi-cloudy',              // Muy nublado noche
-    '09d': 'wi wi-showers',             // Lluvia ligera
-    '09n': 'wi wi-showers',             // Lluvia ligera noche
-    '10d': 'wi wi-day-rain',            // Lluvia día
-    '10n': 'wi wi-night-alt-rain',      // Lluvia noche
-    '11d': 'wi wi-day-thunderstorm',    // Tormenta día
-    '11n': 'wi wi-night-alt-thunderstorm', // Tormenta noche
-    '13d': 'wi wi-day-snow',            // Nieve día
-    '13n': 'wi wi-night-alt-snow',      // Nieve noche
-    '50d': 'wi wi-day-fog',             // Niebla día
-    '50n': 'wi wi-night-fog'            // Niebla noche
+    '01d': 'wi wi-day-sunny',
+    '01n': 'wi wi-night-clear',
+    '02d': 'wi wi-day-cloudy',
+    '02n': 'wi wi-night-alt-cloudy',
+    '03d': 'wi wi-cloud',
+    '03n': 'wi wi-cloud',
+    '04d': 'wi wi-cloudy',
+    '04n': 'wi wi-cloudy',
+    '09d': 'wi wi-showers',
+    '09n': 'wi wi-showers',
+    '10d': 'wi wi-day-rain',
+    '10n': 'wi wi-night-alt-rain',
+    '11d': 'wi wi-day-thunderstorm',
+    '11n': 'wi wi-night-alt-thunderstorm',
+    '13d': 'wi wi-day-snow',
+    '13n': 'wi wi-night-alt-snow',
+    '50d': 'wi wi-day-fog',
+    '50n': 'wi wi-night-fog'
 };
 
-// Demo Mode Configuration (para portfolio sin API key)
-export const DEMO_MODE = false; // Cambiar a true para modo demo
+export const DEMO_MODE = false;
 
-// Demo data para testing sin API key
 export const DEMO_DATA = {
     cities: {
-        'panama': {
-            name: 'Ciudad de Panamá',
+        panama: {
+            name: 'Ciudad de Panama',
             main: { temp: 28, feels_like: 32, humidity: 78, pressure: 1012, temp_max: 32, temp_min: 24 },
             weather: [{ main: 'Partly Cloudy', description: 'parcialmente nublado', icon: '02d' }],
             wind: { speed: 12, deg: 180 },
@@ -116,7 +84,7 @@ export const DEMO_DATA = {
             coord: { lat: 8.9824, lon: -79.5199 },
             sys: { country: 'PA', sunrise: 1702807200, sunset: 1702850400 }
         },
-        'madrid': {
+        madrid: {
             name: 'Madrid',
             main: { temp: 18, feels_like: 16, humidity: 65, pressure: 1015, temp_max: 20, temp_min: 15 },
             weather: [{ main: 'Clear', description: 'cielo claro', icon: '01d' }],
@@ -129,28 +97,26 @@ export const DEMO_DATA = {
     }
 };
 
-// UI Messages
 export const MESSAGES = {
-    LOADING: 'Obteniendo información del clima...',
+    LOADING: 'Obteniendo informacion del clima...',
     ERROR_NO_CITY: 'Por favor ingresa el nombre de una ciudad',
-    ERROR_API_KEY: 'API Key no configurada. Ve las instrucciones en el README.',
+    ERROR_API_KEY: 'Configuracion requerida: agrega API key en entorno local o usa proxy seguro.',
     ERROR_CITY_NOT_FOUND: 'Ciudad no encontrada. Verifica el nombre e intenta nuevamente.',
-    ERROR_NETWORK: 'Error de conexión. Verifica tu internet e intenta nuevamente.',
-    ERROR_PERMISSION_DENIED: 'Permiso de ubicación denegado',
-    ERROR_POSITION_UNAVAILABLE: 'Información de ubicación no disponible',
+    ERROR_NETWORK: 'Error de conexion. Verifica tu internet e intenta nuevamente.',
+    ERROR_PERMISSION_DENIED: 'Permiso de ubicacion denegado',
+    ERROR_POSITION_UNAVAILABLE: 'Informacion de ubicacion no disponible',
     ERROR_TIMEOUT: 'Tiempo de espera agotado',
-    ERROR_UNKNOWN: 'Error desconocido al obtener ubicación',
+    ERROR_UNKNOWN: 'Error desconocido al obtener ubicacion',
     INFO_DEMO_MODE: 'MODO DEMO: Mostrando datos simulados para portfolio.'
 };
 
-// Example cities for placeholder rotation
 export const EXAMPLE_CITIES = [
-    'Panamá', 
-    'Madrid', 
-    'Londres', 
-    'Nueva York', 
+    'Panama',
+    'Madrid',
+    'Londres',
+    'Nueva York',
     'Tokio',
-    'París',
+    'Paris',
     'Buenos Aires',
     'Miami'
 ];

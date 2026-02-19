@@ -1,58 +1,44 @@
 // ==================== CHART HANDLER MODULE ====================
-// Gestión del gráfico de temperatura con Chart.js
-// Luis Risso Patrón - 2026
+// Temperature chart management with Chart.js
+// Luis Risso Patron - 2026
 
 let temperatureChart = null;
 
-/**
- * Crear o actualizar gráfico de temperatura
- */
 export function createTemperatureChart(forecastData, unit = 'metric') {
     const canvas = document.getElementById('temperatureChart');
-    if (!canvas) {
-        console.error('Canvas no encontrado');
-        return;
-    }
-    
+    if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
-    
-    // Destruir gráfico anterior si existe
     if (temperatureChart) {
         temperatureChart.destroy();
     }
-    
-    // Procesar datos del forecast
+
     const forecastList = forecastData.list || forecastData;
-    const chartData = forecastList.slice(0, 8).map(item => {
+    const chartData = forecastList.slice(0, 8).map((item) => {
         const date = new Date(item.dt * 1000);
         const hours = date.getHours();
         const day = date.getDate();
         const month = date.getMonth() + 1;
-        
         return {
             label: `${day}/${month} ${hours}:00`,
             temp: Math.round(item.main.temp)
         };
     });
-    
-    const labels = chartData.map(item => item.label);
-    const temperatures = chartData.map(item => item.temp);
+
+    const labels = chartData.map((item) => item.label);
+    const temperatures = chartData.map((item) => item.temp);
     const maxTemp = Math.max(...temperatures);
     const minTemp = Math.min(...temperatures);
-    
-    // Determinar símbolo de unidad
+
     const unitSymbol = unit === 'metric' ? 'C' : 'F';
-    
-    // Obtener tema actual
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const textColor = isDark ? '#e9ecef' : '#2c3e50';
     const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
-    
-    // Configuración del gráfico
-    const config = {
+
+    temperatureChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: labels,
+            labels,
             datasets: [{
                 label: `Temperatura (°${unitSymbol})`,
                 data: temperatures,
@@ -86,9 +72,7 @@ export function createTemperatureChart(forecastData, unit = 'metric') {
                     padding: 12,
                     displayColors: false,
                     callbacks: {
-                        label: function(context) {
-                            return `${context.parsed.y}°${unit}`;
-                        }
+                        label: (context) => `${context.parsed.y}°${unitSymbol}`
                     }
                 }
             },
@@ -103,9 +87,7 @@ export function createTemperatureChart(forecastData, unit = 'metric') {
                     },
                     ticks: {
                         color: textColor,
-                        callback: function(value) {
-                            return value + '°';
-                        }
+                        callback: (value) => `${value}°`
                     }
                 },
                 x: {
@@ -126,41 +108,28 @@ export function createTemperatureChart(forecastData, unit = 'metric') {
                 intersect: false
             }
         }
-    };
-    
-    // Crear nuevo gráfico
-    temperatureChart = new Chart(ctx, config);
-    console.log('📊 Temperature chart created');
+    });
 }
 
-/**
- * Actualizar gráfico cuando cambia el tema
- */
 export function updateChartTheme() {
-    if (temperatureChart) {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        const textColor = isDark ? '#e9ecef' : '#2c3e50';
-        const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
-        const bgColor = isDark ? 'rgba(26, 31, 58, 0.95)' : 'rgba(255, 255, 255, 0.95)';
-        
-        temperatureChart.options.plugins.tooltip.backgroundColor = bgColor;
-        temperatureChart.options.plugins.tooltip.titleColor = textColor;
-        temperatureChart.options.plugins.tooltip.bodyColor = textColor;
-        
-        temperatureChart.options.scales.y.grid.color = gridColor;
-        temperatureChart.options.scales.y.ticks.color = textColor;
-        temperatureChart.options.scales.x.ticks.color = textColor;
-        
-        temperatureChart.update();
-    }
+    if (!temperatureChart) return;
+
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const textColor = isDark ? '#e9ecef' : '#2c3e50';
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+    const bgColor = isDark ? 'rgba(26, 31, 58, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+
+    temperatureChart.options.plugins.tooltip.backgroundColor = bgColor;
+    temperatureChart.options.plugins.tooltip.titleColor = textColor;
+    temperatureChart.options.plugins.tooltip.bodyColor = textColor;
+    temperatureChart.options.scales.y.grid.color = gridColor;
+    temperatureChart.options.scales.y.ticks.color = textColor;
+    temperatureChart.options.scales.x.ticks.color = textColor;
+    temperatureChart.update();
 }
 
-/**
- * Destruir gráfico
- */
 export function destroyChart() {
-    if (temperatureChart) {
-        temperatureChart.destroy();
-        temperatureChart = null;
-    }
+    if (!temperatureChart) return;
+    temperatureChart.destroy();
+    temperatureChart = null;
 }
