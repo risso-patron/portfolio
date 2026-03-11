@@ -1,0 +1,10 @@
+{
+  "name": "portfolio-static",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio estatico de Jorge Luis Risso Patron",
+  "scripts": {
+    "dev": "node scripts/dev-server.js",
+    "start": "node scripts/dev-server.js"
+  }
+}

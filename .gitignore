@@ -22,3 +22,4 @@ prompt.md
 *.tmp
 .DS_Store
 Thumbs.db
+.vercel
