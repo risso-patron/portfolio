@@ -77,6 +77,8 @@ export function initializeElements() {
     elements.visibility = document.getElementById('visibility');
     elements.cloudiness = document.getElementById('cloudiness');
     elements.windDirection = document.getElementById('windDirection');
+    elements.windNeedle = document.getElementById('windNeedle');
+    elements.windNeedleExtended = document.getElementById('windNeedleExtended');
     elements.sunrise = document.getElementById('sunrise');
     elements.sunset = document.getElementById('sunset');
     
@@ -221,6 +223,17 @@ export async function displayWeather(data, currentUnit) {
         elements.pressure.textContent = `${data.main.pressure} hPa`;
     }
     
+    // 🧭 Brújula de Viento (Nuevo)
+    if (data.wind && data.wind.deg !== undefined) {
+        const rotation = data.wind.deg;
+        if (elements.windNeedle) {
+            elements.windNeedle.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+        }
+        if (elements.windNeedleExtended) {
+            elements.windNeedleExtended.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+        }
+    }
+
     // Detalles extendidos
     if (elements.visibility && data.visibility) {
         elements.visibility.textContent = `${(data.visibility / 1000).toFixed(1)} km`;

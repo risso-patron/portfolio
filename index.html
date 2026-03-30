@@ -19,7 +19,7 @@
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.webp">
     <link rel="manifest" href="assets/icons/site.webmanifest">
     
     <!-- Google Fonts: Inter (moderna y legible) -->
@@ -43,13 +43,13 @@
     <meta property="og:url" content="https://risso-patron.com/">
     <meta property="og:title" content="Jorge Luis Risso Patrón - Desarrollador Web Frontend">
     <meta property="og:description" content="Portfolio profesional con proyectos reales. Desarrollador Frontend especializado en JavaScript vanilla.">
-    <meta property="og:image" content="https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png">
+    <meta property="og:image" content="https://risso-patron.com/assets/images/jorge-luis-perfil.webp">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Jorge Luis Risso Patrón - Frontend Developer">
     <meta name="twitter:description" content="Portfolio con proyectos reales en JavaScript vanilla.">
-    <meta name="twitter:image" content="https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png">
+    <meta name="twitter:image" content="https://risso-patron.com/assets/images/jorge-luis-perfil.webp">
     
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -58,8 +58,8 @@
         "@type": "Person",
         "name": "Jorge Luis Risso Patrón",
         "jobTitle": "Desarrollador Web Frontend",
-        "url": "https://risso-patron.github.io/portfolio/",
-        "image": "https://risso-patron.github.io/portfolio/assets/images/jorge-luis-perfil.png",
+        "url": "https://risso-patron.com/",
+        "image": "https://risso-patron.com/assets/images/jorge-luis-perfil.webp",
         "email": "luisrissopa@gmail.com",
         "sameAs": [
             "https://github.com/Risso-patron",
@@ -88,7 +88,7 @@
         <div class="container">
             <div class="nav-wrapper">
                 <a href="#" class="nav-logo">
-                    <img src="assets/images/Logo-RP-dorado-sin-fondo.png" alt="Jorge Luis Risso Patrón" class="logo-img" id="logoImg">
+                    <img src="assets/images/Logo-RP-dorado-sin-fondo.webp" alt="Jorge Luis Risso Patrón" class="logo-img" id="logoImg">
                 </a>
                 
                 <ul class="nav-menu" id="navMenu">
@@ -168,7 +168,7 @@
             
             <div class="about-grid">
                 <div class="about-image">
-                    <img src="assets/images/jorge-luis-perfil.png" alt="Luis Risso Patrón desarrollando">
+                    <img src="assets/images/jorge-luis-perfil.webp" alt="Luis Risso Patrón desarrollando" loading="lazy">
                     <div class="about-status">
                         <div class="status-dot"></div>
                         Disponible para Trabajar
@@ -219,7 +219,7 @@
         <div class="container">
             <div class="work-header">
                 <span class="section-label">— TRABAJOS SELECCIONADOS</span>
-                <h2 class="section-title">Construyendo<br><span class="gradient-text">Experiencias Digitales</span></h2>
+                <h2 class="section-title">Proyectos<br><span class="gradient-text">Reales y Funcionales</span></h2>
             </div>
             
             <!-- Tabs -->
@@ -235,9 +235,32 @@
             <div class="projects-grid">
                 <!-- Weather App -->
                 <article class="project-card" data-category="apps">
-                    <div class="project-image project-image-grid project-image-grid-simple">
-                        <img src="weather-app/screenshots/screenshot-1.webp" alt="Weather App - Vista Principal">
-                        <img src="weather-app/screenshots/screenshot-2.webp" alt="Weather App - Vista Secundaria">
+                    <div class="project-image project-image-grid">
+                        <div class="browser-mockup">
+                            <div class="browser-header">
+                                <div class="browser-buttons">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <div class="browser-address">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                    <span>weather.api.app</span>
+                                </div>
+                            </div>
+                            <div class="browser-content">
+                                <img src="weather-app/screenshots/screenshot-1.webp" alt="Weather App - Dashboard" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="phone-mockup-small">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <img src="weather-app/screenshots/screenshot-2.webp" alt="Weather App - Mobile" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-tags">
                             <span class="tag">Analytics</span>
                         </div>
@@ -267,9 +290,32 @@
 
                 <!-- Pomodoro Timer -->
                 <article class="project-card" data-category="apps">
-                    <div class="project-image project-image-grid project-image-grid-simple">
-                        <img src="pomodoro-timer/screenshots/screenshot-1.webp" alt="Pomodoro Timer - Vista Principal">
-                        <img src="pomodoro-timer/screenshots/screenshot-2.webp" alt="Pomodoro Timer - Vista Secundaria">
+                    <div class="project-image project-image-grid">
+                        <div class="browser-mockup">
+                            <div class="browser-header">
+                                <div class="browser-buttons">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <div class="browser-address">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                    <span>pomodoro.focus.app</span>
+                                </div>
+                            </div>
+                            <div class="browser-content">
+                                <img src="pomodoro-timer/screenshots/screenshot-1.webp" alt="Pomodoro Timer - Main" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="phone-mockup-small">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <img src="pomodoro-timer/screenshots/screenshot-2.webp" alt="Pomodoro Timer - Mobile" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-tags">
                             <span class="tag">Productivity</span>
                         </div>
@@ -298,12 +344,35 @@
                 </article>
 
                 <!-- Budget Calculator React -->
-                <article class="project-card" data-category="react apps">
-                    <div class="project-image project-image-grid project-image-grid-simple">
-                        <img src="assets/images/projects/budget-calculator-react/screenshot-dashboard.png" alt="Budget Calculator React - Dashboard" loading="lazy">
-                        <img src="assets/images/projects/budget-calculator-react/screenshot-login.png" alt="Budget Calculator React - Login" loading="lazy">
+                <article class="project-card" data-category="react">
+                    <div class="project-image project-image-grid">
+                        <div class="browser-mockup">
+                            <div class="browser-header">
+                                <div class="browser-buttons">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <div class="browser-address">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                    <span>budget-calc.app</span>
+                                </div>
+                            </div>
+                            <div class="browser-content">
+                                <img src="assets/images/projects/budget-calculator-react/screenshot-desktop.webp" alt="Budget Calculator React - Dashboard" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="phone-mockup-small">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <img src="assets/images/projects/budget-calculator-react/screenshot-mobile.webp" alt="Budget Calculator React - Login" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-tags">
-                            <span class="tag" style="background: linear-gradient(135deg, #61dafb 0%, #282c34 100%); color: white;">React ⚛️</span>
+                            <span class="tag tag-react">React ⚛️</span>
                             <span class="tag">FinTech</span>
                         </div>
                     </div>
@@ -348,13 +417,13 @@
                                 </div>
                             </div>
                             <div class="browser-content">
-                                <img src="assets/images/projects/homepowerpty.com/screenshot-desktop.png" alt="Home Power PTY Desktop" loading="lazy">
+                                <img src="assets/images/projects/homepowerpty.com/screenshot-desktop.webp" alt="Home Power PTY Desktop" loading="lazy">
                             </div>
                         </div>
                         <div class="phone-mockup-small">
                             <div class="phone-frame">
                                 <div class="phone-screen">
-                                    <img src="assets/images/projects/homepowerpty.com/screenshot-mobile.png" alt="Home Power PTY Mobile" loading="lazy">
+                                    <img src="assets/images/projects/homepowerpty.com/screenshot-mobile.webp" alt="Home Power PTY Mobile" loading="lazy">
                                 </div>
                             </div>
                         </div>
@@ -400,13 +469,13 @@
                                 </div>
                             </div>
                             <div class="browser-content">
-                                <img src="assets/images/projects/somosproperties.com/screenshot-desktop.png" alt="SOMOS Properties Desktop" loading="lazy">
+                                <img src="assets/images/projects/somosproperties.com/screenshot-desktop.webp" alt="SOMOS Properties Desktop" loading="lazy">
                             </div>
                         </div>
                         <div class="phone-mockup-small">
                             <div class="phone-frame">
                                 <div class="phone-screen">
-                                    <img src="assets/images/projects/somosproperties.com/screenshot-mobile..png" alt="SOMOS Properties Mobile" loading="lazy">
+                                    <img src="assets/images/projects/somosproperties.com/screenshot-mobile.webp" alt="SOMOS Properties Mobile" loading="lazy">
                                 </div>
                             </div>
                         </div>
@@ -452,13 +521,13 @@
                                 </div>
                             </div>
                             <div class="browser-content">
-                                <img src="assets/images/projects/hostpropanama.com/screenshot_desktop.png" alt="HostPro Panama Desktop" loading="lazy">
+                                <img src="assets/images/projects/hostpropanama.com/screenshot-desktop.webp" alt="HostPro Panama Desktop" loading="lazy">
                             </div>
                         </div>
                         <div class="phone-mockup-small">
                             <div class="phone-frame">
                                 <div class="phone-screen">
-                                    <img src="assets/images/projects/hostpropanama.com/screenshot-mobile.png" alt="HostPro Panama Mobile" loading="lazy">
+                                    <img src="assets/images/projects/hostpropanama.com/screenshot-mobile.webp" alt="HostPro Panama Mobile" loading="lazy">
                                 </div>
                             </div>
                         </div>
@@ -485,42 +554,86 @@
                         </div>
                     </div>
                 </article>
-
-                <!-- SEMM International -->
+                <!-- Provivir Panama -->
                 <article class="project-card" data-category="client">
-                    <div class="project-image">
-                        <img src="assets/images/projects/semm-international/screenshot-desktop.png" alt="SEMM International">
+                    <div class="project-image project-image-grid">
+                        <div class="browser-mockup">
+                            <div class="browser-header">
+                                <div class="browser-buttons">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <div class="browser-address">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                    <span>provivirpanama.com</span>
+                                </div>
+                            </div>
+                            <div class="browser-content">
+                                <img src="assets/images/projects/provivirpanama.com/screenshot-desktop.webp" alt="Provivir Panama Desktop" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="phone-mockup-small">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <img src="assets/images/projects/provivirpanama.com/screenshot-mobile.webp" alt="Provivir Panama Mobile" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                         <div class="project-tags">
-                            <span class="tag tag-wip">In Development</span>
+                            <span class="tag">Real Estate</span>
                         </div>
                     </div>
                     <div class="project-content">
                         <div class="project-meta">
-                            <span class="project-tech">UNDER CONSTRUCTION</span>
+                            <span class="project-tech">DESARROLLO FRONTEND</span>
                         </div>
-                        <h3 class="project-title">SEMM International</h3>
-                        <p class="project-desc">Sitio corporativo para empresa de construcción y servicios eléctricos.</p>
+                        <h3 class="project-title">Provivir Panamá</h3>
+                        <p class="project-desc">Plataforma corporativa para una de las promotoras líderes en Panamá, desarrollada con tecnologías web nativas para un rendimiento óptimo.</p>
                         <div class="project-stack">
-                            <span>HTML</span>
-                            <span>CSS</span>
+                            <span>HTML5</span>
+                            <span>CSS3</span>
                             <span>JavaScript</span>
-                            <span>SEO</span>
+                            <span>Responsive</span>
                         </div>
                         <div class="project-links">
-                            <span class="project-link disabled">
-                                <i class="fas fa-code"></i> Coming Soon
-                            </span>
+                            <a href="https://provivirpanama.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Visit Site
+                            </a>
                         </div>
                     </div>
                 </article>
 
+
                 <!-- Studio Create -->
                 <article class="project-card" data-category="client ui">
-                    <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; min-height: 300px;">
-                        <div style="text-align: center; color: white; padding: 2rem;">
-                            <div style="font-size: 4rem; margin-bottom: 1rem;">🚀</div>
-                            <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">Próximamente</h3>
-                            <p style="font-size: 1rem; opacity: 0.9;">Estamos trabajando en algo increíble</p>
+                    <div class="project-image project-image-grid">
+                        <div class="browser-mockup">
+                            <div class="browser-header">
+                                <div class="browser-buttons">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <div class="browser-address">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                    <span>studiocreate.com</span>
+                                </div>
+                            </div>
+                            <div class="browser-content">
+                                <img src="assets/images/projects/studio-create/screenshot-desktop.webp" alt="Studio Create Desktop" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="phone-mockup-small">
+                            <div class="phone-frame">
+                                <div class="phone-screen">
+                                    <img src="assets/images/projects/studio-create/screenshot-mobile.webp" alt="Studio Create Mobile" loading="lazy">
+                                </div>
+                            </div>
                         </div>
                         <div class="project-tags">
                             <span class="tag tag-wip">In Development</span>
@@ -528,7 +641,7 @@
                     </div>
                     <div class="project-content">
                         <div class="project-meta">
-                            <span class="project-tech">UNDER CONSTRUCTION</span>
+                            <span class="project-tech">CLIENT PROJECT</span>
                         </div>
                         <h3 class="project-title">Studio Create</h3>
                         <p class="project-desc">Agencia de marketing digital, branding, diseño de logos y desarrollo web.</p>
@@ -606,9 +719,14 @@
                     </p>
                     
                     <div class="contact-buttons">
-                        <a href="mailto:luisrissopa@gmail.com" class="btn btn-primary btn-large">
+                        <a href="https://wa.me/50764560263?text=Hola%20Jorge%20Luis,%20vi%20tu%20portfolio%20y%20me%20interesa%20trabajar%20contigo" 
+                           target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-large">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="mailto:luisrissopa@gmail.com" class="btn btn-secondary btn-large">
                             <i class="fas fa-envelope"></i>
-                            <span>Contactar</span>
+                            <span>Email</span>
                         </a>
                     </div>
                     

@@ -6,5 +6,8 @@
   "scripts": {
     "dev": "node scripts/dev-server.js",
     "start": "node scripts/dev-server.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

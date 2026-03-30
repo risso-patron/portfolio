@@ -379,15 +379,18 @@ async function simulateAPICall(city) {
  * @returns {Promise<Object>} Pronóstico simulado
  */
 async function simulateForecastData() {
+    const now = Math.floor(Date.now() / 1000);
+    const day = 86400; // 24 hours in seconds
+
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve({
                 list: [
-                    { dt_txt: '2025-01-15 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 32, temp_min: 24 } },
-                    { dt_txt: '2025-01-16 12:00:00', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 31, temp_min: 24 } },
-                    { dt_txt: '2025-01-17 12:00:00', weather: [{ icon: '10d', description: 'lluvia' }], main: { temp_max: 28, temp_min: 23 } },
-                    { dt_txt: '2025-01-18 12:00:00', weather: [{ icon: '09d', description: 'lluvia ligera' }], main: { temp_max: 29, temp_min: 23 } },
-                    { dt_txt: '2025-01-19 12:00:00', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 31, temp_min: 24 } }
+                    { dt: now + day, dt_txt: 'Día 1', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 32, temp_min: 24 } },
+                    { dt: now + day * 2, dt_txt: 'Día 2', weather: [{ icon: '02d', description: 'parcialmente nublado' }], main: { temp_max: 31, temp_min: 24 } },
+                    { dt: now + day * 3, dt_txt: 'Día 3', weather: [{ icon: '10d', description: 'lluvia' }], main: { temp_max: 28, temp_min: 23 } },
+                    { dt: now + day * 4, dt_txt: 'Día 4', weather: [{ icon: '09d', description: 'lluvia ligera' }], main: { temp_max: 29, temp_min: 23 } },
+                    { dt: now + day * 5, dt_txt: 'Día 5', weather: [{ icon: '01d', description: 'soleado' }], main: { temp_max: 31, temp_min: 24 } }
                 ]
             });
         }, 500);

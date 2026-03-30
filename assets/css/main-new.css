@@ -175,6 +175,14 @@ a {
     width: 100%;
 }
 
+.nav-link.active {
+    color: var(--cyan);
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
 .nav-link-resume {
     padding: 8px 20px;
     border: 1px solid var(--cyan);
@@ -437,6 +445,17 @@ a {
     font-size: 1.05rem;
 }
 
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
 /* ==================== SECTIONS ==================== */
 .section-label {
     display: block;
@@ -642,6 +661,7 @@ a {
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow: hidden;
 }
 
 .project-image-grid-simple img {
@@ -664,7 +684,7 @@ a {
 /* MOCKUP PROFESIONAL DE NAVEGADOR + MÓVIL (proyectos cliente) */
 .project-image-grid {
     position: relative;
-    padding: 30px 20px 50px 20px;
+    padding: 20px 20px 40px 20px;
     perspective: 1000px;
     background: var(--bg-tertiary);
 }
@@ -749,17 +769,23 @@ a {
 .browser-content {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 10;
-    background: #000;
+    aspect-ratio: 16 / 11;
+    background: #1a1f2c;
     overflow: hidden;
+    padding: 4%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .browser-content img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top;
     display: block;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .browser-content::after {
@@ -776,9 +802,9 @@ a {
 /* Mockup de iPhone pequeño (esquina inferior derecha) */
 .phone-mockup-small {
     position: absolute;
-    bottom: -16px;
+    bottom: -12px;
     right: 8px;
-    width: 80px;
+    width: 75px;
     z-index: 20;
 }
 
@@ -810,11 +836,18 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-card:hover .project-image img {
-    transform: scale(1.05);
+/* Zoom balanceado solo para contenido principal */
+.project-card:hover .browser-content img,
+.project-card:hover .project-image-grid-simple img {
+    transform: scale(1.03);
+}
+
+/* El teléfono se mantiene estático para dar profundidad premium */
+.project-card:hover .phone-screen img {
+    transform: scale(1);
 }
 
 .project-tags {
@@ -840,6 +873,12 @@ a {
     background: rgba(251, 191, 36, 0.2);
     border-color: rgba(251, 191, 36, 0.5);
     color: #fbbf24;
+}
+
+.tag-react {
+    background: linear-gradient(135deg, #61dafb 0%, #282c34 100%);
+    color: white;
+    border-color: #61dafb;
 }
 
 .project-content {

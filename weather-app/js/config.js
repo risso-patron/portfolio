@@ -70,7 +70,7 @@ export const WEATHER_ICONS = {
     '50n': 'wi wi-night-fog'
 };
 
-export const DEMO_MODE = false;
+export const DEMO_MODE = true;
 
 export const DEMO_DATA = {
     cities: {
