@@ -23,3 +23,6 @@ prompt.md
 .DS_Store
 Thumbs.db
 .vercel
+
+# Dependencias locales
+node_modules/
