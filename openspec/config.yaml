@@ -1,0 +1,67 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Tech stack: HTML5, CSS3, JavaScript (vanilla), Node.js (scripts), Vercel (hosting + serverless)
+  Architecture: Static portfolio with sub-projects (weather-app, pomodoro-timer, budget-app); Vercel serverless API (weather.js, forecast.js, giphy.js)
+  Conventions: Mobile-first, responsive, no framework dependencies, GitHub Pages / Vercel deployment
+  Testing: No test runner detected
+  Style: No linter/formatter configured
+
+strict_tdd: false
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Identify affected modules/packages (main portfolio, sub-projects, API)
+  specs:
+    - Use Given/When/Then format for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Document architecture decisions with rationale
+    - Include sequence diagrams for complex flows (e.g., API integrations)
+  tasks:
+    - Group tasks by phase (content, styling, functionality, deployment)
+    - Use hierarchical numbering (1.1, 1.2, etc.)
+    - Keep tasks small enough to complete in one session
+  apply:
+    - Follow vanilla JS/CSS patterns already in use
+    - Maintain mobile-first approach in all changes
+    - Keep sub-projects independent and self-contained
+  verify:
+    - Manually test in browser (no automated test runner available)
+    - Test responsive breakpoints on mobile, tablet, desktop
+    - Verify all project demo links are functional
+  archive:
+    - Warn before merging destructive deltas (large removals)
+
+testing:
+  strict_tdd: false
+  note: "Strict TDD Mode unavailable — no test runner detected"
+  test_runner:
+    available: false
+    command: null
+    framework: null
+  layers:
+    unit:
+      available: false
+      tool: null
+    integration:
+      available: false
+      tool: null
+    e2e:
+      available: false
+      tool: null
+  coverage:
+    available: false
+    command: null
+  quality:
+    linter:
+      available: false
+      command: null
+    type_checker:
+      available: false
+      command: null
+    formatter:
+      available: false
+      command: null
