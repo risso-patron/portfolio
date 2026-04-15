@@ -68,9 +68,7 @@ function clearAllStats() {
         if (theme) localStorage.setItem('pomodoro-theme', theme);
         
         // Reset de la UI
-        document.getElementById('pomodorosToday').textContent = '0';
-        document.getElementById('timeToday').textContent = '0h 0m';
-        document.getElementById('streak').textContent = '0 🔥';
+        loadStats();
         
         // Reset de los gráficos
         if (dailyChart) {
@@ -277,15 +275,12 @@ function completeSession() {
     clearInterval(timerInterval);
     if (startBtn) startBtn.textContent = 'Iniciar';
     alarmAudio.play().catch(() => {});
-    
-    // Notificación de sistema
     playNotification();
-    
-    // Guardar tarea y estadísticas
-    const task = focusInput ? focusInput.value : 'Sin tarea';
-    console.log(`Sesión completada: ${currentMode} - Tarea: ${task}`);
-    
-    // Reiniciar
+
+    if (currentMode === 'pomodoro') {
+        savePomodoro();
+    }
+
     resetTimer();
 }
 
@@ -295,6 +290,74 @@ function resetTimer() {
     if (startBtn) startBtn.textContent = 'Iniciar';
     timeRemaining = modes[currentMode];
     updateDisplay();
+}
+
+// ==================== Stats Persistence ====================
+function getTodayStr() {
+    return new Date().toISOString().split('T')[0];
+}
+
+function formatMinutes(mins) {
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    return h > 0 ? `${h}h ${m}m` : `${m}m`;
+}
+
+function savePomodoro() {
+    const today       = getTodayStr();
+    const lastDate    = localStorage.getItem('pomodoro-last-date') || '';
+    const yesterday   = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+    if (lastDate !== today) {
+        localStorage.setItem('pomodoro-today-count',   '0');
+        localStorage.setItem('pomodoro-today-minutes', '0');
+        const prevStreak = parseInt(localStorage.getItem('pomodoro-streak') || '0');
+        localStorage.setItem('pomodoro-streak',
+            lastDate === yesterdayStr ? (prevStreak + 1).toString() : '1');
+        localStorage.setItem('pomodoro-last-date', today);
+    }
+
+    const todayCount = parseInt(localStorage.getItem('pomodoro-today-count')   || '0') + 1;
+    const todayMins  = parseInt(localStorage.getItem('pomodoro-today-minutes')  || '0') + 25;
+    const totalCount = parseInt(localStorage.getItem('pomodoro-total-count')    || '0') + 1;
+    const totalMins  = parseInt(localStorage.getItem('pomodoro-total-minutes')  || '0') + 25;
+
+    localStorage.setItem('pomodoro-today-count',   todayCount.toString());
+    localStorage.setItem('pomodoro-today-minutes', todayMins.toString());
+    localStorage.setItem('pomodoro-total-count',   totalCount.toString());
+    localStorage.setItem('pomodoro-total-minutes', totalMins.toString());
+
+    loadStats();
+}
+
+function loadStats() {
+    const today    = getTodayStr();
+    const lastDate = localStorage.getItem('pomodoro-last-date') || '';
+    const isToday  = lastDate === today;
+
+    const todayCount = isToday ? parseInt(localStorage.getItem('pomodoro-today-count')   || '0') : 0;
+    const todayMins  = isToday ? parseInt(localStorage.getItem('pomodoro-today-minutes')  || '0') : 0;
+    const totalCount = parseInt(localStorage.getItem('pomodoro-total-count')  || '0');
+    const totalMins  = parseInt(localStorage.getItem('pomodoro-total-minutes') || '0');
+    const streak     = parseInt(localStorage.getItem('pomodoro-streak') || '0');
+
+    const pomodorosTodayEl = document.getElementById('pomodorosToday');
+    const timeTodayEl      = document.getElementById('timeToday');
+    const streakEl         = document.getElementById('streak');
+    if (pomodorosTodayEl) pomodorosTodayEl.textContent = todayCount;
+    if (timeTodayEl)      timeTodayEl.textContent      = formatMinutes(todayMins);
+    if (streakEl)         streakEl.textContent          = `${streak} 🔥`;
+
+    const statTotal      = document.getElementById('statTotalPomodoros');
+    const statTime       = document.getElementById('statTotalTime');
+    const statStreak     = document.getElementById('statStreak');
+    const statEfficiency = document.getElementById('statDailyEfficiency');
+    if (statTotal)      statTotal.textContent      = totalCount;
+    if (statTime)       statTime.textContent        = formatMinutes(totalMins);
+    if (statStreak)     statStreak.textContent      = `${streak} Días`;
+    if (statEfficiency) statEfficiency.textContent  = formatMinutes(todayMins);
 }
 
 function playNotification() {
@@ -323,10 +386,10 @@ modeBtns.forEach(btn => {
 // Initialize
 window.addEventListener('load', () => {
     updateDisplay();
+    loadStats();
     createDailyChart();
     createDistributionChart();
-    
-    // Request notification permission
+
     if ('Notification' in window && Notification.permission === 'default') {
         Notification.requestPermission();
     }

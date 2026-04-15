@@ -577,6 +577,16 @@ body {
     text-align: center;
 }
 
+.footer-link {
+    color: var(--text-secondary, #B8B8D1);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #FF6347;
+}
+
 /* Animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }

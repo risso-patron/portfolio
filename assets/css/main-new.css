@@ -322,6 +322,7 @@ a {
 /* Profile Card */
 .hero-card {
     position: relative;
+    margin-top: 48px;
 }
 
 .profile-card {
@@ -879,6 +880,14 @@ a {
     background: linear-gradient(135deg, #61dafb 0%, #282c34 100%);
     color: white;
     border-color: #61dafb;
+}
+
+.tag-evolution {
+    background: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+    border-color: rgba(99, 102, 241, 0.3);
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
 }
 
 .project-content {

@@ -18,7 +18,7 @@
 </head>
 <body>
     <!-- Botón Volver al Portfolio -->
-    <a href="../index.html" class="back-button" aria-label="Volver al portfolio">
+    <a href="/" class="back-button" aria-label="Volver al portfolio">
         <span>←</span>
         <span>Volver</span>
     </a>
@@ -64,32 +64,28 @@
                         <span class="stat-title">Tiempo Total de Foco</span>
                         <span class="stat-icon">⏱️</span>
                     </div>
-                    <div class="stat-value">32h 45m</div>
-                    <div class="stat-change positive">↗ +12% vs semana pasada</div>
+                    <div class="stat-value" id="statTotalTime">0h 0m</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-header">
                         <span class="stat-title">Pomodoros Completados</span>
                         <span class="stat-icon">✅</span>
                     </div>
-                    <div class="stat-value">78</div>
-                    <div class="stat-change positive">↗ +5% vs semana pasada</div>
+                    <div class="stat-value" id="statTotalPomodoros">0</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-header">
                         <span class="stat-title">Racha Actual</span>
                         <span class="stat-icon">🔥</span>
                     </div>
-                    <div class="stat-value">12 Días</div>
-                    <div class="stat-change neutral">⚡ ¡Sigue así!</div>
+                    <div class="stat-value" id="statStreak">0 Días</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-header">
-                        <span class="stat-title">Eficiencia Diaria</span>
+                        <span class="stat-title">Tiempo Hoy</span>
                         <span class="stat-icon">📊</span>
                     </div>
-                    <div class="stat-value">4.2h</div>
-                    <div class="stat-change negative">↘ -8% vs semana pasada</div>
+                    <div class="stat-value" id="statDailyEfficiency">0m</div>
                 </div>
             </div>
 
