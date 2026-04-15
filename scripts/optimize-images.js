@@ -19,6 +19,9 @@ const images = [
     { src: 'assets/images/projects/somosproperties.com/screenshot-mobile .png', dest: 'assets/images/projects/somosproperties.com/screenshot-mobile.webp' },
     { src: 'assets/images/projects/studio-create/screenshot-desktop.png', dest: 'assets/images/projects/studio-create/screenshot-desktop.webp' },
     { src: 'assets/images/projects/studio-create/screenshot-mobile.png', dest: 'assets/images/projects/studio-create/screenshot-mobile.webp' },
+    // SEMM International
+    { src: 'assets/images/projects/semm-international/screenshot-desktop.png', dest: 'assets/images/projects/semm-international/screenshot-desktop.webp' },
+    { src: 'assets/images/projects/semm-international/screenshot-mobile.png', dest: 'assets/images/projects/semm-international/screenshot-mobile.webp' },
     // Provivir Panama
     { src: 'assets/images/projects/provivirpanama.com/screenshot-desktop.png', dest: 'assets/images/projects/provivirpanama.com/screenshot-desktop.webp' },
     { src: 'assets/images/projects/provivirpanama.com/screenshot-mobile.png', dest: 'assets/images/projects/provivirpanama.com/screenshot-mobile.webp' },
