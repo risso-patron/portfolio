@@ -26,3 +26,4 @@ Thumbs.db
 
 # Dependencias locales
 node_modules/
+.vscode/  
