@@ -10,7 +10,7 @@
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
-            <image:loc>https://www.risso-patron.com/assets/images/jorge-luis-perfil.webp</image:loc>
+            <image:loc>https://www.risso-patron.com/assets/images/jorge_luis_hero.png</image:loc>
             <image:title>Jorge Luis Risso Patrón - Desarrollador Web Frontend</image:title>
         </image:image>
     </url>
@@ -31,7 +31,7 @@
         <priority>0.8</priority>
     </url>
     
-    <!-- Budget Calculator React -->
+    <!-- Saldo (Budget App v2) -->
     <url>
         <loc>https://budget-calculator-rp.netlify.app</loc>
         <lastmod>2026-03-29</lastmod>

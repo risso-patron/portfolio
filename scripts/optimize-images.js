@@ -4,7 +4,8 @@ const path = require('path');
 
 const images = [
     { src: 'assets/images/Logo-RP-dorado-sin-fondo.png', dest: 'assets/images/Logo-RP-dorado-sin-fondo.webp' },
-    { src: 'assets/images/jorge-luis-perfil-v2.png', dest: 'assets/images/jorge-luis-perfil.webp' },
+    { src: 'assets/images/jorge_luis_hero.png', dest: 'assets/images/jorge_luis_hero.webp' },
+    { src: 'assets/images/jorge_luis_about.png', dest: 'assets/images/jorge_luis_about.webp' },
     // Projects
     { src: 'assets/images/projects/budget-calculator-react/screenshot-desktop.png', dest: 'assets/images/projects/budget-calculator-react/screenshot-desktop.webp' },
     { src: 'assets/images/projects/budget-calculator-react/screenshot-mobile.png', dest: 'assets/images/projects/budget-calculator-react/screenshot-mobile.webp' },

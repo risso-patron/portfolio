@@ -362,6 +362,7 @@ a {
     box-shadow: var(--shadow-md);
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    object-position: center 30%;
     display: block;
 }
 
@@ -504,23 +505,31 @@ a {
     box-shadow: var(--shadow-lg);
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    object-position: center 30%;
 }
 
 .about-status {
     position: absolute;
     bottom: 20px;
-    left: 20px;
+    left: 6px;
+    transform: translateY(25%);
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
+    gap: 6px;
+    padding: 6px 12px;
     background: rgba(10, 14, 23, 0.9);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border);
     border-radius: 50px;
-    font-size: 0.875rem;
+    font-size: 0.82rem;
     font-weight: 600;
+    line-height: 1.1;
     color: var(--status-green);
+}
+
+.about-status .status-dot {
+    width: 7px;
+    height: 7px;
 }
 
 .about-text {
