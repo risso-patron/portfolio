@@ -155,13 +155,14 @@ La sección de proyectos MUST mostrar proyectos con demo activa.
 
 El Arsenal Técnico MUST separar visualmente skills dominadas de skills en aprendizaje.
 
-**CORE (tech-grid):** HTML5, CSS3, JavaScript, Git, GitHub, VS Code, Figma, Vercel, Netlify
+**CORE (tech-grid):** HTML5, CSS3, JavaScript, Git, GitHub, VS Code, GitHub Copilot, Figma, Vercel, Netlify, Supabase
 
-**APRENDIENDO (tech-learning pill):** React
+**APRENDIENDO (tech-learning pills):** React, TypeScript
 
 #### Scenario: Reclutador escanea el stack
 
 - GIVEN que el reclutador ve la sección Arsenal Técnico
 - WHEN la escanea visualmente
 - THEN DEBE ver HTML5, CSS3, JavaScript en posición prominente
-- AND React DEBE aparecer en sección "Aprendiendo" claramente diferenciada
+- AND GitHub Copilot y Supabase DEBEN aparecer en la grid CORE
+- AND React y TypeScript DEBEN aparecer en sección "Aprendiendo" claramente diferenciada con clase `.tech-pill`

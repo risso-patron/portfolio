@@ -1094,6 +1094,24 @@ a {
     filter: invert(1);
 }
 
+/* APRENDIENDO pills */
+.tech-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+.tech-pill img {
+    width: 16px;
+    height: 16px;
+}
+
 /* ==================== CONTACT ==================== */
 .contact {
     min-height: 60vh;
