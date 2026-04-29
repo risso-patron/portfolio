@@ -1,0 +1,41 @@
+[build]
+  publish = "."
+
+# HTML siempre fresco para que los cambios se reflejen rapido.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Cache agresivo para estaticos versionables: reduce bandwidth y requests al origen.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/weather-app/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/pomodoro-timer/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/budget-app/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Evita el problema de cargar el CV sin slash final.
+[[redirects]]
+  from = "/jorgeluis_CV"
+  to = "/jorgeluis_CV/"
+  status = 301
+  force = true

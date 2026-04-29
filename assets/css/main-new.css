@@ -1086,6 +1086,14 @@ a {
     color: var(--text-secondary);
 }
 
+/* Íconos monocromáticos (simple-icons): negro en light, blanco en dark */
+.tech-icon-theme {
+    filter: invert(0);
+}
+[data-theme="dark"] .tech-icon-theme {
+    filter: invert(1);
+}
+
 /* ==================== CONTACT ==================== */
 .contact {
     min-height: 60vh;

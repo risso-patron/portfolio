@@ -26,4 +26,7 @@ Thumbs.db
 
 # Dependencias locales
 node_modules/
-.vscode/  
+.vscode/
+
+# Reportes de facturación / uso (privados)
+bandwidth-usage*.csv

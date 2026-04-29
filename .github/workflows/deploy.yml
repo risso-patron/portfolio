@@ -1,4 +1,4 @@
-name: Deploy to Production
+name: Validate
 
 on:
   push:
@@ -8,89 +8,35 @@ on:
   workflow_dispatch:
 
 jobs:
-  # ==========================================
-  # JOB 1: BUILD AND TEST
-  # ==========================================
-  build-and-test:
+  validate:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
-      # Checkout código
-      - name: 📥 Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      # Setup Node.js
-      - name: 🔧 Setup Node.js ${{ matrix.node-version }}        
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20.x
           cache: 'npm'
 
-      # Instalar dependencias
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm ci
 
-      # Lint código
-      - name: 🔍 Run ESLint
-        run: npm run lint
-        continue-on-error: true
+      # Verifica que los archivos JS del servidor no tengan errores de sintaxis.
+      # node --check analiza sin ejecutar — falla si hay un SyntaxError real.
+      - name: Syntax check — API & scripts
+        run: npm run check
 
-      # Build aplicación
-      - name: 🏗️ Build application
+      # Ensambla src/ partials en index.html y falla si algún partial falta.
+      - name: Build index.html from partials
         run: npm run build
 
-      # Verificar que el build fue exitoso
-      - name: ✅ Build verification
-        run: echo "Build completed successfully"
-
-  # ==========================================
-  # JOB 2: DEPLOY NOTIFICATION
-  # ==========================================
-  deploy-notify:
-    runs-on: ubuntu-latest
-    needs: build-and-test
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
-    steps:
-      - name: 📥 Checkout repository
-        uses: actions/checkout@v4
-
-      - name: ✅ Deployment notification
-        run: echo "🎉 Deployment process completed successfully!"
-
-  # ==========================================
-  # JOB 3: LIGHTHOUSE CI (Performance)
-  # ==========================================
-  lighthouse:
-    runs-on: ubuntu-latest
-    needs: deploy-notify
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - name: 📥 Checkout repository
-        uses: actions/checkout@v4
-
-      - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: 📦 Install Lighthouse CI
-        run: npm install -g @lhci/cli
-
-      - name: 🔍 Run Lighthouse CI
+      # Verifica que los archivos críticos del portfolio existen tras el build.
+      - name: Required files present
         run: |
-          lhci autorun || echo "Lighthouse audit completed"
-        continue-on-error: true
-
-      - name: 📊 Upload Lighthouse results
-        uses: actions/upload-artifact@v4
-        with:
-          name: lighthouse-report
-          path: .lighthouseci/
-          retention-days: 30
-        continue-on-error: true
+          for f in index.html styles.css api/weather.js api/forecast.js api/giphy.js; do
+            [ -f "$f" ] || { echo "MISSING: $f"; exit 1; }
+          done
+          echo "All required files present"

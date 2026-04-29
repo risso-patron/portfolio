@@ -7,6 +7,49 @@ context: |
   Conventions: Mobile-first, responsive, no framework dependencies, GitHub Pages / Vercel deployment
   Testing: No test runner detected
   Style: No linter/formatter configured
+  Last code review: 2026-04-28 — see known_issues below
+
+known_issues:
+  # Code review 2026-04-28 — sorted by priority
+  - id: api-no-cors
+    severity: critical
+    area: security
+    summary: "API handlers (/api/weather, /api/forecast, /api/giphy) have no CORS/origin validation"
+    detail: "Any external site can call these endpoints and burn API quota for OpenWeather and Giphy"
+    file: "api/weather.js, api/forecast.js, api/giphy.js"
+    fix: "Add Referer/Origin allowlist check at top of each handler"
+
+  - id: api-error-message-leak
+    severity: critical
+    area: security
+    summary: "Upstream error.message forwarded to client via 'detail:' field"
+    detail: "OWASP A05: internal infrastructure details exposed on 502 responses"
+    file: "api/weather.js, api/forecast.js, api/giphy.js"
+    fix: "Replace 'detail: error.message' with a static generic string in production"
+
+  - id: cv-style-leak
+    severity: medium
+    area: css
+    summary: "@import url('/jorgeluis_CV/styles.css') on line 1 of styles.css loads CV styles globally"
+    detail: "Every page in the portfolio loads CV-specific CSS — unintentional style leak"
+    file: "styles.css line 1"
+    fix: "Remove the @import from root styles.css; CV page is self-contained via its own styles.css"
+
+  - id: ci-decorative
+    severity: medium
+    area: ci
+    summary: "GitHub Actions CI never actually fails — continue-on-error: true on ESLint, build is just an echo"
+    detail: "Pipeline looks like QA but provides no real validation; misleading in a portfolio context"
+    file: ".github/workflows/deploy.yml"
+    fix: "Either remove CI or add real validation (HTML W3C check, broken link check, etc.)"
+
+  - id: monolithic-html
+    severity: medium
+    area: architecture
+    summary: "index.html is 800+ lines — single file for hero, about, 8 project cards, arsenal, contact, footer"
+    detail: "No component separation; any edit risks the whole file; hard to maintain"
+    file: "index.html"
+    fix: "Progressively extract sections or add build step with HTML includes"
 
 strict_tdd: false
 
