@@ -42,8 +42,23 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // cleanUrls: si /en no existe, intenta /en.html (igual que Vercel en prod)
+  const htmlFallback = !path.extname(filePath) ? filePath + '.html' : null;
+
   fs.stat(filePath, (statErr, stats) => {
     if (statErr) {
+      if (htmlFallback) {
+        fs.readFile(htmlFallback, (readErr, data) => {
+          if (readErr) {
+            res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+            res.end('Not found');
+            return;
+          }
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+          res.end(data);
+        });
+        return;
+      }
       res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
       res.end('Not found');
       return;
