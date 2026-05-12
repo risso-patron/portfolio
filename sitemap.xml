@@ -6,37 +6,49 @@
     <!-- Página principal -->
     <url>
         <loc>https://www.risso-patron.com/</loc>
-        <lastmod>2026-04-16</lastmod>
+        <lastmod>2026-05-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
             <image:loc>https://www.risso-patron.com/assets/images/jorge_luis_hero.png</image:loc>
-            <image:title>Jorge Luis Risso Patrón - Desarrollador Web Frontend</image:title>
+            <image:title>Jorge Luis Risso Patrón - Desarrollador Web Frontend Junior</image:title>
         </image:image>
     </url>
     
     <!-- Weather App -->
     <url>
         <loc>https://www.risso-patron.com/weather-app/</loc>
-        <lastmod>2026-04-16</lastmod>
+        <lastmod>2026-05-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://www.risso-patron.com/weather-app/screenshots/screenshot-desktop.webp</image:loc>
+            <image:title>Weather App - Aplicación del clima con API</image:title>
+        </image:image>
     </url>
     
     <!-- Pomodoro Timer -->
     <url>
         <loc>https://www.risso-patron.com/pomodoro-timer/</loc>
-        <lastmod>2026-04-16</lastmod>
+        <lastmod>2026-05-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://www.risso-patron.com/pomodoro-timer/screenshots/screenshot-desktop.webp</image:loc>
+            <image:title>Pomodoro Timer - Técnica Pomodoro con estadísticas</image:title>
+        </image:image>
     </url>
-    
-    <!-- Saldo (Budget App v2) -->
+
+    <!-- Budget App v1 -->
     <url>
-        <loc>https://budget-calculator-rp.netlify.app</loc>
-        <lastmod>2026-03-29</lastmod>
+        <loc>https://www.risso-patron.com/budget-app/</loc>
+        <lastmod>2026-05-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.risso-patron.com/budget-app/screenshots/screenshot-1.webp</image:loc>
+            <image:title>Budget App - Dashboard financiero personal en vanilla JS</image:title>
+        </image:image>
     </url>
     
 </urlset>
