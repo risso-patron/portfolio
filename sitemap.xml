@@ -50,5 +50,17 @@
             <image:title>Budget App - Dashboard financiero personal en vanilla JS</image:title>
         </image:image>
     </url>
+
+    <!-- English version -->
+    <url>
+        <loc>https://www.risso-patron.com/en</loc>
+        <lastmod>2026-05-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.risso-patron.com/assets/images/jorge_luis_hero.png</image:loc>
+            <image:title>Jorge Luis Risso Patrón - Frontend Web Developer</image:title>
+        </image:image>
+    </url>
     
 </urlset>
