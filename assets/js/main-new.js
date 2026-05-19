@@ -165,6 +165,8 @@ tabButtons.forEach(btn => {
                 }, 300);
             }
         });
+    });
+});
 
 // ===== LIGHTBOX =====
 (function () {
@@ -250,8 +252,6 @@ tabButtons.forEach(btn => {
         el.addEventListener('click', () => open(el.dataset.gallery));
     });
 }());
-    });
-});
 
 // ==================== INTERSECTION OBSERVER ====================
 const observerOptions = {
