@@ -165,6 +165,91 @@ tabButtons.forEach(btn => {
                 }, 300);
             }
         });
+
+// ===== LIGHTBOX =====
+(function () {
+    const galleries = {
+        homepower: [
+            'assets/images/projects/homepowerpty.com/homepower-00.webp',
+            'assets/images/projects/homepowerpty.com/homepower-01.webp',
+            'assets/images/projects/homepowerpty.com/homepower-02.webp',
+            'assets/images/projects/homepowerpty.com/homepower-03.webp',
+            'assets/images/projects/homepowerpty.com/homepower-04.webp',
+        ],
+        somosproperties: [
+            'assets/images/projects/somosproperties.com/somosproperties-00.webp',
+            'assets/images/projects/somosproperties.com/somosproperties-01.webp',
+            'assets/images/projects/somosproperties.com/somosproperties-02.webp',
+            'assets/images/projects/somosproperties.com/somosproperties-03.webp',
+        ],
+        hostpro: [
+            'assets/images/projects/hostpropanama.com/hostpro-00.webp',
+            'assets/images/projects/hostpropanama.com/hostpro-01.webp',
+            'assets/images/projects/hostpropanama.com/hostpro-02.webp',
+            'assets/images/projects/hostpropanama.com/hostpro-03.webp',
+            'assets/images/projects/hostpropanama.com/hostpro-04.webp',
+        ],
+    };
+
+    const lightbox    = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const dotsEl      = document.getElementById('lightboxDots');
+    const closeBtn    = document.getElementById('lightboxClose');
+    const prevBtn     = document.getElementById('lightboxPrev');
+    const nextBtn     = document.getElementById('lightboxNext');
+
+    let current = [];
+    let idx = 0;
+    let timer = null;
+
+    function showImage(i) {
+        idx = (i + current.length) % current.length;
+        lightboxImg.src = current[idx];
+        dotsEl.querySelectorAll('.lightbox-dot').forEach((d, j) => {
+            d.classList.toggle('active', j === idx);
+        });
+    }
+
+    function startAuto() {
+        clearInterval(timer);
+        timer = setInterval(() => showImage(idx + 1), 2000);
+    }
+
+    function open(key) {
+        current = galleries[key];
+        dotsEl.innerHTML = current.map((_, i) =>
+            `<span class="lightbox-dot${i === 0 ? ' active' : ''}" data-i="${i}"></span>`
+        ).join('');
+        dotsEl.querySelectorAll('.lightbox-dot').forEach(d => {
+            d.addEventListener('click', () => { showImage(+d.dataset.i); startAuto(); });
+        });
+        showImage(0);
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        startAuto();
+    }
+
+    function close() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        clearInterval(timer);
+    }
+
+    closeBtn.addEventListener('click', close);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+    prevBtn.addEventListener('click', () => { showImage(idx - 1); startAuto(); });
+    nextBtn.addEventListener('click', () => { showImage(idx + 1); startAuto(); });
+    document.addEventListener('keydown', e => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape')     close();
+        if (e.key === 'ArrowLeft')  { showImage(idx - 1); startAuto(); }
+        if (e.key === 'ArrowRight') { showImage(idx + 1); startAuto(); }
+    });
+
+    document.querySelectorAll('.browser-content[data-gallery]').forEach(el => {
+        el.addEventListener('click', () => open(el.dataset.gallery));
+    });
+}());
     });
 });
 

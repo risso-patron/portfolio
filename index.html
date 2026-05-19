@@ -410,8 +410,8 @@
                                     <span>www.homepowerpty.com</span>
                                 </div>
                             </div>
-                            <div class="browser-content">
-                                <img src="assets/images/projects/homepowerpty.com/screenshot-desktop.webp" alt="Home Power PTY Desktop" loading="lazy">
+                            <div class="browser-content" data-gallery="homepower">
+                                <img src="assets/images/projects/homepowerpty.com/homepower-00.webp" alt="Home Power PTY Desktop" loading="lazy">
                             </div>
                         </div>
                         <div class="phone-mockup-small"><div class="phone-frame"><div class="phone-screen"><img src="assets/images/projects/homepowerpty.com/screenshot-mobile.webp" alt="Home Power PTY Mobile" loading="lazy"></div></div></div>
@@ -439,8 +439,8 @@
                                     <span>somosproperties.com</span>
                                 </div>
                             </div>
-                            <div class="browser-content">
-                                <img src="assets/images/projects/somosproperties.com/screenshot-desktop.webp" alt="SOMOS Properties Desktop" loading="lazy">
+                            <div class="browser-content" data-gallery="somosproperties">
+                                <img src="assets/images/projects/somosproperties.com/somosproperties-00.webp" alt="SOMOS Properties Desktop" loading="lazy">
                             </div>
                         </div>
                         <div class="phone-mockup-small"><div class="phone-frame"><div class="phone-screen"><img src="assets/images/projects/somosproperties.com/screenshot-mobile.webp" alt="SOMOS Properties Mobile" loading="lazy"></div></div></div>
@@ -468,8 +468,8 @@
                                     <span>hostpropanama.com</span>
                                 </div>
                             </div>
-                            <div class="browser-content">
-                                <img src="assets/images/projects/hostpropanama.com/screenshot-desktop.webp" alt="HostPro Panama Desktop" loading="lazy">
+                            <div class="browser-content" data-gallery="hostpro">
+                                <img src="assets/images/projects/hostpropanama.com/hostpro-00.webp" alt="HostPro Panama Desktop" loading="lazy">
                             </div>
                         </div>
                         <div class="phone-mockup-small"><div class="phone-frame"><div class="phone-screen"><img src="assets/images/projects/hostpropanama.com/screenshot-mobile.webp" alt="HostPro Panama Mobile" loading="lazy"></div></div></div>
@@ -732,5 +732,16 @@
     </a>
 
     <script src="assets/js/main-new.js"></script>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Galería de proyecto">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+        <button class="lightbox-prev" id="lightboxPrev" aria-label="Anterior">&#8249;</button>
+        <button class="lightbox-next" id="lightboxNext" aria-label="Siguiente">&#8250;</button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="Screenshot del proyecto">
+            <div class="lightbox-dots" id="lightboxDots"></div>
+        </div>
+    </div>
 </body>
 </html>
