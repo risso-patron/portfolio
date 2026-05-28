@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Cards — Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────── */
+:root {
+  --bg:           #080b10;
+  --card-bg:      #0c1018;
+  --card-border:  rgba(255,255,255,0.055);
+  --card-border-h:rgba(255,255,255,0.13);
+  --text-primary: rgba(255,255,255,0.90);
+  --text-secondary:rgba(255,255,255,0.44);
+  --text-tertiary: rgba(255,255,255,0.24);
+  --accent-blue:  #3b82f6;
+  --accent-cyan:  #22d3ee;
+  --accent-green: #22c55e;
+  --accent-amber: #f59e0b;
+  --accent-violet:#8b5cf6;
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+  --radius-card:  18px;
+  --radius-badge: 7px;
+  --transition:   cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── RESET / BASE ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding: 64px 40px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ─── GRID ───────────────────────────────────────────────── */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+/* ─── CARD ───────────────────────────────────────────────── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  overflow: visible;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.4s var(--transition),
+              transform 0.4s var(--transition),
+              box-shadow 0.4s var(--transition);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.05) inset,
+    0 2px 4px rgba(0,0,0,0.3),
+    0 12px 32px rgba(0,0,0,0.25);
+}
+
+.card:hover {
+  border-color: var(--card-border-h);
+  transform: translateY(-4px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.07) inset,
+    0 4px 8px rgba(0,0,0,0.4),
+    0 24px 56px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(255,255,255,0.03);
+}
+
+/* ─── SHOWCASE ───────────────────────────────────────────── */
+.showcase {
+  position: relative;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  overflow: hidden;
+  height: 220px;
+  background: #0a0d14;
+  clip-path: inset(0 0 0 0 round var(--radius-card) var(--radius-card) 0 0);
+}
+
+.showcase::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--card-glow, radial-gradient(ellipse 75% 60% at 40% 55%, rgba(59,130,246,0.10) 0%, transparent 68%));
+  pointer-events: none;
+  z-index: 0;
+}
+
+.showcase::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, #0c1018);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ─── BROWSER MOCK ───────────────────────────────────────── */
+.browser {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 72%;
+  background: #111622;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid rgba(255,255,255,0.09);
+  overflow: hidden;
+  z-index: 1;
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.55),
+    0 1px 0 rgba(255,255,255,0.06) inset;
+  transform: perspective(1200px) rotateY(-1.5deg) rotateX(0.5deg);
+  transform-origin: left center;
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  background: #161d2e;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.dots {
+  display: flex;
+  gap: 5px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+.dot.r { background: #ff5f57; }
+.dot.y { background: #febc2e; }
+.dot.g { background: #28c840; }
+
+.url-bar {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 9.5px;
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.browser-screen {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.browser-screen-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--screen-bg, #141b2d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ─── MOBILE MOCK ────────────────────────────────────────── */
+.mobile {
+  position: absolute;
+  right: 14px;
+  bottom: -22px;
+  width: 26%;
+  background: #111622;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  overflow: hidden;
+  z-index: 10;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04),
+    0 20px 48px rgba(0,0,0,0.65),
+    inset 0 1px 0 rgba(255,255,255,0.11);
+  transform: perspective(800px) rotateY(3deg) rotateX(-0.5deg);
+  transform-origin: right center;
+}
+
+.mobile-notch {
+  height: 8px;
+  background: #161d2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-notch::after {
+  content: '';
+  width: 32px;
+  height: 4px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 4px;
+}
+
+.mobile-screen {
+  width: 100%;
+  aspect-ratio: 9/18;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.mobile-screen-placeholder {
+  width: 100%;
+  aspect-ratio: 9/18;
+  background: var(--mobile-bg, #0f1625);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── CATEGORY BADGE ─────────────────────────────────────── */
+.cat-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9.5px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--badge-color, rgba(255,255,255,0.55));
+  background: rgba(10,13,22,0.75);
+  border: 1px solid var(--badge-border, rgba(255,255,255,0.10));
+  border-radius: 20px;
+  padding: 4px 10px 4px 7px;
+  backdrop-filter: blur(8px);
+}
+
+.cat-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--badge-dot, rgba(255,255,255,0.4));
+}
+
+.ver-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  background: rgba(10,13,22,0.75);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 3px 8px;
+  backdrop-filter: blur(8px);
+}
+
+/* ─── METADATA ───────────────────────────────────────────── */
+.meta {
+  padding: 32px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  overflow: hidden;
+}
+
+.meta-label {
+  font-size: 9.5px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 9px;
+}
+
+.meta-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.meta-desc {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  max-width: 260px;
+}
+
+/* ─── TECH BADGES ────────────────────────────────────────── */
+.tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.tech {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-badge);
+  padding: 4px 9px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.tech:hover {
+  border-color: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.75);
+}
+
+/* ─── VISIT BUTTON ───────────────────────────────────────── */
+.visit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 8px;
+  padding: 8px 14px;
+  text-decoration: none;
+  margin-top: auto;
+  width: fit-content;
+  transition: all 0.25s var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.visit-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.visit-btn:hover {
+  color: rgba(255,255,255,0.85);
+  border-color: rgba(255,255,255,0.20);
+  transform: translateX(2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.visit-btn:hover::before { opacity: 1; }
+
+.visit-btn svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.6;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+.visit-btn:hover svg {
+  transform: translate(2px, -2px);
+  opacity: 1;
+}
+
+/* ─── ACCENT COLORS PER CARD ─────────────────────────────── */
+.card-ecommerce { --card-glow: radial-gradient(ellipse 75% 60% at 40% 55%, rgba(245,158,11,0.09) 0%, transparent 68%); }
+.card-realestate{ --card-glow: radial-gradient(ellipse 75% 60% at 40% 55%, rgba(34,197,94,0.08) 0%, transparent 68%); }
+.card-services  { --card-glow: radial-gradient(ellipse 75% 60% at 40% 55%, rgba(139,92,246,0.10) 0%, transparent 68%); }
+.card-fintech   { --card-glow: radial-gradient(ellipse 75% 60% at 40% 55%, rgba(34,211,238,0.09) 0%, transparent 68%); }
+
+.cat-ecommerce  { --badge-color: rgba(245,158,11,0.85); --badge-border: rgba(245,158,11,0.25); --badge-dot: #f59e0b; }
+.cat-realestate { --badge-color: rgba(34,197,94,0.85);  --badge-border: rgba(34,197,94,0.25);  --badge-dot: #22c55e; }
+.cat-services   { --badge-color: rgba(139,92,246,0.85); --badge-border: rgba(139,92,246,0.25); --badge-dot: #8b5cf6; }
+.cat-fintech    { --badge-color: rgba(34,211,238,0.85); --badge-border: rgba(34,211,238,0.25); --badge-dot: #22d3ee; }
+
+/* ─── INLINE SCREEN DESIGNS ─────────────────────────────── */
+.screen-homepower {
+  background: linear-gradient(160deg, #1a1205 0%, #0d0902 100%);
+  display: flex; flex-direction: column;
+  padding: 8px; gap: 4px;
+}
+.screen-homepower .sp-nav { display: flex; align-items: center; justify-content: space-between; padding: 2px 4px; }
+.screen-homepower .sp-logo { font-size: 7px; font-weight: 700; color: #f59e0b; font-family: var(--font-display); }
+.screen-homepower .sp-links { display: flex; gap: 5px; }
+.screen-homepower .sp-links span { font-size: 5px; color: rgba(255,255,255,0.3); font-family: var(--font-mono); }
+.screen-homepower .sp-hero {
+  flex: 1; background: linear-gradient(135deg, #1f1400 0%, #2d1d00 100%);
+  border-radius: 4px; display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 8px; position: relative; overflow: hidden;
+}
+.screen-homepower .sp-hero::after {
+  content: ''; position: absolute; right: -10px; top: -10px;
+  width: 60px; height: 60px;
+  background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%);
+}
+.screen-homepower .sp-h1 { font-size: 8px; font-weight: 800; color: #f59e0b; font-family: var(--font-display); line-height: 1.2; max-width: 55px; }
+.screen-homepower .sp-cta { margin-top: 4px; font-size: 5px; font-family: var(--font-mono); background: #f59e0b; color: #000; border-radius: 2px; padding: 2px 5px; width: fit-content; }
+.screen-homepower .sp-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.sp-prod { background: rgba(255,255,255,0.04); border-radius: 3px; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+.mobile-homepower { background: #0d0902; display: flex; flex-direction: column; padding: 4px; gap: 3px; height: 100%; }
+.mobile-homepower .m-header { font-size: 5px; color: #f59e0b; font-weight: 700; font-family: var(--font-display); padding: 2px; }
+.mobile-product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; flex: 1; }
+.m-prod-card { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.15); border-radius: 3px; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+
+.screen-somos { background: linear-gradient(180deg, #0d1a2d 0%, #071020 100%); display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+.screen-somos .so-img { flex: 1; background: linear-gradient(160deg, #1a3a5c 0%, #0d2040 60%, #071020 100%); position: relative; display: flex; align-items: flex-end; padding: 8px; min-height: 60px; }
+.screen-somos .so-img::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(7,16,32,0.8) 100%); }
+.screen-somos .so-headline { position: relative; z-index: 1; font-size: 8px; font-weight: 700; color: #fff; font-family: var(--font-display); line-height: 1.2; max-width: 80px; }
+.screen-somos .so-bottom { padding: 5px 8px; display: flex; gap: 4px; }
+.so-btn { font-size: 5px; font-family: var(--font-mono); border: 1px solid rgba(34,197,94,0.4); color: rgba(34,197,94,0.8); border-radius: 2px; padding: 2px 5px; }
+.so-btn.solid { background: #22c55e; color: #000; border-color: #22c55e; }
+
+.mobile-somos { background: #071020; padding: 4px; height: 100%; display: flex; flex-direction: column; gap: 3px; }
+.m-prop-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 3px; padding: 3px 4px; display: flex; flex-direction: column; gap: 1px; }
+.m-prop-img { height: 18px; background: linear-gradient(135deg, #1a3a5c, #0d2a45); border-radius: 2px; }
+.m-prop-title { font-size: 5px; color: rgba(255,255,255,0.7); font-family: var(--font-mono); }
+.m-prop-price { font-size: 5px; color: #22c55e; font-family: var(--font-mono); font-weight: 500; }
+
+.screen-hostpro { background: #080810; display: flex; flex-direction: column; padding: 6px; gap: 4px; position: relative; overflow: hidden; }
+.screen-hostpro::before { content: ''; position: absolute; top: -20px; left: -20px; width: 80px; height: 80px; background: radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%); }
+.screen-hostpro::after { content: ''; position: absolute; bottom: -10px; right: -10px; width: 60px; height: 60px; background: radial-gradient(circle, rgba(236,72,153,0.2) 0%, transparent 70%); }
+.hp-logo { font-size: 9px; font-weight: 800; color: #f59e0b; font-family: var(--font-display); position: relative; z-index: 1; letter-spacing: -0.03em; }
+.hp-logo span { color: #8b5cf6; }
+.hp-tagline { font-size: 5px; color: rgba(255,255,255,0.4); font-family: var(--font-mono); position: relative; z-index: 1; max-width: 80px; line-height: 1.4; }
+.hp-ctas { display: flex; gap: 3px; position: relative; z-index: 1; }
+.hp-btn { font-size: 5px; font-family: var(--font-mono); padding: 2px 6px; border-radius: 2px; background: #f59e0b; color: #000; }
+
+.mobile-hostpro { background: #080810; padding: 4px; height: 100%; display: flex; flex-direction: column; gap: 3px; position: relative; overflow: hidden; }
+.mobile-hostpro::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to bottom, rgba(139,92,246,0.15), transparent); }
+.hp-m-logo { font-size: 7px; font-weight: 800; color: #f59e0b; font-family: var(--font-display); position: relative; z-index: 1; }
+.hp-m-menu { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+.hp-menu-item { font-size: 5px; font-family: var(--font-mono); color: rgba(255,255,255,0.4); padding: 2px 3px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+
+.screen-provivir { background: linear-gradient(160deg, #0a1f10 0%, #061408 100%); display: flex; flex-direction: column; overflow: hidden; position: relative; }
+.pv-hero-img { flex: 1; background: linear-gradient(to bottom, transparent 30%, rgba(6,20,8,0.85) 100%), linear-gradient(135deg, #1a4025 0%, #0f2a18 40%, #061408 100%); display: flex; align-items: flex-end; padding: 6px 8px; min-height: 50px; position: relative; }
+.pv-hero-img::before { content: '🌳'; position: absolute; top: 4px; right: 8px; font-size: 18px; opacity: 0.35; }
+.pv-headline { font-size: 7px; font-weight: 700; color: #fff; font-family: var(--font-display); line-height: 1.2; max-width: 80px; }
+.pv-cta { display: flex; align-items: center; gap: 2px; background: #22c55e; color: #000; font-size: 5px; font-family: var(--font-mono); border-radius: 2px; padding: 2px 5px; width: fit-content; margin-top: 4px; }
+
+.mobile-provivir { background: #061408; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+.pv-m-hero { height: 55%; background: linear-gradient(135deg, #1a4025 0%, #0f2a18 100%); position: relative; display: flex; align-items: flex-end; padding: 4px; }
+.pv-m-hero::before { content: '🌳'; position: absolute; top: 4px; right: 6px; font-size: 14px; opacity: 0.4; }
+.pv-m-text { font-size: 5px; color: #fff; font-family: var(--font-display); font-weight: 700; position: relative; z-index: 1; }
+.pv-m-cta { background: #22c55e; color: #000; font-size: 4px; font-family: var(--font-mono); padding: 2px 4px; border-radius: 2px; width: fit-content; margin: 3px; }
+.pv-m-info { flex: 1; padding: 4px; display: flex; flex-direction: column; gap: 2px; }
+.pv-info-row { display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.pv-info-label { font-size: 4.5px; color: rgba(255,255,255,0.3); font-family: var(--font-mono); }
+.pv-info-val   { font-size: 4.5px; color: rgba(34,197,94,0.8); font-family: var(--font-mono); }
+
+.screen-budget { background: #0b0f1e; display: flex; flex-direction: column; padding: 5px; gap: 3px; }
+.bg-topbar { display: flex; align-items: center; justify-content: space-between; }
+.bg-title { font-size: 7px; font-weight: 700; color: #22d3ee; font-family: var(--font-display); }
+.bg-balance { font-size: 5px; font-family: var(--font-mono); color: rgba(255,255,255,0.4); background: rgba(34,211,238,0.07); border: 1px solid rgba(34,211,238,0.15); border-radius: 3px; padding: 2px 5px; }
+.bg-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; }
+.bg-stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 3px; padding: 4px; }
+.bg-stat-label { font-size: 4.5px; color: rgba(255,255,255,0.3); font-family: var(--font-mono); }
+.bg-stat-val { font-size: 7px; font-weight: 700; color: #22d3ee; font-family: var(--font-display); }
+.bg-stat-val.neg { color: #f87171; }
+.bg-txs { display: flex; flex-direction: column; gap: 2px; }
+.bg-tx { display: flex; justify-content: space-between; align-items: center; padding: 3px 4px; background: rgba(255,255,255,0.03); border-radius: 2px; }
+.bg-tx-name { font-size: 5px; color: rgba(255,255,255,0.5); font-family: var(--font-mono); }
+.bg-tx-amt { font-size: 5px; font-family: var(--font-mono); }
+.bg-tx-amt.pos { color: #22d3ee; }
+.bg-tx-amt.neg { color: #f87171; }
+
+.mobile-budget { background: #080c1a; height: 100%; display: flex; flex-direction: column; padding: 4px; gap: 3px; }
+.bm-header { font-size: 6px; font-weight: 700; color: #22d3ee; font-family: var(--font-display); }
+.bm-balance { background: linear-gradient(135deg, rgba(34,211,238,0.12), rgba(34,211,238,0.04)); border: 1px solid rgba(34,211,238,0.2); border-radius: 4px; padding: 5px; text-align: center; }
+.bm-balance-label { font-size: 4px; color: rgba(255,255,255,0.35); font-family: var(--font-mono); }
+.bm-balance-val { font-size: 9px; font-weight: 700; color: #22d3ee; font-family: var(--font-display); }
+.bm-tx-list { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.bm-tx { display: flex; justify-content: space-between; padding: 2px 3px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.bm-tx-name { font-size: 4.5px; color: rgba(255,255,255,0.45); font-family: var(--font-mono); }
+.bm-tx-amt { font-size: 4.5px; font-family: var(--font-mono); }
+
+/* ─── HOVER GLOW REVEAL ──────────────────────────────────── */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(var(--radius-card) + 1px);
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%, rgba(255,255,255,0.02) 100%);
+  opacity: 0;
+  transition: opacity 0.4s var(--transition);
+  pointer-events: none;
+}
+.card:hover::after { opacity: 1; }
+
+/* ─── ENTRY ANIMATIONS ───────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card { animation: fadeUp 0.6s var(--transition) both; }
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.12s; }
+.card:nth-child(3) { animation-delay: 0.19s; }
+.card:nth-child(4) { animation-delay: 0.26s; }
+.card:nth-child(5) { animation-delay: 0.33s; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+  body { padding: 24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="portfolio-grid">
+
+  <!-- ① HOME POWER PTY -->
+  <div class="card card-ecommerce">
+    <div class="showcase">
+      <span class="cat-badge cat-ecommerce"><span class="cat-dot"></span>E-commerce</span>
+      <div class="browser">
+        <div class="browser-bar">
+          <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+          <div class="url-bar">www.homepowerpty.com</div>
+        </div>
+        <div class="browser-screen-placeholder screen-homepower">
+          <div class="sp-nav">
+            <div class="sp-logo">HP</div>
+            <div class="sp-links"><span>Catálogo</span><span>Ofertas</span><span>Contacto</span></div>
+          </div>
+          <div class="sp-hero">
+            <div class="sp-copy">
+              <div class="sp-h1">Potencia e Innovación para tu hogar</div>
+              <div class="sp-cta">Ver Selección →</div>
+            </div>
+          </div>
+          <div class="sp-products">
+            <div class="sp-prod">🫖</div><div class="sp-prod">🖨️</div><div class="sp-prod">🔌</div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile">
+        <div class="mobile-notch"></div>
+        <div class="mobile-screen-placeholder mobile-homepower">
+          <div class="m-header">HomePower</div>
+          <div class="mobile-product-grid">
+            <div class="m-prod-card">🫖</div><div class="m-prod-card">🖨️</div>
+            <div class="m-prod-card">🔌</div><div class="m-prod-card">💡</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-label">Cliente · HTML / CSS / JS</div>
+      <div class="meta-title">Home Power PTY</div>
+      <div class="meta-desc">Tienda online de electrodomésticos al por mayor con catálogo dinámico y contacto vía WhatsApp.</div>
+      <div class="tech-row">
+        <span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">JavaScript</span><span class="tech">Responsive</span>
+      </div>
+      <a href="https://www.homepowerpty.com" target="_blank" class="visit-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Visit Site
+      </a>
+    </div>
+  </div>
+
+  <!-- ② SOMOS PROPERTIES -->
+  <div class="card card-realestate">
+    <div class="showcase">
+      <span class="cat-badge cat-realestate"><span class="cat-dot"></span>Real Estate</span>
+      <div class="browser">
+        <div class="browser-bar">
+          <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+          <div class="url-bar">somosproperties.com</div>
+        </div>
+        <div class="browser-screen-placeholder screen-somos">
+          <div class="so-img"><div class="so-headline">Propiedades que transforman vidas</div></div>
+          <div class="so-bottom"><div class="so-btn solid">Ver Premium</div><div class="so-btn">Ver Propiedades</div></div>
+        </div>
+      </div>
+      <div class="mobile">
+        <div class="mobile-notch"></div>
+        <div class="mobile-screen-placeholder mobile-somos">
+          <div class="m-prop-card"><div class="m-prop-img"></div><div class="m-prop-title">Penthouse · Costa del Este</div><div class="m-prop-price">$485,000</div></div>
+          <div class="m-prop-card"><div class="m-prop-img"></div><div class="m-prop-title">Apto · San Francisco</div><div class="m-prop-price">$195,000</div></div>
+          <div class="m-prop-card"><div class="m-prop-img"></div><div class="m-prop-title">Casa · Albrook</div><div class="m-prop-price">$320,000</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-label">Cliente · Next.js / React</div>
+      <div class="meta-title">SOMOS Properties</div>
+      <div class="meta-desc">Plataforma inmobiliaria con búsqueda avanzada de propiedades en Panamá.</div>
+      <div class="tech-row">
+        <span class="tech">Next.js</span><span class="tech">React</span><span class="tech">Tailwind</span>
+      </div>
+      <a href="https://somosproperties.com" target="_blank" class="visit-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Visit Site
+      </a>
+    </div>
+  </div>
+
+  <!-- ③ HOSTPRO PANAMA -->
+  <div class="card card-services">
+    <div class="showcase">
+      <span class="cat-badge cat-services"><span class="cat-dot"></span>Servicios</span>
+      <div class="browser">
+        <div class="browser-bar">
+          <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+          <div class="url-bar">hostpropanama.com</div>
+        </div>
+        <div class="browser-screen-placeholder screen-hostpro">
+          <div class="hp-logo">HOST<span>PRO</span></div>
+          <div class="hp-tagline">Agencia de talento para experiencia de marca &amp; eventos corporativos</div>
+          <div class="hp-ctas"><div class="hp-btn">Contratar →</div></div>
+        </div>
+      </div>
+      <div class="mobile">
+        <div class="mobile-notch"></div>
+        <div class="mobile-screen-placeholder mobile-hostpro">
+          <div class="hp-m-logo">HP</div>
+          <div class="hp-m-menu">
+            <div class="hp-menu-item">Modelos</div><div class="hp-menu-item">Servicios</div>
+            <div class="hp-menu-item">Planes</div><div class="hp-menu-item">Contacto</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-label">Cliente · Landing Page</div>
+      <div class="meta-title">HostPro Panama</div>
+      <div class="meta-desc">Landing para agencia de staff premium en eventos corporativos con formularios de contacto integrados.</div>
+      <div class="tech-row">
+        <span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">JavaScript</span>
+      </div>
+      <a href="https://hostpropanama.com" target="_blank" class="visit-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Visit Site
+      </a>
+    </div>
+  </div>
+
+  <!-- ④ PROVIVIR PANAMÁ -->
+  <div class="card card-realestate">
+    <div class="showcase">
+      <span class="cat-badge cat-realestate"><span class="cat-dot"></span>Real Estate</span>
+      <div class="browser">
+        <div class="browser-bar">
+          <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+          <div class="url-bar">www.provivirpanama.com</div>
+        </div>
+        <div class="browser-screen-placeholder screen-provivir">
+          <div class="pv-hero-img">
+            <div>
+              <div class="pv-headline">Tu Nuevo Hogar está Más Cerca</div>
+              <div class="pv-cta">💬 Pide Asesoría</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile">
+        <div class="mobile-notch"></div>
+        <div class="mobile-screen-placeholder mobile-provivir">
+          <div class="pv-m-hero"><div class="pv-m-text">Tu Nuevo Hogar</div></div>
+          <div class="pv-m-cta">💬 Asesoría</div>
+          <div class="pv-m-info">
+            <div class="pv-info-row"><span class="pv-info-label">Proyectos</span><span class="pv-info-val">12+</span></div>
+            <div class="pv-info-row"><span class="pv-info-label">Desde</span><span class="pv-info-val">$89K</span></div>
+            <div class="pv-info-row"><span class="pv-info-label">Entrega</span><span class="pv-info-val">2025</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-label">Cliente · Frontend</div>
+      <div class="meta-title">Provivir Panamá</div>
+      <div class="meta-desc">Plataforma corporativa para una de las promotoras líderes en Panamá, con tecnologías web nativas.</div>
+      <div class="tech-row">
+        <span class="tech">HTML5</span><span class="tech">CSS3</span><span class="tech">JavaScript</span><span class="tech">Responsive</span>
+      </div>
+      <a href="https://www.provivirpanama.com" target="_blank" class="visit-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Visit Site
+      </a>
+    </div>
+  </div>
+
+  <!-- ⑤ BUDGET APP -->
+  <div class="card card-fintech">
+    <div class="showcase">
+      <span class="cat-badge cat-fintech"><span class="cat-dot"></span>FinTech</span>
+      <span class="ver-badge">v1.0</span>
+      <div class="browser">
+        <div class="browser-bar">
+          <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+          <div class="url-bar">risso-patron.com/budget-app</div>
+        </div>
+        <div class="browser-screen-placeholder screen-budget">
+          <div class="bg-topbar">
+            <div class="bg-title">Budget App</div>
+            <div class="bg-balance">Balance: $0.00</div>
+          </div>
+          <div class="bg-cards">
+            <div class="bg-stat"><div class="bg-stat-label">Ingresos</div><div class="bg-stat-val">$0.00</div></div>
+            <div class="bg-stat"><div class="bg-stat-label">Gastos</div><div class="bg-stat-val neg">$0.00</div></div>
+            <div class="bg-stat"><div class="bg-stat-label">Ahorro</div><div class="bg-stat-val">$0.00</div></div>
+          </div>
+          <div class="bg-txs">
+            <div class="bg-tx"><span class="bg-tx-name">Supermercado</span><span class="bg-tx-amt neg">-$45.20</span></div>
+            <div class="bg-tx"><span class="bg-tx-name">Salario</span><span class="bg-tx-amt pos">+$1,200</span></div>
+            <div class="bg-tx"><span class="bg-tx-name">Transporte</span><span class="bg-tx-amt neg">-$12.00</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile">
+        <div class="mobile-notch"></div>
+        <div class="mobile-screen-placeholder mobile-budget">
+          <div class="bm-header">Budget</div>
+          <div class="bm-balance">
+            <div class="bm-balance-label">Balance Total</div>
+            <div class="bm-balance-val">$1,142</div>
+          </div>
+          <div class="bm-tx-list">
+            <div class="bm-tx"><span class="bm-tx-name">Salario</span><span class="bm-tx-amt" style="color:#22d3ee">+$1,200</span></div>
+            <div class="bm-tx"><span class="bm-tx-name">Supermercado</span><span class="bm-tx-amt" style="color:#f87171">-$45</span></div>
+            <div class="bm-tx"><span class="bm-tx-name">Transporte</span><span class="bm-tx-amt" style="color:#f87171">-$12</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-label">Vanilla JS + LocalStorage</div>
+      <div class="meta-title">Budget App <span style="font-size:14px;font-weight:400;color:var(--text-tertiary);font-family:var(--font-mono)">v1.0</span></div>
+      <div class="meta-desc">Dashboard financiero con Chart.js, CRUD de transacciones y persistencia en LocalStorage — todo en Vanilla JS puro.</div>
+      <div class="tech-row">
+        <span class="tech">Vanilla JS</span><span class="tech">Chart.js</span><span class="tech">LocalStorage</span><span class="tech">CSS Grid</span>
+      </div>
+      <a href="https://risso-patron.com/budget-app" target="_blank" class="visit-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Visit Site
+      </a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
