@@ -6,7 +6,7 @@
 
 Developer junior autodidacta construyendo interfaces web funcionales. En transición desde operaciones a tecnología, enfocado en crear proyectos prácticos que demuestren habilidades reales de frontend.
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-risso--patron.github.io%2Fportfolio-2563eb?style=for-the-badge&logo=github&logoColor=white)](https://risso-patron.github.io/portfolio/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-www.risso--patron.com-2563eb?style=for-the-badge&logo=globe&logoColor=white)](https://www.risso-patron.com)
 [![Email](https://img.shields.io/badge/Email-luisrissopa%40gmail.com-ea4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:luisrissopa@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-risso--patron-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/risso-patron)
 
@@ -89,9 +89,9 @@ Sitio web personal con diseño responsivo, modo oscuro y build system con partia
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=risso-patron&show_icons=true&theme=react&hide_border=true&bg_color=0D1117&title_color=2563eb&icon_color=06b6d4&text_color=ffffff)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=risso-patron&show_icons=true&theme=react&hide_border=true&bg_color=0D1117&title_color=2563eb&icon_color=06b6d4&text_color=ffffff&cache_seconds=86400)
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=risso-patron&layout=compact&theme=react&hide_border=true&bg_color=0D1117&title_color=2563eb&text_color=ffffff)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=risso-patron&layout=compact&theme=react&hide_border=true&bg_color=0D1117&title_color=2563eb&text_color=ffffff&cache_seconds=86400)
 
 </div>
 
@@ -123,7 +123,7 @@ Sitio web personal con diseño responsivo, modo oscuro y build system con partia
 ¿Tienes una oportunidad o proyecto? ¡Hablemos!
 
 - 📧 Email: [luisrissopa@gmail.com](mailto:luisrissopa@gmail.com)
-- 🌐 Portfolio: [risso-patron.github.io/portfolio](https://risso-patron.github.io/portfolio/)
+- 🌐 Portfolio: [www.risso-patron.com](https://www.risso-patron.com)
 - 📍 Ubicación: Panamá
 
 ---

@@ -1,6 +1,6 @@
 # Skill Registry — portfolio
 
-Generated: 2026-04-14
+Generated: 2026-05-28
 
 ## User Skills
 
@@ -8,6 +8,7 @@ Generated: 2026-04-14
 |------|---------|------|
 | branch-pr | Creating a pull request, opening a PR, preparing changes for review | `~/.copilot/skills/branch-pr/SKILL.md` |
 | go-testing | Writing Go tests, using teatest, adding test coverage | `~/.copilot/skills/go-testing/SKILL.md` |
+| investigacion-monte-quemado | Diagnóstico territorial Monte Quemado, análisis WhatsApp/Facebook, priorización de problemas sociales, etiquetas [DATO]/[INFERENCIA]/[SUPOSICION] | `~/.copilot/skills/investigacion-monte-quemado/SKILL.md` |
 | issue-creation | Creating a GitHub issue, reporting a bug, requesting a feature | `~/.copilot/skills/issue-creation/SKILL.md` |
 | judgment-day | "judgment day", "review adversarial", "dual review", "juzgar", "que lo juzguen" | `~/.copilot/skills/judgment-day/SKILL.md` |
 | skill-creator | Creating a new skill, adding agent instructions, documenting patterns for AI | `~/.copilot/skills/skill-creator/SKILL.md` |

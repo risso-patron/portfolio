@@ -2,54 +2,56 @@
 schema: spec-driven
 
 context: |
-  Tech stack: HTML5, CSS3, JavaScript (vanilla), Node.js (scripts), Vercel (hosting + serverless)
-  Architecture: Static portfolio with sub-projects (weather-app, pomodoro-timer, budget-app); Vercel serverless API (weather.js, forecast.js, giphy.js)
+  Tech stack: HTML5, CSS3, JavaScript (vanilla), Node.js (scripts + build), Vercel (hosting + serverless)
+  Architecture: Static portfolio with src/ partials assembled by scripts/build.js; sub-projects (weather-app, pomodoro-timer, budget-app); Vercel serverless API (weather.js, forecast.js, giphy.js)
   Conventions: Mobile-first, responsive, no framework dependencies, GitHub Pages / Vercel deployment
-  Testing: No test runner detected
-  Style: No linter/formatter configured
-  Last code review: 2026-04-28 — see known_issues below
+  Testing: No test runner detected; build validation via npm run check + npm run build
+  Style: No linter/formatter; Node.js syntax check via npm run check
+  Last updated: 2026-05-28
 
 known_issues:
   # Code review 2026-04-28 — sorted by priority
   - id: api-no-cors
     severity: critical
     area: security
+    status: resolved
+    resolved: "2026-05-28 — ALLOWED_ORIGINS allowlist added to all API handlers"
     summary: "API handlers (/api/weather, /api/forecast, /api/giphy) have no CORS/origin validation"
-    detail: "Any external site can call these endpoints and burn API quota for OpenWeather and Giphy"
     file: "api/weather.js, api/forecast.js, api/giphy.js"
-    fix: "Add Referer/Origin allowlist check at top of each handler"
 
   - id: api-error-message-leak
     severity: critical
     area: security
+    status: resolved
+    resolved: "2026-05-28 — error.message no longer forwarded to client"
     summary: "Upstream error.message forwarded to client via 'detail:' field"
-    detail: "OWASP A05: internal infrastructure details exposed on 502 responses"
     file: "api/weather.js, api/forecast.js, api/giphy.js"
-    fix: "Replace 'detail: error.message' with a static generic string in production"
 
   - id: cv-style-leak
     severity: medium
     area: css
-    summary: "@import url('/jorgeluis_CV/styles.css') on line 1 of styles.css loads CV styles globally"
-    detail: "Every page in the portfolio loads CV-specific CSS — unintentional style leak"
-    file: "styles.css line 1"
-    fix: "Remove the @import from root styles.css; CV page is self-contained via its own styles.css"
+    status: resolved
+    resolved: "2026-05-28 — styles.css is now empty; @import removed"
+    summary: "@import url('/jorgeluis_CV/styles.css') loaded CV styles globally"
+    file: "styles.css"
 
   - id: ci-decorative
     severity: medium
     area: ci
-    summary: "GitHub Actions CI never actually fails — continue-on-error: true on ESLint, build is just an echo"
-    detail: "Pipeline looks like QA but provides no real validation; misleading in a portfolio context"
+    status: resolved
+    resolved: "2026-05-28 — CI now runs npm run check (syntax), npm run build, required files check"
+    summary: "GitHub Actions CI never actually failed — continue-on-error: true on ESLint, build was just an echo"
     file: ".github/workflows/deploy.yml"
-    fix: "Either remove CI or add real validation (HTML W3C check, broken link check, etc.)"
 
   - id: monolithic-html
     severity: medium
     area: architecture
-    summary: "index.html is 800+ lines — single file for hero, about, 8 project cards, arsenal, contact, footer"
-    detail: "No component separation; any edit risks the whole file; hard to maintain"
-    file: "index.html"
-    fix: "Progressively extract sections or add build step with HTML includes"
+    status: partially-resolved
+    resolved: "2026-05-28 — src/ partials added; scripts/build.js assembles index.html from 8 partials"
+    summary: "index.html is 747 lines — still large but now assembled from src/ partials via build step"
+    detail: "Generated file is large; source is now split across _head, _navbar, _hero, _about, _work, _arsenal, _contact, _footer"
+    file: "index.html, src/_*.html"
+    fix: "Consider further decomposition or templating if complexity grows"
 
 strict_tdd: false
 
@@ -100,11 +102,16 @@ testing:
     command: null
   quality:
     linter:
-      available: false
-      command: null
+      available: true
+      command: "npm run check"
+      note: "Node.js syntax check (node --check) on API files and scripts — not a full linter"
     type_checker:
       available: false
       command: null
     formatter:
       available: false
       command: null
+    build_validator:
+      available: true
+      command: "npm run build"
+      note: "Assembles src/ partials into index.html; fails if any partial is missing"
