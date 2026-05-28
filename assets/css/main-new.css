@@ -641,6 +641,7 @@ a {
 }
 
 .project-card {
+    --card-accent-rgb: 14, 165, 233; /* default: cyan — override per card */
     background: var(--bg-secondary);
     /* Borde sutilísimo: perceptible sin llamar la atención */
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -732,7 +733,7 @@ a {
     border-radius: 20px 20px 0 0;
     background:
         radial-gradient(ellipse 70% 55% at 42% 60%,
-            rgba(56, 189, 248, 0.06) 0%,
+            rgba(var(--card-accent-rgb), 0.06) 0%,
             transparent 65%);
     pointer-events: none;
     z-index: 0;
@@ -870,10 +871,10 @@ a {
 /* Phone: acento secundario — cruza borde, perspectiva espejada al desktop */
 .phone-mockup-small {
     position: absolute;
-    /* Desplazado en Y: sale del borde inferior del browser, anclado */
-    top: 52px;
-    /* Cruza el borde derecho intencionalmente */
-    right: -48px;
+    /* Overflow downward: el teléfono cruza la línea showcase/meta */
+    top: auto;
+    bottom: -52px;
+    right: 12px;
     width: 118px;
     /* z-index superior al desktop: crea planos de profundidad */
     z-index: 10;
@@ -891,7 +892,7 @@ a {
     inset: -20px -16px;
     background: radial-gradient(
         ellipse at 50% 50%,
-        rgba(56, 189, 248, 0.08) 0%,
+        rgba(var(--card-accent-rgb), 0.08) 0%,
         transparent 65%
     );
     filter: blur(20px);
@@ -981,11 +982,11 @@ a {
     padding: 5px 10px;
     background: rgba(10, 14, 23, 0.9);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(14, 165, 233, 0.3);
+    border: 1px solid rgba(var(--card-accent-rgb), 0.35);
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--cyan);
+    color: rgb(var(--card-accent-rgb));
 }
 
 .tag-wip {
@@ -1010,7 +1011,7 @@ a {
 
 /* ─── METADATA: escala tipográfica editorial ─────────────────────────────── */
 .project-content {
-    padding: 24px 28px 28px;
+    padding: 24px 130px 28px 28px;
     /* Separador que marca el límite entre showcase y metadata */
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -1563,10 +1564,15 @@ a {
     }
     
     .phone-mockup-small {
-        width: 92px;
-        right: -16px;
-        top: 32px;
+        width: 84px;
+        right: 8px;
+        top: auto;
+        bottom: -40px;
         transform: perspective(800px) rotateY(3deg) rotate(4deg);
+    }
+
+    .project-content {
+        padding-right: 100px;
     }
     
     .about-stats {
@@ -1625,11 +1631,16 @@ a {
     }
     
     .phone-mockup-small {
-        /* pantallas pequeñas: phone contenido, sin perspectiva */
-        width: 70px;
-        right: -10px;
-        top: 18px;
+        /* pantallas pequeñas: phone overflow abajo */
+        width: 66px;
+        right: 8px;
+        top: auto;
+        bottom: -28px;
         transform: rotate(4deg);
+    }
+
+    .project-content {
+        padding-right: 80px;
     }
     
     .project-image-grid-simple {
