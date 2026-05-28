@@ -654,12 +654,11 @@ a {
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     box-shadow:
-        0 32px 64px rgba(0, 0, 0, 0.45),
-        0 0 0 1px rgba(6, 182, 212, 0.3),
-        0 0 80px rgba(6, 182, 212, 0.06);
-    border-color: rgba(6, 182, 212, 0.4);
+        0 24px 48px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(6, 182, 212, 0.15);
+    border-color: rgba(6, 182, 212, 0.25);
 }
 
 .project-image {
@@ -703,10 +702,9 @@ a {
 /* MOCKUP PROFESIONAL DE NAVEGADOR + MÓVIL (proyectos cliente) */
 .project-image-grid {
     position: relative;
-    padding: 18px;
+    padding: 22px 22px 16px 22px;
     background: var(--bg-tertiary);
     border-radius: 18px 18px 0 0;
-    /* sin overflow:hidden — el phone sobresale por el lado derecho */
 }
 
 /* Contenedor del mockup de navegador */
@@ -789,7 +787,7 @@ a {
 .browser-content {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     background: #0d1117;
     overflow: hidden;
 }
@@ -805,40 +803,35 @@ a {
 
 /* gradiente inferior removido — muestra el screenshot desktop completo */
 
-/* Phone flotante — esquina superior derecha, parcialmente fuera del card */
+/* Phone flotante — elemento secundario premium, 15-20% más pequeño, más afuera */
 .phone-mockup-small {
     position: absolute;
     top: 20px;
-    right: -12px;
-    width: 117px;
+    right: -30px;
+    width: 96px;
     z-index: 20;
-    transform: rotate(3deg);
+    transform: rotate(6deg);
     transition:
-        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-        filter 0.45s ease;
-    filter:
-        drop-shadow(0 16px 32px rgba(0, 0, 0, 0.65))
-        drop-shadow(0 0 20px rgba(6, 182, 212, 0.22));
+        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        filter 0.5s ease;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.45));
 }
 
 .project-card:hover .phone-mockup-small {
-    transform: rotate(3deg) translateY(-6px) scale(1.04);
-    filter:
-        drop-shadow(0 24px 44px rgba(0, 0, 0, 0.75))
-        drop-shadow(0 0 32px rgba(6, 182, 212, 0.45));
+    transform: translateY(-6px) rotate(6deg);
+    filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.55));
 }
 
-/* Frame del dispositivo móvil — estilo iPhone con glow cyan (boceto) */
+/* Frame del dispositivo móvil — borde sutil, glow cyan reducido 60% */
 .phone-frame {
     background: linear-gradient(160deg, #162030, #0c1525);
     border-radius: 20px;
     padding: 0;
-    border: 2px solid rgba(6, 182, 212, 0.65);
+    border: 1.5px solid rgba(6, 182, 212, 0.26);
     box-shadow:
-        0 0 18px rgba(6, 182, 212, 0.35),
-        0 0 40px rgba(6, 182, 212, 0.12),
-        0 18px 36px rgba(0, 0, 0, 0.65),
-        inset 0 1px 2px rgba(255, 255, 255, 0.07);
+        0 0 12px rgba(6, 182, 212, 0.08),
+        0 20px 40px rgba(0, 0, 0, 0.45),
+        inset 0 1px 2px rgba(255, 255, 255, 0.06);
     overflow: hidden;
 }
 
@@ -885,10 +878,10 @@ a {
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Zoom elegante en el desktop al hover */
+/* Zoom sutil en el desktop al hover — desktop es protagonista */
 .project-card:hover .browser-content img,
 .project-card:hover .project-image-grid-simple img {
-    transform: scale(1.04);
+    transform: scale(1.01);
 }
 
 .project-tags {
@@ -931,7 +924,7 @@ a {
 }
 
 .project-content {
-    padding: 18px 16px 16px;
+    padding: 16px 20px 18px;
 }
 
 .project-meta {
