@@ -642,16 +642,23 @@ a {
 .project-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: visible;
-    transition: all var(--transition);
-    /* overflow:visible permite que el phone-mockup sobresalga por debajo */
+    transition:
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.45s ease;
+    position: relative;
+    isolation: isolate;
 }
 
 .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--cyan);
+    transform: translateY(-8px);
+    box-shadow:
+        0 32px 64px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(6, 182, 212, 0.3),
+        0 0 80px rgba(6, 182, 212, 0.06);
+    border-color: rgba(6, 182, 212, 0.4);
 }
 
 .project-image {
@@ -695,10 +702,10 @@ a {
 /* MOCKUP PROFESIONAL DE NAVEGADOR + MÓVIL (proyectos cliente) */
 .project-image-grid {
     position: relative;
-    padding: 20px 20px 40px 20px;
-    perspective: 1000px;
+    padding: 20px;
     background: var(--bg-tertiary);
-    border-radius: 16px 16px 0 0; /* recorta esquinas superiores ya que card no hace clip */
+    border-radius: 20px 20px 0 0;
+    /* sin overflow:hidden — el phone sobresale por el lado derecho */
 }
 
 /* Contenedor del mockup de navegador */
@@ -777,49 +784,79 @@ a {
     min-width: 0;
 }
 
-/* Contenedor de screenshot desktop */
+/* Contenedor de screenshot desktop — sin padding para que llene el browser */
 .browser-content {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 11;
-    background: #1a1f2c;
+    aspect-ratio: 16 / 10;
+    background: #0d1117;
     overflow: hidden;
-    padding: 4%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
 }
 
 .browser-content img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: top;
     display: block;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* gradiente inferior removido — muestra el screenshot desktop completo */
 
-/* Mockup de iPhone — sobresale por la parte inferior de la tarjeta */
+/* Phone flotante — esquina superior derecha, parcialmente fuera del card */
 .phone-mockup-small {
     position: absolute;
-    bottom: -48px;
-    right: 16px;
-    width: 90px;
+    top: 22px;
+    right: -14px;
+    width: 115px;
     z-index: 20;
-    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.45));
+    transform: rotate(3deg);
+    transition:
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        filter 0.45s ease;
+    filter:
+        drop-shadow(0 16px 32px rgba(0, 0, 0, 0.65))
+        drop-shadow(0 0 20px rgba(6, 182, 212, 0.22));
 }
 
+.project-card:hover .phone-mockup-small {
+    transform: rotate(3deg) translateY(-6px) scale(1.04);
+    filter:
+        drop-shadow(0 24px 44px rgba(0, 0, 0, 0.75))
+        drop-shadow(0 0 32px rgba(6, 182, 212, 0.45));
+}
+
+/* Frame del dispositivo móvil */
 .phone-frame {
-    position: relative;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(145deg, #252535, #151520);
+    border-radius: 22px;
+    padding: 7px 6px 10px;
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        inset 0 0 0 1px rgba(0, 0, 0, 0.5),
+        inset 0 1px 3px rgba(255, 255, 255, 0.06);
 }
 
+/* Pantalla del dispositivo */
 .phone-screen {
-    position: relative;
+    border-radius: 16px;
     overflow: hidden;
+    position: relative;
+}
+
+/* Notch sutil */
+.phone-screen::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 2px;
+    z-index: 2;
 }
 
 .phone-screen img {
@@ -828,11 +865,11 @@ a {
     display: block;
 }
 
-/* Tags de proyecto */
+/* Tags — esquina superior izquierda para no colisionar con el phone */
 .project-image-grid .project-tags {
     position: absolute;
     top: 16px;
-    right: 16px;
+    left: 16px;
     z-index: 30;
 }
 
@@ -843,15 +880,10 @@ a {
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Zoom balanceado solo para contenido principal */
+/* Zoom elegante en el desktop al hover */
 .project-card:hover .browser-content img,
 .project-card:hover .project-image-grid-simple img {
-    transform: scale(1.03);
-}
-
-/* El teléfono se mantiene estático para dar profundidad premium */
-.project-card:hover .phone-screen img {
-    transform: scale(1);
+    transform: scale(1.04);
 }
 
 .project-tags {
@@ -894,7 +926,7 @@ a {
 }
 
 .project-content {
-    padding: 64px 18px 18px; /* padding-top compensa el phone que sobresale sobre el contenido */
+    padding: 20px 18px 18px;
 }
 
 .project-meta {
@@ -1388,7 +1420,7 @@ a {
     }
     
     .project-image-grid {
-        padding: 20px 15px 40px 15px;
+        padding: 16px 15px;
     }
     
     .browser-mockup {
@@ -1427,9 +1459,9 @@ a {
     }
     
     .phone-mockup-small {
-        width: 72px;
-        right: 8px;
-        bottom: -40px;
+        width: 90px;
+        right: -10px;
+        top: 18px;
     }
     
     .about-stats {
@@ -1455,7 +1487,7 @@ a {
     }
     
     .project-image-grid {
-        padding: 15px 10px 35px 10px;
+        padding: 14px 10px;
     }
     
     .browser-mockup {
@@ -1488,9 +1520,10 @@ a {
     }
     
     .phone-mockup-small {
-        width: 58px;
-        right: 6px;
-        bottom: -32px;
+        /* en pantallas muy pequeñas el phone se retrae dentro del card */
+        width: 70px;
+        right: -6px;
+        top: 14px;
     }
     
     .project-image-grid-simple {
