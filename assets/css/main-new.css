@@ -642,20 +642,33 @@ a {
 
 .project-card {
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 18px;
+    /* Borde sutilísimo: perceptible sin llamar la atención */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
     overflow: visible;
     transition: all .5s cubic-bezier(.22, 1, .36, 1);
     position: relative;
     isolation: isolate;
+    /* Micro-gradiente diagonal: iluminación ficticia desde arriba-izquierda */
+    background-image: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.015) 0%,
+        transparent 45%
+    );
+    /* Rim light superior + sombras ambientales de profundidad */
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 8px 16px rgba(0, 0, 0, 0.2),
+        0 32px 64px rgba(0, 0, 0, 0.4);
 }
 
 .project-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
     box-shadow:
-        0 24px 48px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(6, 182, 212, 0.15);
-    border-color: rgba(6, 182, 212, 0.25);
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 12px 24px rgba(0, 0, 0, 0.25),
+        0 40px 80px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .project-image {
@@ -704,101 +717,115 @@ a {
 ──────────────────────────────────────────────────────────────────────────── */
 .project-image-grid {
     position: relative;
-    /* Padding mínimo: desktop casi toca los bordes laterales */
-    padding: 10px 10px 0 10px;
-    background:
-        /* Luz ambiental sutil desde arriba — profundidad atmosférica */
-        radial-gradient(ellipse 110% 65% at 50% -5%,
-            rgba(14, 165, 233, 0.055) 0%,
-            transparent 58%),
-        var(--bg-tertiary);
-    border-radius: 18px 18px 0 0;
+    /* Showcase area: 32px arriba, 40px lados, 0 abajo — mockups llegan al borde */
+    padding: 32px 40px 0 40px;
+    background: var(--bg-tertiary);
+    border-radius: 20px 20px 0 0;
     overflow: visible;
 }
 
-/* Bottom fade: el screenshot se funde con el contenido — efecto Apple/Linear */
+/* Luz ambiental del stage: radial detrás de los mockups */
+.project-image-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px 20px 0 0;
+    background:
+        radial-gradient(ellipse 70% 55% at 42% 60%,
+            rgba(56, 189, 248, 0.06) 0%,
+            transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Bottom fade: el showcase se funde hacia el metadata */
 .project-image-grid::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 90px;
-    /* Usando valores RGB exactos de --bg-secondary (#0f1419) para evitar grey-cast */
+    height: 80px;
     background: linear-gradient(
         to bottom,
         rgba(15, 20, 25, 0) 0%,
-        rgba(15, 20, 25, 0.75) 65%,
+        rgba(15, 20, 25, 0.7) 60%,
         rgba(15, 20, 25, 1) 100%
     );
     pointer-events: none;
     z-index: 5;
 }
 
-/* Desktop browser: protagonista absoluto de la composición */
+/* Desktop: protagonista 68-72% del ancho, perspectiva leve para profundidad */
 .browser-mockup {
+    position: relative;
+    z-index: 1;
     max-width: 100%;
     width: 100%;
-    /* Flat bottom: se funde con el fade inferior — sin separación visual */
     border-radius: 10px 10px 0 0;
     overflow: hidden;
-    box-shadow:
-        /* Sombra de contacto (nítida) */
-        0 2px 4px rgba(0, 0, 0, 0.2),
-        /* Sombra ambiental (difusa, cinematográfica) */
-        0 20px 60px rgba(0, 0, 0, 0.55),
-        0 40px 80px rgba(0, 0, 0, 0.2);
-    background: #242c3a;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Perspectiva: fuente de luz arriba-izquierda */
+    transform: perspective(1200px) rotateY(-2deg);
+    transform-origin: bottom center;
+    transition: transform .6s cubic-bezier(.22, 1, .36, 1);
+    /* Sombra: proyecta abajo-derecha (coherente con fuente de luz arriba-izq.) */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    background: #1e2533;
+    border: 1px solid rgba(255, 255, 255, 0.07);
     border-bottom: none;
 }
 
-/* Barra superior del navegador */
-.browser-header {
-    background: #3c4556;
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+.project-card:hover .browser-mockup {
+    transform: perspective(1200px) rotateY(-2deg) translateY(-3px);
 }
 
-/* Botones de navegador (rojo, amarillo, verde) */
+/* Browser chrome: 60% tamaño, saturación -30% — foco en el contenido */
+.browser-header {
+    background: #2a3242;
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
 .browser-buttons {
     display: flex;
-    gap: 6px;
+    gap: 5px;
     flex-shrink: 0;
 }
 
+/* 60% del tamaño original (10px → 6px), saturación reducida 30% */
 .browser-buttons div {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    transition: all 0.3s ease;
 }
 
 .browser-buttons div:nth-child(1) {
-    background: #ff5f56;
+    /* #ff5f56 desaturado 30% */
+    background: #d4736e;
 }
 
 .browser-buttons div:nth-child(2) {
-    background: #ffbd2e;
+    /* #ffbd2e desaturado 30% */
+    background: #d4a852;
 }
 
 .browser-buttons div:nth-child(3) {
-    background: #27c93f;
+    /* #27c93f desaturado 30% */
+    background: #5aaa66;
 }
 
-/* Barra de dirección */
 .browser-address {
     flex: 1;
     display: flex;
     align-items: center;
     gap: 6px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-size: 0.813rem;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.72rem;
     min-width: 0;
 }
 
@@ -840,56 +867,56 @@ a {
 
 /* gradiente inferior removido — muestra el screenshot desktop completo */
 
-/* Phone: cruza el borde de forma intencional — render 3D flotante */
+/* Phone: acento secundario — cruza borde, perspectiva espejada al desktop */
 .phone-mockup-small {
     position: absolute;
-    /* Más abajo: anclado en la composición, no pegado al tope */
-    top: 55px;
-    /* Cruza el borde derecho de la card intencionalmente */
-    right: -44px;
-    width: 122px;
-    z-index: 20;
-    transform: rotate(5deg);
+    /* Desplazado en Y: sale del borde inferior del browser, anclado */
+    top: 52px;
+    /* Cruza el borde derecho intencionalmente */
+    right: -48px;
+    width: 118px;
+    /* z-index superior al desktop: crea planos de profundidad */
+    z-index: 10;
+    /* Perspectiva espejada: fuente de luz desde izq., phone mira levemente al centro */
+    transform: perspective(800px) rotateY(3deg) rotate(4deg);
+    transform-origin: bottom right;
     transition: all .5s cubic-bezier(.22, 1, .36, 1);
-    /* Saturate en el wrapper, sombra en phone-frame para mayor control */
-    filter: saturate(1.08);
+    filter: saturate(1.06);
 }
 
-/* Capa de luz ambiental detrás del teléfono — profundidad editorial */
+/* Luz ambiental detrás del phone — profundidad editorial sutil */
 .phone-mockup-small::before {
     content: '';
     position: absolute;
-    inset: -22px -18px;
+    inset: -20px -16px;
     background: radial-gradient(
-        ellipse at 55% 48%,
-        rgba(14, 165, 233, 0.1) 0%,
-        rgba(14, 165, 233, 0.04) 35%,
-        transparent 70%
+        ellipse at 50% 50%,
+        rgba(56, 189, 248, 0.08) 0%,
+        transparent 65%
     );
-    filter: blur(18px);
+    filter: blur(20px);
     z-index: -1;
     pointer-events: none;
 }
 
 .project-card:hover .phone-mockup-small {
-    transform: translateY(-8px) rotate(5deg);
+    transform: perspective(800px) rotateY(3deg) rotate(4deg) translateY(-7px);
     filter: saturate(1.1);
 }
 
-/* Frame: sombra cinematográfica real — depth sin neon */
+/* Phone frame: sombras según spec + rim light coherente con fuente de luz */
 .phone-frame {
-    background: #0a0f1a;
+    background: #080d16;
     border-radius: 20px;
     padding: 0;
-    border: 1.5px solid rgba(255, 255, 255, 0.11);
+    border: 1px solid rgba(255, 255, 255, 0.07);
     box-shadow:
-        /* Sombra de contacto nítida */
-        0 4px 10px rgba(0, 0, 0, 0.35),
+        /* Outline exterior muy sutil */
+        0 0 0 1px rgba(255, 255, 255, 0.04),
         /* Sombra ambiental profunda */
-        0 22px 55px rgba(0, 0, 0, 0.6),
-        0 48px 80px rgba(0, 0, 0, 0.25),
-        /* Highlight superior: borde de luz */
-        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+        0 24px 48px rgba(0, 0, 0, 0.6),
+        /* Rim light superior: coherente con fuente de luz arriba-izquierda */
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
     overflow: hidden;
 }
 
@@ -981,49 +1008,67 @@ a {
     letter-spacing: 0.03em;
 }
 
-/* Contenido textual compacto — el hero visual ocupa el protagonismo */
+/* ─── METADATA: escala tipográfica editorial ─────────────────────────────── */
 .project-content {
-    padding: 13px 18px 16px;
+    padding: 24px 28px 28px;
+    /* Separador que marca el límite entre showcase y metadata */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Label de categoría: susurra al fondo, no compite */
 .project-meta {
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 }
 
 .project-tech {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
 }
 
+/* Título: protagonista tipográfico — peso sin estridencia */
 .project-title {
-    font-size: 1.1rem;
+    font-size: clamp(22px, 2.2vw, 28px);
     font-weight: 700;
-    margin-bottom: 7px;
+    line-height: 1.15;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 10px;
 }
 
+/* Descripción: susurra — texto que soporta sin competir */
 .project-desc {
-    color: var(--text-secondary);
-    font-size: 0.875rem;
-    margin-bottom: 12px;
-    line-height: 1.55;
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.45);
+    max-width: 280px;
+    margin-bottom: 20px;
 }
 
+/* Tech badges: monospace, discretos, industriales */
 .project-stack {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     flex-wrap: wrap;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
 }
 
 .project-stack span {
-    padding: 4px 12px;
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    font-size: 10.5px;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all .3s cubic-bezier(.22, 1, .36, 1);
+}
+
+.project-stack span:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .project-links {
@@ -1478,31 +1523,32 @@ a {
     }
     
     .project-image-grid {
-        padding: 8px 8px 0 8px;
+        padding: 20px 20px 0 20px;
     }
-    
+
     .browser-mockup {
-        border-radius: 8px;
+        border-radius: 8px 8px 0 0;
+        transform: none;
     }
-    
+
     .browser-header {
-        padding: 10px 12px;
-        gap: 10px;
+        padding: 6px 10px;
+        gap: 8px;
     }
-    
+
     .browser-buttons div {
+        width: 6px;
+        height: 6px;
+    }
+
+    .browser-address {
+        padding: 4px 8px;
+        font-size: 0.72rem;
+    }
+
+    .browser-address svg {
         width: 10px;
         height: 10px;
-    }
-    
-    .browser-address {
-        padding: 5px 10px;
-        font-size: 0.75rem;
-    }
-    
-    .browser-address svg {
-        width: 12px;
-        height: 12px;
     }
     
     .project-image-grid-simple {
@@ -1517,9 +1563,10 @@ a {
     }
     
     .phone-mockup-small {
-        width: 96px;
-        right: -14px;
-        top: 34px;
+        width: 92px;
+        right: -16px;
+        top: 32px;
+        transform: perspective(800px) rotateY(3deg) rotate(4deg);
     }
     
     .about-stats {
@@ -1545,7 +1592,7 @@ a {
     }
     
     .project-image-grid {
-        padding: 6px 6px 0 6px;
+        padding: 14px 14px 0 14px;
     }
     
     .browser-mockup {
@@ -1578,10 +1625,11 @@ a {
     }
     
     .phone-mockup-small {
-        /* pantallas pequeñas: phone más contenido */
-        width: 74px;
-        right: -8px;
-        top: 20px;
+        /* pantallas pequeñas: phone contenido, sin perspectiva */
+        width: 70px;
+        right: -10px;
+        top: 18px;
+        transform: rotate(4deg);
     }
     
     .project-image-grid-simple {
