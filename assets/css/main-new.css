@@ -697,30 +697,60 @@ a {
 }
 
 /* MOCKUP PROFESIONAL DE NAVEGADOR + MÓVIL (proyectos cliente) */
+/* ─── COMPOSICIÓN CINEMATOGRÁFICA PREMIUM ─────────────────────────────────
+   Referencias: Framer · Linear · Awwwards · Apple product showcase
+   Objetivo: el área visual ocupa 60-65% de la card.
+   Desktop domina. Phone flota cruzando el borde. Profundidad real.
+──────────────────────────────────────────────────────────────────────────── */
 .project-image-grid {
     position: relative;
-    padding: 24px 26px 18px 26px;
-    /* fondo con gradiente sutil para crear profundidad entre capas */
+    /* Padding mínimo: desktop casi toca los bordes laterales */
+    padding: 10px 10px 0 10px;
     background:
-        linear-gradient(180deg,
-            rgba(255, 255, 255, 0.02) 0%,
-            rgba(0, 0, 0, 0.08) 100%),
+        /* Luz ambiental sutil desde arriba — profundidad atmosférica */
+        radial-gradient(ellipse 110% 65% at 50% -5%,
+            rgba(14, 165, 233, 0.055) 0%,
+            transparent 58%),
         var(--bg-tertiary);
     border-radius: 18px 18px 0 0;
+    overflow: visible;
 }
 
-/* Contenedor del mockup de navegador */
+/* Bottom fade: el screenshot se funde con el contenido — efecto Apple/Linear */
+.project-image-grid::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    /* Usando valores RGB exactos de --bg-secondary (#0f1419) para evitar grey-cast */
+    background: linear-gradient(
+        to bottom,
+        rgba(15, 20, 25, 0) 0%,
+        rgba(15, 20, 25, 0.75) 65%,
+        rgba(15, 20, 25, 1) 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Desktop browser: protagonista absoluto de la composición */
 .browser-mockup {
     max-width: 100%;
     width: 100%;
-    border-radius: 10px;
+    /* Flat bottom: se funde con el fade inferior — sin separación visual */
+    border-radius: 10px 10px 0 0;
     overflow: hidden;
-    /* sombra doble: sombra de objeto + capa de profundidad */
     box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.12),
-        0 16px 48px rgba(0, 0, 0, 0.35);
-    background: #2c3344;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Sombra de contacto (nítida) */
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        /* Sombra ambiental (difusa, cinematográfica) */
+        0 20px 60px rgba(0, 0, 0, 0.55),
+        0 40px 80px rgba(0, 0, 0, 0.2);
+    background: #242c3a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: none;
 }
 
 /* Barra superior del navegador */
@@ -788,11 +818,12 @@ a {
     min-width: 0;
 }
 
-/* Contenedor de screenshot desktop — aspect ratio cinemático para más presencia */
+/* Screenshot desktop: ratio ultra-cinemático — muestra la zona hero del sitio */
 .browser-content {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 8;
+    /* 16:6 → muestra el top ~67% de una captura 16:9 — fold + hero del sitio */
+    aspect-ratio: 16 / 6;
     background: #0d1117;
     overflow: hidden;
 }
@@ -800,40 +831,65 @@ a {
 .browser-content img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    object-position: top;
+    /* cover: llena el frame sin letterbox — inmersivo, cinematográfico */
+    object-fit: cover;
+    object-position: top center;
     display: block;
-    transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+    transition: transform .6s cubic-bezier(.22, 1, .36, 1);
 }
 
 /* gradiente inferior removido — muestra el screenshot desktop completo */
 
-/* Phone — elemento secundario premium: flotante, integrado, elegante */
+/* Phone: cruza el borde de forma intencional — render 3D flotante */
 .phone-mockup-small {
     position: absolute;
-    top: 35px;
-    right: -30px;
-    width: 106px;
+    /* Más abajo: anclado en la composición, no pegado al tope */
+    top: 55px;
+    /* Cruza el borde derecho de la card intencionalmente */
+    right: -44px;
+    width: 122px;
     z-index: 20;
     transform: rotate(5deg);
     transition: all .5s cubic-bezier(.22, 1, .36, 1);
-    filter: saturate(1.05) drop-shadow(0 25px 60px rgba(0, 0, 0, 0.45));
+    /* Saturate en el wrapper, sombra en phone-frame para mayor control */
+    filter: saturate(1.08);
+}
+
+/* Capa de luz ambiental detrás del teléfono — profundidad editorial */
+.phone-mockup-small::before {
+    content: '';
+    position: absolute;
+    inset: -22px -18px;
+    background: radial-gradient(
+        ellipse at 55% 48%,
+        rgba(14, 165, 233, 0.1) 0%,
+        rgba(14, 165, 233, 0.04) 35%,
+        transparent 70%
+    );
+    filter: blur(18px);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .project-card:hover .phone-mockup-small {
-    transform: translateY(-6px) rotate(5deg);
-    filter: saturate(1.05) drop-shadow(0 32px 56px rgba(0, 0, 0, 0.55));
+    transform: translateY(-8px) rotate(5deg);
+    filter: saturate(1.1);
 }
 
-/* Frame — elegante, sin glow neon, solo profundidad */
+/* Frame: sombra cinematográfica real — depth sin neon */
 .phone-frame {
-    background: #0f1923;
+    background: #0a0f1a;
     border-radius: 20px;
     padding: 0;
-    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border: 1.5px solid rgba(255, 255, 255, 0.11);
     box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.45),
-        inset 0 1px 1px rgba(255, 255, 255, 0.06);
+        /* Sombra de contacto nítida */
+        0 4px 10px rgba(0, 0, 0, 0.35),
+        /* Sombra ambiental profunda */
+        0 22px 55px rgba(0, 0, 0, 0.6),
+        0 48px 80px rgba(0, 0, 0, 0.25),
+        /* Highlight superior: borde de luz */
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
     overflow: hidden;
 }
 
@@ -864,11 +920,11 @@ a {
     display: block;
 }
 
-/* Badge — esquina superior IZQUIERDA para no chocar con el phone (derecha) */
+/* Badge — flota por encima del card, esquina superior izquierda */
 .project-image-grid .project-tags {
     position: absolute;
-    top: -16px;
-    left: 14px;
+    top: -14px;
+    left: 12px;
     right: auto;
     z-index: 50;
 }
@@ -880,10 +936,10 @@ a {
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Zoom sutil en el desktop al hover — desktop es protagonista */
+/* Desktop responde al hover: zoom suave, protagonista */
 .project-card:hover .browser-content img,
 .project-card:hover .project-image-grid-simple img {
-    transform: scale(1.02);
+    transform: scale(1.03);
 }
 
 .project-tags {
@@ -925,38 +981,40 @@ a {
     letter-spacing: 0.03em;
 }
 
+/* Contenido textual compacto — el hero visual ocupa el protagonismo */
 .project-content {
-    padding: 16px 20px 18px;
+    padding: 13px 18px 16px;
 }
 
 .project-meta {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .project-tech {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 1px;
     color: var(--text-muted);
 }
 
 .project-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
 }
 
 .project-desc {
     color: var(--text-secondary);
-    margin-bottom: 16px;
-    line-height: 1.6;
+    font-size: 0.875rem;
+    margin-bottom: 12px;
+    line-height: 1.55;
 }
 
 .project-stack {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 }
 
 .project-stack span {
@@ -1420,7 +1478,7 @@ a {
     }
     
     .project-image-grid {
-        padding: 16px 15px;
+        padding: 8px 8px 0 8px;
     }
     
     .browser-mockup {
@@ -1459,9 +1517,9 @@ a {
     }
     
     .phone-mockup-small {
-        width: 90px;
-        right: -10px;
-        top: 18px;
+        width: 96px;
+        right: -14px;
+        top: 34px;
     }
     
     .about-stats {
@@ -1487,7 +1545,7 @@ a {
     }
     
     .project-image-grid {
-        padding: 14px 10px;
+        padding: 6px 6px 0 6px;
     }
     
     .browser-mockup {
@@ -1520,10 +1578,10 @@ a {
     }
     
     .phone-mockup-small {
-        /* en pantallas muy pequeñas el phone se retrae dentro del card */
-        width: 70px;
-        right: -6px;
-        top: 14px;
+        /* pantallas pequeñas: phone más contenido */
+        width: 74px;
+        right: -8px;
+        top: 20px;
     }
     
     .project-image-grid-simple {
