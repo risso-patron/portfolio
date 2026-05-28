@@ -643,8 +643,9 @@ a {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible;
     transition: all var(--transition);
+    /* overflow:visible permite que el phone-mockup sobresalga por debajo */
 }
 
 .project-card:hover {
@@ -697,6 +698,7 @@ a {
     padding: 20px 20px 40px 20px;
     perspective: 1000px;
     background: var(--bg-tertiary);
+    border-radius: 16px 16px 0 0; /* recorta esquinas superiores ya que card no hace clip */
 }
 
 /* Contenedor del mockup de navegador */
@@ -798,24 +800,16 @@ a {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.browser-content::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%);
-    pointer-events: none;
-}
+/* gradiente inferior removido — muestra el screenshot desktop completo */
 
-/* Mockup de iPhone pequeño (esquina inferior derecha) */
+/* Mockup de iPhone — sobresale por la parte inferior de la tarjeta */
 .phone-mockup-small {
     position: absolute;
-    bottom: -12px;
-    right: 8px;
-    width: 75px;
+    bottom: -48px;
+    right: 16px;
+    width: 90px;
     z-index: 20;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.45));
 }
 
 .phone-frame {
@@ -900,7 +894,7 @@ a {
 }
 
 .project-content {
-    padding: 18px;
+    padding: 64px 18px 18px; /* padding-top compensa el phone que sobresale sobre el contenido */
 }
 
 .project-meta {
@@ -1433,9 +1427,9 @@ a {
     }
     
     .phone-mockup-small {
-        width: 60px;
-        right: 4px;
-        bottom: -12px;
+        width: 72px;
+        right: 8px;
+        bottom: -40px;
     }
     
     .about-stats {
@@ -1494,9 +1488,9 @@ a {
     }
     
     .phone-mockup-small {
-        width: 50px;
-        right: 3px;
-        bottom: -10px;
+        width: 58px;
+        right: 6px;
+        bottom: -32px;
     }
     
     .project-image-grid-simple {
