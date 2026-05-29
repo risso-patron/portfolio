@@ -918,7 +918,10 @@ a {
         /* Sombra ambiental profunda */
         0 24px 48px rgba(0, 0, 0, 0.6),
         /* Rim light superior: coherente con fuente de luz arriba-izquierda */
-        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+        inset 0 1px 0 rgba(255, 255, 255, 0.10),
+        /* Glow turquesa suave en el borde */
+        0 0 0 1px rgba(var(--card-accent-rgb), 0.18),
+        0 0 14px rgba(var(--card-accent-rgb), 0.12);
     overflow: hidden;
 }
 
