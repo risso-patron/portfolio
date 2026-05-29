@@ -17,9 +17,7 @@ const themeIcon = document.getElementById('themeIcon');
 const html = document.documentElement;
 
 const getPreferredTheme = () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) return savedTheme;
-    return 'dark'; // portfolio is dark-first by design
+    return 'dark'; // portfolio is dark-only by design
 };
 
 const setTheme = (theme) => {
