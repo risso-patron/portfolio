@@ -537,6 +537,7 @@ a {
     color: var(--text-secondary);
     margin-bottom: 16px;
     line-height: 1.8;
+    text-align: right;
 }
 
 .about-stats {
