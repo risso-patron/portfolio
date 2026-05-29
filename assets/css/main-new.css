@@ -1492,6 +1492,14 @@ a {
         gap: 12px;
         text-align: center;
     }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-text {
+        text-align: left;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1522,6 +1530,10 @@ a {
     
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    .tech-item span {
+        display: none;
     }
     
     .project-image-grid {
