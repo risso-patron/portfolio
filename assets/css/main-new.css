@@ -1535,6 +1535,10 @@ a {
     .tech-item span {
         display: none;
     }
+
+    .tech-pill-label {
+        display: none;
+    }
     
     .project-image-grid {
         padding: 20px 20px 0 20px;
