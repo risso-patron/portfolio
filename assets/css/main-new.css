@@ -130,17 +130,6 @@ a {
     transform: scale(1.05);
 }
 
-/* Logo color ajustado por tema */
-[data-theme="light"] .nav-logo img {
-    filter: brightness(0) saturate(100%);
-    /* Convierte dorado → negro para mejor contraste */
-}
-
-[data-theme="dark"] .nav-logo img {
-    filter: none;
-    /* Mantiene color dorado original */
-}
-
 .nav-menu {
     display: flex;
     align-items: center;
