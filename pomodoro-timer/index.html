@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style.css">
     
     <!-- Chart.js para gráficos -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js" defer></script>
 </head>
 <body>
     <!-- Botón Volver al Portfolio -->
@@ -130,15 +130,15 @@
                     </div>
                     
                     <div class="timer-display-container">
-                        <svg class="timer-svg" width="300" height="300">
+                        <svg class="timer-svg" width="300" height="300" viewBox="0 0 300 300">
                             <circle class="timer-circle-bg" cx="150" cy="150" r="140"></circle>
                             <circle class="timer-circle-progress" cx="150" cy="150" r="140"></circle>
                         </svg>
-                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        <div class="timer-display" id="timerDisplay" role="timer" aria-live="polite" aria-atomic="true">25:00</div>
                     </div>
 
                     <div class="focus-task-container">
-                        <input type="text" id="focusInput" placeholder="¿En qué vas a enfocarte hoy?" class="focus-input">
+                        <input type="text" id="focusInput" placeholder="¿En qué vas a enfocarte hoy?" class="focus-input" aria-label="¿En qué vas a enfocarte hoy?">
                     </div>
                     
                     <div class="timer-controls">

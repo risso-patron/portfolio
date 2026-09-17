@@ -13,7 +13,8 @@
     --purple: #8b5cf6;
     --border: rgba(255, 255, 255, 0.1);
     --status-green: #10b981;
-    
+    --focus-ring: var(--cyan);
+
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
     --gradient-glow: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
@@ -44,6 +45,9 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+    /* --cyan (#0ea5e9) drops below 3:1 contrast on a white background;
+       use the darker, more saturated --cyan-dark for keyboard focus rings in light mode */
+    --focus-ring: var(--cyan-dark);
 }
 
 /* ==================== RESET ==================== */
@@ -128,17 +132,6 @@ a {
 
 .nav-logo:hover img {
     transform: scale(1.05);
-}
-
-/* Logo color ajustado por tema */
-[data-theme="light"] .nav-logo img {
-    filter: brightness(0) saturate(100%);
-    /* Convierte dorado → negro para mejor contraste */
-}
-
-[data-theme="dark"] .nav-logo img {
-    filter: none;
-    /* Mantiene color dorado original */
 }
 
 .nav-menu {
@@ -603,74 +596,120 @@ a {
     margin: 0 auto 48px;
 }
 
-.work-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 48px;
-    flex-wrap: wrap;
+.work-group {
+    margin-top: 64px;
 }
 
-.tab-btn {
-    padding: 10px 24px;
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border);
-    border-radius: 50px;
+.work-header + .work-group {
+    margin-top: 0;
+}
+
+.work-group-header {
+    max-width: 640px;
+    margin: 0 0 28px;
+}
+
+.work-group-title {
+    font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 8px;
+}
+
+.work-group-desc {
     font-size: 0.9rem;
-    font-weight: 600;
+    line-height: 1.6;
     color: var(--text-secondary);
-    cursor: pointer;
-    transition: all var(--transition);
 }
 
-.tab-btn:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-}
-
-.tab-btn.active {
-    background: var(--gradient-primary);
-    border-color: transparent;
-    color: white;
+.work-group--experience {
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.015);
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-    padding-top: 20px;
+    gap: 28px;
+    align-items: stretch;
+}
+
+.projects-grid--featured {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.projects-grid--experience {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.projects-grid--secondary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
 }
 
 .project-card {
-    --card-accent-rgb: 14, 165, 233; /* default: cyan — override per card */
-    background: var(--bg-secondary);
-    /* Borde sutilísimo: perceptible sin llamar la atención */
+    --card-accent-rgb: 14, 165, 233;
+    background: rgba(15, 20, 27, 0.78);
     border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 20px;
+    border-radius: 18px;
     overflow: visible;
-    transition: all .5s cubic-bezier(.22, 1, .36, 1);
+    transition: transform .35s cubic-bezier(.22, 1, .36, 1), border-color .35s ease, box-shadow .35s ease;
     position: relative;
     isolation: isolate;
-    /* Micro-gradiente diagonal: iluminación ficticia desde arriba-izquierda */
     background-image: linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.015) 0%,
-        transparent 45%
+        rgba(255, 255, 255, 0.014) 0%,
+        transparent 52%
     );
-    /* Rim light superior + sombras ambientales de profundidad */
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 8px 16px rgba(0, 0, 0, 0.2),
-        0 32px 64px rgba(0, 0, 0, 0.4);
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 10px 18px rgba(0, 0, 0, 0.14),
+        0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 14px 22px rgba(0, 0, 0, 0.18),
+        0 22px 48px rgba(0, 0, 0, 0.14);
+    border-color: rgba(var(--card-accent-rgb), 0.18);
+}
+
+.project-card--featured {
+    background: rgba(17, 22, 30, 0.9);
+    border-color: rgba(var(--card-accent-rgb), 0.22);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 18px 32px rgba(0, 0, 0, 0.18),
+        0 0 0 1px rgba(var(--card-accent-rgb), 0.08);
+}
+
+.project-card--featured:hover {
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 12px 24px rgba(0, 0, 0, 0.25),
-        0 40px 80px rgba(0, 0, 0, 0.5);
-    border-color: rgba(255, 255, 255, 0.1);
+        0 22px 38px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(var(--card-accent-rgb), 0.12);
+}
+
+.project-card--experience {
+    background: rgba(15, 20, 27, 0.72);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 10px 16px rgba(0, 0, 0, 0.12);
+}
+
+.project-card--secondary {
+    background: rgba(15, 20, 27, 0.68);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 8px 14px rgba(0, 0, 0, 0.1);
 }
 
 .project-image {
@@ -734,7 +773,7 @@ a {
     border-radius: 20px 20px 0 0;
     background:
         radial-gradient(ellipse 70% 55% at 42% 60%,
-            rgba(var(--card-accent-rgb), 0.06) 0%,
+            rgba(var(--card-accent-rgb), 0.04) 0%,
             transparent 65%);
     pointer-events: none;
     z-index: 0;
@@ -747,11 +786,11 @@ a {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 70px;
     background: linear-gradient(
         to bottom,
         rgba(15, 20, 25, 0) 0%,
-        rgba(15, 20, 25, 0.7) 60%,
+        rgba(15, 20, 25, 0.5) 60%,
         rgba(15, 20, 25, 1) 100%
     );
     pointer-events: none;
@@ -766,19 +805,17 @@ a {
     width: 100%;
     border-radius: 10px 10px 0 0;
     overflow: hidden;
-    /* Perspectiva: fuente de luz arriba-izquierda */
-    transform: perspective(1200px) rotateY(-2deg);
+    transform: perspective(1200px) rotateY(-1deg);
     transform-origin: bottom center;
     transition: transform .6s cubic-bezier(.22, 1, .36, 1);
-    /* Sombra: proyecta abajo-derecha (coherente con fuente de luz arriba-izq.) */
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
     background: #1e2533;
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-bottom: none;
 }
 
 .project-card:hover .browser-mockup {
-    transform: perspective(1200px) rotateY(-2deg) translateY(-3px);
+    transform: perspective(1200px) rotateY(-1deg) translateY(-2px);
 }
 
 /* Browser chrome: 60% tamaño, saturación -30% — foco en el contenido */
@@ -981,17 +1018,25 @@ a {
     right: 16px;
     display: flex;
     gap: 8px;
+    z-index: 15;
 }
 
 .tag {
     padding: 5px 10px;
-    background: rgba(10, 14, 23, 0.9);
+    background: rgba(10, 14, 23, 0.82);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(var(--card-accent-rgb), 0.35);
+    border: 1px solid rgba(var(--card-accent-rgb), 0.28);
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 600;
     color: rgb(var(--card-accent-rgb));
+}
+
+.project-card--experience .tag,
+.project-card--secondary .tag {
+    background: rgba(9, 13, 18, 0.74);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.68);
 }
 
 .tag-wip {
@@ -1016,12 +1061,22 @@ a {
 
 /* ─── METADATA: escala tipográfica editorial ─────────────────────────────── */
 .project-content {
-    padding: 24px 130px 28px 28px;
-    /* Separador que marca el límite entre showcase y metadata */
+    padding: 24px 28px 28px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Label de categoría: susurra al fondo, no compite */
+.project-card--featured .project-content {
+    padding: 32px 36px 36px;
+}
+
+.project-card--experience .project-content {
+    padding: 20px 22px 22px;
+}
+
+.project-card--secondary .project-content {
+    padding: 18px 20px 20px;
+}
+
 .project-meta {
     margin-bottom: 10px;
 }
@@ -1034,7 +1089,6 @@ a {
     color: rgba(255, 255, 255, 0.35);
 }
 
-/* Título: protagonista tipográfico — peso sin estridencia */
 .project-title {
     font-size: clamp(22px, 2.2vw, 28px);
     font-weight: 700;
@@ -1043,7 +1097,19 @@ a {
     margin-bottom: 10px;
 }
 
-/* Descripción: susurra — texto que soporta sin competir */
+.project-card--featured .project-title {
+    font-size: clamp(1.7rem, 2.2vw, 2.4rem);
+    letter-spacing: -0.03em;
+}
+
+.project-card--experience .project-title {
+    font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+}
+
+.project-card--secondary .project-title {
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+}
+
 .project-desc {
     font-size: 13px;
     line-height: 1.65;
@@ -1052,7 +1118,20 @@ a {
     margin-bottom: 20px;
 }
 
-/* Tech badges: monospace, discretos, industriales */
+.project-card--featured .project-desc {
+    max-width: 100%;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.58);
+}
+
+.project-card--experience .project-desc {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.project-card--secondary .project-desc {
+    color: rgba(255, 255, 255, 0.47);
+}
+
 .project-stack {
     display: flex;
     gap: 8px;
@@ -1087,13 +1166,19 @@ a {
     align-items: center;
     gap: 6px;
     padding: 8px 16px;
-    background: var(--bg-tertiary);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 6px;
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--cyan);
     transition: all var(--transition);
+}
+
+.project-card--featured .project-link {
+    padding: 9px 18px;
+    background: rgba(14, 165, 233, 0.06);
+    border-color: rgba(14, 165, 233, 0.26);
 }
 
 .project-link:hover {
@@ -1497,7 +1582,7 @@ a {
         text-align: center;
     }
 
-    .projects-grid {
+    .projects-grid--secondary {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1532,8 +1617,14 @@ a {
         display: flex;
     }
     
-    .projects-grid {
+    .projects-grid--featured,
+    .projects-grid--experience,
+    .projects-grid--secondary {
         grid-template-columns: 1fr;
+    }
+
+    .work-group--experience {
+        padding: 24px;
     }
 
     .tech-item span {
@@ -1592,10 +1683,6 @@ a {
         transform: perspective(800px) rotateY(3deg) rotate(4deg);
     }
 
-    .project-content {
-        padding-right: 100px;
-    }
-    
     .about-stats {
         grid-template-columns: 1fr;
     }
@@ -1660,10 +1747,10 @@ a {
         transform: rotate(4deg);
     }
 
-    .project-content {
-        padding-right: 80px;
+    .work-group--experience {
+        padding: 16px;
     }
-    
+
     .project-image-grid-simple {
         padding: 15px 10px;
         gap: 10px;
@@ -1686,15 +1773,6 @@ a {
     
     .contact-buttons {
         flex-direction: column;
-    }
-    
-    .work-tabs {
-        gap: 8px;
-    }
-    
-    .tab-btn {
-        padding: 8px 16px;
-        font-size: 0.85rem;
     }
 }
 
@@ -1796,4 +1874,45 @@ a {
 .browser-content[data-gallery]:hover img {
     opacity: 0.9;
     transition: opacity 0.2s;
+}
+
+/* ==================== ACCESSIBILITY: KEYBOARD FOCUS ==================== */
+/* :focus-visible only (not bare :focus) so mouse/touch clicks don't trigger
+   a ring the browser has already determined isn't a keyboard interaction. */
+.nav-link:focus-visible,
+.nav-logo:focus-visible,
+.theme-toggle:focus-visible,
+.mobile-toggle:focus-visible,
+.btn:focus-visible,
+.project-link:focus-visible,
+.social-link:focus-visible,
+.lightbox-close:focus-visible,
+.lightbox-prev:focus-visible,
+.lightbox-next:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.25);
+}
+
+/* Circular/pill controls need a matching rounded ring instead of a square outline */
+.theme-toggle:focus-visible,
+.social-link:focus-visible {
+    outline-offset: 2px;
+}
+
+.social-link:focus-visible {
+    border-radius: 50%;
+}
+
+[data-theme="light"] .nav-link:focus-visible,
+[data-theme="light"] .nav-logo:focus-visible,
+[data-theme="light"] .theme-toggle:focus-visible,
+[data-theme="light"] .mobile-toggle:focus-visible,
+[data-theme="light"] .btn:focus-visible,
+[data-theme="light"] .project-link:focus-visible,
+[data-theme="light"] .social-link:focus-visible,
+[data-theme="light"] .lightbox-close:focus-visible,
+[data-theme="light"] .lightbox-prev:focus-visible,
+[data-theme="light"] .lightbox-next:focus-visible {
+    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.25);
 }

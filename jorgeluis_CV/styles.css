@@ -45,6 +45,10 @@ body {
   align-self: center;
 }
 
+.header-main {
+  min-width: 0;
+}
+
 .profile-photo {
   width: 96px;
   height: 96px;
@@ -128,6 +132,7 @@ body {
 .right-column {
   background: var(--surface);
   padding: 14px 18px 16px;
+  min-width: 0;
 }
 
 .right-column {
@@ -148,6 +153,7 @@ body {
   letter-spacing: 0.01em;
   font-family: "Fira Code", "Consolas", "Courier New", monospace;
   color: var(--title);
+  overflow-wrap: anywhere;
 }
 
 .profile-text {
@@ -172,6 +178,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .item-top h3 {
@@ -231,6 +238,7 @@ body {
   border-radius: 8px;
   background: #f8fbff;
   padding: 10px;
+  min-width: 0;
 }
 
 .project-card h4 {
@@ -238,6 +246,7 @@ body {
   font-size: 0.98rem;
   color: var(--title);
   font-family: "Fira Code", "Consolas", "Courier New", monospace;
+  overflow-wrap: anywhere;
 }
 
 .project-card p {

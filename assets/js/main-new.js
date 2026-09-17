@@ -133,39 +133,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ==================== PROJECT FILTERING ====================
-const tabButtons = document.querySelectorAll('.tab-btn');
-const projectCards = document.querySelectorAll('.project-card');
-
-tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const category = btn.getAttribute('data-category');
-
-        // Update active tab
-        tabButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        // Filter projects
-        projectCards.forEach(card => {
-            const cardCategories = card.getAttribute('data-category').split(' ');
-
-            if (category === 'all' || cardCategories.includes(category)) {
-                card.style.display = 'block';
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'scale(1)';
-                }, 10);
-            } else {
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                    card.style.display = 'none';
-                }, 300);
-            }
-        });
-    });
-});
-
 // ===== LIGHTBOX =====
 (function () {
     const galleries = {
@@ -183,7 +150,7 @@ tabButtons.forEach(btn => {
             'assets/images/projects/somosproperties.com/somosproperties-03.webp',
         ],
         hostpro: [
-            'assets/images/projects/hostpropanama.com/hostpro-00.webp',
+            'assets/images/projects/hostpropanama.com/hostpropanama-desktop.webp',
             'assets/images/projects/hostpropanama.com/hostpro-01.webp',
             'assets/images/projects/hostpropanama.com/hostpro-02.webp',
             'assets/images/projects/hostpropanama.com/hostpro-03.webp',

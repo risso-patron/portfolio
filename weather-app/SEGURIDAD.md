@@ -16,7 +16,7 @@
 
 ```javascript
 // ❌ MAL - API key expuesta en código
-const API_KEY = '8d3599da8294f99fb8f1bc2ac0c7829b';
+const API_KEY = 'YOUR_OPENWEATHER_API_KEY';
 ```
 
 **Riesgos:**
@@ -129,7 +129,7 @@ const getAPIKey = () => {
     }
     
     // 3️⃣ Fallback: Hardcoded (SOLO desarrollo)
-    return '8d3599da8294f99fb8f1bc2ac0c7829b';
+    return 'YOUR_OPENWEATHER_API_KEY';
 };
 ```
 
@@ -259,7 +259,7 @@ VITE_OPENWEATHER_API_KEY=tu_api_key_aqui
 VITE_DEMO_MODE=false
 
 # .env (NUNCA subirlo)
-VITE_OPENWEATHER_API_KEY=8d3599da8294f99fb8f1bc2ac0c7829b
+VITE_OPENWEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY
 VITE_DEMO_MODE=false
 ```
 

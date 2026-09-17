@@ -434,7 +434,7 @@ body.light-theme .theme-toggle:hover {
     display: none;
     text-align: center;
     padding: 2rem;
-    background: var(--white);
+    background: var(--bg-card);
     border-radius: var(--border-radius);
     box-shadow: 0 8px 32px var(--shadow);
 }
