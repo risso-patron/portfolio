@@ -3,7 +3,6 @@
   "installCommand": "npm ci --omit=dev",
   "buildCommand": "node scripts/build.js",
   "outputDirectory": ".",
-  "public": true,
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
