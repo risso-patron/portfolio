@@ -9,17 +9,17 @@ Aplicación web que implementa la técnica Pomodoro para mejorar la productivida
 
 ## Características
 
-- **Timer Configurable**: Ajusta los tiempos de trabajo (25min), descanso corto (5min) y largo (15min)
-- **Notificaciones**: Alertas del navegador y sonidos personalizables
+- **Timer con 3 modos**: Pomodoro (25min), descanso corto (5min) y descanso largo (15min), duraciones fijas
+- **Cambio de modo manual**: los botones Pomodoro/Descanso Corto/Descanso Largo cambian el modo activo; no hay ciclo automático de trabajo→descanso
+- **Notificaciones**: Notification API del navegador (si el usuario concede permiso) más un sonido de alarma
 - **Estadísticas**: Seguimiento de sesiones completadas, tiempo total y rachas diarias
-- **Persistencia**: Guarda configuración y estadísticas en LocalStorage
-- **Responsive**: Optimizado para desktop, tablet y móvil
-- **Atajos de Teclado**: Espacio para iniciar/pausar, Ctrl+R para reiniciar
-- **Sonido Confiable**: Sistema de audio con fallbacks múltiples
+- **Persistencia**: Guarda estadísticas en LocalStorage
+- **Responsive**: Ajustes para evitar overflow y solapes en móvil (390/375/360px) y tablet (768px)
+- **Sonido**: Dos archivos de audio externos (`new Audio(url)`) para clic y alarma, sin generación sintética
 
 ## Demo
 
-**[Ver Demo en Vivo](https://risso-patron.github.io/portfolio/pomodoro-timer/)**
+**[Ver Demo en Vivo](https://www.risso-patron.com/pomodoro-timer/)**
 
 ## Capturas de Pantalla
 
@@ -28,23 +28,22 @@ Aplicación web que implementa la técnica Pomodoro para mejorar la productivida
 ## Tecnologías Utilizadas
 
 - **Frontend**: HTML5 semántico, CSS3 con variables y grid
-- **JavaScript**: ES6+ con clases, async/await, LocalStorage
-- **APIs**: Notifications API, Web Audio API
-- **Responsive**: CSS Grid, Flexbox, Media Queries
+- **JavaScript**: ES6+, LocalStorage
+- **APIs**: Notifications API, HTML5 Audio (`new Audio()`)
+- **Responsive**: Flexbox, Grid, Media Queries puntuales
 - **Persistencia**: LocalStorage para configuración y estadísticas
 
 ## Uso
 
 ### Funcionamiento Básico
-1. **Iniciar**: Haz clic en "Iniciar" o presiona Espacio
-2. **Pausar**: Clic en "Pausar" o Espacio durante la sesión
-3. **Reiniciar**: Volver al tiempo inicial de la sesión actual
-4. **Saltar**: Completar la sesión actual inmediatamente
+1. **Iniciar**: Haz clic en "Iniciar" (no hay atajos de teclado; no existen listeners de teclado en el código)
+2. **Pausar/Reanudar**: El mismo botón alterna entre pausar y reanudar la sesión
+3. **Reiniciar**: Clic en "Reiniciar" para volver al tiempo inicial del modo actual
+4. **Cambiar de modo**: Clic en Pomodoro / Descanso Corto / Descanso Largo (no hay botón "Saltar")
 
-### Configuración
-- **Tiempos**: Ajusta trabajo (1-60min), descanso corto y largo
-- **Sonidos**: Activa/desactiva notificaciones sonoras
-- **Ciclo Pomodoro**: 4 sesiones de trabajo → 1 descanso largo
+### Duraciones y modos
+- **Trabajo, descanso corto y descanso largo son duraciones fijas** (25/5/15 min) — no hay panel de configuración para ajustarlas
+- El cambio entre Pomodoro → Descanso es **manual**: al completarse un Pomodoro no avanza solo a un descanso; el usuario elige el siguiente modo con los botones
 
 ### Estadísticas
 - Sesiones completadas del día
@@ -71,31 +70,29 @@ Desarrollada por Francesco Cirillo en los 80s:
 
 Lo que aprendí construyendo este proyecto:
 
-### JavaScript Avanzado
-- **Clases ES6**: Organización de código con constructor y métodos
-- **Timing Preciso**: Uso de `Date.now()` con timestamps para evitar drift
-- **Intervals**: Manejo de `setInterval` y `clearInterval` optimizado
-- **LocalStorage**: Persistencia de datos entre sesiones
-- **Event Listeners**: Manejo de eventos de teclado y clic
+### JavaScript
+- **Funciones y estado global**: `let`/`const` para el estado del timer (modo actual, tiempo restante)
+- **Intervals**: Manejo de `setInterval` y `clearInterval` (decremento simple de un contador, sin corrección de drift por timestamp)
+- **LocalStorage**: Persistencia de estadísticas entre sesiones, con fecha local (no UTC) para el corte de "día"
+- **Event Listeners**: Manejo de eventos de clic (no hay atajos de teclado)
 
 ### APIs del Navegador
 - **Notifications API**: Permisos y notificaciones del sistema
-- **Web Audio API**: Generación de sonidos sintéticos con fallbacks
-- **HTML5 Audio**: Implementación de audio confiable multiplataforma
+- **HTML5 Audio**: Dos objetos `new Audio(url)` (clic y alarma) apuntando a archivos externos, sin generación sintética ni cadena de fallbacks
 - **Document Title**: Actualización dinámica del título
 
 ### CSS Moderno
 - **Variables CSS**: Sistema de design tokens
-- **CSS Grid**: Layout de estadísticas responsive
+- **CSS Grid/Flexbox**: Layout de estadísticas y timer
 - **Animations**: Efectos suaves y feedback visual
-- **Progressive Enhancement**: Funcionalidad core sin JavaScript
+- **Media Queries puntuales**: Ajustes para evitar overflow horizontal y solapes en móvil
 
 ### UX/UI
 - **Estados de Loading**: Feedback visual durante transiciones
-- **Accessibility**: ARIA labels, roles semánticos, navegación por teclado
-- **Focus States**: Indicadores visuales claros para navegación con teclado
-- **Mobile-First**: Diseño responsive desde dispositivos pequeños
-- **Contraste**: Cumple WCAG 2.1 AA para legibilidad
+- **Accessibility**: `aria-label` en controles clave, `role="timer"` + `aria-live="polite"` en el countdown
+- **Focus States**: Outline nativo del navegador (no está suprimido en los botones)
+- **Mobile-First**: Ajustes puntuales para los anchos más comunes (360-768px)
+- **Contraste**: Los estados activos sobre `--primary` (nav/tabs/modo/botón principal) cumplen WCAG AA (~6.36:1)
 
 ## Próximas Mejoras
 
@@ -146,7 +143,7 @@ pomodoro-timer/
 - ✅ **Navegación por teclado** completa
 - ✅ **Focus states** visibles
 - ✅ **Zoom sin límites** (hasta 500%+)
-- ✅ **ARIA labels** descriptivos
+- ✅ **ARIA labels** en el botón "Volver" y en el campo de tarea (`#focusInput`); el countdown usa `role="timer"` + `aria-live="polite"`
 
 ## Autor
 

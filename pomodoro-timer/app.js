@@ -293,8 +293,13 @@ function resetTimer() {
 }
 
 // ==================== Stats Persistence ====================
-function getTodayStr() {
-    return new Date().toISOString().split('T')[0];
+function getTodayStr(date = new Date()) {
+    // Fecha LOCAL (no UTC): toISOString() usaba UTC y hacía que el "día"
+    // cambiara a las 19:00 hora Panamá (UTC-5) en vez de medianoche.
+    const year  = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day   = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
 }
 
 function formatMinutes(mins) {
@@ -308,7 +313,7 @@ function savePomodoro() {
     const lastDate    = localStorage.getItem('pomodoro-last-date') || '';
     const yesterday   = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split('T')[0];
+    const yesterdayStr = getTodayStr(yesterday);
 
     if (lastDate !== today) {
         localStorage.setItem('pomodoro-today-count',   '0');

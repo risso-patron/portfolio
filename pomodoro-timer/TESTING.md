@@ -3,31 +3,26 @@
 ## Checklist de Funcionalidades
 
 ### Core Timer ✅
-- [ ] Iniciar timer (25 minutos por defecto)
-- [ ] Pausar timer manteniendo el tiempo
-- [ ] Reiniciar timer al tiempo inicial
-- [ ] Saltar sesión completándola inmediatamente
+- [ ] Iniciar timer (25 minutos por defecto, modo Pomodoro)
+- [ ] Pausar timer manteniendo el tiempo (mismo botón alterna Pausar/Reanudar)
+- [ ] Reiniciar timer al tiempo inicial del modo actual
 - [ ] Mostrar tiempo restante en formato MM:SS
-- [ ] Barra de progreso visual
+- [ ] Anillo de progreso SVG visual
 
-### Sesiones y Ciclos ✅  
-- [ ] Sesión de Trabajo (25 min) → Descanso Corto (5 min)
-- [ ] 4 Sesiones de Trabajo → Descanso Largo (15 min)
-- [ ] Cambio automático de sesión al completar tiempo
-- [ ] Indicadores visuales del tipo de sesión actual
+### Modos (cambio manual, sin ciclo automático) ✅
+- [ ] Botones Pomodoro / Descanso Corto / Descanso Largo cambian el modo activo
+- [ ] Al completarse un Pomodoro NO cambia solo a descanso — requiere clic manual en el modo deseado
+- [ ] No existe un contador de "4 sesiones → descanso largo"; los 3 modos son independientes
+- [ ] Indicadores visuales del tipo de sesión actual (botón activo resaltado)
 
-### Configuración ✅
-- [ ] Ajustar tiempo de trabajo (1-60 minutos)
-- [ ] Ajustar descanso corto (1-60 minutos)  
-- [ ] Ajustar descanso largo (1-60 minutos)
-- [ ] Activar/desactivar sonidos
-- [ ] Persistir configuración entre sesiones
+### Duraciones ✅
+- [ ] Trabajo = 25 min, Descanso Corto = 5 min, Descanso Largo = 15 min (fijas, no hay UI para ajustarlas)
+- [ ] No existe panel de configuración ni toggle de sonido on/off
 
 ### Notificaciones ✅
-- [ ] Notificación del navegador al completar sesión
-- [ ] Sonido sintético al completar sesión
-- [ ] Notificaciones in-app (toast messages)
-- [ ] Solicitar permisos de notificación automáticamente
+- [ ] Notificación del navegador al completar sesión (requiere permiso concedido)
+- [ ] Sonido de alarma (`new Audio()` con archivo externo, no sintetizado) al completar sesión
+- [ ] Solicitar permisos de notificación automáticamente al cargar (si el permiso está en "default")
 
 ### Estadísticas ✅
 - [ ] Contar sesiones completadas del día
@@ -37,8 +32,7 @@
 - [ ] Persistir estadísticas por día
 
 ### Interactividad ✅
-- [ ] Atajo de teclado: Espacio = Play/Pause
-- [ ] Atajo de teclado: Ctrl+R = Reset
+- [ ] No hay atajos de teclado (Espacio/Ctrl+R) — cero listeners de teclado en el código, solo clic
 - [ ] Título de página actualizado con tiempo restante
 - [ ] Animaciones suaves en transiciones
 
@@ -59,28 +53,29 @@
 5. Clic en "Reiniciar" → debe volver a 25:00
 ```
 
-### 2. Configuración
+### 2. Cambio de Modo (manual)
 ```
-1. Ajustar tiempo de trabajo a 1 minuto
-2. Iniciar timer → debe mostrar 01:00
-3. Cambiar a 60 minutos → debe mostrar 60:00
-4. Desactivar sonidos → verificar toggle cambia a "OFF"
+1. Clic en "Descanso Corto" → debe mostrar 05:00 y resaltar ese botón
+2. Clic en "Descanso Largo" → debe mostrar 15:00
+3. Clic en "Pomodoro" → vuelve a 25:00
+4. No hay forma de ajustar estas duraciones desde la UI
 ```
 
-### 3. Ciclo Completo
+### 3. Completar un Pomodoro
 ```
-1. Configurar trabajo a 1 minuto, descanso corto a 30 segundos
-2. Completar 1 sesión → debe cambiar a descanso corto
-3. Completar descanso → debe volver a trabajo
-4. Repetir 4 veces → debe mostrar descanso largo
+1. Modo Pomodoro, clic en "Iniciar" y esperar a que llegue a 00:00
+2. Debe sonar la alarma, dispararse la notificación (si hay permiso) y el timer
+   debe resetear solo a 25:00 — pero el MODO no cambia automáticamente a descanso
+3. Pomodoros Hoy/Tiempo Hoy deben incrementar; completar Descanso Corto/Largo
+   NO los incrementa (solo currentMode === 'pomodoro' llama a savePomodoro())
 ```
 
 ### 4. Persistencia
 ```
-1. Cambiar configuración
+1. Completar un Pomodoro (o dejar que corra un rato)
 2. Recargar página (F5)
-3. Verificar configuración se mantiene
-4. Verificar estadísticas se mantienen
+3. Verificar que Pomodoros Hoy / Tiempo Hoy / Racha se mantienen
+4. Verificar que el conteo de "hoy" usa la fecha LOCAL, no UTC
 ```
 
 ### 5. Responsive
@@ -93,8 +88,9 @@
 
 ## URLs de Testing
 
-- **Local**: `http://localhost:3000/pomodoro-timer/`
-- **GitHub Pages**: `https://risso-patron.github.io/portfolio/pomodoro-timer/`
+- **Local**: `http://localhost:5173/pomodoro-timer/` (servidor de desarrollo del monorepo, `scripts/dev-server.js`, Node `http` plano)
+- **Producción**: `https://www.risso-patron.com/pomodoro-timer/`
+- GitHub Pages (`risso-patron.github.io/portfolio/pomodoro-timer/`) NO funciona como demo: `index.html` tiene `<base href="/pomodoro-timer/">`, así que CSS/JS/íconos resuelven contra la raíz del dominio en vez de `/portfolio/pomodoro-timer/`
 
 ## Casos Edge
 

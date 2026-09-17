@@ -2,6 +2,10 @@
 :root {
     --primary: #FF6347;
     --primary-dark: #E5533D;
+    /* Texto sobre fondo --primary: blanco da ~2.95:1 (falla WCAG AA 4.5:1).
+       Tono oscuro de la misma familia (hue ~9°) para cumplir AA en ambos temas,
+       ya que --primary no cambia entre light/dark. Contraste medido: ~6.36:1. */
+    --on-primary: #290600;
     --secondary: #4ECDC4;
     --accent: #FFE66D;
     --success: #10b981;
@@ -127,7 +131,7 @@ body {
 
 .nav-btn.active {
     background: var(--primary);
-    color: white;
+    color: var(--on-primary);
 }
 
 .theme-toggle {
@@ -190,7 +194,7 @@ body {
 
 .tab-btn.active {
     background: var(--primary);
-    color: white;
+    color: var(--on-primary);
 }
 
 /* ==================== Stats Grid ==================== */
@@ -435,7 +439,7 @@ body {
 
 .mode-btn.active {
     background: var(--primary);
-    color: white;
+    color: var(--on-primary);
 }
 
 /* 🌀 Anillo de Progreso SVG (Nuevo) */
@@ -522,7 +526,7 @@ body {
 
 .control-btn.primary {
     background: var(--primary);
-    color: white;
+    color: var(--on-primary);
 }
 
 .control-btn.primary:hover {
@@ -539,6 +543,39 @@ body {
 
 .control-btn.secondary:hover {
     background: var(--bg-card-hover);
+}
+
+/* 📊 Resumen de sesión (mismo lenguaje visual que .stat-card) */
+.session-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.info-item {
+    flex: 1 1 120px;
+    max-width: 180px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+}
+
+.info-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+}
+
+.info-value {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 /* 🗑️ Botón de Limpieza (Nuevo) */
@@ -618,4 +655,78 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+/* ==================== Responsive ====================
+   El archivo no tenía ninguna @media query pese a que la documentación
+   describe breakpoints. Overflow horizontal real medido en 375px
+   (scrollWidth 611px vs clientWidth 375px), causado principalmente por:
+   .header sin wrap, .mode-selector sin wrap, y el timer-svg de 300px fijo.
+   Estos breakpoints solo corrigen ese overflow y el solape del back-button,
+   no son un rediseño responsive completo. */
+@media (max-width: 768px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 1.5rem 1rem;
+    }
+
+    .header {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .header-right {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .timer-card {
+        padding: 2rem 1rem;
+    }
+
+    .mode-selector {
+        flex-wrap: wrap;
+    }
+
+    .mode-btn {
+        padding: 0.65rem 1rem;
+        font-size: 0.8125rem;
+    }
+
+    .timer-display-container {
+        width: min(240px, 70vw);
+        height: min(240px, 70vw);
+    }
+
+    .timer-svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .timer-display {
+        font-size: 3.25rem;
+    }
+
+    .control-btn {
+        padding: 0.85rem 1.75rem;
+    }
+
+    .session-info {
+        flex-wrap: wrap;
+    }
+
+    /* El botón fijo (bottom:30px;left:30px) se superponía con "Iniciar" y
+       con la estadística "Racha Actual" en viewports angostos. En static
+       queda arriba del header, sin superposición. */
+    .back-button {
+        position: static;
+        margin: 0 0 1rem 0;
+    }
 }

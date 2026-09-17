@@ -16,7 +16,7 @@
     --primary-light: #93C5FD;
     --secondary: #34D399;
     --accent: #F59E0B;
-    --white: #F7F7FF;
+    --white: #FFFFFF;
     
     /* Texto */
     --text-primary: #F7F7FF;
@@ -51,7 +51,7 @@ body.light-theme {
     --primary-light: #3B82F6;
     --secondary: #059669;
     --accent: #D97706;
-    --white: #1F2937;
+    --white: #FFFFFF;
     
     /* Texto - Negro */
     --text-primary: #1F2937;

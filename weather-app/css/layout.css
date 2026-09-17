@@ -193,7 +193,7 @@
 
 .detail-label {
     font-size: 0.625rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 500;
@@ -203,7 +203,7 @@
 .detail-value {
     font-size: 1rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-primary);
     line-height: 1;
 }
 
@@ -256,7 +256,7 @@
 
 .detail-card-label {
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.65);
+    color: var(--text-muted);
     margin-bottom: 0.4rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -266,13 +266,13 @@
 .detail-card-value {
     font-size: 1.6rem;
     font-weight: 500;
-    color: #ffffff;
+    color: var(--text-primary);
     margin-bottom: 0.2rem;
 }
 
 .detail-card-info {
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--text-muted);
     font-style: normal;
     font-weight: 300;
 }

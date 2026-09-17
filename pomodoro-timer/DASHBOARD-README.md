@@ -28,12 +28,10 @@ Transformación completa del Pomodoro Timer tradicional a un **dashboard profesi
 - Mes
 - Año
 
-### 4. 📋 **Tabla de Sesiones Recientes**
-- Fecha y hora de cada sesión
-- Etiquetas categorizadas (Diseño, Investigación, Reunión, Codificación)
-- Estado (Completado/Interrumpido)
-- Duración
-- Sistema de colores por categoría
+### 4. 📋 **Tabla de Sesiones Recientes** — *no implementada*
+No existe en el DOM actual (`index.html`) ni está enlazada desde ninguna vista;
+`style.css` conserva reglas `.sessions-card`/`.sessions-table` sin usar, de un
+diseño anterior. Queda documentada aquí solo como idea de diseño descartada.
 
 ### 5. ⏱️ **Temporizador Funcional**
 - **3 Modos**:
@@ -97,9 +95,10 @@ index-new.html (todo-en-uno)
 
 1. **Stat Cards** - Métricas con íconos y cambios porcentuales
 2. **Chart Cards** - Contenedores para gráficos con headers
-3. **Sessions Table** - Tabla responsiva con badges de estado
-4. **Timer Card** - Card central del temporizador
-5. **Navigation** - Tabs y botones de navegación
+3. **Timer Card** - Card central del temporizador
+4. **Navigation** - Tabs y botones de navegación
+
+*(Sessions Table no está implementada — ver nota en "Características Principales")*
 
 ---
 
@@ -283,7 +282,7 @@ sesiones: [
 | **Gráficos** | ❌ No tenía | ✅ 2 gráficos interactivos (Chart.js) |
 | **Estadísticas** | ❌ Básicas o inexistentes | ✅ 4 métricas con comparativas |
 | **Navegación** | Una sola vista | ✅ 2 vistas (Timer + Stats) |
-| **Tabla Sesiones** | ❌ No tenía | ✅ Historial completo con estados |
+| **Tabla Sesiones** | ❌ No tenía | ❌ Sigue sin implementarse (solo quedó como idea de diseño) |
 | **Responsive** | Limitado | ✅ Completamente responsive |
 | **Temas** | Dark/Light simple | ✅ Sistema completo con charts adaptativos |
 | **Períodos** | ❌ No tenía | ✅ Día/Semana/Mes/Año |

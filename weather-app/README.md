@@ -13,7 +13,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
 [![OpenWeather API](https://img.shields.io/badge/API-OpenWeather-orange?style=flat-square)](https://openweathermap.org/api)
 
-🔗 **[Ver Demo en Vivo](https://risso-patron.github.io/portfolio/weather-app/)**
+🔗 **[Ver Demo en Vivo](https://www.risso-patron.com/weather-app)**
 
 </div>
 
@@ -22,7 +22,7 @@
 ## 🎯 Características
 
 - **🔍 Búsqueda por ciudad**: Busca el clima de cualquier ciudad del mundo
-- **📍 Geolocalización**: Detecta automáticamente tu ubicación actual
+- **📍 Geolocalización**: Consulta el clima de tu ubicación actual con el botón "Usar Mi Ubicación"
 - **🌡️ Información completa**: Temperatura, sensación térmica, humedad, viento, presión
 - **📅 Pronóstico 5 días**: Predicción del clima para los próximos días
 - **🌓 Conversión de unidades**: Cambia entre Celsius y Fahrenheit
@@ -166,7 +166,7 @@ Lo que aprendí construyendo esta Weather App:
 - **Integración de APIs**: Manejo de OpenWeatherMap API con autenticación
 - **Async JavaScript**: Uso de async/await para operaciones asíncronas
 - **Error Handling**: Manejo elegante de errores de red y permisos
-- **Geolocation API**: Implementación de ubicación automática
+- **Geolocation API**: Implementación de geolocalización activada por el usuario mediante botón
 - **Responsive CSS**: Grid y Flexbox para layouts adaptativos
 
 ### 🎨 Diseño
