@@ -29,14 +29,19 @@ jobs:
       - name: Syntax check — API & scripts
         run: npm run check
 
-      # Ensambla src/ partials en index.html y falla si algún partial falta.
-      - name: Build index.html from partials
+      # Genera dist/ (ES/EN, casos, sitemap) y falla si hay claves i18n
+      # desparejas, enlaces/anclas rotos o marcadores sin resolver.
+      - name: Build static site
         run: npm run build
 
       # Verifica que los archivos críticos del portfolio existen tras el build.
       - name: Required files present
         run: |
-          for f in index.html styles.css api/weather.js api/forecast.js api/giphy.js; do
+          for f in dist/index.html dist/en.html dist/sitemap.xml dist/assets/css/main.css dist/assets/js/main.js api/weather.js api/forecast.js api/giphy.js; do
             [ -f "$f" ] || { echo "MISSING: $f"; exit 1; }
           done
           echo "All required files present"
+          # Ningún archivo interno debe llegar a dist/.
+          for f in dist/clients dist/openspec dist/test-cards.html dist/budget-app; do
+            [ ! -e "$f" ] || { echo "LEAKED: $f"; exit 1; }
+          done

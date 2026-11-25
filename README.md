@@ -77,7 +77,7 @@ App de finanzas personales con CRUD y LocalStorage
 ---
 
 ### 🌐 [Portfolio Personal](https://risso-patron.github.io/portfolio/)
-Sitio web personal con diseño responsivo, modo oscuro y build system con partials
+Sitio estático ES/EN con generador propio en Node, páginas de caso y validación de enlaces en el build ([arquitectura](docs/arquitectura.md))
 <br>
 `HTML` `CSS` `JavaScript` `Node.js` `Vercel`
 
