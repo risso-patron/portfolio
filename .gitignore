@@ -30,3 +30,4 @@ node_modules/
 
 # Reportes de facturación / uso (privados)
 bandwidth-usage*.csv
+dist/

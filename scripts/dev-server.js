@@ -6,7 +6,8 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PORT = Number(process.env.PORT) || 5173;
-const ROOT = path.resolve(__dirname, '..');
+// Sirve dist/ (salida de npm run build) imitando cleanUrls de Vercel.
+const ROOT = path.resolve(__dirname, '..', 'dist');
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -21,7 +22,8 @@ const MIME_TYPES = {
   '.gif': 'image/gif',
   '.ico': 'image/x-icon',
   '.txt': 'text/plain; charset=utf-8',
-  '.xml': 'application/xml; charset=utf-8'
+  '.xml': 'application/xml; charset=utf-8',
+  '.woff2': 'font/woff2'
 };
 
 function safePath(urlPath) {
@@ -64,7 +66,12 @@ const server = http.createServer((req, res) => {
       return;
     }
 
-    const finalPath = stats.isDirectory() ? path.join(filePath, 'index.html') : filePath;
+    // Directorio sin index.html (p. ej. /en junto a en.html): usa el .html hermano, como Vercel.
+    let finalPath = filePath;
+    if (stats.isDirectory()) {
+      const index = path.join(filePath, 'index.html');
+      finalPath = fs.existsSync(index) ? index : filePath.replace(/[\\/]$/, '') + '.html';
+    }
     fs.readFile(finalPath, (readErr, data) => {
       if (readErr) {
         res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });

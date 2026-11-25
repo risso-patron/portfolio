@@ -4,9 +4,9 @@
   "private": true,
   "description": "Portfolio estatico de Jorge Luis Risso Patron",
   "scripts": {
-    "dev": "node scripts/dev-server.js",
+    "dev": "node scripts/build.js && node scripts/dev-server.js",
     "start": "node scripts/dev-server.js",
-    "check": "node --check api/weather.js api/forecast.js api/giphy.js scripts/dev-server.js scripts/optimize-images.js scripts/build.js",
+    "check": "node --check api/weather.js api/forecast.js api/giphy.js scripts/dev-server.js scripts/optimize-images.js scripts/build.js assets/js/main.js",
     "build": "node scripts/build.js"
   },
   "type": "module",
