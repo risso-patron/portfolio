@@ -39,7 +39,7 @@ function head(ctx) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#11100e">
+    <meta name="theme-color" content="#0a0e17">
     <title>${esc(page.title)}</title>
     <meta name="description" content="${esc(page.description)}">
     <meta name="author" content="Jorge Luis Risso Patrón">
