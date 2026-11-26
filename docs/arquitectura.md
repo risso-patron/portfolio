@@ -48,7 +48,7 @@ El build falla si:
 - queda `undefined`, `[object Object]` o un marcador sin reemplazar en el HTML.
 
 Solo se publica lo que está en `PUBLIC_COPY`. Carpetas internas del repo
-(`clients/`, `openspec/`, `budget-app/`, `test-cards.html`) no llegan a `dist/`, y
+(`budget-app/`) no llegan a `dist/`, y
 la CI lo comprueba.
 
 ## Comandos

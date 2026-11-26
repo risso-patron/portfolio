@@ -55,28 +55,28 @@ Developer autodidacta con background en operaciones y gestión. Construyendo pro
 
 <div align="center">
 
-### 🌤️ [Weather App](https://risso-patron.github.io/portfolio/weather-app/)
+### 🌤️ [Weather App](https://www.risso-patron.com/weather-app/)
 App del clima con API de OpenWeather, gráficos de temperatura, ubicaciones guardadas y modo oscuro
 <br>
 `HTML` `CSS` `JavaScript` `REST API` `LocalStorage`
 
 ---
 
-### ⏱️ [Pomodoro Timer](https://risso-patron.github.io/portfolio/pomodoro-timer/)
+### ⏱️ [Pomodoro Timer](https://www.risso-patron.com/pomodoro-timer/)
 Timer de productividad con sesiones, descansos cortos/largos y notificaciones
 <br>
 `HTML` `CSS` `JavaScript` `LocalStorage`
 
 ---
 
-### 💰 [Calculadora de Presupuesto](https://risso-patron.github.io/portfolio/budget-app/)
+### 💰 [Calculadora de Presupuesto](budget-app/) (código)
 App de finanzas personales con CRUD y LocalStorage
 <br>
 `HTML` `CSS` `JavaScript` `LocalStorage`
 
 ---
 
-### 🌐 [Portfolio Personal](https://risso-patron.github.io/portfolio/)
+### 🌐 [Portfolio Personal](https://www.risso-patron.com/)
 Sitio estático ES/EN con generador propio en Node, páginas de caso y validación de enlaces en el build ([arquitectura](docs/arquitectura.md))
 <br>
 `HTML` `CSS` `JavaScript` `Node.js` `Vercel`
