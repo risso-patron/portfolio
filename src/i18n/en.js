@@ -52,7 +52,7 @@ export default {
         role: 'Junior Frontend Developer · Panama',
         title: 'I build websites and web apps for businesses.',
         lead:
-            'My largest project so far is <a href="{spaceos}">SpaceOS</a>, the internal system my studio, Space Panamá, uses to run clients, quotes and events.',
+            'My largest project so far is <a href="{spaceos}">SpaceOS</a>, the internal system Space Panamá, a creative studio, uses to run clients, quotes and events.',
         availability: 'Available for freelance projects and open to joining a product team, ideally remote.',
         ctaWork: 'See the work',
         ctaTalk: 'Talk on WhatsApp',
@@ -105,9 +105,9 @@ export default {
     contexts: {
         space: {
             kicker: 'Space Panamá',
-            title: 'Tools for my own studio',
+            title: 'Digital products for a creative studio',
             body:
-                'Space Panamá is my creative studio. I build its digital products there: SpaceOS, used by the team, and the studio’s new website, still in progress.',
+                'I build the digital products for Space Panamá, a creative studio: SpaceOS, used by the team, and the studio’s new website, still in progress.',
         },
         employer: {
             kicker: 'Previous job',
@@ -149,7 +149,7 @@ export default {
         title: 'From the kitchen to web development.',
         paragraphs: [
             'I have been a professional chef since 2003. In 2025 I moved into web development, mostly self-taught, with a clear goal: bring the organization, pace and problem solving I learned in kitchens to digital projects.',
-            'Since then I have built company websites in a job, shipped my own products such as SALDO and Comparo360, and today I build the tools for my studio, Space Panamá.',
+            'Since then I have built company websites in a job, shipped my own products such as SALDO and Comparo360, and today I build the digital tools for Space Panamá.',
             'I am still a junior, and I say it plainly: everything shown here is live or in use, and each case explains which part was mine.',
         ],
         photoAlt: 'Jorge Luis Risso Patrón working at his computer',

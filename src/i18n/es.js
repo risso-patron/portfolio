@@ -53,7 +53,7 @@ export default {
         role: 'Frontend Developer Junior · Panamá',
         title: 'Hago sitios y aplicaciones web para negocios.',
         lead:
-            'Mi trabajo más grande hasta hoy es <a href="{spaceos}">SpaceOS</a>, el sistema interno con el que mi estudio, Space Panamá, gestiona clientes, cotizaciones y eventos.',
+            'Mi trabajo más grande hasta hoy es <a href="{spaceos}">SpaceOS</a>, el sistema interno con el que Space Panamá, un estudio creativo, gestiona clientes, cotizaciones y eventos.',
         availability: 'Disponible para proyectos freelance y para sumarme a un equipo de producto, preferiblemente en remoto.',
         ctaWork: 'Ver trabajo',
         ctaTalk: 'Hablemos por WhatsApp',
@@ -106,9 +106,9 @@ export default {
     contexts: {
         space: {
             kicker: 'Space Panamá',
-            title: 'Las herramientas de mi propio estudio',
+            title: 'Productos digitales para un estudio creativo',
             body:
-                'Space Panamá es mi estudio creativo. Ahí desarrollo sus productos digitales: SpaceOS, en uso por el equipo, y la nueva web del estudio, en desarrollo.',
+                'Desarrollo los productos digitales de Space Panamá, un estudio creativo: SpaceOS, en uso por el equipo, y la nueva web del estudio, en desarrollo.',
         },
         employer: {
             kicker: 'Empleo anterior',
@@ -150,7 +150,7 @@ export default {
         title: 'De la gastronomía al desarrollo web.',
         paragraphs: [
             'Soy chef profesional desde 2003. En 2025 empecé mi transición al desarrollo web, de forma autodidacta, con una idea clara: llevar a los proyectos digitales la organización, el ritmo de trabajo y la resolución de problemas que aprendí en cocina.',
-            'Desde entonces desarrollé sitios para empresas en un empleo, construí productos propios como SALDO y Comparo360, y hoy desarrollo las herramientas de mi estudio, Space Panamá.',
+            'Desde entonces desarrollé sitios para empresas en un empleo, construí productos propios como SALDO y Comparo360, y hoy desarrollo las herramientas digitales de Space Panamá.',
             'Sigo siendo junior, y lo digo sin rodeos: lo que muestro aquí está publicado o en uso, y cada caso explica qué parte hice yo.',
         ],
         photoAlt: 'Jorge Luis Risso Patrón trabajando en su computadora',
