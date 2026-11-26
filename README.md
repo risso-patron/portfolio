@@ -113,7 +113,7 @@ Sitio estático ES/EN con generador propio en Node, páginas de caso y validaci�
 - 📚 Profundizando en JavaScript moderno (ES6+)
 - ⚛️ Aprendiendo React y TypeScript
 - 🎨 Mejorando skills de UI/UX con Figma
-- 💼 Trabajando en **Space Panamá** como Programador Web (2021-presente)
+- 💼 Desarrollando SpaceOS y la nueva web de **Space Panamá**
 - 🔍 **Buscando oportunidades** como Frontend Developer Junior
 
 ---
