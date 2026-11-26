@@ -149,6 +149,7 @@ for (const page of pages) {
                 continue;
             }
             if (!u.startsWith('/')) continue; // externos, mailto, data:
+            if (u.startsWith('/_vercel/')) continue; // rutas que inyecta Vercel en producción
             const [p, hash] = u.split('#');
             if (!resolvePublic(p)) errors.push(`[enlace] ${page.file}: ${u} no existe en dist/`);
             if (hash && byPath[p] && !idsIn(byPath[p].html).has(hash)) errors.push(`[ancla] ${page.file}: ${u} no existe`);
