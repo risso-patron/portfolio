@@ -31,3 +31,8 @@ node_modules/
 # Reportes de facturación / uso (privados)
 bandwidth-usage*.csv
 dist/
+
+# Notas internas y experimentos: no se versionan (repo público)
+clients/
+openspec/
+test-cards.html

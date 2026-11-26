@@ -48,7 +48,7 @@ export const STATIC_SITEMAP_PATHS = ['/jorgeluis_CV/', '/weather-app', '/pomodor
 
 /**
  * Lista explícita de lo que se publica además de las páginas generadas.
- * Todo lo que no esté aquí (clients/, openspec/, test-cards.html, budget-app/,
+ * Todo lo que no esté aquí (budget-app/, notas locales ignoradas por git,
  * archivos internos) queda fuera de producción.
  */
 export const PUBLIC_COPY = [
