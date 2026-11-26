@@ -209,6 +209,8 @@ ${main}
     </main>
 ${footer(ctx)}${withLightbox ? lightbox(ctx.t) : ''}
     <script src="/assets/js/main.js?v=${ctx.assetVersion}" defer></script>
+    <!-- Vercel Web Analytics: sin cookies; script y envío desde el mismo dominio (CSP 'self'). -->
+    <script src="/_vercel/insights/script.js" defer></script>
 </body>
 </html>
 `;
