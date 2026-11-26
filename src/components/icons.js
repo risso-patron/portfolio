@@ -28,7 +28,7 @@ export function iconSprite() {
         .map(([id, d]) => `<symbol id="i-${id}" viewBox="0 0 24 24"><path fill="currentColor" d="${d}"/></symbol>`);
     const ui = Object.entries(UI)
         .map(([id, d]) => `<symbol id="i-${id}" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="${d}"/></symbol>`);
-    return `<svg xmlns="http://www.w3.org/2000/svg" hidden aria-hidden="true">${[...brand, ...ui].join('')}</svg>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" class="icon-sprite" aria-hidden="true">${[...brand, ...ui].join('')}</svg>`;
 }
 
 /** Uso de un icono decorativo. El texto accesible va siempre en el elemento padre. */
