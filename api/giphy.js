@@ -44,12 +44,17 @@ export default async function handler(req, res) {
         return sendJson(res, 400, { error: 'Query requires q' });
     }
 
+    // Valores acotados: el proxy no acepta contenido no apto ni consultas enormes.
+    const safeLimit = Math.min(Math.max(Number.parseInt(limit, 10) || 25, 1), 50);
+    const safeRating = ['g', 'pg'].includes(String(rating)) ? String(rating) : 'g';
+    const safeLang = /^[a-z]{2}$/.test(String(lang)) ? String(lang) : 'es';
+
     const params = new URLSearchParams({
         api_key: apiKey,
-        q: String(q),
-        limit: String(limit),
-        rating: String(rating),
-        lang: String(lang)
+        q: String(q).slice(0, 50),
+        limit: String(safeLimit),
+        rating: safeRating,
+        lang: safeLang
     });
 
     try {

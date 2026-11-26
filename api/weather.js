@@ -40,12 +40,12 @@ export default async function handler(req, res) {
 
     const params = new URLSearchParams({
         appid: apiKey,
-        units: String(units),
-        lang: String(lang)
+        units: ['metric', 'imperial', 'standard'].includes(String(units)) ? String(units) : 'metric',
+        lang: /^[a-z]{2}(_[a-z]{2})?$/i.test(String(lang)) ? String(lang) : 'es'
     });
 
     if (q) {
-        params.set('q', String(q));
+        params.set('q', String(q).slice(0, 100));
     } else {
         params.set('lat', String(lat));
         params.set('lon', String(lon));

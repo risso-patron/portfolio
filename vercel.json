@@ -2,7 +2,7 @@
   "version": 2,
   "installCommand": "npm ci --omit=dev",
   "buildCommand": "node scripts/build.js",
-  "outputDirectory": ".",
+  "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
@@ -27,7 +27,7 @@
         },
         {
           "key": "X-XSS-Protection",
-          "value": "1; mode=block"
+          "value": "0"
         },
         {
           "key": "Cache-Control",

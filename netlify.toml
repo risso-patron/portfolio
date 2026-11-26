@@ -1,5 +1,6 @@
 [build]
-  publish = "."
+  command = "node scripts/build.js"
+  publish = "dist"
 
 # HTML siempre fresco para que los cambios se reflejen rapido.
 [[headers]]

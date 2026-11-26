@@ -77,7 +77,7 @@ App de finanzas personales con CRUD y LocalStorage
 ---
 
 ### 🌐 [Portfolio Personal](https://risso-patron.github.io/portfolio/)
-Sitio web personal con diseño responsivo, modo oscuro y build system con partials
+Sitio estático ES/EN con generador propio en Node, páginas de caso y validación de enlaces en el build ([arquitectura](docs/arquitectura.md))
 <br>
 `HTML` `CSS` `JavaScript` `Node.js` `Vercel`
 
@@ -113,7 +113,7 @@ Sitio web personal con diseño responsivo, modo oscuro y build system con partia
 - 📚 Profundizando en JavaScript moderno (ES6+)
 - ⚛️ Aprendiendo React y TypeScript
 - 🎨 Mejorando skills de UI/UX con Figma
-- 💼 Trabajando en **Space Panamá** como Programador Web (2021-presente)
+- 💼 Desarrollando SpaceOS y la nueva web de **Space Panamá**
 - 🔍 **Buscando oportunidades** como Frontend Developer Junior
 
 ---
