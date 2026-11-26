@@ -75,6 +75,7 @@ export const PUBLIC_COPY = [
 
 /** Dentro de PUBLIC_COPY, archivos que no se publican (originales, docs, ejemplos). */
 export const PUBLIC_EXCLUDE = [
+    /(^|[\\/])\.[^\\/]+$/, // archivos ocultos (.env.example, .gitignore…)
     /\.md$/,
     /\.example\.js$/,
     /weather-app[\\/](config|pexels-config)\.js$/,

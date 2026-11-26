@@ -2,7 +2,39 @@
 // Recibe el contexto de la página (ctx) que arma scripts/build.js.
 
 import { iconSprite, icon } from './icons.js';
+import { createHash } from 'node:crypto';
 import { esc } from './html.js';
+
+// Script en línea que aplica el tema antes de pintar (evita el parpadeo).
+// Su hash entra en la CSP: si se edita, el hash se recalcula solo.
+const THEME_SCRIPT = `
+        // Antes de pintar: aplica el tema guardado (oscuro por defecto) para evitar parpadeo.
+        (function () {
+            try {
+                var saved = localStorage.getItem('theme');
+                if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {}
+            document.documentElement.classList.add('js');
+        })();
+`;
+const THEME_SCRIPT_HASH = createHash('sha256').update(THEME_SCRIPT).digest('base64');
+
+// CSP de las páginas generadas: solo recursos propios. frame-ancestors no
+// funciona en <meta>; el encuadre lo bloquea X-Frame-Options en vercel.json.
+const CSP = [
+    "default-src 'self'",
+    `script-src 'self' 'sha256-${THEME_SCRIPT_HASH}'`,
+    "style-src 'self'",
+    "img-src 'self' data:",
+    "font-src 'self'",
+    "connect-src 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+].join('; ');
+
+/** JSON seguro dentro de <script>: impide cerrar la etiqueta desde un texto. */
+const safeJson = (value) => JSON.stringify(value).replace(/</g, '\\u003c');
 
 const PHONE = '50764560263';
 const EMAIL = 'luisrissopa@gmail.com';
@@ -39,6 +71,7 @@ function head(ctx) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="${CSP}">
     <meta name="theme-color" content="#0a0e17">
     <title>${esc(page.title)}</title>
     <meta name="description" content="${esc(page.description)}">
@@ -71,17 +104,8 @@ ${alternates.map((a) => `    <link rel="alternate" hreflang="${a.lang}" href="${
     <link rel="preload" href="/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/css/main.css?v=${ctx.assetVersion}">
 
-    <script>
-        // Antes de pintar: aplica el tema guardado (oscuro por defecto) para evitar parpadeo.
-        (function () {
-            try {
-                var saved = localStorage.getItem('theme');
-                if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
-            } catch (e) {}
-            document.documentElement.classList.add('js');
-        })();
-    </script>
-    <script type="application/ld+json">${JSON.stringify(schema)}</script>
+    <script>${THEME_SCRIPT}</script>
+    <script type="application/ld+json">${safeJson(schema)}</script>
 </head>`;
 }
 
